@@ -1,0 +1,106 @@
+PinLace Sport Footwear website
+
+Possible Database tables: Product, Inventory, Review, 
+User, WishList, Address, ShoppingCart, Order
+
+Product has:
+id(product code),brand,name,category
+gender,Description,saleRecord
+
+---------------------------------
+Inventory:
+id,FK_product_id_inv_prod,
+color,size,price,discount,
+imageList_name,quantity
+
+------------------------------
+Review:
+FK_product_id_review_prod,
+id,reviewer_name,star_number,date
+title,text,is_recommend,
+
+---------------------------------
+
+User has:
+id,email,firstName,lastName,phone
+mobile,password,contact_pref
+--------------------------------
+
+WishList:
+id,FK_user_id_wish_user,
+FK_inverntory_id_wish_inven,
+
+--------------------------------
+
+Address:
+id,address,city,state,country,postalCode,
+FK_user_id_addr_user,
+
+---------------------------------
+ShoppingCart:
+id,
+FK_user_id_shop_user,
+FK_inventory_id_shop_inven,
+
+--------------------------------
+Order:
+id,date,time,status,amount,
+paymentMethod,
+lastFourdigit,pymnt_ref,
+FK_user_id_order_user,
+FK_inventory_id_order_inven,
+FK_address_id_order_address,
+
+*****************************************
+
+Possible functionalities:
+
+1-User registration and activation.
+2-User log in\log out session time.
+3-User reset fotgotten password through email. 
+4-search products by brand.
+5-display products by brands,gender,
+  category,size,color,price,discount
+6-signup to newsLetter.
+
+*****************************************
+Front end structure:
+1-Home page: 
+ *presentation of differnt products by category
+  brand or specific items
+ *top seller presentation
+ *newsletter signup
+2-Footer:
+  -customer service:
+  *FAQ's, contact us,Returns and exchange, refunds
+  -shopping
+  *Account,Delivery,Student discount
+  -About Us
+  *Terms and conditions,Security and privacy,site map
+  -Follow Us
+  *instagram, facebook
+  -Copy Right
+3-Header:
+ *login link,shopping basket
+ *search bar by product brand,
+4-Product page
+5-Products list page
+6-User profile page
+ *Account Details
+ *my details
+ *change password
+ *Address Details
+ * wish list
+ *order history
+ *Contact Preferences 
+
+
+
+
+
+
+
+
+
+
+
