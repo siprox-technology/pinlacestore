@@ -89,9 +89,9 @@ Front end structure:
  *Account Details
  *my details
  *change password
- *Address Details
+ *Address Details 
  * wish list
- *order history
+ *order history 
  *Contact Preferences 
 
 
