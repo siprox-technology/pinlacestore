@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Trax | Account</title>
+    <title>Trax | Change password</title>
     <link href="images/favicon.ico" rel="icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
@@ -342,84 +342,57 @@
         <!-- End side menu -->
     </header>
 
-    <!-- User account details -->
-    <section id="user-account-section" class="bglight position-relative padding noshadow">
+    <!-- Change password -->
+    <section id="stayconnect1" class="bglight position-relative padding noshadow">
         <div class="container whitebox">
-            <div class="row justify-content-center">
-                <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Account</span>
-                    Details
-                    <span class="divider-center"></span>
-                </h2>
-            </div>
-            <div class="row ">
-                <div class="user-account-det-box mt-2">
-
-                    <div class="row">
-                        <!-- My details -->
-                        <div class="col-lg-4 col-md-6">
-                            <a href="edit-acc-details.html">
-                                <div class="user-account-det-box text-center w-100 det-box">
-                                    <div class="contact-box">
-                                        <span class="icon-contact defaultcolor"><i class="fa fa-user"
-                                                aria-hidden="true"></i>
-                                        </span>
-                                        <h3 class="bottom0">My details</h3>
+            <div class="widget py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center wow fadeIn mt-n3" data-wow-delay="300ms">
+                        <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Change
+                            </span>
+                            Password
+                            <span class="divider-center"></span>
+                        </h2>
+                        <div class="col-md-8 offset-md-2 bottom35">
+                            <p>Passwords must be between x and x characters and can include both characters and
+                                numbers.
+                            </p>
+                        </div>
+                    </div>
+                    <!--edit user password -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
+                            <form class="getin_form wow fadeInUp" data-wow-delay="400ms" onsubmit="return false;">
+                                <div class="row px-2 justify-content-center">
+                                    <div class="col-md-12 col-sm-12" id="result1"></div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <!-- old pass -->
+                                        <div class="form-group">
+                                            <label for="oldPass" class="d-none"></label>
+                                            <input class="form-control" id="oldPass" type="password"
+                                                placeholder="Old password:" required name="oldPass" maxlength="20">
+                                        </div>
+                                        <!-- new pass -->
+                                        <div class="form-group">
+                                            <label for="newPass" class="d-none"></label>
+                                            <input class="form-control" id="newPass" type="password"
+                                                placeholder="New password:" required name="newPass">
+                                        </div>
+                                        <!-- retype new pass -->
+                                        <div class="form-group">
+                                            <label for="retypeNewPass" class="d-none"></label>
+                                            <input class="form-control" id="retypeNewPass" type="password"
+                                                placeholder="Retype new password:" required name="retypeNewPass">
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- Change pass -->
-                        <div class="col-lg-4 col-md-6" id="test">
-                            <a href="change-pass.html">
-                                <div class="user-account-det-box text-center w-100 det-box">
-                                    <div class="contact-box">
-                                        <span class="icon-contact defaultcolor"><i class="fa fa-lock"
-                                                aria-hidden="true"></i></span>
-                                        <h3 class="bottom0">Change password</h3>
+                                    <!-- save button -->
+                                    <div class="col-md-12 col-sm-12">
+                                        <button id="save-new-pass-btn" class="button gradient-btn w-100">Save</button>
                                     </div>
+                                    <!-- result label -->
+                                    <label class="text-success mt-3" id="save-new-pass-result">success</label>
                                 </div>
-                            </a>
-                        </div>
-                        <!-- address -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="user-account-det-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor"><i class="fa fa-home"
-                                            aria-hidden="true"></i></span>
-                                    <h3 class="bottom0">Address details</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- wish list -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="user-account-det-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor"><i class="fa fa-heart"
-                                            aria-hidden="true"></i></span>
-                                    <h3 class="bottom0">Wish list</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- order history -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="user-account-det-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor"><i class="fa fa-list-alt"
-                                            aria-hidden="true"></i></span>
-                                    <h3 class="bottom0">Order history</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- contact preferences -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="user-account-det-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor">
-                                        <i class="fa fa-reply-all" aria-hidden="true"></i>
-                                        </i></span>
-                                    <h3 class="bottom0">Contact preferences</h3>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -427,6 +400,7 @@
 
         </div>
     </section>
+    <!-- Contact US ends -->
 
     <!--Site Footer Here-->
     <footer id="site-footer" class=" bgdark padding_top">
