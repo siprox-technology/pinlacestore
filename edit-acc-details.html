@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Trax | Account</title>
+    <title>Trax | Edit account</title>
     <link href="images/favicon.ico" rel="icon">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.min.css">
@@ -342,82 +342,64 @@
         <!-- End side menu -->
     </header>
 
-    <!-- User account details -->
-    <section id="user-account-section" class="bglight position-relative padding noshadow">
+    <!-- Contact US -->
+    <section id="stayconnect1" class="bglight position-relative padding noshadow">
         <div class="container whitebox">
-            <div class="row justify-content-center">
-                <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Account</span>
-                    Details
-                    <span class="divider-center"></span>
-                </h2>
-            </div>
-            <div class="row ">
-                <div class="user-account-det-box mt-2">
-
-                    <div class="row">
-                        <!-- My details -->
-                        <div class="col-lg-4 col-md-6">
-                            <a href="edit-acc-details.html">
-                                <div class="user-account-det-box text-center w-100 det-box">
-                                    <div class="contact-box">
-                                        <span class="icon-contact defaultcolor"><i class="fa fa-user"
-                                                aria-hidden="true"></i>
-                                        </span>
-                                        <h3 class="bottom0">My details</h3>
+            <div class="widget py-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center wow fadeIn mt-n3" data-wow-delay="300ms">
+                        <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Edit account
+                            </span>
+                            Details
+                            <span class="divider-center"></span>
+                        </h2>
+                        <div class="col-md-8 offset-md-2 bottom35">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolores explicabo laudantium,
+                                omnis provident quam reiciendis voluptatum?</p>
+                        </div>
+                    </div>
+                    <!-- edit user personal details -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
+                            <form class="getin_form wow fadeInUp" data-wow-delay="400ms" onsubmit="return false;">
+                                <div class="row px-2 justify-content-center">
+                                    <div class="col-md-12 col-sm-12" id="result1"></div>
+                                    <div class="col-md-12 col-sm-12">
+                                        <!-- name -->
+                                        <div class="form-group">
+                                            <label for="name" class="d-none"></label>
+                                            <input class="form-control" id="name" type="text" placeholder="Name:"
+                                                required name="Name">
+                                        </div>
+                                        <!-- last name -->
+                                        <div class="form-group">
+                                            <label for="lastName" class="d-none"></label>
+                                            <input class="form-control" id="lastName" type="text"
+                                                placeholder="Last Name:" required name="lastName">
+                                        </div>
+                                        <!-- phone -->
+                                        <div class="form-group">
+                                            <label for="phone" class="d-none"></label>
+                                            <input class="form-control" id="phone" type="tell" placeholder="Phone:"
+                                                required name="phone" pattern="[0-9]{11}">
+                                        </div>
                                     </div>
+                                    <!-- email -->
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="email" class="d-none"></label>
+                                            <input class="form-control" type="email" id="email" placeholder="Email:"
+                                                name="email">
+                                        </div>
+                                    </div>
+                                    <!-- save button -->
+                                    <div class="col-md-12 col-sm-12">
+                                        <button id="save-pers-det-btn" class="button gradient-btn w-100">Save</button>
+                                    </div>
+                                    <!-- result label -->
+                                    <label class="text-success mt-3" id="save-pers-det-result">success</label>
                                 </div>
-                            </a>
-                        </div>
-                        <!-- Change pass -->
-                        <div class="col-lg-4 col-md-6" id="test">
-                            <div class="user-account-det-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor"><i class="fa fa-lock"
-                                            aria-hidden="true"></i></span>
-                                    <h3 class="bottom0">Change password</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- address -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="user-account-det-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor"><i class="fa fa-home"
-                                            aria-hidden="true"></i></span>
-                                    <h3 class="bottom0">Address details</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- wish list -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="user-account-det-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor"><i class="fa fa-heart"
-                                            aria-hidden="true"></i></span>
-                                    <h3 class="bottom0">Wish list</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- order history -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="user-account-det-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor"><i class="fa fa-list-alt"
-                                            aria-hidden="true"></i></span>
-                                    <h3 class="bottom0">Order history</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- contact preferences -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="user-account-det-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor">
-                                        <i class="fa fa-reply-all" aria-hidden="true"></i>
-                                        </i></span>
-                                    <h3 class="bottom0">Contact preferences</h3>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -425,6 +407,7 @@
 
         </div>
     </section>
+    <!-- Contact US ends -->
 
     <!--Site Footer Here-->
     <footer id="site-footer" class=" bgdark padding_top">
