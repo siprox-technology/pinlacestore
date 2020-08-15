@@ -22,7 +22,7 @@
     ?>
 
     <!-- Change password -->
-    <section id="stayconnect1" class="bglight position-relative padding noshadow">
+    <section id="change-pass" class="bglight position-relative padding noshadow">
         <div class="container whitebox">
             <div class="widget py-5">
                 <div class="row justify-content-center">

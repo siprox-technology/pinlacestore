@@ -6010,7 +6010,7 @@ form.findus .select:after {
 
 /* user account details section */
 
-.user-account-det-box {
+.details-box {
     padding: 40px 30px;
     background: #fff;
     -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
