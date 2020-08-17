@@ -91,8 +91,9 @@ Front end structure:
  *change password
  *Address Details 
  * wish list
- *order history --here
+ *order history
  *Contact Preferences 
+ ---here to continue
 
 
 

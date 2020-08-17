@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-md-12 cart_table wow fadeInUp details-box" data-wow-delay="300ms">
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" id="wish-list">
                             <thead>
                             <tr>
                                 <th class="darkcolor">Product</th>

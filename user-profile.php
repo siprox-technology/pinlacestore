@@ -83,24 +83,28 @@
                         </div>
                         <!-- order history -->
                         <div class="col-lg-4 col-md-6">
-                            <div class="details-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor"><i class="fa fa-list-alt"
-                                            aria-hidden="true"></i></span>
-                                    <h3 class="bottom0">Order history</h3>
+                            <a href="order-history.php">
+                                <div class="details-box text-center w-100 det-box">
+                                    <div class="contact-box">
+                                        <span class="icon-contact defaultcolor"><i class="fa fa-list-alt"
+                                                aria-hidden="true"></i></span>
+                                        <h3 class="bottom0">Order history</h3>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                         <!-- contact preferences -->
                         <div class="col-lg-4 col-md-6">
-                            <div class="details-box text-center w-100 det-box">
-                                <div class="contact-box">
-                                    <span class="icon-contact defaultcolor">
-                                        <i class="fa fa-reply-all" aria-hidden="true"></i>
-                                        </i></span>
-                                    <h3 class="bottom0">Contact preferences</h3>
+                            <a href="contact-pref.php">
+                                <div class="details-box text-center w-100 det-box">
+                                    <div class="contact-box">
+                                        <span class="icon-contact defaultcolor">
+                                            <i class="fa fa-reply-all" aria-hidden="true"></i>
+                                            </i></span>
+                                        <h3 class="bottom0">Contact preferences</h3>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

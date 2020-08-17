@@ -778,6 +778,30 @@ jQuery($ => {
             },
         }
     });
+    /* contact pref slider */
+    $("#contact-pref-slider").owlCarousel({
+        items: 3,
+        autoplay: false,
+        loop: false,
+        margin: 0,
+        padding: 0,
+        dots: true,
+        nav: false,
+        responsive: {
+            1280: {
+                items: 3,
+            },
+            980: {
+                items: 3,
+            },
+            600: {
+                items: 2,
+            },
+            0: {
+                items: 1,
+            },
+        }
+    });
 
 
     /*Our Team*/
