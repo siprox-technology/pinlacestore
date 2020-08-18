@@ -93,7 +93,7 @@ Front end structure:
  * wish list
  *order history
  *Contact Preferences 
- ---here to continue
+ 
 
 
 
