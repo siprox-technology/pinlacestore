@@ -17,12 +17,12 @@ imageList_name,quantity
 Review:
 FK_product_id_review_prod,
 id,reviewer_name,star_number,date
-title,text,is_recommend,
+title,text,is_recommend
 
 ---------------------------------
 
 User has:
-id,email,firstName,lastName,phone
+id,email,Name,lastName,phone
 ,password,contact_pref
 --------------------------------
 
@@ -33,7 +33,7 @@ FK_inverntory_id_wish_inven,
 --------------------------------
 
 Address:
-id,address,city,state,country,postalCode,
+id,address,city,state,country,postCode,
 FK_user_id_addr_user,
 
 ---------------------------------
@@ -45,7 +45,7 @@ FK_inventory_id_shop_inven,
 --------------------------------
 Order:
 id,date,time,status,amount,
-paymentMethod,
+payMethod
 lastFourdigit,pymnt_ref,
 FK_user_id_order_user,
 FK_inventory_id_order_inven,
@@ -53,15 +53,18 @@ FK_address_id_order_address,
 
 *****************************************
 
-Possible functionalities:
+Possible functionalities: 
 
-1-User registration and activation.
-2-User log in\log out session time.
-3-User reset fotgotten password through email. 
-4-search products by brand.
-5-display products by brands,gender,
+-User registration and activation.
+-User log in\log out session time.
+-User reset fotgotten password through email. 
+-User add product to wish list
+-User makes an order and pay.
+-search products by brand.
+-display products by brands,gender,
   category,size,color,price,discount
-6-signup to newsLetter.
+-signup to newsLetter.
+
 
 *****************************************
 Front end structure:
