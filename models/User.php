@@ -8,9 +8,9 @@ class User{
         //search if user not already exist
         // Prepare Query
         $this->db->query('INSERT INTO user 
-        (email,name,lastName,phone,password,contacPref)
+        (email,name,lastName,phone,password,contacPref,act_code)
          SELECT * FROM (SELECT :email, :name, :last_name, 
-         :phone, :password, :contactPref) 
+         :phone, :password, :contactPref, :act_code) 
          AS tmp
          WHERE NOT EXISTS (
          SELECT * FROM user WHERE email = :email) LIMIT 1');
@@ -23,6 +23,7 @@ class User{
         $this->db->bind(':phone', $data['phone']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':contactPref', $data['contactPref']);
+        $this->db->bind(':act_code', $data['act_code']);
         // Execute
         if(($this->db->execute()) && ($this->db->rowCount()>0)) {
           return true;

@@ -53,13 +53,16 @@ else
                 require_once('config/db.php');
                 require_once('lib/pdo_db.php');
                 //set User Data
+                //uniqe activation code
+                $code = rand(11111,9999999);
                 $userData = [
                     'email' => $POST['email'],
                     'name' => $POST['name'],
                     'last_name' => $POST['lastName'],
                     'phone' => $POST['phone'],
                     'password'=> $POST['password'],
-                    'contactPref'=> $POST['contactPref']
+                    'contactPref'=> $POST['contactPref'],
+                    'act_code' => $code
                 ];
                 try{
                     require_once('models/User.php');
@@ -68,11 +71,14 @@ else
                     // Add User To DB
                     if($user->addCustomer($userData))
                     {
+                        //SEND activation link to user email address
+                        require_once ('lib/mail.php');
+                        $newEmail = new Mail();
+                        $newEmail->send_activation_email($POST['email'],$code);
+
                         session_unset();
                         session_destroy();
                         setcookie('PHPSESSID', '', time() - 3600,'/');
-                        //send confirmation email with code to activate
-                        //HERE
                         header('location:register.php?msg=useraddedsuccess');
                         break;
                     }
