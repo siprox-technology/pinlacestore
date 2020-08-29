@@ -1898,3 +1898,33 @@ jQuery($ => {
     });
 
 });
+
+/* form validation */
+
+/* check confirmed password */
+
+$("#password").on("keyup", function () {
+    if ($(this).val() != $("#password2").val()) {
+        $("#password2").addClass("border-danger");
+        $("#reg_btn").attr("disabled", true);
+    } else {
+        $("#password2").removeClass("border-danger");
+        $("#reg_btn").removeAttr("disabled");
+    }
+});
+
+$("#password2").on("keyup", function () {
+    if ($("#password").val() != $(this).val()) {
+        $(this).addClass("border-danger");
+        $("#reg_btn").attr("disabled", true);
+    } else {
+        $(this).removeClass("border-danger");
+        $("#reg_btn").removeAttr("disabled");
+    }
+});
+
+/* refresh page after clicking close icon on form messages */
+
+$('#notification i').on('click', function () {
+    window.location = window.location.href.split("?")[0];
+})

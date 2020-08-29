@@ -23,7 +23,7 @@ title,text,is_recommend
 
 User has:
 id,email,Name,lastName,phone
-,password,contact_pref
+,password,contact_pref,created_at
 --------------------------------
 
 WishList:

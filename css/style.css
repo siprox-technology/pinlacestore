@@ -6892,3 +6892,10 @@ ul.latest_news li a:focus+span.defaultcolor {
 ::-webkit-scrollbar-thumb:hover {
     box-shadow: inset 0 0 100px 20px #3992bf;
 }
+
+/* notification close icon color */
+
+#notification i {
+    color: #5192e1;
+    cursor: pointer;
+}
