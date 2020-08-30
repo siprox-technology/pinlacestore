@@ -24,7 +24,7 @@ require_once ('models/User.php');
 
 $test = new User();
 
-$isSent = $test->activate_user(7930460,'integralproject1988@gmail.com');
+$isSent = $test->authenticate('integralproject1988@gmail.com','$2y$10$xCqotBop4nA.jRm7h7nyteuixmUkYHhFb3uh36bjzAe0l83xLSNY2');
 
 
 if($isSent){echo 'ok';}else{echo 'failed';} 
