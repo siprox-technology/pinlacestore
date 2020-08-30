@@ -1,26 +1,36 @@
 <?php
 require_once('lib/validate.php');
-/* error msgs status */
+/* error msg status */
 $acc_exist_error = "d-none";
 /* success msg */
 $account_active_success = "d-none";
 /* new validation */
 $val = new Validate();
 
- if(isset ($_GET['email']) && isset($_GET['code'])){
+ if($_SERVER['REQUEST_METHOD']=='GET'
+ && isset ($_GET['email']) 
+ && isset($_GET['code'])
+ ){
 
     $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
     $GET['email'] = $val->validateEmail($GET['email']);
-    $GET['code'] = $val->validateEmail($GET['code']);
+    $GET['code'] = $val->validateDigits($GET['code']);
     if($GET['email']==true && $GET['code']== true)
     {
         // activate account
-        require_once('');
+        require_once ('models/User.php');
+        $newUser = new User();
+        $result = $newUser->activate_user($_GET['code'],$_GET['email']);
+        if($result)
+        {
+            $account_active_success = '';
+        }
+        else
+        {
+            $acc_exist_error = '';
+        }
     }
-    if($GET['msg'] === 'success')
-    {
-        $account_active_success = '';
-    }
+
  }
 
 ?>
@@ -54,8 +64,8 @@ $val = new Validate();
                         <span class="divider-center"></span>
                     </h2>
                     <div class="col-md-8 offset-md-2 heading_space">
-                        <p class="<?php echo $account_active_success ?>">Your account is activated.</p>
-                        <p class="<?php echo $acc_exist_error ?>">This account was activated before or does not exist.</p>
+                        <h3 class="text-success <?php echo $account_active_success ?>">Your account is activated.</h3>
+                        <h3  class="text-danger <?php echo $acc_exist_error ?>">This account was activated before or does not exist.</h3>
                     </div>
                 </div>
             </div>

@@ -6,7 +6,7 @@
 	 * 	Binds params to values
 	 *  Returns rows and results
    */
-  
+  require_once ('config/db.php');
 class Database {
 	private $host = DB_HOST;
 	private $user = DB_USER;

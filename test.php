@@ -17,14 +17,14 @@ $isSent = mail($email, $subject, $message, $headers);
 
 if($isSent){echo 'send';}else{echo 'not send';} */
 
-require_once ('lib/mail.php');
+/* require_once ('lib/mail.php');
 require_once ('config/db.php');
-require_once ('lib/pdo_db.php');
+require_once ('lib/pdo_db.php'); */
 require_once ('models/User.php');
 
 $test = new User();
 
-$isSent = $test->activate_user(8180650,'integralproject1988@gmail.com');
+$isSent = $test->activate_user(7930460,'integralproject1988@gmail.com');
 
 
 if($isSent){echo 'ok';}else{echo 'failed';} 

@@ -1,5 +1,5 @@
 <?php
-
+require_once ('lib/pdo_db.php');
 class User{
     private $db;
     public function __construct(){
