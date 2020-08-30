@@ -69,7 +69,7 @@ else
                     // Instantiate User
                     $user = new User();
                     // Add User To DB
-                    if($user->addCustomer($userData))
+                    if($user->addUser($userData))
                     {
                         //SEND activation link to user email address
                         require_once ('lib/mail.php');

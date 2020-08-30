@@ -1,0 +1,1 @@
+* NOTE : Test this register user process on live server for php error 10053 */

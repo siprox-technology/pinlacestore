@@ -1,10 +1,11 @@
 <?php
+
 class User{
     private $db;
     public function __construct(){
         $this->db = new Database;
     }
-    public function addCustomer($data) {
+    public function addUser($data) {
         //search if user not already exist
         // Prepare Query
         $this->db->query('INSERT INTO user 
@@ -30,14 +31,32 @@ class User{
         } else {
           return false;
         }
-      }
+    }
   
-      public function getCustomers() {
+    public function getUsers() {
         $this->db->query('SELECT * FROM user ORDER BY created_at DESC');
   
         $results = $this->db->resultset();
   
         return $results;
+    }
+
+    public function activate_user($code,$email)
+    {
+      // Prepare Query
+      $this->db->query('update user set act_code = 0 
+      where id = (select id from user where email = :email) 
+      and act_code = :act_code');
+      // Bind Values
+      $this->db->bind(':email', $email);
+      $this->db->bind(':act_code', $code);
+      // Execute
+      if(($this->db->execute()) && ($this->db->rowCount()>0)) {
+        return true;
+      } else {
+        return false;
       }
+    }
+    
 }
 ?>
