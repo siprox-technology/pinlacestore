@@ -1,5 +1,35 @@
 <?php
+/* new session starts */
+session_start();
+if(!isset($_SESSION['_token']))
+{
+    $_SESSION['_token'] = strval(random_int (666666, 999999999));
+}
+session_regenerate_id();
+/* error msgs status */
+$wrong_credential = $db_error_msg = $formUnvalid = "d-none";
+/* success msg */
+$userAddSuccess = "d-none";
 
+if(isset ($_GET['msg'])){
+    $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
+    if($GET['msg'] === 'incorrectCredentials')
+    {
+        $wrong_credential = '';
+    }
+    if($GET['msg'] === 'serverError')
+    {
+        $db_error_msg = '';
+    }
+    if($GET['msg'] === 'databasefailed')
+    {
+        $db_error_msg = '';
+    }
+    if($GET['msg'] === 'userexist')
+    {
+        $acc_exist_error = '';
+    }
+ }
 
 ?>
 
@@ -25,6 +55,13 @@
     include_once 'inc/header.php' 
     ?>
     <section id="sign-in" class="bglight position-relative padding">
+        <!-- error reporting -->
+        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $wrong_credential; ?>"> Email or Password incorrect!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formUnvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+    <!-- success reporting -->
+        <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $userAddSuccess; ?>">Your account has been created. Please check your email to activate your account.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center wow fadeIn" data-wow-delay="300ms">
@@ -40,37 +77,31 @@
                         <img src="images/login-section.jpg" alt="" class="w-100 h-100">
                     </div>
                 </div>
-                <div class="col-lg-6 pl-lg-0 col-md-12 whitebox"><!-- login form HERE -->
+                <div class="col-lg-6 pl-lg-0 col-md-12 whitebox">
                     <div class="widget logincontainer">
                         <h3 class="darkcolor bottom30 text-center text-lg-left">Sign In </h3>
-                        <form class="getin_form border-form" id="login">
+                        <form class="getin_form border-form" id="login" method="post" action="process.php">
                             <div class="row">
+                            <!-- email -->
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="loginEmail" class="d-none"></label>
-                                        <input class="form-control" type="email" placeholder="Email:" required id="loginEmail">
+                                        <input class="form-control" type="email" placeholder="Email:" name="loginEmail" required id="loginEmail">
                                     </div>
                                 </div>
+                                <!-- password -->
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group bottom35">
                                         <label for="loginPass" class="d-none"></label>
-                                        <input class="form-control" type="password" placeholder="Password:" required id="loginPass">
+                                        <input class="form-control" type="password" placeholder="Password:" name="loginPass" required id="loginPass">
                                     </div>
                                 </div>
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="form-group bottom30 ml-1">
-                                        <div class="form-check text-left">
-                                            <input class="form-check-input" checked type="checkbox" value="" id="rememberMe">
-                                            <label class="form-check-label" for="rememberMe">
-                                                Keep Me Signed In
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                                <input type="hidden" name="request_name" value="sign in">
+                                <input type="hidden" id="_logInToken" name="_token" value="<?php echo $_SESSION['_token'];?>">
                                 <div class="col-sm-12">
                                     <button type="submit" class="button gradient-btn">Login</button>
                                     <a href="forget-password.html" class="ml-2 defaultcolor">Forget password?</a>
-                                    <p class="top30 mb-0"> Don't have an account? &nbsp;<a href="register.html" class="defaultcolor">Sign Up Now</a> </p>
+                                    <p class="top30 mb-0"> Don't have an account? &nbsp;<a href="register.php" class="defaultcolor">Sign Up Now</a> </p>
                                 </div>
                             </div>
                         </form>

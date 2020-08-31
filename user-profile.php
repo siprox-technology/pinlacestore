@@ -1,3 +1,13 @@
+<?php
+session_start();
+session_regenerate_id();
+
+/* here user profile and show 
+-user info
+-activation status 
+-session time
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 

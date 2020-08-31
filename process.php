@@ -27,7 +27,7 @@ else
     // switch requests
     switch($request_name)
     {
-        //add new user
+       //add new user
        case 'register user':
             if(isset($_POST['contactPref'])){
                 $POST['contactPref']= ($validate->validateDigits($_POST['contactPref']))==true?$_POST['contactPref']:false;
@@ -110,6 +110,55 @@ else
                 setcookie('PHPSESSID', '', time() - 3600,'/');
                 header('location:register.php?msg=formunvalid');
                 break;
+            }
+       break;
+
+       //log in user
+       case 'sign in':
+            // sanitize post array
+            $POST['email'] = ($validate->validateEmail($_POST['loginEmail']))==true?$_POST['loginEmail']:false;
+            $POST['password'] = ($validate->validateAnyname($_POST['loginPass']))==true?$_POST['loginPass']:false;
+            $POST['_token'] = ($validate->validateDigits($_POST['_token']))==true?$_POST['_token']:false;
+            // authenticate user
+            if($POST['email']&&$POST['password']&&$POST['_token'])
+            {
+                try{
+                    require_once('models/User.php');
+                    $user = new User();
+                    if($user->authenticate($POST['email'],$POST['password'])){
+                        $_SESSION['loggedIn'] = true;
+                        $result = $user->get_user_data($POST['email']);
+                        $_SESSION['id'] = $result->id;
+                        $_SESSION['email'] = $result->email;
+                        $_SESSION['name'] = $result->name;
+                        $_SESSION['lastName'] = $result->lastName;
+                        $_SESSION['phone'] = $result->phone;
+                        $_SESSION['contacPref'] = $result->contacPref;
+                        $_SESSION['created_at'] = $result->created_at;
+                        $_SESSION['act_code'] = $result->act_code;
+                        //redirect to profile page
+                        header('location:user-profile.php');
+                    }
+                    else
+                    {
+                        session_unset();
+                        session_destroy();
+                        setcookie('PHPSESSID', '', time() - 3600,'/');
+                        // report username and password incorrect
+                        header('location:login.php?msg=incorrectCredentials');
+                    }
+                    
+                }
+                catch(Exception $e)
+                {
+                    session_unset();
+                    session_destroy();
+                    setcookie('PHPSESSID', '', time() - 3600,'/');
+                    // report something wrong with server
+                    header('location:login.php?msg=serverError');
+                }
+
+                
             }
 
        break;

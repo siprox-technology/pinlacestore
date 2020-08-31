@@ -24,8 +24,13 @@ require_once ('models/User.php');
 
 $test = new User();
 
-$isSent = $test->authenticate('integralproject1988@gmail.com','$2y$10$xCqotBop4nA.jRm7h7nyteuixmUkYHhFb3uh36bjzAe0l83xLSNY2');
+$isSent = $test->get_user_data('integralproject1988@gmail.com');
 
 
 if($isSent){echo 'ok';}else{echo 'failed';} 
+?>
+
+<?php 
+/* if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){ echo "<a class='nav-link' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";} 
+ *//* else{echo "<a class='nav-link' href='login.php'>Login</a>";} */
 ?>

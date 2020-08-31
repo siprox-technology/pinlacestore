@@ -59,36 +59,32 @@ class User{
     }
     
     public function authenticate($username, $pass){
-      // Prepare Query
-      $this->db->query('select id from user where password = :password and 
-      email = :email');
-      // Bind Values
-      $this->db->bind(':email', $username);
-      $this->db->bind(':password', $pass);
-
-      if(($this->db->execute()) && ($this->db->rowCount()>0)) {
-        return true;
-      } else {
-        return false;
-      }
+        // Prepare Query
+        $this->db->query('select password from user where 
+        email = :email');
+        // Bind Values
+        $this->db->bind(':email', $username);
+        if(($this->db->execute()) && ($this->db->rowCount()>0)) {
+          $results = $this->db->single();
+          if(password_verify($pass,$results->password)){
+            return true;
+          }
+          else
+          {
+            return false;
+          }
+        } else {
+          return false;
+        }
     }
 
-    public function user_userLogOut(){
-      session_start();
-      if(isset($_SESSION['loggedin']))
-      {
-          session_regenerate_id();
-          session_unset();
-          session_destroy();
-          setcookie('PHPSESSID', '', time() - 3600,'/');
-          // Redirect to the login page:
-          header('Location:../index.php');
-      }
-      else
-      {
-          session_regenerate_id();
-          header('Location:../index.php');
-      }
+    public function get_user_data($email){
+      $this->db->query('SELECT * FROM user where email = :email');
+      // Bind Values
+      $this->db->bind(':email', $email);
+      $results = $this->db->single();
+      return $results;
+
     }
     
 }

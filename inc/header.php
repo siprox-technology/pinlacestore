@@ -111,6 +111,15 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contact</a>
                         </li>
+                        <!-- login -->
+                        <li class="nav-item">
+                           <?php
+                                if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){ echo "<a class='nav-link' style='color:#24cdd5' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";
+                                    echo "<a class='nav-link' href='logout.php'>Logout</a>";
+                                } 
+                                else{echo "<a class='nav-link' href='login.php'>Login</a>";} 
+                           ?>
+                        </li>
                     </ul>
                 </div>
                 <ul class="social-icons social-icons-simple d-lg-inline-block d-none animated fadeInUp"
@@ -297,6 +306,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contact</a>
                         </li>
+                        <!-- log in side menu -->
+                        <li class="nav-item">
+                           <?php
+                                if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){ 
+                                    echo "<a class='nav-link' style='color:#24cdd5' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";
+                                    echo "<br><a class='nav-link' href='logout.php'>Logout</a>";
+                                } 
+                                else{echo "<a class='nav-link' href='login.php'>Login</a>";} 
+                           ?>
+                        </li>
+
                     </ul>
                 </nav>
                 <div class="side-footer w-100">
