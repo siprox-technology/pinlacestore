@@ -55,8 +55,8 @@ FK_address_id_order_address,
 
 Possible functionalities: 
 
--User registration and activation.
--User log in\log out session time.
+-User registration and activation.*
+-User log in\log out session time.*
 -User reset fotgotten password through email. 
 -User add product to wish list
 -User makes an order and pay.

@@ -12,7 +12,7 @@ $subject = 'Account Activation Required';
 $email = 'sorooh_66m@yahoo.com';
 $headers = 'From: ' . $from . "\r\n" . 'Reply-To: ' . $from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";
 $activate_link = 'http://localhost/lang_inst v-3.0/inc/activate.php?email=' . $email . '&code=' . "123";
-$message = '<p>Please click the following link to activate your account: <a href="' . $activate_link . '">' . $activate_link . '</a></p>';
+$message = '<p>Please click the following link to verify your account: <a href="' . $activate_link . '">' . $activate_link . '</a></p>';
 $isSent = mail($email, $subject, $message, $headers);
 
 if($isSent){echo 'send';}else{echo 'not send';} */

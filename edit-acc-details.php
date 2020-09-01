@@ -6,13 +6,17 @@ if(!isset($_SESSION['_token']))
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
 session_regenerate_id();
+//redirect to home page if user not signed in
+if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
+{
+    header('location:index.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>Trax | Edit account</title>
-    <title>Trax | Account</title>
     <?php 
     include_once 'inc/head.php' 
     ?>
@@ -56,27 +60,27 @@ session_regenerate_id();
                                         <div class="form-group">
                                             <label for="name" class="d-none"></label>
                                             <input class="form-control" id="name" type="text" placeholder="Name:"
-                                                required name="Name">
+                                                required name="Name" value="<?php echo $_SESSION['name'] ?>">
                                         </div>
                                         <!-- last name -->
                                         <div class="form-group">
                                             <label for="lastName" class="d-none"></label>
                                             <input class="form-control" id="lastName" type="text"
-                                                placeholder="Last Name:" required name="lastName">
+                                                placeholder="Last Name:" required name="lastName"value="<?php echo $_SESSION['lastName'] ?>" >
                                         </div>
                                         <!-- phone -->
                                         <div class="form-group">
                                             <label for="phone" class="d-none"></label>
                                             <input class="form-control" id="phone" type="tell" placeholder="Phone:"
-                                                required name="phone" pattern="[0-9]{11}">
+                                                required name="phone" pattern="[0-9]{11}"value="<?php echo $_SESSION['phone'] ?>">
                                         </div>
                                     </div>
-                                    <!-- email -->
+                                    <!-- account verified status -->
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
-                                            <label for="email" class="d-none"></label>
-                                            <input class="form-control" type="email" id="email" placeholder="Email:"
-                                                name="email">
+                                            <label for="" >Account status:</label>
+                                            <label for="" class="<?php echo ($_SESSION['act_code'])>0?'text-danger':'text-success'; ?>"><?php echo ($_SESSION['act_code'])>0?'Not Verified':'Verified'; ?> </label>
+                                        <!-- here resend confirmation email -->
                                         </div>
                                     </div>
                                     <!-- save button -->

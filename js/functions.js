@@ -1928,3 +1928,30 @@ $("#password2").on("keyup", function () {
 $('#notification i').on('click', function () {
     window.location = window.location.href.split("?")[0];
 })
+//keep track of user click and typing on a page to expire sessions // to uncomment
+function send_active_signal() {
+    $.ajax({
+        url: 'session_time.php',
+        type: 'post',
+        data: {
+            is_clicked: true,
+            is_typed: true,
+            current_email: $('#current_user_email').text(),
+
+        },
+        success: function (response) {
+            if (response === "timeOut") {
+                location.href = 'logout.php';
+                alert("Session time out...Please Login again");
+            }
+            if (response === "loggedOut") {
+                location.href = 'index.php';
+                alert("You logged out of you account... Please Login again");
+            }
+        },
+    });
+}
+
+$('#profile_body').on('click', function () {
+    send_active_signal();
+})

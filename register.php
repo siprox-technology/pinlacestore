@@ -60,7 +60,7 @@ $userAddSuccess = "d-none";
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formUnvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
     <!-- success reporting -->
-        <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $userAddSuccess; ?>">Your account has been created. Please check your email to activate your account.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $userAddSuccess; ?>">Your account has been created. Please check your email to verify your account.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center wow fadeIn" data-wow-delay="300ms">

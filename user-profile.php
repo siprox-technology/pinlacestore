@@ -6,11 +6,14 @@ if(!isset($_SESSION['_token']))
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
 session_regenerate_id();
-
+//redirect to home page if user not signed in
+if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
+{
+    header('location:index.php');
+}
 /* here user profile and show 
 -user info
 -activation status - resend confirmation email if not received
--session time
 */
 ?>
 <!DOCTYPE html>
@@ -23,7 +26,7 @@ session_regenerate_id();
     ?>
 </head>
 
-<body>
+<body id="profile_body">
     <!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -45,7 +48,7 @@ session_regenerate_id();
             </div>
             <div class="row ">
                 <div class="details-box mt-2">
-
+                
                     <div class="row">
                         <!-- My details -->
                         <div class="col-lg-4 col-md-6">
@@ -124,7 +127,7 @@ session_regenerate_id();
                     </div>
                 </div>
             </div>
-
+            <p class="d-none" id="current_user_email"><?php echo $_SESSION['email']?></p>
         </div>
     </section>
 

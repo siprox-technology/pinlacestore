@@ -6,6 +6,12 @@ if(!isset($_SESSION['_token']))
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
 session_regenerate_id();
+
+//redirect to profile if user already signed in
+if(isset($_SESSION['loggedIn'])&& $_SESSION['loggedIn']==true)
+{
+    header('location:user-profile.php');
+}
 /* error msgs status */
 $wrong_credential = $db_error_msg = $formUnvalid = "d-none";
 /* success msg */
@@ -60,7 +66,7 @@ if(isset ($_GET['msg'])){
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formUnvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
     <!-- success reporting -->
-        <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $userAddSuccess; ?>">Your account has been created. Please check your email to activate your account.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $userAddSuccess; ?>">Your account has been created. Please check your email to verify your account.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
 
         <div class="container">
             <div class="row">
