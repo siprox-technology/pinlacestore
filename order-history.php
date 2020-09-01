@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+
+<?php
+/* new session starts */
+session_start();
+if(!isset($_SESSION['_token']))
+{
+    $_SESSION['_token'] = strval(random_int (666666, 999999999));
+}
+session_regenerate_id();
+?><!DOCTYPE html>
 <html lang="en">
 
 <head>

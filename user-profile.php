@@ -1,10 +1,15 @@
 <?php
+/* new session starts */
 session_start();
+if(!isset($_SESSION['_token']))
+{
+    $_SESSION['_token'] = strval(random_int (666666, 999999999));
+}
 session_regenerate_id();
 
 /* here user profile and show 
 -user info
--activation status 
+-activation status - resend confirmation email if not received
 -session time
 */
 ?>

@@ -1,4 +1,12 @@
 <?php
+/* new session starts */
+session_start();
+if(!isset($_SESSION['_token']))
+{
+    $_SESSION['_token'] = strval(random_int (666666, 999999999));
+}
+session_regenerate_id();
+
 require_once('lib/validate.php');
 /* error msg status */
 $acc_exist_error = "d-none";

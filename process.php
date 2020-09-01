@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD']!== 'POST'
 else
 {
     /* set error handler */
-  set_error_handler (
+    set_error_handler (
     function($errno, $errstr, $errfile, $errline) {
         throw new ErrorException($errstr, $errno, 0, $errfile, $errline);     
     });
@@ -27,7 +27,7 @@ else
     // switch requests
     switch($request_name)
     {
-       //add new user
+       //add new user-->
        case 'register user':
             if(isset($_POST['contactPref'])){
                 $POST['contactPref']= ($validate->validateDigits($_POST['contactPref']))==true?$_POST['contactPref']:false;
@@ -50,7 +50,6 @@ else
             ($POST['_token'])!==false &&
             ($request_name !==false))
             {
-                require_once('config/db.php');
                 require_once('lib/pdo_db.php');
                 //set User Data
                 //uniqe activation code
