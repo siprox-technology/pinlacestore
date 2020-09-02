@@ -1951,7 +1951,52 @@ function send_active_signal() {
         },
     });
 }
-
+/* send active signal to track user activity on profile page for session time out */
 $('#profile_body').on('click', function () {
     send_active_signal();
+})
+
+/* resend account verification email */
+
+$('#resend_verify_email').on('click', function () {
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'resend verification email',
+            _token: $('#_token').val()
+        },
+        beforeSend: function () {
+            // Show preloader
+            $('.loader').css('display', 'block');
+        },
+        success: function (response) {
+            $('.loader').css('display', 'none');
+            switch (response) {
+                case 'Email sent success':
+                    $('#resend_verify_email_res').text('Please check your email to verify your account');
+                    $('#resend_verify_email_res').removeClass().addClass("text-success mt-3 text-center");
+                    window.setTimeout(function () {
+                        $('#resend_verify_email_res').removeClass().addClass("text-success mt-3 d-none");
+                    }, 3000);
+                    break;
+                case 'Email not sent':
+                    $('#resend_verify_email_res').text('Email not sent! please try again later.');
+                    $('#resend_verify_email_res').removeClass().addClass("text-danger mt-3 text-center");
+                    window.setTimeout(function () {
+                        $('#resend_verify_email_res').removeClass().addClass("text-danger mt-3 d-none");
+                    }, 3000);
+                    break;
+                case 'db error':
+                    $('#resend_verify_email_res').text('Server not responding! please try again later')
+                    $('#resend_verify_email_res').removeClass().addClass("text-danger mt-3 text-center");
+                    window.setTimeout(function () {
+                        $('#resend_verify_email_res').removeClass().addClass("text-danger mt-3 d-none");
+                    }, 3000);
+                    break;
+                default:
+                    break;
+            }
+        },
+    });
 })

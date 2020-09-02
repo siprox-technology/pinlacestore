@@ -84,7 +84,6 @@ class User{
       $this->db->bind(':email', $email);
       $results = $this->db->single();
       return $results;
-
     }
     
 }

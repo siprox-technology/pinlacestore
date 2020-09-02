@@ -22,7 +22,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
     ?>
 </head>
 
-<body>
+<body id="profile_body">
     <!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -52,7 +52,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                     <!-- edit user personal details -->
                     <div class="col-md-6 col-sm-6">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-                            <form class="getin_form wow fadeInUp" data-wow-delay="400ms" onsubmit="return false;">
+                            <form class="getin_form wow fadeInUp" data-wow-delay="400ms" onsubmit="return false;" id="edit_user_details">
                                 <div class="row px-2 justify-content-center">
                                     <div class="col-md-12 col-sm-12" id="result1"></div>
                                     <div class="col-md-12 col-sm-12">
@@ -79,8 +79,10 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="" >Account status:</label>
-                                            <label for="" class="<?php echo ($_SESSION['act_code'])>0?'text-danger':'text-success'; ?>"><?php echo ($_SESSION['act_code'])>0?'Not Verified':'Verified'; ?> </label>
-                                        <!-- here resend confirmation email -->
+                                            <label  class="<?php echo ($_SESSION['act_code'])>0?'text-danger':'text-success'; ?>"
+                                            id="<?php echo ($_SESSION['act_code'])>0?'resend_verify_email':''; ?>">
+                                            <?php echo ($_SESSION['act_code'])>0?'Not Verified-Resend confirmation email?':'Verified'; ?> </label>
+                                            <input type="hidden" id="_token" name='_token' value='<?php echo $_SESSION['_token'] ?>'>
                                         </div>
                                     </div>
                                     <!-- save button -->
@@ -88,14 +90,13 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                                         <button id="save-pers-det-btn" class="button gradient-btn w-100">Save</button>
                                     </div>
                                     <!-- result label -->
-                                    <label class="text-success mt-3" id="save-pers-det-result">success</label>
+                                    <label class="text-success mt-3 d-none" id="resend_verify_email_res"></label>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-            </div>
-
+            </div> 
         </div>
     </section>
     <!-- edit account details ends -->

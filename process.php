@@ -162,6 +162,28 @@ else
 
        break;
 
+       //resend verification email
+       case 'resend verification email':
+            try{
+                //get verification code and send email
+                require_once('models/User.php'); 
+                $user = new User();
+                require_once('lib/mail.php');
+                $newMail = new Mail();
+                // if email is sent successfully 
+                if($newMail->send_activation_email($_SESSION['email'],$user->get_user_data($_SESSION['email'])->act_code)){
+                    echo 'Email sent success';
+                }
+                else
+                {
+                    echo 'Email not sent';
+                }
+            }
+            catch(Exception $e){
+               echo 'db error';
+            }
+       break;
+
        default:
        session_unset();
        session_destroy();
