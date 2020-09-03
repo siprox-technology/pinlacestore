@@ -57,8 +57,8 @@ Possible functionalities:
 
 -User registration and activation.*
 -User log in\log out session time.*
--user profile update details 
-and resend confirmation email*.
+-user profile update details --check code
+-resend confirmation email*.
 -User reset fotgotten password through email. 
 -User add product to wish list
 -User makes an order and pay.

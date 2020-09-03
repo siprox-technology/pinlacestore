@@ -23,8 +23,14 @@ require_once ('lib/pdo_db.php'); */
 require_once ('models/User.php');
 
 $test = new User();
-
-$isSent = $test->get_user_data('integralproject1988@gmail.com');
+                //set User Data
+                $userData = [
+                    'email'=>'soroosh_66m@yahoo.com',
+                    'name' => 'soroosh2',
+                    'lastName' =>'modarresi2',
+                    'phone' => '2222222222'
+                ];
+$isSent = $test->updateUser($userData);
 
 
 if($isSent){echo 'ok';}else{echo 'failed';} 

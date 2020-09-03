@@ -50,7 +50,6 @@ else
             ($POST['_token'])!==false &&
             ($request_name !==false))
             {
-                require_once('lib/pdo_db.php');
                 //set User Data
                 //uniqe activation code
                 $code = rand(11111,9999999);
@@ -182,6 +181,62 @@ else
             catch(Exception $e){
                echo 'db error';
             }
+       break;
+
+       //edit account details
+       case 'edit account details':
+            // sanitize post array
+            $POST['name'] = ($validate->validateAnyname($_POST['name']))==true?$_POST['name']:false;
+            $POST['lastName'] = ($validate->validateAnyname($_POST['lastName']))==true?$_POST['lastName']:false;
+            $POST['phone'] = ($validate->validtePhone($_POST['phone']))==true? $_POST['phone']:false;
+            $POST['_token'] = ($validate->validateDigits($_POST['_token']))==true?$_POST['_token']:false;
+            
+            if(($POST['name'])!==false && 
+            ($POST['lastName'])!==false && 
+            ($POST['phone'])!==false &&
+            ($POST['_token'])!==false &&
+            ($request_name !==false)){
+                //set User Data
+                $userData = [
+                    'email'=> $_SESSION['email'],
+                    'name' => $POST['name'],
+                    'lastName' => $POST['lastName'],
+                    'phone' => $POST['phone']
+                ];
+                try{
+                    require_once('models/User.php');
+                    $newUser = new User();
+                    if($newUser->updateUser($userData))
+                    {
+                        //update session data
+                        $newData = $newUser->get_user_data($_SESSION['email']);
+                        $_SESSION['name']=$newData->name;
+                        $_SESSION['lastName']=$newData->lastName;
+                        $_SESSION['phone']=$newData->phone;
+                        header('location:edit-acc-details.php?msg=userupdatesuccess');
+                        break;
+                    }
+                    else
+                    {
+                        header('location:edit-acc-details.php?msg=noaccounttoupdate');
+                        break;
+                    }
+                    
+                }
+                catch(Exception $e)
+                {
+                    header('location:edit-acc-details.php?msg=databasefailed');
+                    break;
+                }
+
+
+            }
+            else
+            {
+                header('location:edit-acc-details.php?msg=formunvalid');
+                break;
+            }
+
        break;
 
        default:

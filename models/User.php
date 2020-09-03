@@ -32,6 +32,25 @@ class User{
           return false;
         }
     }
+    public function updateUser($data){
+        // Prepare Query
+        $this->db->query('update user set 
+        name=:name ,lastName=:lastName, phone = :phone
+        where id = (select id from user where email = :email)');
+
+
+        // Bind Values
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':lastName', $data['lastName']);
+        $this->db->bind(':phone', $data['phone']);
+        // Execute
+        if($this->db->execute()) {
+          return true;
+        } else {
+          return false;
+        }
+    }
   
     public function getUsers() {
         $this->db->query('SELECT * FROM user ORDER BY created_at DESC');
