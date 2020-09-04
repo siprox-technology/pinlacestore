@@ -62,13 +62,14 @@ class User{
 
     public function activate_user($code,$email)
     {
+      //get user id
+
+      $id = ($this->get_user_data($email))->id;
       // Prepare Query
       $this->db->query('update user set act_code = 0 
-      where id = (select id from user where email = :email) 
-      and act_code = :act_code');
+      where id = :id');
       // Bind Values
-      $this->db->bind(':email', $email);
-      $this->db->bind(':act_code', $code);
+      $this->db->bind(':id', $id);
       // Execute
       if(($this->db->execute()) && ($this->db->rowCount()>0)) {
         return true;
