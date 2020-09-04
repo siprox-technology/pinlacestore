@@ -11,10 +11,6 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
 {
     header('location:index.php');
 }
-/* here user profile and show 
--user info
--activation status - resend confirmation email if not received
-*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
