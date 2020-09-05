@@ -190,18 +190,21 @@ else
             $POST['lastName'] = ($validate->validateAnyname($_POST['lastName']))==true?$_POST['lastName']:false;
             $POST['phone'] = ($validate->validtePhone($_POST['phone']))==true? $_POST['phone']:false;
             $POST['_token'] = ($validate->validateDigits($_POST['_token']))==true?$_POST['_token']:false;
+            $POST['id'] = ($validate->validateDigits($_SESSION['id']))==true?$_SESSION['id']:false;
             
             if(($POST['name'])!==false && 
             ($POST['lastName'])!==false && 
             ($POST['phone'])!==false &&
             ($POST['_token'])!==false &&
+            ($POST['id'])!==false&&
             ($request_name !==false)){
                 //set User Data
                 $userData = [
                     'email'=> $_SESSION['email'],
                     'name' => $POST['name'],
                     'lastName' => $POST['lastName'],
-                    'phone' => $POST['phone']
+                    'phone' => $POST['phone'],
+                    'id' => $POST['id']
                 ];
                 try{
                     require_once('models/User.php');

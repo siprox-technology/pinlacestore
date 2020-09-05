@@ -36,14 +36,14 @@ class User{
         // Prepare Query
         $this->db->query('update user set 
         name=:name ,lastName=:lastName, phone = :phone
-        where id = (select id from user where email = :email)');
+        where id = :id');
 
 
         // Bind Values
-        $this->db->bind(':email', $data['email']);
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':lastName', $data['lastName']);
         $this->db->bind(':phone', $data['phone']);
+        $this->db->bind(':id', $data['id']);
         // Execute
         if($this->db->execute()) {
           return true;
