@@ -51,6 +51,23 @@ class User{
           return false;
         }
     }
+    public function update_password($data){
+        // Prepare Query
+        $this->db->query('update user set 
+        password=:password
+        where id = :id');
+
+
+        // Bind Values
+        $this->db->bind(':password', $data['newPass']);
+        $this->db->bind(':id', $data['id']);
+        // Execute
+        if($this->db->execute()) {
+          return true;
+        } else {
+          return false;
+        }
+    }
   
     public function getUsers() {
         $this->db->query('SELECT * FROM user ORDER BY created_at DESC');

@@ -242,6 +242,66 @@ else
 
        break;
 
+       //change user password
+
+       case 'change user password':
+            // sanitize post array
+            $POST['oldPass'] = ($validate->validateAnyname($_POST['oldPass']))==true?$_POST['oldPass']:false;
+            $POST['newPass'] = ($validate->validateAnyname($_POST['newPass']))==true?$_POST['newPass']:false;
+            $POST['_token'] = ($validate->validateDigits($_POST['_token']))==true?$_POST['_token']:false;
+            $POST['id'] = ($validate->validateDigits($_SESSION['id']))==true?$_SESSION['id']:false;        
+            if(($POST['oldPass'])!==false && 
+            ($POST['newPass'])!==false && 
+            ($POST['_token'])!==false &&
+            ($POST['id'])!==false &&
+            ($request_name !==false))
+            {
+                try{
+                    require_once('models/User.php');
+                    $theUser = new User();
+                    //check old pass
+                    if($theUser->authenticate($_SESSION['email'],$POST['oldPass']))
+                    {
+                        //set User Data
+                        $userData = [
+                            'newPass' => password_hash($POST['newPass'], PASSWORD_DEFAULT), 
+                            'id' => $POST['id']
+                        ];
+
+                        //change pass
+                        if($theUser->update_password($userData))
+                        {
+                            header('location:change-pass.php?msg=changepasssuccess');
+                            break;
+                        }
+                        else
+                        {
+                            header('location:change-pass.php?msg=noaccounttoupdate');
+                            break;
+                        }
+
+                    }
+                    else
+                    {
+                        header('location:change-pass.php?msg=oldpasswrong');
+                        break;
+                    }
+
+                }
+                catch(Exception $e)
+                {
+                    header('location:change-pass.php?msg=databasefailed');
+                    break;
+                }
+
+            }
+            else
+            {
+                header('location:change-pass.php?msg=formunvalid');
+                break;
+            }
+        break;
+
        default:
        session_unset();
        session_destroy();

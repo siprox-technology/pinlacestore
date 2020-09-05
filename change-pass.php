@@ -6,19 +6,51 @@ if(!isset($_SESSION['_token']))
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
 session_regenerate_id();
+/* error msgs status */
+ $db_error_msg = $formUnvalid =$oldPassWrong=$noAccount= "d-none";
+/* success msg */
+$passChangeSuccess = "d-none";
+//redirect to home page if user not signed in
+if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
+{
+    header('location:index.php');
+}
+
+if(isset ($_GET['msg'])){
+    $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
+    if($GET['msg'] === 'changepasssuccess')
+    {
+        $passChangeSuccess = '';
+    }
+    if($GET['msg'] === 'formunvalid')
+    {
+        $formUnvalid = '';
+    }
+    if($GET['msg'] === 'databasefailed')
+    {
+        $db_error_msg = '';
+    }
+    if($GET['msg'] === 'oldpasswrong')
+    {
+        $oldPassWrong = '';
+    }
+    if($GET['msg'] === 'noaccounttoupdate')
+    {
+        $noAccount = '';
+    }
+ }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>Trax | Change password</title>
-    <title>Trax | Account</title>
     <?php 
     include_once 'inc/head.php' 
     ?>
 </head>
 
-<body>
+<body  id="profile_body">
     <!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -42,43 +74,48 @@ session_regenerate_id();
                             <span class="divider-center"></span>
                         </h2>
                         <div class="col-md-8 offset-md-2 bottom35">
-                            <p>Passwords must be between x and x characters and can include both characters and
-                                numbers.
-                            </p>
+                            <!-- error reporting -->
+                            <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+                            <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formUnvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+                            <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $oldPassWrong; ?>">Old password incorrect!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+                            <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $noAccount; ?>">No Account to update!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+
+                        <!-- success reporting -->
+                            <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $passChangeSuccess; ?>">Your password has been updated.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
                         </div>
                     </div>
                     <!--edit user password -->
                     <div class="col-md-6 col-sm-6">
                         <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
-                            <form class="getin_form wow fadeInUp" data-wow-delay="400ms" onsubmit="return false;">
+                            <form class="getin_form wow fadeInUp" method="post" action='process.php'>
                                 <div class="row px-2 justify-content-center">
                                     <div class="col-md-12 col-sm-12" id="result1"></div>
                                     <div class="col-md-12 col-sm-12">
                                         <!-- old pass -->
                                         <div class="form-group">
-                                            <label for="oldPass" class="d-none"></label>
+                                            <label for="oldPass" class="pl-0">Current Password:</label>
                                             <input class="form-control" id="oldPass" type="password"
-                                                placeholder="Old password:" required name="oldPass" maxlength="20">
+                                                placeholder="" required name="oldPass" maxlength="20">
                                         </div>
                                         <!-- new pass -->
                                         <div class="form-group">
-                                            <label for="newPass" class="d-none"></label>
+                                            <label for="newPass" class="pl-0">New Password:</label>
                                             <input class="form-control" id="newPass" type="password"
-                                                placeholder="New password:" required name="newPass">
+                                                placeholder="" required name="newPass">
                                         </div>
                                         <!-- retype new pass -->
                                         <div class="form-group">
-                                            <label for="retypeNewPass" class="d-none"></label>
+                                            <label for="retypeNewPass" class="pl-0">Confirm New Password:</label>
                                             <input class="form-control" id="retypeNewPass" type="password"
-                                                placeholder="Retype new password:" required name="retypeNewPass">
+                                                placeholder="" required name="retypeNewPass">
                                         </div>
                                     </div>
+                                    <input type="hidden" id="_token" name='_token' value='<?php echo $_SESSION['_token'] ?>'>
+                                    <input type="hidden" name='request_name' value='change user password'>
                                     <!-- save button -->
                                     <div class="col-md-12 col-sm-12">
                                         <button id="save-new-pass-btn" class="button gradient-btn w-100">Save</button>
                                     </div>
-                                    <!-- result label -->
-                                    <label class="text-success mt-3" id="save-new-pass-result">success</label>
                                 </div>
                             </form>
                         </div>

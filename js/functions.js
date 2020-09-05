@@ -2000,3 +2000,27 @@ $('#resend_verify_email').on('click', function () {
         },
     });
 })
+
+/* form validation */
+
+/* check confirmed new password
+is the same as new password  */
+$("#newPass").on("keyup", function () {
+    if ($(this).val() != $("#retypeNewPass").val()) {
+        $("#retypeNewPass").addClass("border-danger");
+        $("#save-new-pass-btn").attr("disabled", true);
+    } else {
+        $("#retypeNewPass").removeClass("border-danger");
+        $("#save-new-pass-btn").removeAttr("disabled");
+    }
+});
+
+$("#retypeNewPass").on("keyup", function () {
+    if ($("#newPass").val() != $(this).val()) {
+        $(this).addClass("border-danger");
+        $("#save-new-pass-btn").attr("disabled", true);
+    } else {
+        $(this).removeClass("border-danger");
+        $("#save-new-pass-btn").removeAttr("disabled");
+    }
+});
