@@ -30,5 +30,17 @@
          return false;
        }
     }
+    public function send_random_number($to_email,$number){
+      $this->to = $to_email;
+
+      if(mail($this->to,'Reset password code','Please use the following code to reset your password: '.'<b>'.$number.'</b>',$this->headers))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+   }
 
   }

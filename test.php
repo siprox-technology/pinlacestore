@@ -17,23 +17,12 @@ $isSent = mail($email, $subject, $message, $headers);
 
 if($isSent){echo 'send';}else{echo 'not send';} */
 
-/* require_once ('lib/mail.php');
-require_once ('config/db.php');
-require_once ('lib/pdo_db.php'); */
-require_once ('models/User.php');
-
-$test = new User();
-                //set User Data
-                $userData = [
-                    'email'=>'soroosh_66m@yahoo.com',
-                    'name' => 'soroosh2',
-                    'lastName' =>'modarresi2',
-                    'phone' => '2222222222'
-                ];
-$isSent = $test->updateUser($userData);
-
+require_once ('lib/mail.php');
+$isSent = new Mail();
+$isSent->send_random_number('integralproject1988@gmail.com',973263532);
 
 if($isSent){echo 'ok';}else{echo 'failed';} 
+
 ?>
 
 <?php 

@@ -114,7 +114,8 @@
                         <!-- login -->
                         <li class="nav-item">
                            <?php
-                                if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){ echo "<a class='nav-link' style='color:#24cdd5' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";
+                                if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){ 
+                                    echo "<a class='nav-link' style='color:#24cdd5' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";
                                     echo "<a class='nav-link' href='logout.php'>Logout</a>";
                                 } 
                                 else{echo "<a class='nav-link' href='login.php'>Login</a>";} 

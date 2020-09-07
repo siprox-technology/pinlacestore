@@ -1,1 +1,1 @@
-* NOTE : Test this register user process on live server for php error 10053 */
+check log in and logout header php code. if after logout header shows login not the name of user.

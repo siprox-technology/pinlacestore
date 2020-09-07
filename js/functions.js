@@ -2024,3 +2024,67 @@ $("#retypeNewPass").on("keyup", function () {
         $("#save-new-pass-btn").removeAttr("disabled");
     }
 });
+
+/* forget password check box display send code button and remove password field */
+$("#forgetPassCheckBox").change(function () {
+    if (this.checked) {
+        $('#sendCodeBtn').removeClass().addClass('button top10 gradient-btn');
+        $('#loginBtn').removeClass().addClass('d-none');
+        $('#loginPass').removeClass().addClass('d-none');
+        $('#loginTitle').text('Enter your email address to receive password reset code');
+
+    } else {
+        $('#sendCodeBtn').removeClass().addClass('d-none');
+        $('#loginBtn').removeClass().addClass('button gradient-btn');
+        $('#loginPass').removeClass().addClass('col-md-12 col-sm-12');
+        $('#loginTitle').text('login');
+
+    }
+});
+
+//send password reset code to email
+$('#sendCodeBtn').on('click', function () {
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'send activation code to email',
+            _token: $('#_logInToken').val(),
+            email: $('#loginEmail').val()
+        },
+        beforeSend: function () {
+            // Show preloader
+            $('.loader').css('display', 'block');
+        },
+        success: function (response) {
+            $('.loader').css('display', 'none');
+            switch (response) {
+                //success
+                case 'codesent':
+                    $('#codeSendResult').text('Please check your email to verify your account');
+                    $('#codeSendResult').removeClass().addClass("text-center text-success border border-success border-rounded");
+                    window.setTimeout(function () {
+                        $('#codeSendResult').removeClass().addClass("d-none");
+                        $('#forgetPassCheckBox').prop('checked', false);
+                        location.href = 'reset-pass.php';
+                    }, 5000);
+                    break;
+                    //failed
+                case 'unabletosendemail':
+                    $('#codeSendResult').text('Unable to send email! Please your internet connection and try again later.');
+                    $('#codeSendResult').removeClass().addClass("text-center text-danger border border-danger border-rounded");
+                    break;
+                case 'emailinvalid':
+                    $('#codeSendResult').text('Email format invalid');
+                    $('#codeSendResult').removeClass().addClass("text-center text-danger border border-danger border-rounded");
+                    break;
+                case 'serverProblem':
+                    $('#codeSendResult').text('Something wrong with the server! please try again later');
+                    $('#codeSendResult').removeClass().addClass("text-center text-danger border border-danger border-rounded");
+                    break;
+                default:
+                    break;
+            }
+        },
+    });
+})

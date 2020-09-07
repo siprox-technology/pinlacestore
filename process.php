@@ -145,7 +145,6 @@ else
                         // report username and password incorrect
                         header('location:login.php?msg=incorrectCredentials');
                     }
-                    
                 }
                 catch(Exception $e)
                 {
@@ -155,8 +154,6 @@ else
                     // report something wrong with server
                     header('location:login.php?msg=serverError');
                 }
-
-                
             }
 
        break;
@@ -243,7 +240,6 @@ else
        break;
 
        //change user password
-
        case 'change user password':
             // sanitize post array
             $POST['oldPass'] = ($validate->validateAnyname($_POST['oldPass']))==true?$_POST['oldPass']:false;
@@ -300,13 +296,54 @@ else
                 header('location:change-pass.php?msg=formunvalid');
                 break;
             }
+            break;
+       //send temporary activation code for password reset
+        case 'send activation code to email':
+            try{
+                //validate post array
+                $POST['email'] =  ($validate->validateEmail($_POST['email']))==true?$_POST['email']:false;
+                if($POST['email'])
+                {
+                    //create a random number
+                    $random = rand(11111,99999999);
+                    //save random number to the active session
+                    $_SESSION['random_code'] = $random;
+                    //email the number to user 
+                    require_once('lib/mail.php');
+                    $newMail = new Mail();
+                    if($newMail->send_random_number($POST['email'],$random))
+                    {
+                        echo 'codesent';
+                        break;
+                    }
+                    else
+                    {
+                        $_SESSION['random_code'] = Null;
+                        echo 'unabletosendemail';
+                        break;
+                    }
+                    //redirect to reset pass with code page
+                }
+                else
+                {
+                    echo 'emailinvalid';
+                    break;
+                }
+                
+            }
+            catch(Exception $e)
+            {
+                echo 'serverProblem';
+                break;
+            }
         break;
-
-       default:
-       session_unset();
-       session_destroy();
-       setcookie('PHPSESSID', '', time() - 3600,'/');
-       header('location:index.php');
-       break;
+        
+        
+        default:
+        session_unset();
+        session_destroy();
+        setcookie('PHPSESSID', '', time() - 3600,'/');
+        header('location:index.php');
+        break;
     }
 }
