@@ -13,9 +13,7 @@ if(isset($_SESSION['loggedIn'])&& $_SESSION['loggedIn']==true)
     header('location:user-profile.php');
 }
 /* error msgs status */
-$wrong_credential = $db_error_msg = $formUnvalid = "d-none";
-/* success msg */
-$userAddSuccess = "d-none";
+$wrong_credential = $db_error_msg = $formInvalid = "d-none";
 
 if(isset ($_GET['msg'])){
     $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
@@ -27,13 +25,9 @@ if(isset ($_GET['msg'])){
     {
         $db_error_msg = '';
     }
-    if($GET['msg'] === 'databasefailed')
+    if($GET['msg']==='invalidforminput')
     {
-        $db_error_msg = '';
-    }
-    if($GET['msg'] === 'userexist')
-    {
-        $acc_exist_error = '';
+        $formInvalid = '';
     }
  }
 
@@ -64,9 +58,7 @@ if(isset ($_GET['msg'])){
         <!-- error reporting -->
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $wrong_credential; ?>"> Email or Password incorrect!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
-        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formUnvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
-        <!-- success reporting -->
-        <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $userAddSuccess; ?>">Your account has been created. Please check your email to verify your account.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formInvalid; ?>">Invalid form inputes !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <!-- email password reset code results -->
         <p class="d-none" id='codeSendResult'></p>
         <div class="container">

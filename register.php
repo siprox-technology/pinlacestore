@@ -7,7 +7,7 @@ if(!isset($_SESSION['_token']))
 }
 session_regenerate_id();
 /* error msgs status */
-$acc_exist_error = $db_error_msg = $formUnvalid = "d-none";
+$acc_exist_error = $db_error_msg = $formInvalid = "d-none";
 /* success msg */
 $userAddSuccess = "d-none";
 
@@ -17,9 +17,9 @@ $userAddSuccess = "d-none";
     {
         $userAddSuccess = '';
     }
-    if($GET['msg'] === 'formunvalid')
+    if($GET['msg'] === 'forminvalid')
     {
-        $formUnvalid = '';
+        $formInvalid = '';
     }
     if($GET['msg'] === 'databasefailed')
     {
@@ -58,7 +58,7 @@ $userAddSuccess = "d-none";
     <!-- error reporting -->
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $acc_exist_error; ?>"> Email Address already exist !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
-        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formUnvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formInvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
     <!-- success reporting -->
         <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $userAddSuccess; ?>">Your account has been created. Please check your email to verify your account.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <div class="container">

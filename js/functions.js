@@ -1923,6 +1923,50 @@ $("#password2").on("keyup", function () {
     }
 });
 
+/* check confirmed new password
+is the same as new password  */
+$("#newPass").on("keyup", function () {
+    if ($(this).val() != $("#retypeNewPass").val()) {
+        $("#retypeNewPass").addClass("border-danger");
+        $("#save-new-pass-btn").attr("disabled", true);
+    } else {
+        $("#retypeNewPass").removeClass("border-danger");
+        $("#save-new-pass-btn").removeAttr("disabled");
+    }
+});
+
+$("#retypeNewPass").on("keyup", function () {
+    if ($("#newPass").val() != $(this).val()) {
+        $(this).addClass("border-danger");
+        $("#save-new-pass-btn").attr("disabled", true);
+    } else {
+        $(this).removeClass("border-danger");
+        $("#save-new-pass-btn").removeAttr("disabled");
+    }
+});
+
+/* check reset password is the same as confirmed one 
+ */
+$("#resetNewPass").on("keyup", function () {
+    if ($(this).val() != $("#resetReNewPass").val()) {
+        $("#resetReNewPass").addClass("border-danger");
+        $("#reset_pass_btn").attr("disabled", true);
+    } else {
+        $("#resetReNewPass").removeClass("border-danger");
+        $("#reset_pass_btn").removeAttr("disabled");
+    }
+});
+
+$("#resetReNewPass").on("keyup", function () {
+    if ($("#resetNewPass").val() != $(this).val()) {
+        $(this).addClass("border-danger");
+        $("#reset_pass_btn").attr("disabled", true);
+    } else {
+        $(this).removeClass("border-danger");
+        $("#reset_pass_btn").removeAttr("disabled");
+    }
+});
+
 /* refresh page after clicking close icon on form messages */
 
 $('#notification i').on('click', function () {
@@ -2001,30 +2045,6 @@ $('#resend_verify_email').on('click', function () {
     });
 })
 
-/* form validation */
-
-/* check confirmed new password
-is the same as new password  */
-$("#newPass").on("keyup", function () {
-    if ($(this).val() != $("#retypeNewPass").val()) {
-        $("#retypeNewPass").addClass("border-danger");
-        $("#save-new-pass-btn").attr("disabled", true);
-    } else {
-        $("#retypeNewPass").removeClass("border-danger");
-        $("#save-new-pass-btn").removeAttr("disabled");
-    }
-});
-
-$("#retypeNewPass").on("keyup", function () {
-    if ($("#newPass").val() != $(this).val()) {
-        $(this).addClass("border-danger");
-        $("#save-new-pass-btn").attr("disabled", true);
-    } else {
-        $(this).removeClass("border-danger");
-        $("#save-new-pass-btn").removeAttr("disabled");
-    }
-});
-
 /* forget password check box display send code button and remove password field */
 $("#forgetPassCheckBox").change(function () {
     if (this.checked) {
@@ -2061,7 +2081,7 @@ $('#sendCodeBtn').on('click', function () {
             switch (response) {
                 //success
                 case 'codesent':
-                    $('#codeSendResult').text('Please check your email to verify your account');
+                    $('#codeSendResult').text('Please check your email for password reset code');
                     $('#codeSendResult').removeClass().addClass("text-center text-success border border-success border-rounded");
                     window.setTimeout(function () {
                         $('#codeSendResult').removeClass().addClass("d-none");

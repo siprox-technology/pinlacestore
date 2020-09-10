@@ -7,7 +7,7 @@ if(!isset($_SESSION['_token']))
 }
 session_regenerate_id();
 /* error msgs status */
-$noaccounttoupdate = $db_error_msg = $formUnvalid = "d-none";
+$noaccounttoupdate = $db_error_msg = $formInvalid = "d-none";
 /* success msg */
 $userUpdatesuccess = "d-none";
 //redirect to home page if user not signed in
@@ -22,9 +22,9 @@ if(isset ($_GET['msg'])){
     {
         $userUpdatesuccess = '';
     }
-    if($GET['msg'] === 'formunvalid')
+    if($GET['msg'] === 'forminvalid')
     {
-        $formUnvalid = '';
+        $formInvalid = '';
     }
     if($GET['msg'] === 'databasefailed')
     {
@@ -63,7 +63,7 @@ if(isset ($_GET['msg'])){
         <!-- error reporting -->
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $noaccounttoupdate; ?>"> Unable to update account !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
-        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formUnvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formInvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
     <!-- success reporting -->
         <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $userUpdatesuccess; ?>">Your account has been updated.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
 

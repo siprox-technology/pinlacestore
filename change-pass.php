@@ -7,7 +7,7 @@ if(!isset($_SESSION['_token']))
 }
 session_regenerate_id();
 /* error msgs status */
- $db_error_msg = $formUnvalid =$oldPassWrong=$noAccount= "d-none";
+ $db_error_msg = $formInvalid =$oldPassWrong=$noAccount= "d-none";
 /* success msg */
 $passChangeSuccess = "d-none";
 //redirect to home page if user not signed in
@@ -22,9 +22,9 @@ if(isset ($_GET['msg'])){
     {
         $passChangeSuccess = '';
     }
-    if($GET['msg'] === 'formunvalid')
+    if($GET['msg'] === 'forminvalid')
     {
-        $formUnvalid = '';
+        $formInvalid = '';
     }
     if($GET['msg'] === 'databasefailed')
     {
@@ -76,7 +76,7 @@ if(isset ($_GET['msg'])){
                         <div class="col-md-8 offset-md-2 bottom35">
                             <!-- error reporting -->
                             <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
-                            <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formUnvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+                            <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formInvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
                             <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $oldPassWrong; ?>">Old password incorrect!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
                             <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $noAccount; ?>">No Account to update!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
 

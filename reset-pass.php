@@ -8,27 +8,27 @@ if(!isset($_SESSION['_token']))
 session_regenerate_id();
 
 /* error msgs status */
-$wrong_credential = $db_error_msg = $formUnvalid = "d-none";
+$NoAccToUpdate = $db_error_msg = $formInvalid =$codeInvalid= "d-none";
 /* success msg */
-$userAddSuccess = "d-none";
+$resetPassSucces = "d-none";
 
 if(isset ($_GET['msg'])){
     $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
-    if($GET['msg'] === 'incorrectCredentials')
+    if($GET['msg'] === 'codeinvalid')
     {
-        $wrong_credential = '';
+        $codeInvalid = '';
     }
-    if($GET['msg'] === 'serverError')
+    if($GET['msg'] === 'dberror')
     {
         $db_error_msg = '';
     }
-    if($GET['msg'] === 'databasefailed')
+    if($GET['msg'] === 'noaccounttoupdate')
     {
-        $db_error_msg = '';
+        $NoAccToUpdate = '';
     }
-    if($GET['msg'] === 'userexist')
+    if($GET['msg'] === 'updatepasssuccess')
     {
-        $acc_exist_error = '';
+        $resetPassSucces = '';
     }
  }
 
@@ -57,11 +57,11 @@ if(isset ($_GET['msg'])){
     ?>
     <section id="sign-in" class="bglight position-relative padding">
         <!-- error reporting -->
-        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $wrong_credential; ?>"> Email or Password incorrect!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $codeInvalid; ?>">Reset code invalid!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
-        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formUnvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $NoAccToUpdate; ?>"> No Account to update!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <!-- success reporting -->
-        <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $userAddSuccess; ?>">Your account has been created. Please check your email to verify your account.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $resetPassSucces; ?>">Your password has been reset successfully.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <div class="container">
         <div class="row">
             <div class="col-md-12 text-center wow fadeIn" data-wow-delay="300ms">
@@ -75,31 +75,28 @@ if(isset ($_GET['msg'])){
             <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 whitebox">
                 <div class="widget logincontainer shadow text-center text-md-left">
                     <h3 class="darkcolor bottom35">Reset Password </h3>
-                    <form class="getin_form border-form" id="ResetPassword">
-                        <div class="row">
-                            <div class="col-sm-12 forget-buttons">
-                                <button type="submit" class="button btn-primary">Reset</button>
-                                <button type="button" class="button btn-dark ml-2">Cancel</button>
-                            </div>
+                    <form class="getin_form border-form" id="ResetPassword" method='post' action="process.php">
                             <div class="col-md-12 col-sm-12">
-                            <!-- code -->
+                                <!-- code -->
                                 <div class="form-group ">
                                     <label  class=" pl-0">Code:</label>
-                                    <input class="form-control" name="resetCode" type="email" required id="resetCode">
+                                    <input class="form-control" name="resetCode" required id="resetCode">
                                 </div>
                                 <!-- new pass -->
                                 <div class="form-group ">
                                     <label class=" pl-0">New Password:</label>
-                                    <input class="form-control" name="newPass" type="email" required id="newPass">
+                                    <input class="form-control" name="newPass"  required id="resetNewPass">
                                 </div>
                                 <!-- confirm new pass -->
                                 <div class="form-group ">
                                     <label class=" pl-0">Confirm New Password:</label>
-                                    <input class="form-control" name="reNewPass" type="email" required id="reNewPass">
+                                    <input class="form-control" name="reNewPass" required id="resetReNewPass">
                                 </div>
+                                <input type="hidden" name="_token" value="<?php echo $_SESSION['_token']?>">
+                                <input type="hidden" name="request_name" value="reset user password">
                             </div>
                             <div class="col-sm-12 forget-buttons">
-                                <button type="submit" class="button btn-primary">Reset</button>
+                                <button type="submit" class="button btn-primary" id = 'reset_pass_btn'>Reset</button>
                                 <button type="button" class="button btn-dark ml-2">Cancel</button>
                             </div>
                         </div>
