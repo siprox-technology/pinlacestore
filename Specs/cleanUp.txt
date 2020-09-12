@@ -1,1 +1,6 @@
-check log in and logout header php code. if after logout header shows login not the name of user.
+-check log in and logout header php code. if after logout header shows login not the name of user.
+-check the js alert (loggedout) when clicking logout. it should be displayed when user logged out from other page.
+-chenge url to not show the .php
+-login page form row adjust the height of columns- and adjust the texts below login fileds
+-forms fields gets color blue after filling except password fields
+-sign up form navigation comes inside form when scrolling down

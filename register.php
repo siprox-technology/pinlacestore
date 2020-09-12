@@ -5,7 +5,7 @@ if(!isset($_SESSION['_token']))
 {
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
-session_regenerate_id();
+session_regenerate_id();  
 /* error msgs status */
 $acc_exist_error = $db_error_msg = $formInvalid = "d-none";
 /* success msg */
@@ -56,7 +56,7 @@ $userAddSuccess = "d-none";
     ?>
     <section id="register-user" class="bglight position-relative padding">
     <!-- error reporting -->
-        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $acc_exist_error; ?>"> Email Address already exist !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $acc_exist_error; ?>"> User with this email address already exist!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formInvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
     <!-- success reporting -->
@@ -102,7 +102,7 @@ $userAddSuccess = "d-none";
                                     <div class="form-group ">
                                         <label for="phone" class="d-none"></label>
                                         <input class="form-control" type="tell" placeholder="Phone:"
-                                             name="phone" pattern="[0-9]{11}"required>
+                                             name="phone" required>
                                     </div>
                                 </div>
                                 <!-- password -->

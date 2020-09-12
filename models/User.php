@@ -32,6 +32,23 @@ class User{
           return false;
         }
     }
+    public function activate_user($code,$email)
+    {
+      //get user id
+
+      $id = ($this->get_user_data($email))->id;
+      // Prepare Query
+      $this->db->query('update user set act_code = 0 
+      where id = :id');
+      // Bind Values
+      $this->db->bind(':id', $id);
+      // Execute
+      if(($this->db->execute()) && ($this->db->rowCount()>0)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
     public function updateUser($data){
         // Prepare Query
         $this->db->query('update user set 
@@ -75,24 +92,6 @@ class User{
         $results = $this->db->resultset();
   
         return $results;
-    }
-
-    public function activate_user($code,$email)
-    {
-      //get user id
-
-      $id = ($this->get_user_data($email))->id;
-      // Prepare Query
-      $this->db->query('update user set act_code = 0 
-      where id = :id');
-      // Bind Values
-      $this->db->bind(':id', $id);
-      // Execute
-      if(($this->db->execute()) && ($this->db->rowCount()>0)) {
-        return true;
-      } else {
-        return false;
-      }
     }
     
     public function authenticate($username, $pass){

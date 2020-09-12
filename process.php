@@ -29,6 +29,7 @@ else
     {
         //add new user-->
         case 'register user':
+                //set default contact preferences to SMS
                 if(isset($_POST['contactPref'])){
                     $POST['contactPref']= ($validate->validateDigits($_POST['contactPref']))==true?$_POST['contactPref']:false;
                 }else{
@@ -42,17 +43,17 @@ else
                 $POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
                 
 
-                if(($POST['name'])!==false && 
-                ($POST['lastName'])!==false && 
-                ($POST['email'])!==false && 
-                ($POST['phone'])!==false &&
-                ($POST['contactPref'])!==false &&
-                ($POST['_token'])!==false &&
-                ($request_name !==false))
+                if(($POST['name'])&& 
+                ($POST['lastName']) && 
+                ($POST['email'])&& 
+                ($POST['phone'])&&
+                ($POST['contactPref'])&&
+                ($POST['_token'])&&
+                ($request_name))
                 {
-                    //set User Data
                     //uniqe activation code
                     $code = rand(11111,9999999);
+                    //set User Data
                     $userData = [
                         'email' => $POST['email'],
                         'name' => $POST['name'],
@@ -73,18 +74,11 @@ else
                             require_once ('lib/mail.php');
                             $newEmail = new Mail();
                             $newEmail->send_activation_email($POST['email'],$code);
-
-                            session_unset();
-                            session_destroy();
-                            setcookie('PHPSESSID', '', time() - 3600,'/');
                             header('location:register.php?msg=useraddedsuccess');
                             break;
                         }
                         else
                         {
-                            session_unset();
-                            session_destroy();
-                            setcookie('PHPSESSID', '', time() - 3600,'/');
                             header('location:register.php?msg=userexist');
                             break;
                         }
@@ -92,20 +86,12 @@ else
                     //catch db errors
                     catch(Exception $e)
                     {
-                        session_unset();
-                        session_destroy();
-                        setcookie('PHPSESSID', '', time() - 3600,'/');
                         header('location:register.php?msg=databasefailed');
                         break;
-        
                     }
-        
                 }
                 else
                 {
-                    session_unset();
-                    session_destroy();
-                    setcookie('PHPSESSID', '', time() - 3600,'/');
                     header('location:register.php?msg=forminvalid');
                     break;
                 }

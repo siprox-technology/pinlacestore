@@ -6,10 +6,9 @@ if(!isset($_SESSION['_token']))
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
 session_regenerate_id();
-
 require_once('lib/validate.php');
 /* error msg status */
-$acc_exist_error = "d-none";
+$acc_exist_error = $server_error= "d-none";
 /* success msg */
 $account_active_success = "d-none";
 /* new validation */
@@ -23,25 +22,26 @@ $val = new Validate();
     $GET = filter_var_array($_GET, FILTER_SANITIZE_STRING);
     $GET['email'] = $val->validateEmail($GET['email']);
     $GET['code'] = $val->validateDigits($GET['code']);
-    if($GET['email']==true && $GET['code']== true)
+    if(($GET['email']) && ($GET['code']))
     {
         // activate account
-        require_once ('models/User.php');
-        $newUser = new User();
-        $result = $newUser->activate_user($_GET['code'],$_GET['email']);
-        if($result)
-        {
-            $account_active_success = '';
-            session_unset();
-            session_destroy();
-            setcookie('PHPSESSID', '', time() - 3600,'/');
+        try{
+            require_once ('models/User.php');
+            $newUser = new User();
+            if($newUser->activate_user($_GET['code'],$_GET['email']))
+            {
+                $account_active_success = '';
+            }
+            else
+            {
+                $acc_exist_error = '';
+            }
         }
-        else
+        catch(Exception $e)
         {
-            $acc_exist_error = '';
+            $server_error= '';
         }
     }
-
  }
 
 ?>
@@ -77,6 +77,7 @@ $val = new Validate();
                     <div class="col-md-8 offset-md-2 heading_space">
                         <h3 class="text-success <?php echo $account_active_success ?>">Your account is activated.</h3>
                         <h3  class="text-danger <?php echo $acc_exist_error ?>">This account was activated before or does not exist.</h3>
+                        <h3  class="text-danger <?php echo $server_error ?>">Something wrong with server. Please try activation link later.</h3>
                     </div>
                 </div>
             </div>
