@@ -134,7 +134,7 @@ $userAddSuccess = "d-none";
                                 <!-- register btn -->              
                                 <div class="col-sm-12">
                                     <button type="submit" id="reg_btn" class="button gradient-btn w-100">Register</button>
-                                    <p class="top20 log-meta text-center"> Already have an account? &nbsp;<a href="login.html" class="defaultcolor">Sign In</a> </p>
+                                    <p class="top20 log-meta text-center"> Already have an account? &nbsp;<a href="login.php" class="defaultcolor">Sign In</a> </p>
                                 </div>
                             </div>
                         </form>

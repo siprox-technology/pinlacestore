@@ -31,6 +31,12 @@ $val = new Validate();
             if($newUser->activate_user($_GET['code'],$_GET['email']))
             {
                 $account_active_success = '';
+                //if user is logged in set act_code in session to activated i.e. 0
+                if((isset($_SESSION['loggedIn'])) && ($_SESSION['loggedIn']))
+                {
+                    $_SESSION['act_code'] = 0;
+                }
+
             }
             else
             {

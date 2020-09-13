@@ -80,7 +80,7 @@
                                             </div>
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                                 <h5 class="dropdown-title bottom10"> Account </h5>
-                                                <a class="dropdown-item" href="login.html">Login</a>
+                                                <a class="dropdown-item" href="login.php">Login</a>
                                                 <a class="dropdown-item" href="register.html">Register</a>
                                                 <a class="dropdown-item" href="forget-password.html">Reset Password</a>
                                                 <a class="dropdown-item" href="support.html">Support</a>
@@ -240,7 +240,7 @@
                                         <div id="inner-2" class="collapse sideNavPages sideNavPagesInner">
                                             <ul class="navbar-nav mt-2">
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="login.html">Login</a>
+                                                    <a class="nav-link" href="login.php">Login</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="register.html">Register</a>
