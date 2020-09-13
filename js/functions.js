@@ -2022,21 +2022,21 @@ $('#resend_verify_email').on('click', function () {
                     $('#resend_verify_email_res').removeClass().addClass("text-success mt-3 text-center");
                     window.setTimeout(function () {
                         $('#resend_verify_email_res').removeClass().addClass("text-success mt-3 d-none");
-                    }, 3000);
+                    }, 5000);
                     break;
                 case 'Email not sent':
                     $('#resend_verify_email_res').text('Email not sent! please try again later.');
                     $('#resend_verify_email_res').removeClass().addClass("text-danger mt-3 text-center");
                     window.setTimeout(function () {
                         $('#resend_verify_email_res').removeClass().addClass("text-danger mt-3 d-none");
-                    }, 3000);
+                    }, 5000);
                     break;
                 case 'db error':
                     $('#resend_verify_email_res').text('Server not responding! please try again later')
                     $('#resend_verify_email_res').removeClass().addClass("text-danger mt-3 text-center");
                     window.setTimeout(function () {
                         $('#resend_verify_email_res').removeClass().addClass("text-danger mt-3 d-none");
-                    }, 3000);
+                    }, 5000);
                     break;
                 default:
                     break;

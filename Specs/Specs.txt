@@ -58,8 +58,8 @@ Possible functionalities:
 -User registration and activation.**
 -User log in\log out session time.**
 -resend confirmation email**
--User reset fotgotten password through email.*
--user profile update details*
+-User reset fotgotten password through email.**
+-user profile update account details*
 -user change password.*
 -user add and remove addresses.-
 -User add product to wish list

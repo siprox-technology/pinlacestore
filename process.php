@@ -73,7 +73,7 @@ else
                             //SEND activation link to user email address
                             require_once ('lib/mail.php');
                             $newEmail = new Mail();
-                            $newEmail->send_activation_email($POST['email'],$code);
+                            $newEmail->send_verification_email($POST['email'],$code);
                             header('location:register.php?msg=useraddedsuccess');
                             break;
                         }
@@ -153,7 +153,7 @@ else
                     require_once('lib/mail.php');
                     $newMail = new Mail();
                     // if email is sent successfully 
-                    if($newMail->send_activation_email($_SESSION['email'],$user->get_user_data($_SESSION['email'])->act_code)){
+                    if($newMail->send_verification_email($_SESSION['email'],$user->get_user_data($_SESSION['email'])->act_code)){
                         echo 'Email sent success';
                     }
                     else

@@ -15,7 +15,7 @@
         $this->headers = 'From: ' . $this->from . "\r\n" . 'Reply-To: ' . $this->from . "\r\n" . 'X-Mailer: PHP/' . phpversion() . "\r\n" . 'MIME-Version: 1.0' . "\r\n" . 'Content-Type: text/html; charset=UTF-8' . "\r\n";;
       }
 
-    public function send_activation_email($to_email,$code){
+    public function send_verification_email($to_email,$code){
        $this->to = $to_email;
        $this->act_code = $code;
        $this->activate_link = 'http://localhost/SportsStore/user-activation.php?email=' . $this->to . '&code=' . $this->act_code;

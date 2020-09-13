@@ -106,7 +106,7 @@ if(isset ($_GET['msg'])){
                                                 required name="phone" value="<?php echo $_SESSION['phone'] ?>">
                                         </div>
                                     </div>
-                                    <!-- account verified status -->
+                                    <!-- account verified status and resend verification email -->
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="" >Account status:</label>
