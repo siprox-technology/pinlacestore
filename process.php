@@ -9,6 +9,9 @@ if($_SERVER['REQUEST_METHOD']!== 'POST'
 || (!isset($_SESSION['_token']))
 || ($_POST['_token']!== $_SESSION['_token']))
 {
+    session_unset();
+    session_destroy();
+    setcookie('PHPSESSID', '', time() - 3600,'/');
     header('location:index.php');
 }
 else
@@ -223,13 +226,9 @@ else
         case 'change user password':
             // sanitize post array
             $POST['oldPass'] = ($validate->validateAnyname($_POST['oldPass']))==true?$_POST['oldPass']:false;
-            $POST['newPass'] = ($validate->validateAnyname($_POST['newPass']))==true?$_POST['newPass']:false;
-            $POST['_token'] = ($validate->validateDigits($_POST['_token']))==true?$_POST['_token']:false;
-            $POST['id'] = ($validate->validateDigits($_SESSION['id']))==true?$_SESSION['id']:false;        
+            $POST['newPass'] = ($validate->validateAnyname($_POST['newPass']))==true?$_POST['newPass']:false;    
             if(($POST['oldPass'])!==false && 
             ($POST['newPass'])!==false && 
-            ($POST['_token'])!==false &&
-            ($POST['id'])!==false &&
             ($request_name !==false))
             {
                 try{
@@ -241,7 +240,7 @@ else
                         //set User Data
                         $userData = [
                             'newPass' => password_hash($POST['newPass'], PASSWORD_DEFAULT), 
-                            'id' => $POST['id']
+                            'id' => $_SESSION['id']
                         ];
 
                         //change pass

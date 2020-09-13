@@ -60,7 +60,7 @@ Possible functionalities:
 -resend verification email**
 -User reset fotgotten password through email.**
 -user profile update account details**
--user change password.*-
+-user change password.**
 -user add and remove addresses.-
 -User add product to wish list
 -User makes an order and pay.
