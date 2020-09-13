@@ -32,8 +32,7 @@ class User{
           return false;
         }
     }
-    public function activate_user($code,$email)
-    {
+    public function activate_user($code,$email){
       //get user id
 
       $id = ($this->get_user_data($email))->id;
@@ -49,6 +48,33 @@ class User{
         return false;
       }
     }
+    public function authenticate($username, $pass){
+      // Prepare Query
+      $this->db->query('select password from user where 
+      email = :email');
+      // Bind Values
+      $this->db->bind(':email', $username);
+      if(($this->db->execute()) && ($this->db->rowCount()>0)) {
+        $results = $this->db->single();
+        if(password_verify($pass,$results->password)){
+          return true;
+        }
+        else
+        {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    }
+    public function get_user_data($email){
+      $this->db->query('SELECT * FROM user where email = :email');
+      // Bind Values
+      $this->db->bind(':email', $email);
+      $results = $this->db->single();
+      return $results;
+    }
+    
     public function updateUser($data){
         // Prepare Query
         $this->db->query('update user set 
@@ -93,34 +119,8 @@ class User{
   
         return $results;
     }
-    
-    public function authenticate($username, $pass){
-        // Prepare Query
-        $this->db->query('select password from user where 
-        email = :email');
-        // Bind Values
-        $this->db->bind(':email', $username);
-        if(($this->db->execute()) && ($this->db->rowCount()>0)) {
-          $results = $this->db->single();
-          if(password_verify($pass,$results->password)){
-            return true;
-          }
-          else
-          {
-            return false;
-          }
-        } else {
-          return false;
-        }
-    }
 
-    public function get_user_data($email){
-      $this->db->query('SELECT * FROM user where email = :email');
-      // Bind Values
-      $this->db->bind(':email', $email);
-      $results = $this->db->single();
-      return $results;
-    }
+
     
 }
 ?>

@@ -110,8 +110,9 @@ else
                         require_once('models/User.php');
                         $user = new User();
                         if($user->authenticate($POST['email'],$POST['password'])){
-                            $_SESSION['loggedIn'] = true;
                             $result = $user->get_user_data($POST['email']);
+
+                            $_SESSION['loggedIn'] = true;
                             $_SESSION['id'] = $result->id;
                             $_SESSION['email'] = $result->email;
                             $_SESSION['name'] = $result->name;
@@ -125,18 +126,12 @@ else
                         }
                         else
                         {
-                            session_unset();
-                            session_destroy();
-                            setcookie('PHPSESSID', '', time() - 3600,'/');
                             // report username and password incorrect
                             header('location:login.php?msg=incorrectCredentials');
                         }
                     }
                     catch(Exception $e)
                     {
-                        session_unset();
-                        session_destroy();
-                        setcookie('PHPSESSID', '', time() - 3600,'/');
                         // report something wrong with server
                         header('location:login.php?msg=serverError');
                     }
