@@ -115,7 +115,9 @@
                         <li class="nav-item">
                            <?php
                                 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){ 
-                                    echo "<a class='nav-link' style='color:#24cdd5' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";
+                                    echo "<a class='nav-link' data-toggle='tooltip' data-placement='bottom'
+                                    title=".$_SESSION['email']."
+                                    style='color:#24cdd5' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";
                                     echo "<a class='nav-link' href='logout.php'>Logout</a>";
                                 } 
                                 else{echo "<a class='nav-link' href='login.php'>Login</a>";} 
@@ -311,7 +313,7 @@
                         <li class="nav-item">
                            <?php
                                 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){ 
-                                    echo "<a class='nav-link' style='color:#24cdd5' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";
+                                    echo "<a class='nav-link' data-toggle='tooltip' data-placement='bottom' style='color:#24cdd5' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";
                                     echo "<br><a class='nav-link' href='logout.php'>Logout</a>";
                                 } 
                                 else{echo "<a class='nav-link' href='login.php'>Login</a>";} 
