@@ -33,7 +33,7 @@ FK_inverntory_id_wish_inven,
 --------------------------------
 
 Address:
-id,address,city,state,country,postCode,
+id,number,address,city,state,country,postCode,
 FK_user_id_addr_user,
 
 ---------------------------------

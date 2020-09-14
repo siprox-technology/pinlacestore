@@ -28,7 +28,7 @@ $val = new Validate();
         try{
             require_once ('models/User.php');
             $newUser = new User();
-            if($newUser->activate_user($_GET['code'],$_GET['email']))
+            if($newUser->activateUser($_GET['code'],$_GET['email']))
             {
                 $account_active_success = '';
                 //if user is logged in set act_code in session to activated i.e. 0

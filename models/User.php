@@ -32,10 +32,10 @@ class User{
           return false;
         }
     }
-    public function activate_user($code,$email){
+    public function activateUser($code,$email){
       //get user id
 
-      $id = ($this->get_user_data($email))->id;
+      $id = ($this->getUserData($email))->id;
       // Prepare Query
       $this->db->query('update user set act_code = 0 
       where id = :id');
@@ -67,7 +67,7 @@ class User{
         return false;
       }
     }
-    public function get_user_data($email){
+    public function getUserData($email){
       $this->db->query('SELECT * FROM user where email = :email');
       // Bind Values
       $this->db->bind(':email', $email);
@@ -94,7 +94,7 @@ class User{
           return false;
         }
     }
-    public function update_password($data){
+    public function updatePassword($data){
         // Prepare Query
         $this->db->query('update user set 
         password=:password
@@ -120,6 +120,38 @@ class User{
         return $results;
     }
 
+    public function addAddress($data){
+        //search if user not already exist
+        // Prepare Query
+        $this->db->query('INSERT INTO address 
+        (number,address,city,state,country,postCode,FK_user_id_addr_user)
+         SELECT * FROM (SELECT :number,:address, :city, :state, 
+         :country, :postCode, :FK_user_id_addr_user) 
+         AS tmp
+         WHERE NOT EXISTS (
+         SELECT * FROM address WHERE address = :address AND
+          city = :city
+         ) LIMIT 1'); /* HERE */
+
+
+        // Bind Values
+        $this->db->bind(':number', $data['number']);
+        $this->db->bind(':address', $data['address']);
+        $this->db->bind(':city', $data['city']);
+        $this->db->bind(':state', $data['state']);
+        $this->db->bind(':country', $data['country']);
+        $this->db->bind(':postCode', $data['postCode']);
+        $this->db->bind(':FK_user_id_addr_user', $data['FK_id']);
+ 
+        // Execute
+        if(($this->db->execute()) && ($this->db->rowCount()>0)) {
+          return true;
+        } else {
+          return false;
+        }
+    }
+
+   
 
     
 }

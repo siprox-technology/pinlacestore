@@ -113,7 +113,7 @@ else
                         require_once('models/User.php');
                         $user = new User();
                         if($user->authenticate($POST['email'],$POST['password'])){
-                            $result = $user->get_user_data($POST['email']);
+                            $result = $user->getUserData($POST['email']);
 
                             $_SESSION['loggedIn'] = true;
                             $_SESSION['id'] = $result->id;
@@ -156,7 +156,7 @@ else
                     require_once('lib/mail.php');
                     $newMail = new Mail();
                     // if email is sent successfully 
-                    if($newMail->send_verification_email($_SESSION['email'],$user->get_user_data($_SESSION['email'])->act_code)){
+                    if($newMail->send_verification_email($_SESSION['email'],$user->getUserData($_SESSION['email'])->act_code)){
                         echo 'Email sent success';
                     }
                     else
@@ -194,7 +194,7 @@ else
                         if($newUser->updateUser($userData))
                         {
                             //update session data
-                            $newData = $newUser->get_user_data($_SESSION['email']);
+                            $newData = $newUser->getUserData($_SESSION['email']);
                             $_SESSION['name']=$newData->name;
                             $_SESSION['lastName']=$newData->lastName;
                             $_SESSION['phone']=$newData->phone;
@@ -244,7 +244,7 @@ else
                         ];
 
                         //change pass
-                        if($theUser->update_password($userData))
+                        if($theUser->updatePassword($userData))
                         {
                             header('location:change-pass.php?msg=changepasssuccess');
                             break;
@@ -332,10 +332,10 @@ else
                     $user = new User();
                     //set User Data
                     $userData = [
-                        'id'=> ($user->get_user_data($POST['email']))->id,
+                        'id'=> ($user->getUserData($POST['email']))->id,
                         'newPass'=>password_hash($POST['newPass'], PASSWORD_DEFAULT)
                     ];
-                   if($user->update_password($userData))
+                   if($user->updatePassword($userData))
                    {
                         header('location:reset-pass.php?msg=updatepasssuccess');
                         break;
@@ -360,6 +360,71 @@ else
             }  
 
         break;
+
+        //add new address
+        case 'add new address':
+
+                // sanitize post array
+                $POST['number'] = (($_POST['number']>0) && ($_POST['number']<7))==true?$_POST['number']:false;
+                $POST['address'] = ($validate->validateAnyname($_POST['address']))==true?$_POST['address']:false;
+                $POST['city'] = ($validate->validateAnyname($_POST['city']))==true?$_POST['city']:false;
+                $POST['state'] = ($validate->validateAnyname($_POST['state']))==true?$_POST['state']:false;
+                $POST['country'] = ($validate->validateAnyname($_POST['country']))==true? $_POST['country']:false;
+                $POST['postCode'] = ($validate->validateAnyname($_POST['postCode']))==true?$_POST['postCode']:false;
+                $POST['FK_id'] = $_SESSION['id'];
+                
+
+                if(($POST['number']) && 
+                ($POST['address'])&& 
+                ($POST['city']) && 
+                ($POST['state'])&& 
+                ($POST['country'])&&
+                ($POST['postCode'])&&
+                ($POST['FK_id'])&&
+                ($request_name))
+                {
+                    //set User Data
+                    $userData = [
+                        'number'=>$POST['number'],
+                        'address' => $POST['address'],
+                        'city' => $POST['city'],
+                        'state' => $POST['state'],
+                        'country' => $POST['country'],
+                        'postCode' => $POST['postCode'],
+                        'FK_id'=> $POST['FK_id'],
+                    ];
+                    try{
+                        require_once('models/User.php');
+                        // Instantiate User
+                        $user = new User();
+                        // Add User To DB
+                        if($user->addAddress($userData))
+                        {
+                            //add address array to session
+                            $_SESSION['address'.$_POST['number']] = $userData;
+                            header('location:address.php?msg=addressaddsuccess');
+                            break;
+                        }
+                        else
+                        {
+                            header('location:address.php?msg=addressexist');
+                            break;
+                        }
+                    }
+                    //catch db errors
+                    catch(Exception $e)
+                    {
+                        header('location:address.php?msg=databasefailed');
+                        break;
+                    }
+                }
+                else
+                {
+                    header('location:address.php?msg=forminvalid');
+                    break;
+                }
+
+        break;    
         
         default:
         session_unset();
