@@ -32,6 +32,9 @@ session_regenerate_id();
     <!--wish list -->
     <section id="wish-list-section" class="bglight position-relative padding noshadow">
         <div class="container whitebox">
+        <div class="row justify-content-center">
+            <a class="" href="user-profile.php"><i class="fas fa-arrow-left"></i></a>
+        </div>
             <div class="row justify-content-center">
                 <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Wish</span>
                     list

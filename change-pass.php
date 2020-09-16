@@ -68,6 +68,10 @@ if(isset ($_GET['msg'])){
             <div class="widget py-5">
                 <div class="row justify-content-center">
                     <div class="col-md-12 text-center wow fadeIn mt-n3" data-wow-delay="300ms">
+                                <!-- back arrow to user profile home page -->
+                        <div class="row justify-content-center">
+                            <a class="" href="user-profile.php"><i class="fas fa-arrow-left"></i></a>
+                        </div>
                         <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Change
                             </span>
                             Password

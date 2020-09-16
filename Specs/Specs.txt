@@ -61,7 +61,7 @@ Possible functionalities:
 -User reset fotgotten password through email.**
 -user profile update account details**
 -user change password.**
--user add and remove addresses.-
+-user add and remove addresses.**
 -User add product to wish list
 -User makes an order and pay.
 -search products by brand.

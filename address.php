@@ -63,10 +63,12 @@ if(isset ($_GET['msg'])){
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $addressExist; ?>"> Address already added. Please remove it to add new one!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formInvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
-        
         <!-- success reporting -->
         <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $addressAddSuccess; ?>">New address saved.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
-
+        <!-- back arrow to user profile home page -->
+        <div class="row justify-content-center">
+            <a class="" href="user-profile.php"><i class="fas fa-arrow-left"></i></a>
+        </div>
         <div class="container whitebox">
             <div class="row justify-content-center">
                 <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Manage</span>
