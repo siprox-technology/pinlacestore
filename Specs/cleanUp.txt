@@ -5,3 +5,4 @@
 -forms fields gets color blue after filling except password fields
 -sign up form navigation comes inside form when scrolling down
 - user profile navigation back button
+- this error situation with first log in gievs server error then disapears

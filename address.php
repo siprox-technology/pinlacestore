@@ -6,9 +6,9 @@ if(!isset($_SESSION['_token']))
 }
 session_regenerate_id();
 /* error msgs status */
- $addressExist = $formInvalid =$db_error_msg = "d-none";
+ $addressExist = $formInvalid =$db_error_msg= $noAddressToRemove = "d-none";
 /* success msg */
-$addressAddSuccess = "d-none";
+ $addressAddSuccess ="d-none";
 //redirect to home page if user not signed in
 if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
 {
@@ -60,9 +60,10 @@ if(isset ($_GET['msg'])){
     <!-- Addresses details -->
     <section id="user-account-section" class="bglight position-relative padding noshadow">
         <!-- error reporting -->
-        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $addressExist; ?>"> This address already exist !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $addressExist; ?>"> Address already added. Please remove it to add new one!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $db_error_msg; ?>">Something wrong with the server. PLease try again later !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
         <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $formInvalid; ?>">Please check form fields !<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        
         <!-- success reporting -->
         <p id="notification" class="text-center text-success border border-success border-rounded <?php echo $addressAddSuccess; ?>">New address saved.<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
 
@@ -88,18 +89,16 @@ if(isset ($_GET['msg'])){
                                         <span class="icon-contact defaultcolor"><i class="fa fa-home"
                                                 aria-hidden="true"></i></span>
                                         <h3 class="bottom0">Address 1</h3>
-                                        <p class="text-center">
-                                        <?php
+                                        <?php                                      
                                             if(isset($_SESSION['address1']))
                                             {
-                                                echo $_SESSION['address1']['address'];
+                                                echo  "<p class='text-center'>". $_SESSION['address1']['address']."</p>";
                                             }
                                             else
                                             {
-                                                echo "Not available";
-                                            }
+                                                echo "<p class='text-center'>...</p>";
+                                            }                                  
                                         ?>
-                                        </p>
                                     </div>
                                 </div>
                             </a>
@@ -116,12 +115,12 @@ if(isset ($_GET['msg'])){
                                         <?php
                                             if(isset($_SESSION['address2']))
                                             {
-                                                echo $_SESSION['address2']['address'];
+                                                echo  "<p class='text-center'>". $_SESSION['address2']['address']."</p>";
                                             }
                                             else
                                             {
-                                                echo "Not available";
-                                            }
+                                                echo "<p class='text-center'>...</p>";
+                                            }  
                                         ?>
                                         </p>                                    
                                     </div>
@@ -140,12 +139,12 @@ if(isset ($_GET['msg'])){
                                         <?php
                                             if(isset($_SESSION['address3']))
                                             {
-                                                echo $_SESSION['address3']['address'];
+                                                echo  "<p class='text-center'>". $_SESSION['address3']['address']."</p>";
                                             }
                                             else
                                             {
-                                                echo "Not available";
-                                            }
+                                                echo "<p class='text-center'>...</p>";
+                                            }  
                                         ?>
                                         </p>                                        
                                     </div>
@@ -164,12 +163,12 @@ if(isset ($_GET['msg'])){
                                         <?php
                                             if(isset($_SESSION['address4']))
                                             {
-                                                echo $_SESSION['address4']['address'];
+                                                echo  "<p class='text-center'>". $_SESSION['address4']['address']."</p>";
                                             }
                                             else
                                             {
-                                                echo "Not available";
-                                            }
+                                                echo "<p class='text-center'>...</p>";
+                                            }  
                                         ?>
                                         </p>    
                                     </div>
@@ -188,12 +187,12 @@ if(isset ($_GET['msg'])){
                                         <?php
                                             if(isset($_SESSION['address5']))
                                             {
-                                                echo $_SESSION['address5']['address'];
+                                                echo  "<p class='text-center'>". $_SESSION['address5']['address']."</p>";
                                             }
                                             else
                                             {
-                                                echo "Not available";
-                                            }
+                                                echo "<p class='text-center'>...</p>";
+                                            }  
                                         ?>
                                         </p>    
                                     </div>
@@ -212,12 +211,12 @@ if(isset ($_GET['msg'])){
                                         <?php
                                             if(isset($_SESSION['address6']))
                                             {
-                                                echo $_SESSION['address6']['address'];
+                                                echo  "<p class='text-center'>". $_SESSION['address6']['address']."</p>";
                                             }
                                             else
                                             {
-                                                echo "Not available";
-                                            }
+                                                echo "<p class='text-center'>...</p>";
+                                            }  
                                         ?>
                                         </p>    
                                     </div>

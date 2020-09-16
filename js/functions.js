@@ -1968,7 +1968,6 @@ $("#resetReNewPass").on("keyup", function () {
 });
 
 /* refresh page after clicking close icon on form messages */
-
 $('#notification i').on('click', function () {
     window.location = window.location.href.split("?")[0];
 })

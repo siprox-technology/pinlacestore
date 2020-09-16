@@ -1,5 +1,5 @@
 <?php
-/* session_start();
+session_start();
 
 
 $adress1=[
@@ -10,16 +10,16 @@ $adress1=[
     'postCode' => '22066',
     'FK_id'=>'65'
 ];
+$data = [
+    'id'=>'65',
+    'number'=>'2'
+];
     
 require_once('models/User.php');
 
 $user = new User();
-$x = $user->addAddress($adress1); */
+$x = $user->removeAddress($data);
 
-$POST['number'] = (($_POST['number']>0) && ($_POST['number']<7))==true?$_POST['number']:false;
-
-
-echo '';
-
+echo 'hi';
 
 ?>

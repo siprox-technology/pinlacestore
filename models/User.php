@@ -129,9 +129,8 @@ class User{
          :country, :postCode, :FK_user_id_addr_user) 
          AS tmp
          WHERE NOT EXISTS (
-         SELECT * FROM address WHERE address = :address AND
-          city = :city
-         ) LIMIT 1'); /* HERE */
+         SELECT * FROM address WHERE number = :number
+         ) LIMIT 1'); 
 
 
         // Bind Values
@@ -142,6 +141,33 @@ class User{
         $this->db->bind(':country', $data['country']);
         $this->db->bind(':postCode', $data['postCode']);
         $this->db->bind(':FK_user_id_addr_user', $data['FK_id']);
+ 
+        // Execute
+        if(($this->db->execute()) && ($this->db->rowCount()>0)) {
+          return true;
+        } else {
+          return false;
+        }
+    }
+    public function getUserAddresses($id){
+      $this->db->query('SELECT * FROM address where FK_user_id_addr_user = :id');
+      // Bind Values
+      $this->db->bind(':id', $id);
+      $results = $this->db->resultset();
+      return $results;
+    }
+
+    public function removeAddress($data)
+    {
+        //search if user not already exist
+        // Prepare Query
+        $this->db->query('DELETE FROM address WHERE
+        FK_user_id_addr_user= :id AND number = :number'); 
+
+
+        // Bind Values
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':number', $data['number']);
  
         // Execute
         if(($this->db->execute()) && ($this->db->rowCount()>0)) {

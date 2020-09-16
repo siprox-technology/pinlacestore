@@ -114,7 +114,6 @@ else
                         $user = new User();
                         if($user->authenticate($POST['email'],$POST['password'])){
                             $result = $user->getUserData($POST['email']);
-
                             $_SESSION['loggedIn'] = true;
                             $_SESSION['id'] = $result->id;
                             $_SESSION['email'] = $result->email;
@@ -124,6 +123,19 @@ else
                             $_SESSION['contacPref'] = $result->contacPref;
                             $_SESSION['created_at'] = $result->created_at;
                             $_SESSION['act_code'] = $result->act_code;
+                            $addresses = $user->getUserAddresses($_SESSION['id']);
+                            if(count($addresses)>0){
+                                for($i = 0; $i<count($addresses); $i++)
+                                {
+                
+                                    $_SESSION['address'.($addresses[$i]->number)]['address']=$addresses[$i]->address;
+                                    $_SESSION['address'.($addresses[$i]->number)]['city']=$addresses[$i]->city;
+                                    $_SESSION['address'.($addresses[$i]->number)]['state']=$addresses[$i]->state;
+                                    $_SESSION['address'.($addresses[$i]->number)]['country']=$addresses[$i]->country;
+                                    $_SESSION['address'.($addresses[$i]->number)]['postCode']=$addresses[$i]->postCode;
+                                }
+                            } 
+
                             //redirect to profile page
                             header('location:user-profile.php');
                         }
@@ -424,6 +436,46 @@ else
                     break;
                 }
 
+        break;    
+
+        //remove an address
+        case 'remove an address':
+            $POST['number'] = ($validate->validateDigits($_POST['number']))==true?$_POST['number']:false;
+            $POST['_token'] = ($validate->validateDigits($_POST['_token']))==true?$_POST['_token']:false;
+            if(($request_name)&&($POST['number'])&&($POST['_token']))
+                {
+                    try
+                    {
+                        require_once('models/User.php');
+                        $user = new user();
+                        $data = [
+                            'id' =>$_SESSION['id'],
+                            'number'=>$POST['number']
+                        ];
+                        if($user->removeAddress($data))
+                        {
+                            
+                            $_SESSION['address'.$data['number']]=null;
+                            header('location:address.php');
+                            break;
+                        }
+                        else
+                        {
+                            header('location:address.php');
+                            break;
+                        }
+                    }
+                    catch(Exception $e)
+                    {
+                        header('location:address.php?msg=databasefailed');
+                        break;
+                    }
+                }
+                else
+                {
+                    header('location:address.php?msg=forminvalid');
+                    break;
+                }
         break;    
         
         default:
