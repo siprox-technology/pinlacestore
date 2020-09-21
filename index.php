@@ -11,7 +11,7 @@ session_regenerate_id();
 <html lang="en">
 
 <head>
-    <title>Trax | Shop</title>
+    <title>Trax | Home</title>
 <?php 
 include_once 'inc/head.php' 
 ?>

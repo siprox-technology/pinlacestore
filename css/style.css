@@ -6899,3 +6899,22 @@ ul.latest_news li a:focus+span.defaultcolor {
     color: #5192e1;
     cursor: pointer;
 }
+
+#sort-by-select:hover,
+#sort-by-select:focus,
+#filter-products-btn {
+    color: #fff !important;
+    background-color: #24CDD5 !important;
+    border-color: #007bff !important;
+    cursor: pointer !important;
+}
+
+#our-shop {
+    background-color: aliceblue;
+}
+
+
+/* 
+#sort-by-select:active {
+    border-color: #007bff;
+} */

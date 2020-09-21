@@ -7,48 +7,11 @@
                 </a>
                 <div class="collapse navbar-collapse">
                     <ul class="navbar-nav ml-auto mr-auto">
-                        <li class="nav-item dropdown static">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"> Home </a>
-                            <ul class="dropdown-menu megamenu">
-                                <li>
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <a class="dropdown-item" href="index.php">Standard Version</a>
-                                                <a class="dropdown-item" href="index-creative-agency.html">Creative
-                                                    Agency</a>
-                                                <a class="dropdown-item" href="index-light.html">Classic Light</a>
-                                                <a class="dropdown-item" href="index-video.html">Video Background</a>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <a class="dropdown-item" href="index-modern-agency.html">Modern
-                                                    Agency</a>
-                                                <a class="dropdown-item" href="index-classic-startup.html">Classic
-                                                    Startup</a>
-                                                <a class="dropdown-item" href="index-flat.html">Flat Version</a>
-                                                <a class="dropdown-item" href="index-innovative.html">Innovative
-                                                    Layout</a>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <a class="dropdown-item" href="index-one-page.html">One Page Layout</a>
-                                                <a class="dropdown-item" href="index-center-logo.html">Center Logo</a>
-                                                <a class="dropdown-item" href="index-bottom-nav.html">Bottom Nav</a>
-                                                <a class="dropdown-item" href="index-gray.html">Minimal Gray</a>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <a class="dropdown-item" href="index-parallax.html">Parallax Version</a>
-                                                <a class="dropdown-item"
-                                                    href="index-interactive-classic.html">Interactive Classic</a>
-                                                <a class="dropdown-item" href="index-design-studio.html">Design
-                                                    Studio</a>
-                                                <a class="dropdown-item" href="index-particles.html">Interactive
-                                                    Particles</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="index.php"> Home </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="products.php">Shop</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
@@ -106,9 +69,6 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="gallery.html">Gallery</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contact</a>
                         </li>
                         <!-- login -->
@@ -145,69 +105,17 @@
                 <nav class="side-nav w-100">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages1">
-                                Home <i class="fas fa-chevron-down"></i>
+                            <a class="nav-link" href="index.php">
+                                Home
                             </a>
-                            <div id="sideNavPages1" class="collapse sideNavPages">
-                                <ul class="navbar-nav mt-2">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index.php">Standard Version</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-creative-agency.html">Creative Agency</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-light.html">Classic Light</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-video.html">Video Background</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-modern-agency.html">Modern Agency</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-classic-startup.html">Classic Startup</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-flat.html">Flat Version</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-innovative.html">Innovative Layout</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-one-page.html">One Page Layout</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-center-logo.html">Center Logo</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-bottom-nav.html">Bottom Nav</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-gray.html">Minimal Gray</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-parallax.html">Parallax Version</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-interactive-classic.html">Interactive
-                                            Classic</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-design-studio.html">Design Studio</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="index-particles.html">Interactive Particles</a>
-                                    </li>
-                                </ul>
-                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="products.php">Shop</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.html">About</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="gallery.html">Gallery</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link collapsePagesSideMenu" data-toggle="collapse" href="#sideNavPages">
                                 Pages <i class="fas fa-chevron-down"></i>
@@ -336,3 +244,13 @@
         <!-- End side menu -->
     </header>
     <!-- header End-->
+    <!--search products-->
+    <div class="gradient-bg title-wrap">
+        <form action="" class="py-3">
+            <div class="row justify-content-center ">
+                <div class="form-group m-0 w-50">
+                    <input class="form-control" type="text" placeholder="Search product or brand">
+                </div>
+            </div>
+        </form>
+   </div>
