@@ -2,7 +2,7 @@
 session_start();
 
 
-$adress1=[
+/* $adress1=[
     'address' => 'number 19 vg street',
     'city' => 'McLean',
     'state' => 'VA',
@@ -20,6 +20,14 @@ require_once('models/User.php');
 $user = new User();
 $x = $user->removeAddress($data);
 
-echo 'hi';
+echo 'hi'; */
+
+require_once('models/Product.php');
+
+$product = new Product();
+
+$x = $product->getAllProducts();
+
+echo '';
 
 ?>

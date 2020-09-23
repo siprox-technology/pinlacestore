@@ -2107,3 +2107,50 @@ $('#sendCodeBtn').on('click', function () {
         },
     });
 })
+
+//product selection functions
+
+/* -------------------------- */
+function selectAllProducts() {
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'get all products',
+            _token: $('#_token').val()
+        },
+        beforeSend: function () {
+            // Show preloader
+            $('.loader').css('display', 'block');
+        },
+        success: function (response) {
+            $('.loader').css('display', 'none');
+            result = JSON.parse(response);
+            // display products
+            c = result[0].brand;
+            for (i = 0; i < 1; i++) {
+                $('#productList').append(
+                    "<div class='col-lg-3 col-md-4 col-sm-6 wow fadeIn' data-wow-delay='300ms'>" +
+                    "<div class='shopping-box bottom30'>" +
+                    "<div class='image sale' data-sale='40'>" +
+                    "<img src='images/img-list/" + result[i].imgFolder + "/1/" + "test1.webp' alt='shop'>" +
+                    "<div class='overlay center-block'>" +
+                    "<a class='opens' href='shop-cart.html' title='Add To Cart'><i" +
+                    "class='fa fa-shopping-cart'></i></a>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class='shop-content text-center'>" +
+                    "<h4 class='darkcolor'><a href='shop-detail.html'>Classic Shoe</a></h4>" +
+                    "<p>We offer the most complete in the country</p>" +
+                    "<h4 class='price-product'>$230.00</h4>" +
+                    "</div>" +
+                    "</div>" +
+                    "</div>"
+                );
+            }
+
+        },
+    });
+
+}
+selectAllProducts();

@@ -1,17 +1,16 @@
-PinLace Sport Footwear website
+  PinLace Sport Footwear website
 
 Possible Database tables: Product, Inventory, Review, 
 User, WishList, Address, ShoppingCart, Order
 
 Product has:
 id(product code),brand,name,category
-gender,Description,saleRecord
+gender,Description,saleRecord,imgFolder
 
 ---------------------------------
 Inventory:
 id,FK_product_id_inv_prod,
-color,size,price,discount,
-imageList_name,quantity
+color,size,price,discount,quantity
 
 ------------------------------
 Review:

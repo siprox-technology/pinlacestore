@@ -477,6 +477,20 @@ else
                     break;
                 }
         break;    
+
+        //get all products
+        case 'get all products':
+            try{
+               require_once('models/Product.php');
+               $products = new Product();
+               echo json_encode($products->getAllProducts());
+            break;
+            }
+            catch(Exception $e)
+            {
+               //
+            }
+        break;
         
         default:
         session_unset();
