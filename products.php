@@ -6,7 +6,7 @@ if(!isset($_SESSION['_token']))
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
 session_regenerate_id();
-$error_msg = 'd-none';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +18,7 @@ include_once 'inc/head.php'
 ?>
 </head>
 
-<body>
+<body id="products-body">
     <!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -274,7 +274,7 @@ include_once 'inc/head.php'
     <!-- products -->
     <section id="our-shop" class="padding">
         <!-- error reporting -->
-        <p id="notification" class="text-center text-danger border border-danger border-rounded <?php echo $error_msg; ?>"> Email or Password incorrect!<i class="fa fa-times ml-3" aria-hidden="true"></i></p>
+        <p id="notification" class="text-center text-danger border border-danger border-rounded d-none"> Something wrong with server please try again.</p>
 
         <div class="container">
             <div class="row">
@@ -304,10 +304,10 @@ include_once 'inc/head.php'
                         </div>
                         <!-- products -->
                         <div id="productList" class="row">
-                             
+
                         </div>            
                         <!-- page numbers -->
-                        <div class="col-lg-12 col-md-12">
+<!--                         <div class="col-lg-12 col-md-12">
                             <ul class="pagination justify-content-center top20 wow fadeInUp" data-wow-delay="400ms">
                                 <li class="page-item"><a class="page-link disabled" href="#."><i
                                             class="fa fa-angle-left"></i></a></li>
@@ -316,7 +316,7 @@ include_once 'inc/head.php'
                                 <li class="page-item"><a class="page-link" href="#.">3</a></li>
                                 <li class="page-item"><a class="page-link" href="#."><i class="fa fa-angle-right"></i></a></li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -401,7 +401,7 @@ include_once 'inc/head.php'
                 </div>
             </div>
         </div>
-
+   </div>
 
     <!--Trending Items in shop End-->
    <?php include_once 'inc/footer.php';
@@ -409,149 +409,3 @@ include_once 'inc/head.php'
 </body>
 
 </html>
-
-
-  <!--                           <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="300ms">
-                                <div class="shopping-box bottom30">
-                                    <div class="image sale" data-sale="40">
-                                        <img src="images/shop-1.jpg" alt="shop">
-                                        <div class="overlay center-block">
-                                            <a class="opens" href="shop-cart.html" title="Add To Cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-content text-center">
-                                        <h4 class="darkcolor"><a href="shop-detail.html">Classic Shoe</a></h4>
-                                        <p>We offer the most complete in the country</p>
-                                        <h4 class="price-product">$230.00</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="400ms">
-                                <div class="shopping-box bottom30">
-                                    <div class="image sale" data-sale="30">
-                                        <img src="images/shop-3.jpg" alt="shop">
-                                        <div class="overlay primary center-block">
-                                            <a class="opens" href="shop-cart.html" title="Add To Cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-content text-center">
-                                        <h4 class="darkcolor"><a href="shop-detail.html">Blue Shoe</a></h4>
-                                        <p>We offer the most complete in the country</p>
-                                        <h4 class="price-product">$230.00</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="500ms">
-                                <div class="shopping-box bottom30">
-                                    <div class="image">
-                                        <img src="images/shop-4.jpg" alt="shop">
-                                        <div class="overlay danger center-block">
-                                            <a class="opens" href="shop-cart.html" title="Add To Cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-content text-center">
-                                        <h4 class="darkcolor"><a href="shop-detail.html">Red Shoe</a></h4>
-                                        <p>We offer the most complete in the country</p>
-                                        <h4 class="price-product">$230.00</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="300ms">
-                                <div class="shopping-box bottom30">
-                                    <div class="image sale" data-sale="20">
-                                        <img src="images/shop-2.jpg" alt="shop">
-                                        <div class="overlay primary center-block">
-                                            <a class="opens" href="shop-cart.html" title="Add To Cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-content text-center">
-                                        <h4 class="darkcolor"><a href="shop-detail.html">Light Weigh Shoe</a></h4>
-                                        <p>We offer the most complete in the country</p>
-                                        <h4 class="price-product">$230.00</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="400ms">
-                                <div class="shopping-box bottom30">
-                                    <div class="image">
-                                        <img src="images/shop-11.jpg" alt="shop">
-                                        <div class="overlay danger center-block">
-                                            <a class="opens" href="shop-cart.html" title="Add To Cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-content text-center">
-                                        <h4 class="darkcolor"><a href="shop-detail.html">Women Shoe</a></h4>
-                                        <p>We offer the most complete in the country</p>
-                                        <h4 class="price-product">$230.00</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="500ms">
-                                <div class="shopping-box bottom30">
-                                    <div class="image sale" data-sale="20">
-                                        <img src="images/shop-6.jpg" alt="shop">
-                                        <div class="overlay center-block">
-                                            <a class="opens" href="shop-cart.html" title="Add To Cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-content text-center">
-                                        <h4 class="darkcolor"><a href="shop-detail.html">Kids Shoe</a></h4>
-                                        <p>We offer the most complete in the country</p>
-                                        <h4 class="price-product">$230.00</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="300ms">
-                                <div class="shopping-box bottom30">
-                                    <div class="image">
-                                        <img src="images/shop-9.jpg" alt="shop">
-                                        <div class="overlay primary center-block">
-                                            <a class="opens" href="shop-cart.html" title="Add To Cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-content text-center">
-                                        <h4 class="darkcolor"><a href="shop-detail.html">Jogging Shoe</a></h4>
-                                        <p>We offer the most complete in the country</p>
-                                        <h4 class="price-product">$230.00</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="400ms">
-                                <div class="shopping-box bottom30">
-                                    <div class="image sale" data-sale="30">
-                                        <img src="images/shop-8.jpg" alt="shop">
-                                        <div class="overlay danger center-block">
-                                            <a class="opens" href="shop-cart.html" title="Add To Cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-content text-center">
-                                        <h4 class="darkcolor"><a href="shop-detail.html">Classic Shoe</a></h4>
-                                        <p>We offer the most complete in the country</p>
-                                        <h4 class="price-product">$230.00</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="500ms">
-                                <div class="shopping-box bottom30">
-                                    <div class="image">
-                                        <img src="images/shop-12.jpg" alt="shop">
-                                        <div class="overlay center-block">
-                                            <a class="opens" href="shop-cart.html" title="Add To Cart"><i
-                                                    class="fa fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="shop-content text-center">
-                                        <h4 class="darkcolor"><a href="shop-detail.html">Women Golden Shoe</a></h4>
-                                        <p>We offer the most complete in the country</p>
-                                        <h4 class="price-product">$230.00</h4>
-                                    </div>
-                                </div>
-                            </div> -->

@@ -484,11 +484,11 @@ else
                require_once('models/Product.php');
                $products = new Product();
                echo json_encode($products->getAllProducts());
-            break;
             }
             catch(Exception $e)
             {
-               //
+                echo 'server error';
+                break;
             }
         break;
         
