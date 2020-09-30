@@ -18,7 +18,7 @@ include_once 'inc/head.php'
 ?>
 </head>
 
-<body id="products-body">
+<body>
     <!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">
@@ -26,6 +26,7 @@ include_once 'inc/head.php'
         </div>
     </div>
     <!--PreLoader Ends-->
+    
     <!-- header -->
     <header class="site-header">
         <nav class="navbar navbar-expand-lg padding-nav static-nav">
@@ -294,10 +295,10 @@ include_once 'inc/head.php'
                                     <!-- sort by select -->
                                     <label for="" class="text-white mt-2 mr-3">Sort by :</label>
                                     <select class="btn btn-primary text-left text-sm-center" id="sort-by-select">
-                                        <option value="priceAcs">Price-Ascending</option>
-                                        <option>Price-Descending</option>
-                                        <option>Discount-Highest</option>
-                                        <option>Discount-Lowest</option>
+                                        <option value="priceAcs">Price-low to high</option>
+                                        <option>Price-high to low</option>
+                                        <option>Discount-highest</option>
+                                        <option>Discount-lowest</option>
                                     </select>
                                 </div>
                             </div>
@@ -306,17 +307,6 @@ include_once 'inc/head.php'
                         <div id="productList" class="row">
 
                         </div>            
-                        <!-- page numbers -->
-<!--                         <div class="col-lg-12 col-md-12">
-                            <ul class="pagination justify-content-center top20 wow fadeInUp" data-wow-delay="400ms">
-                                <li class="page-item"><a class="page-link disabled" href="#."><i
-                                            class="fa fa-angle-left"></i></a></li>
-                                <li class="page-item active"><a class="page-link" href="#.">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#.">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#.">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#."><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -330,14 +320,14 @@ include_once 'inc/head.php'
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Filter products</h5>
+                    <h5 class="modal-title">Filter products</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="gradient-bg title-wrap">
-                        <form action="" class="py-3">
+                        <form class="py-3">
                             <div class="row justify-content-center ">
                                 <!-- brand -->
                                 <div class="form-group  col-10">
@@ -359,7 +349,7 @@ include_once 'inc/head.php'
                                     <select class="form-control" id="gender-select">
                                         <option>All</option>
                                         <option>Male</option>
-                                        <option>Femail</option>
+                                        <option>Female</option>
                                         <option>Kids</option>
                                     </select>
                                 </div>
@@ -373,27 +363,14 @@ include_once 'inc/head.php'
                                 <!-- color -->
                                 <div class="form-group  col-10">
                                     <label for="" class="text-white">Color:</label>
-                                    <select class="form-control" id="dolor-select">
+                                    <select class="form-control" id="color-select">
                                         <option >All</option>
                                     </select>
                                 </div>
-                                <!-- discount -->
-                                <div class="form-group  col-10">
-                                    <label for="" class="text-white">Discount:</label>
-                                    <select class="form-control" id="discount-select">
-                                        <option >All</option>
-                                    </select>
-                                </div>
-                                <!-- price -->
-                                <div class="form-group  col-10">
-                                    <label for="" class="text-white">price:</label>
-                                    <select class="form-control" id="price-select">
-                                        <option >All</option>
-                                    </select>
-                                </div>
-                                <!-- filter button -->
-                                <div class="form-group  col-10 text-center">
-                                    <button type="submit" class="button gradient-btn" id="filterBtn">Filter</button>
+                                <!-- products quantity -->
+                                <div class="form-group row text-center">
+                                    <h6 class="mr-2 text-white">products available: </h6>
+                                    <h5 class="text-white" id="product-quantity"></h5>
                                 </div>
                             </div>
                         </form>
@@ -406,6 +383,7 @@ include_once 'inc/head.php'
     <!--Trending Items in shop End-->
    <?php include_once 'inc/footer.php';
      include_once 'inc/scripts.php'?>
+     <script>selectAllProducts();selectAllFilters();</script>
 </body>
 
 </html>

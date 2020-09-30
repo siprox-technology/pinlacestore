@@ -491,6 +491,73 @@ else
                 break;
             }
         break;
+
+        //get all filters
+        case 'get all filters':
+            try{
+                require_once('models/Product.php');
+                $products = new Product();
+                echo json_encode($products->getAllFilters());
+             }
+             catch(Exception $e)
+             {
+                 echo 'server error';
+                 break;
+             }  
+        break;
+
+        //filter products
+        case 'filter products':
+            //sanitize post array
+            $POST['brand'] = ($validate->validateAnyname($_POST['brand']))== true?'%'.$_POST['brand']:false; 
+            $POST['category'] = ($validate->validateAnyname($_POST['category']))== true?'%'.$_POST['category']:false; 
+            $POST['gender'] = ($validate->validateAnyname($_POST['gender']))== true?'%'.$_POST['gender']:false; 
+            $POST['size'] = ($validate->validateSize($_POST['size']))== true?'%'.$_POST['size']:false;         
+            $POST['color'] = ($validate->validateColor($_POST['color']))== true?'%'.$_POST['color']:false; 
+            $POST['orderBy'] = ($validate->validateAnyname($_POST['orderBy']))== true?'%'.$_POST['orderBy']:false; 
+            if($POST['brand']&&
+            $POST['category']&&
+            $POST['gender']&&
+            $POST['size']&&
+            $POST['color']&&
+            $POST['orderBy'])
+            {
+                //replace 'All' word with % from filter parameters
+               $POST['brand'] = $POST['brand'] == '%All'?'%':$POST['brand']; 
+               $POST['category'] = $POST['category'] == '%All'?'%':$POST['category']; 
+               $POST['gender'] = $POST['gender'] == '%All'?'%':$POST['gender']; 
+               $POST['size'] = $POST['size'] == '%All'?'%':$POST['size']; 
+               $POST['color'] = $POST['color'] == '%All'?'%':$POST['color']; 
+                //filter products
+                try
+                {
+                    //set filter array
+                    $filters = [
+                        'brand'=>$POST['brand'],
+                        'category' => $POST['category'],
+                        'gender' => $POST['gender'],
+                        'size' => $POST['size'],
+                        'color' => $POST['color'],
+                        'orderBy' => $POST['orderBy']
+                    ];
+                    require_once('models/Product.php');
+                    $products = new Product();
+                    echo json_encode($products->filterProducts($filters));
+
+                }
+                catch(Exception $e)
+                {
+                    echo "server error";
+                    break;
+                }
+            }
+            else
+            {
+                echo "invalid parameters";
+                break;
+            }
+        break;
+
         
         default:
         session_unset();

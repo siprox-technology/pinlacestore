@@ -2109,8 +2109,10 @@ $('#sendCodeBtn').on('click', function () {
 })
 
 //product selection functions
-
 /* -------------------------- */
+
+/* display all products */
+
 function selectAllProducts() {
     $.ajax({
         url: 'process.php',
@@ -2120,11 +2122,11 @@ function selectAllProducts() {
             _token: $('#_token').val()
         },
         beforeSend: function () {
-            // Show preloader
-            $('.loader').css('display', 'block');
+            /*             // Show preloader
+                        $('.loader').css('display', 'block'); */
         },
         success: function (response) {
-            $('.loader').css('display', 'none');
+            /*             $('.loader').css('display', 'none'); */
 
             if (response == 'server error') {
                 $('#products-body #notification').removeClass()
@@ -2134,7 +2136,7 @@ function selectAllProducts() {
                 result = JSON.parse(response);
                 for (i = 0; i < result.length; i++) {
                     $('#productList').append(
-                        '<div class="col-lg-3 col-md-4 col-sm-6 wow fadeIn" data-wow-delay="300ms">' +
+                        '<div class="col-lg-3 col-md-4 col-sm-6 col-6 wow fadeIn" data-wow-delay="300ms">' +
                         '<div class="shopping-box bottom30">' +
                         '<div class="image sale" data-sale=' + result[i].discount + '>' +
                         "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].id + "-thumb.jpg' alt='shop'>" +
@@ -2146,25 +2148,139 @@ function selectAllProducts() {
                         '<div class="shop-content text-center">' +
                         '<h4 class="darkcolor"><a href="shop-detail.html">' + result[i].brand + '</a></h4>' +
                         '<p>' + result[i].name + '</p>' +
-                        '<h4 class="price-product">' + ((result[i].price) - ((result[i].price) * (result[i].discount) / 100)).toFixed(2) + '</h4>' +
+                        '<h4 class="price-product">' + result[i].price + '</h4>' +
                         '</div>' +
                         '</div>' +
                         '</div>'
                     );
+                }
+                //set product counter                
+                $("#product-quantity").text(result.length);
+            }
+        },
+    });
+
+}
+
+/* set all products filter */
+
+function selectAllFilters() {
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'get all filters',
+            _token: $('#_token').val()
+        },
+        beforeSend: function () {},
+        success: function (response) {
+            if (response == 'server error') {
+                $('#products-body #notification').removeClass()
+                    .addClass('text-center text-danger border border-danger border-rounded');
+            } else {
+                // display products
+                result = JSON.parse(response);
+                var brands = categories = sizes = colors = [];
+                for (i = 0; i < result.length; i++) {
+                    //set brands
+                    if (($.inArray(result[i].brand, brands) < 0)) {
+                        $('#filter-products-modal #brand-select').append(
+                            "<option>" + result[i].brand + "</option>"
+                        );
+                        brands.push(result[i].brand);
+                    }
+                    //set category
+                    if (($.inArray(result[i].category, categories) < 0)) {
+                        $('#filter-products-modal #category-select').append(
+                            "<option>" + result[i].category + "</option>"
+                        );
+                        categories.push(result[i].category);
+                    }
+                    // gender is set in html
+                    // set size
+                    if (($.inArray(result[i].size, sizes) < 0)) {
+                        $('#filter-products-modal #size-select').append(
+                            "<option>" + result[i].size + "</option>"
+                        );
+                        sizes.push(result[i].size);
+                    }
+                    //set color
+                    if (($.inArray(result[i].color, colors) < 0)) {
+                        $('#filter-products-modal #color-select').append(
+                            "<option>" + result[i].color + "</option>"
+                        );
+                        colors.push(result[i].color);
+                    }
+                    //discount is set in html
 
                 }
             }
+        },
+    });
+}
 
-
-
-
+/* display filtered products */
+function filterProducts() {
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'filter products',
+            _token: $('#_token').val(),
+            brand: $('#brand-select option:selected').text(),
+            category: $('#category-select option:selected').text(),
+            gender: $('#gender-select option:selected').text(),
+            size: $('#size-select option:selected').text(),
+            color: $('#color-select option:selected').text(),
+            orderBy: $('#sort-by-select option:selected').text()
+        },
+        beforeSend: function () {},
+        success: function (response) {
+            if (response == 'server error') {
+                $('#products-body #notification').removeClass()
+                    .addClass('text-center text-danger border border-danger border-rounded');
+            } else {
+                // display products
+                result = JSON.parse(response);
+                var id = [];
+                $('#productList').children().remove();
+                for (i = 0; i < result.length; i++) {
+                    if (($.inArray(result[i].product_id, id) < 0)) {
+                        $('#productList').append(
+                            '<div class="col-lg-3 col-md-4 col-sm-6 col-6 wow fadeIn" data-wow-delay="300ms">' +
+                            '<div class="shopping-box bottom30">' +
+                            '<div class="image sale" data-sale=' + result[i].discount + '>' +
+                            "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].product_id + "-thumb.jpg' alt='shop'>" +
+                            '<div class="overlay center-block">' +
+                            '<a class="opens" href="shop-cart.html" title="Add To Cart"><i ' +
+                            'class="fa fa-shopping-cart"></i></a>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="shop-content text-center">' +
+                            '<h4 class="darkcolor"><a href="shop-detail.html">' + result[i].brand + '</a></h4>' +
+                            '<p>' + result[i].name + '</p>' +
+                            '<h4 class="price-product">' + result[i].price + '</h4>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        );
+                        id.push(result[i].product_id);
+                    }
+                }
+                //set product counter
+                $("#product-quantity").text(id.length);
+            }
 
         },
     });
 
 }
-/* $('#products-body').on('load', function () {
-  
 
-}) */
-selectAllProducts();
+
+// filter products when user selects different filter
+
+$("#brand-select,#category-select,#gender-select,#size-select,#color-select,#sort-by-select")
+    .on("change", function () {
+        filterProducts();
+    });
+//filter products by price and discount asc or desc

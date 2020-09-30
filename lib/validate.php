@@ -48,6 +48,35 @@ class Validate{
                 return false;
             }
     }
+    //validate shoe sizes
+    public function validateSize($size){
+        // check size for corect digits for english size number
+        $size = str_split($size);
+        $pattern =["1","2","3","4","5","6","7","8","9",
+        "0","(",")",".","A","l"];
+        $result = array_diff($size,$pattern);
+            if (empty($result)){
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+    }
+    //validate colors
+    public function validateColor($color){
+        // check txt for corect characters except /
+        $color = str_split($color);
+        $pattern =["!","#","@","_",";","$","%","^","&","*","(",")","=","+","'\'","|","{","}","~",":","<",">","?","'"];
+        $result = array_intersect($color,$pattern);
+            if (empty($result)){
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+    }    
     // check number fields for being just numbers
     public function validateDigits($num){
         $num = str_split($num);

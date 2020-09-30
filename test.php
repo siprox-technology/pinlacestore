@@ -1,33 +1,28 @@
 <?php
 session_start();
+if(!isset($_SESSION['_token']))
+{
+    $_SESSION['_token'] = strval(random_int (666666, 999999999));
+}
+session_regenerate_id();
 
 
-/* $adress1=[
-    'address' => 'number 19 vg street',
-    'city' => 'McLean',
-    'state' => 'VA',
-    'country' => 'USA',
-    'postCode' => '22066',
-    'FK_id'=>'65'
-];
 $data = [
-    'id'=>'65',
-    'number'=>'2'
+    'brand'=>'All',
+    'category' => 'All',
+    'gender' => 'All',
+    'size' => 'All',
+    'color' => '%brown',
+    'discount' => 'All',
+    'orderBy' => 'Discount-highest'
 ];
-    
-require_once('models/User.php');
-
-$user = new User();
-$x = $user->removeAddress($data);
-
-echo 'hi'; */
 
 require_once('models/Product.php');
 
-$product = new Product();
+$prod = new Product();
 
-$x = $product->getAllProducts();
+$result = $prod->filterProducts($data);
 
-echo '';
-
+$x = 0;
 ?>
+
