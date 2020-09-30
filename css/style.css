@@ -6282,7 +6282,7 @@ ul.count_down.white li p:nth-child(2) {
 
 .pricing-item.sale::after,
 .shopping-box .sale::after {
-    content: "- "attr(data-sale) "%";
+    content: " "attr(data-sale) "%";
     position: absolute;
     top: 6px;
     right: 21px;
