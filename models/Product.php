@@ -35,29 +35,29 @@ class Product{
 
         $brand=$category=$gender=$size=$color=$orderBy=$dir= "";
         // Bind Values
-        $brand = (($data['brand'])=='All'?'%':$data['brand']);
-        $category = (($data['category'])=='All'?'%':$data['category']);
-        $gender = (($data['gender'])=='All'?'%':$data['gender']);
-        $size = (($data['size'])=='All'?'%':$data['size']);
-        $color = (($data['color'])=='All'?'%':$data['color']);
+        $brand = (($data['brand'])=='All%'?'%':$data['brand']);
+        $category = (($data['category'])=='All%'?'%':$data['category']);
+        $gender = (($data['gender'])=='All%'?'%':$data['gender']);
+        $size = (($data['size'])=='All%'?'%':$data['size']);
+        $color = (($data['color'])=='All%'?'%':$data['color']);
         switch($data['orderBy'])
         {
-            case '%Price-low to high':
+            case 'Price-low to high%':
                 $orderBy = 'price';
                 $dir = 'asc';
             break;
 
-            case '%Price-high to low':
+            case 'Price-high to low%':
                 $orderBy = 'price';
                 $dir = 'desc';
             break;
 
-            case '%Discount-highest':
+            case 'Discount-highest%':
                 $orderBy = 'discount';
                 $dir = 'desc';
             break;
 
-            case '%Discount-lowest':
+            case 'Discount-lowest%':
                 $orderBy = 'discount';
                 $dir = 'asc';
             break;
