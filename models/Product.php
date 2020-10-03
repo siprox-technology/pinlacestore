@@ -81,6 +81,27 @@ class Product{
         return $results;
     }
 
+    //search products by brand category name
+
+    public function searchProducts($key)
+    {
+                // prepare query
+                $query = "SELECT id,brand as value,CONCAT(brand,' ',name,' ',category) as label,description,
+                saleRecordNum,imgFolder
+                from product
+                where
+                brand like "."'".$key."'"."or
+                category like "."'".$key."'"."or
+                name like "."'".$key."'". "or
+                CONCAT(brand,' ',name,' ',category) like"."'".$key."';";
+                //execute
+                $this->db->query($query);
+                $results = $this->db->resultset();
+                return $results;
+    }
+
+    
+
    
 
 }

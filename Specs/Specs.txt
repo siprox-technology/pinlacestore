@@ -63,7 +63,8 @@ Possible functionalities:
 -user add and remove addresses.**
 -User add product to wish list.
 -User makes an order and pay.
--search products by brand and caregory name--
+-search products by brand and caregory name **
+- display product details page--
 -sort products by brands,gender,
   category,size,color,price,discount**
 -sort by price, discount**

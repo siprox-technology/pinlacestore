@@ -6914,7 +6914,40 @@ ul.latest_news li a:focus+span.defaultcolor {
 }
 
 
-/* 
-#sort-by-select:active {
-    border-color: #007bff;
-} */
+#project-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+#project-icon {
+    /*     float: left; */
+    height: 32px;
+    width: 32px;
+}
+
+#project-description {
+    margin: 0;
+    padding: 0;
+}
+
+.ui-menu-item .ui-menu-item-wrapper {
+
+    background-color: white;
+    color: black;
+    border: none;
+}
+
+#auto-complete-li {
+    background-color: white;
+    color: black;
+    border: none;
+
+}
+
+
+#auto-complete-li:hover {
+    border: 2px solid #3EABDC;
+    margin: 0;
+    padding: 0;
+}

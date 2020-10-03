@@ -245,12 +245,13 @@
     </header>
     <!-- header End-->
     <!--search products-->
+    <input type="hidden" id="_token" name="_token" value="<?php echo $_SESSION['_token']?>">
     <div class="gradient-bg title-wrap">
-        <form action="" class="py-3">
+        <div id ="search-product-form" class="py-3">
             <div class="row justify-content-center ">
                 <div class="form-group m-0 w-50">
-                    <input class="form-control" type="text" placeholder="Search product or brand">
+                    <input class="form-control" id="search-product" type="text" placeholder="Search product or brand">
                 </div>
             </div>
-        </form>
+        </div>
    </div>

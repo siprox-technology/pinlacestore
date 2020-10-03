@@ -11,4 +11,6 @@
     <link rel="stylesheet" href="css/cubeportfolio.min.css">
     <link rel="stylesheet" href="css/revolution/navigation.css">
     <link rel="stylesheet" href="css/revolution/settings.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+
     <link rel="stylesheet" href="css/style.css">

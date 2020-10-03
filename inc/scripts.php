@@ -1,5 +1,8 @@
  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
    <script src="js/jquery-3.4.1.min.js"></script>
+   <script src="js/jquery-1.12.4.js"></script>
+  <script src="js/jquery-ui.js"></script>
+    
     <!--Bootstrap Core-->
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

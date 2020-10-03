@@ -2275,12 +2275,52 @@ function filterProducts() {
     });
 
 }
-
-
 // filter products when user selects different filter
 
 $("#brand-select,#category-select,#gender-select,#size-select,#color-select,#sort-by-select")
     .on("change", function () {
         filterProducts();
     });
-//filter products by price and discount asc or desc
+//filter and show suggested products by name, category, brand
+
+$("#search-product").keyup(function () {
+    //ajax call for product list
+    if ($('#search-product').val() !== "") {
+        $.ajax({
+            url: 'process.php',
+            type: 'post',
+            data: {
+                request_name: 'search products',
+                _token: $('#_token').val(),
+                keyWord: $('#search-product').val()
+            },
+            beforeSend: function () {},
+            success: function (response) {
+                if (response !== 'server error') {
+                    // display products
+                    result = JSON.parse(response);
+                    $("#search-product").autocomplete({
+                            minLength: 1,
+                            source: result,
+                        })
+                        .autocomplete("instance")._renderItem = function (ul, item) {
+                            return $("<li id ='auto-complete-li' class='d-flex flex-column flex-sm-row p-2'>")
+                                .append("<p class='font-weight-bold'>" + item.value +
+                                    "</p>" +
+                                    "<p>" + item.label +
+                                    "</p>" +
+                                    "<img id ='project-icon' src='images/img-list/" + item.imgFolder + "/" + item.id + "-thumb.jpg" + "' class = 'p-0 border-0 ml-auto' alt = '' >"
+                                )
+                                .appendTo(ul);
+                        };
+                }
+            },
+        });
+    }
+
+});
+// make auto complete ul the same size as input box
+jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+    var ul = this.menu.element;
+    ul.outerWidth(this.element.outerWidth());
+}

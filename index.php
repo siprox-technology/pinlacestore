@@ -19,7 +19,7 @@ include_once 'inc/head.php'
 ?>
 </head>
 
-<body>
+<body id ="body">
     <!--PreLoader-->
     <div class="loader">
         <div class="loader-inner">

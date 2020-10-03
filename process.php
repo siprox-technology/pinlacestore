@@ -551,6 +551,25 @@ else
                 break;
             }
         break;
+        
+        //search products
+        case 'search products':
+            // validate input
+            $POST['keyWord'] = ($validate->validateAnyname($_POST['keyWord']))==true?$_POST['keyWord'].'%':false;
+            // get results
+            try{
+                require_once('models/Product.php');
+                $products = new Product();
+                echo json_encode($products->searchProducts($POST['keyWord']));
+            }
+            catch(Exception $e)
+            {
+                echo 'server error';
+                break;
+            }
+        break;
+
+
 
         
         default:
