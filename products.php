@@ -13,9 +13,9 @@ session_regenerate_id();
 
 <head>
     <title>Trax | Shop</title>
-<?php 
-include_once 'inc/head.php' 
-?>
+    <?php 
+    include_once 'inc/head.php' 
+    ?>
 </head>
 
 <body>

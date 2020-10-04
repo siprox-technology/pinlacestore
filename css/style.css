@@ -5496,9 +5496,13 @@ ul.rounded li::before {
 }
 
 #carousel-gallery-detail .owl-nav .owl-prev {
-    margin: -33% 15px;
     transform: translateX(-45px);
 }
+
+#carousel-gallery-detail .owl-prev {
+    margin: 15px 0px 65% 15px;
+}
+
 
 .carousel-shop-detail .owl-nav .owl-next {
     margin: -50% 15px;
@@ -5506,8 +5510,12 @@ ul.rounded li::before {
 }
 
 #carousel-gallery-detail .owl-nav .owl-next {
-    margin: -33% 15px;
+
     transform: translateX(45px);
+}
+
+#carousel-gallery-detail .owl-next {
+    margin: 15px 15px 65% 15px;
 }
 
 .carousel-shop-detail .owl-nav button span,
@@ -6435,6 +6443,10 @@ ul.count_down.white li p:nth-child(2) {
     }
 }
 
+#gallery-detail {
+    background-color: aliceblue;
+
+}
 
 /* ----- Pricing ends ----- */
 
