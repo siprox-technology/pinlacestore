@@ -557,12 +557,44 @@ else
             // validate input
             $POST['keyWord'] = ($validate->validateAnyname($_POST['keyWord']))==true?$_POST['keyWord'].'%':false;
             // get results
-            try{
-                require_once('models/Product.php');
-                $products = new Product();
-                echo json_encode($products->searchProducts($POST['keyWord']));
+            if($POST['keyWord'])
+            {
+                try{
+                    require_once('models/Product.php');
+                    $products = new Product();
+                    echo json_encode($products->searchProducts($POST['keyWord']));
+                }
+                catch(Exception $e)
+                {
+                    echo 'server error';
+                    break;
+                }
             }
-            catch(Exception $e)
+            else
+            {
+                echo 'server error';
+                break;
+            }
+
+        break;
+
+        //get product details
+        case 'get product details':
+            $POST['id']= $validate->validateDigits($_POST['product_id'])==true?$_POST['product_id']:false;
+            if($POST['id'])
+            {
+                try{
+                    require_once('models/Product.php');
+                    $product = new Product();
+                    echo json_encode($product->getProductDetails($POST['id']));
+                }
+                catch(Exception $e)
+                {
+                    echo 'server error';
+                    break;
+                }
+            }
+            else
             {
                 echo 'server error';
                 break;

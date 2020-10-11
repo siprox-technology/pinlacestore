@@ -6,6 +6,14 @@ if(!isset($_SESSION['_token']))
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
 session_regenerate_id();
+// if product code is not set or not valid
+// go back to products.php
+require_once('lib/validate.php');
+$validate = new Validate();
+if((!isset($_GET['k']))||(($validate->validateDigits($_GET['k']))==false))
+{
+    header('location:products.php');
+}
 
 ?>
 <!DOCTYPE html>
@@ -16,65 +24,97 @@ session_regenerate_id();
     include_once 'inc/head.php' 
     ?>
 </head>
+
 <body>
+
 <!--PreLoader-->
 <div class="loader">
     <div class="loader-inner">
         <div class="cssload-loader"></div>
     </div>
 </div>
+<!-- image zoom -->
+<div class="img-galary-zoom d-none" id="img-galary-zoom"></div>
+<div class="gallary-zoom d-none" id="gallary-zoom">
+    <div class="w-100 h-100 text-center d-flex flex-row justify-content-center" id="close">
+        <i class="far fa-times-circle align-self-center"></i>
+    </div>
+    <div id="product-gallary-zoom" class="carousel slide w-100" data-ride="imgListZoom">
+        <div class="carousel-inner text-center" id="imgListZoom">
+
+        </div>
+        <a class="carousel-control-prev " href="#product-gallary-zoom" data-slide="prev">
+            <i class="fas fa-angle-left" id="product-galary-icons"></i>
+        </a>
+        <a class="carousel-control-next" href="#product-gallary-zoom" data-slide="next">
+            <i class="fas fa-angle-right" id="product-galary-icons"></i>
+        </a>
+    </div>
+    <div class="w-100 h-100" id="close"></div>
+</div>
+
+
 <!--PreLoader Ends-->
 <!-- header -->
 <?php 
 include_once 'inc/header.php' 
 ?>
 <!-- header -->
-
 <!-- Gallery Details -->
-<section id="gallery-detail" class="padding_top padding_bottom_half">
+
+<section id="gallery-detail" class=" padding_bottom_half">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-md-7 top10">
-                <div class="news_item shadow">
-                    <div class="owl-carousel owl-theme" id="carousel-gallery-detail">
-                        <!--item 1-->
-                        <div class="item">
-                            <a href="images/gallery-detail-1.jpg" data-fancybox="gallery" title="Zoom In">
-                                <img src="images/gallery-detail-1.jpg" alt="Latest News">
+            <!-- product description -->
+            <div class="col-md-6 top5">
+                <div class="product-img-item shadow">
+                    <div class="product-desc text-center text-md-left p-1">
+                        <div class="col-12">
+                            <!-- brand -->
+                            <h2 class="text-capitalize font-normal text-left  mt-3 text-dark" id="brand-name"></h2>
+                            <!-- Name -->
+                            <h4 class="text-capitalize font-normal text-left  mt-3" id="gallary-name"></h4>
+                            <!-- price and discount -->
+                            <h3 class="mt-3" id="price-discount-list"></h3>
+                            <!-- color names -->
+                            <h3 class="text-center text-dark mt-5">Colors:</h3>
+                            <div class="mt-3 row justify-content-center">
+                                <div id="product-colors-list">
+                                </div> 
+                            </div>
+                            <h4 class="text-center mt-2 text-capitalize font-normal" id="product-colors-name">blue-navi</h4> 
+                            <!-- sizes -->
+                            <div class="text-center text-dark mt-4">
+                                <h3>Sizes:</h3>
+                            </div>
+                            <div class="row mt-3 justify-content-center" id="product-sizes-list">
+                                <!-- available sizes goes here -->
+                            </div>
+                        </div>
+                    </div>    
+                </div>        
+            </div>
+            <div class="col-md-6 top5">
+                <div class="product-img-item shadow">
+                    <div class="product-desc text-center text-md-left p-1">
+                        <!-- image gallary -->
+                        <div id="product-gallary-images" class="carousel slide w-100" data-ride="imgList">
+                            <!-- The slideshow -->
+                            <div class="carousel-inner text-center" id="imgList">
+                            <!-- images goes here -->
+                            </div>
+                            <!-- Left and right controls -->
+                            <a class="carousel-control-prev " href="#product-gallary-images" data-slide="prev">
+                                <i class="fas fa-angle-left text-dark" id="product-galary-icons"></i>
+                            </a>
+                            <a class="carousel-control-next" href="#product-gallary-images" data-slide="next">
+                                <i class="fas fa-angle-right text-dark" id="product-galary-icons"></i>
                             </a>
                         </div>
-                        <!--item 2-->
-                        <div class="item">
-                            <a href="images/gallery-detail-2.jpg" data-fancybox="gallery" title="Zoom In">
-                                <img src="images/gallery-detail-2.jpg" alt="Latest News">
-                            </a>
+                        <!-- zoom -->
+                        <div class="col-12 text-center mt-5">
+                            <i class="fas fa-search-plus" id='zoom-icon'></i>
                         </div>
-                        <!--item 3-->
-                        <div class="item">
-                            <a href="images/gallery-detail-3.jpg" data-fancybox="gallery" title="Zoom In">
-                                <img src="images/gallery-detail-3.jpg" alt="Latest News">
-                            </a>
-                        </div>
-                        <!--item 4-->
-                        <div class="item">
-                            <a href="images/gallery-detail-4.jpg" data-fancybox="gallery" title="Zoom In">
-                                <img src="images/gallery-detail-4.jpg" alt="Latest News">
-                            </a>
-                        </div>
-                        <!--item 5-->
-                        <div class="item">
-                            <a href="images/gallery-detail-5.jpg" data-fancybox="gallery" title="Zoom In">
-                                <img src="images/gallery-detail-5.jpg" alt="Latest News">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="news_desc text-center text-md-left">
-                        <h3 class="text-capitalize font-normal darkcolor"><a href="blog-detail.html">Next Large Social Network</a></h3>
-                        <ul class="meta-tags top20 bottom20">
-                            <li><a href="#."><i class="fas fa-calendar-alt"></i>Feb 14</a></li>
-                            <li><a href="#."> <i class="far fa-user"></i> Peter </a></li>
-                            <li><a href="#."><i class="far fa-comment-dots"></i>5</a></li>
-                        </ul>
                         <p class="text-warning">
                             <a href="#." class="hover-underline" title="4.5">
                                 <i class="fas fa-star"></i>
@@ -157,76 +197,18 @@ include_once 'inc/header.php'
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-5 top25">
-                <aside class="sidebar whitebox">
-                    <div class="widget heading_space shadow wow fadeIn" data-wow-delay="350ms">
-                        <h4 class="text-capitalize darkcolor bottom20 text-center text-md-left">Recent Items Added</h4>
-                        <div class="single_post d-table bottom15">
-                            <a href="#." class="post"><img src="images/blog-recent-1.jpg" alt="post image"></a>
-                            <div class="text">
-                                <a href="#.">About Invesment Management</a>
-                                <span>September 22,2019</span>
-                            </div>
-                        </div>
-                        <div class="single_post bottom15">
-                            <a href="#." class="post"><img src="images/blog-recent-2.jpg" alt="post image"></a>
-                            <div class="text">
-                                <a href="#.">We Conduct Share Holders Meet</a>
-                                <span>September 20,2019</span>
-                            </div>
-                        </div>
-                        <div class="single_post d-table bottom15">
-                            <a href="#." class="post"><img src="images/blog-recent-3.jpg" alt="post image"></a>
-                            <div class="text">
-                                <a href="#.">Create Your bright Future</a>
-                                <span>September 18,2019</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="widget shadow heading_space text-center text-md-left">
-                        <h4 class="text-capitalize darkcolor bottom20">Categories</h4>
-                        <ul class="webcats">
-                            <li><a href="#.">web design <span>(20)</span></a></li>
-                            <li><a href="#.">network <span>(05)</span></a></li>
-                            <li><a href="#.">marketing <span>(11)</span></a></li>
-                            <li><a href="#.">event <span>(20)</span></a></li>
-                            <li><a href="#.">website <span>(07)</span></a></li>
-                            <li><a href="#.">themeforest<span>(19)</span></a></li>
-                        </ul>
-                    </div>
-                    <div class="widget shadow heading_space text-center text-md-left">
-                        <h4 class="text-capitalize darkcolor bottom20">Tags</h4>
-                        <ul class="webtags">
-                            <li><a href="#.">web design</a></li>
-                            <li><a href="#.">network</a></li>
-                            <li><a href="#.">marketing</a></li>
-                            <li><a href="#.">posts</a></li>
-                            <li><a href="#.">event</a></li>
-                            <li><a href="#.">website</a></li>
-                            <li><a href="#.">social</a></li>
-                            <li><a href="#.">themeforest</a></li>
-                            <li><a href="#.">creative</a></li>
-                            <li><a href="#.">best solutions</a></li>
-                        </ul>
-                    </div>
-                    <div class="widget shadow heading_space text-center text-md-left">
-                        <h4 class="text-capitalize darkcolor bottom20">search</h4>
-                        <form class="widget_search">
-                            <div class="input-group">
-                                <label for="searchInput" class="d-none"></label>
-                                <input type="search" class="form-control" placeholder="search..." required id="searchInput">
-                                <button type="submit" class="input-group-addon"><i class="fa fa-search"></i> </button>
-                            </div>
-                        </form>
-                    </div>
-                </aside>
-            </div>
         </div>
     </div>
 </section>
+
 <!--Gallery Details Ends-->
+<input type="hidden" name="k" value="<?php echo $_GET['k']?>" id="product-id">
+                        <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
 
 <?php include_once 'inc/footer.php';
      include_once 'inc/scripts.php'?>
+<script>getProductDetails()</script>
+
+
 </body>
 </html>

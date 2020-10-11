@@ -1,4 +1,4 @@
-  PinLace Sport Footwear website
+PinLace Sport Footwear website
 
 Possible Database tables: Product, Inventory, Review, 
 User, WishList, Address, ShoppingCart, Order
@@ -62,9 +62,12 @@ Possible functionalities:
 -user change password.**
 -user add and remove addresses.**
 -User add product to wish list.
+-user add review to items bought.
 -User makes an order and pay.
 -search products by brand and caregory name **
-- display product details page--
+-display product details page--
+-display product sizes and colors and price and availabality
+ according to user select.
 -sort products by brands,gender,
   category,size,color,price,discount**
 -sort by price, discount**

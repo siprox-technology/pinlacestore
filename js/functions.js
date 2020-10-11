@@ -709,7 +709,7 @@ jQuery($ => {
         }
     });
     //gallery detail slider
-    $("#carousel-gallery-detail").owlCarousel({
+    $("#product-gallary-details").owlCarousel({
         items: 1,
         autoplay: false,
         mouseDrag: true,
@@ -1030,7 +1030,7 @@ jQuery($ => {
         });
     });
     /*  ---------  gallery hover effect  ----------  */
-    $("#carousel-gallery-detail .item").on('mousemove', function (e) {
+    $("#product-gallary-details .item").on('mousemove', function (e) {
         $(this).find('img').css({
             'transform-origin': ((e.pageX - $(this).offset().left) / $(this).width()) * 100 + '% ' + ((e.pageY - $(this).offset().top) / $(this).height()) * 100 + '%'
         });
@@ -2146,7 +2146,7 @@ function selectAllProducts() {
                         '</div>' +
                         '</div>' +
                         '<div class="shop-content text-center">' +
-                        '<h4 class="darkcolor"><a href="shop-detail.html">' + result[i].brand + '</a></h4>' +
+                        "<h4 class='darkcolor'><a href='product-details.php?k=" + result[i].id + "'" + ">" + result[i].brand + "</a></h4>" +
                         '<p>' + result[i].name + '</p>' +
                         '<h4 class="price-product">' + result[i].price + '</h4>' +
                         '</div>' +
@@ -2257,7 +2257,7 @@ function filterProducts() {
                             '</div>' +
                             '</div>' +
                             '<div class="shop-content text-center">' +
-                            '<h4 class="darkcolor"><a href="shop-detail.html">' + result[i].brand + '</a></h4>' +
+                            "<h4 class='arkcolor'><a href='product-details.php?k=" + result[i].product_id + "'" + ">" + result[i].brand + "</a></h4>" +
                             '<p>' + result[i].name + '</p>' +
                             '<h4 class="price-product">' + result[i].price + '</h4>' +
                             '</div>' +
@@ -2304,12 +2304,17 @@ $("#search-product").keyup(function () {
                             source: result,
                         })
                         .autocomplete("instance")._renderItem = function (ul, item) {
-                            return $("<li id ='auto-complete-li' class='d-flex flex-column flex-sm-row p-2'>")
-                                .append("<p class='font-weight-bold'>" + item.value +
+                            return $(
+                                    "<a class='d-flex flex-column flex-sm-row'" +
+                                    "id ='auto-complete-li' href='product-details.php?k=" + item.id + "'" +
+                                    "><li")
+                                .append("<p class='font-weight-bold mb-0 mb-sm-3'>" + item.value +
                                     "</p>" +
-                                    "<p>" + item.label +
+                                    "<p class='mb-0 mb-sm-3'>" + item.label +
                                     "</p>" +
-                                    "<img id ='project-icon' src='images/img-list/" + item.imgFolder + "/" + item.id + "-thumb.jpg" + "' class = 'p-0 border-0 ml-auto' alt = '' >"
+                                    "<img id ='project-icon' src='images/img-list/" + item.imgFolder + "/" + item.id +
+                                    "-thumb.jpg" + "' class = 'p-0 border-0 mr-auto ml-2 ml-sm-auto mr-sm-2 mb-2 mb-sm-0 mt-0 mt-sm-2' alt = '' >" +
+                                    "</li></a>"
                                 )
                                 .appendTo(ul);
                         };
@@ -2324,3 +2329,133 @@ jQuery.ui.autocomplete.prototype._resizeMenu = function () {
     var ul = this.menu.element;
     ul.outerWidth(this.element.outerWidth());
 }
+
+//get product details
+
+function getProductDetails() {
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'get product details',
+            _token: $('#_token').val(),
+            product_id: $('#product-id').val()
+        },
+        beforeSend: function () {},
+        success: function (response) {
+
+            if ((response == 'server error') || (response.length <1)) {
+                document.location.href = 'products.php';
+            } else {
+                result = JSON.parse(response);
+                var colors = [];
+                var colorImg = [];
+                var sizes = [];
+                var images = result[2];
+
+                //display brand and name
+                $('#brand-name').text(result[0][0].brand);
+                $('#gallary-name').text(result[0][0].name);
+                //display price and discount
+                var price = result[1][1].price;
+                var priceDiscount =parseFloat(((result[1][1].discount)*(price))/100).toFixed(2);
+                $('#price-discount-list').text("$"+priceDiscount).append(
+                    "<del class='ml-3 text-danger'>"+"$"+price+"</del>"
+                );
+                //find available colors and sizes
+                for (i = 0; i < result[1].length; i++) {
+                    if (($.inArray(result[1][i].color, colors) < 0)) {
+                        colors.push(result[1][i].color);
+                    }
+                    if (($.inArray(result[1][i].size, sizes) < 0)) {
+                        sizes.push(result[1][i].size);
+                    }
+                }
+                //display colors 
+                for (i = 0; i < colors.length; i++) {
+                    $('#product-colors-list').append(
+                        "<div class = 'position-relative'" +
+                        "data-toggle = 'tooltip'" +
+                        "data-placement = 'top'" +
+                        "title ='" + colors[i] + "'>" +
+                        "<img src = 'images/img-list/" + result[0][0].imgFolder +
+                        "/" + result[0][0].id + "-" + colors[i] + "-1.jpg'" +
+                        "id ='"+colors[i] +"'"+"class = 'rounded-circle shadow product-color-selector"+
+                        ((i==0)?" selected":"")+"'>" +
+                        "<i class = 'fas fa-check"+ 
+                        ((i==0)? "":" d-none")+"'></i> </div>");
+                }
+                var x = 0;
+                //display sizes
+                for (i = 0; i < sizes.length; i++) {
+                    $('#product-sizes-list').append("<div class='product-size-selector position-relative'>"+
+                    "<p value='"+sizes[i]+"'"+"id='"+(i+1)+"'"+
+                     "class='pt-4 text-center"+((i==0)?" selected'":"'")+
+                     "'>"+sizes[i]+"</p>"+
+                    "<i class='fas fa-check"+((i==0)?"'":" d-none'")+
+                    "></i></div>");
+                }
+                //display images
+                for (i = 0; i < (images.length) - 2; i++) {
+                    $('#imgList').append(
+                        "<div class = 'carousel-item" +((i==0)?" active":"")+"'>"+
+                        "<img class = 'w-100'" +
+                        "src = 'images/img-list/" + result[0][0].imgFolder + "/" +
+                        images[i + 2] + "'" +
+                        "alt = ''></div>"
+                    );
+                    /* zoom gallary */
+                    $('#imgListZoom').append(
+                        "<div class = 'carousel-item" +((i==0)?" active":"")+"'>"+
+                        "<img class = ''" +
+                        "src = 'images/img-list/" + result[0][0].imgFolder + "/" +
+                        images[i + 2] + "'" +
+                        "alt = ''></div>"
+                    );
+                }
+            }
+        },
+    });
+}
+
+$('.carousel').carousel({
+    interval: false,
+});
+
+//image gallary zoom page
+$('#zoom-icon').on('click',function(){
+    $('#gallary-zoom').removeClass().addClass('gallary-zoom ');
+    $('#img-galary-zoom').removeClass().addClass('img-galary-zoom');
+})
+
+//close image gallary zoom page
+$('#close').on('click', function () {
+    $('#gallary-zoom').removeClass().addClass('gallary-zoom d-none');
+    $('#img-galary-zoom').removeClass().addClass('img-galary-zoom d-none');
+})
+
+//check and uncheck color selected by user and mark selected
+$(document).on("click", "#product-colors-list div", function(event) {
+    $("#product-colors-list div i").each(function () {
+        $(this).removeClass().addClass('fas fa-check d-none');
+    });
+    $("#product-colors-list div img").each(function () {
+        $(this).removeClass().addClass('rounded-circle shadow product-color-selector');
+    });
+    $("#" + event.target.id).next().removeClass().addClass('fas fa-check');
+    $("#" + event.target.id).removeClass().addClass('rounded-circle shadow product-color-selector selected');
+});
+
+//check and uncheck size selected by user and mark selected
+$(document).on("click", "#product-sizes-list div", function(event) {
+
+    $("#product-sizes-list div i").each(function () {
+        $(this).removeClass().addClass('fas fa-check d-none');
+    });
+    $("#product-sizes-list div p").each(function () {
+        $(this).removeClass().addClass('pt-4 text-center');
+    });
+    $("#" + event.target.id).next().removeClass().addClass('fas fa-check');
+    $("#" + event.target.id).removeClass().addClass('pt-4 text-center selected');
+
+});

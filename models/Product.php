@@ -81,23 +81,42 @@ class Product{
         return $results;
     }
 
-    //search products by brand category name
-
     public function searchProducts($key)
     {
-                // prepare query
-                $query = "SELECT id,brand as value,CONCAT(brand,' ',name,' ',category) as label,description,
-                saleRecordNum,imgFolder
-                from product
-                where
-                brand like "."'".$key."'"."or
-                category like "."'".$key."'"."or
-                name like "."'".$key."'". "or
-                CONCAT(brand,' ',name,' ',category) like"."'".$key."';";
-                //execute
-                $this->db->query($query);
-                $results = $this->db->resultset();
-                return $results;
+        // prepare query
+        $query = "SELECT id,brand as value,CONCAT(brand,' ',name,' ',category) as label,description,
+        saleRecordNum,imgFolder
+        from product
+        where
+        brand like "."'".$key."'"."or
+        category like "."'".$key."'"."or
+        name like "."'".$key."'". "or
+        CONCAT(brand,' ',name,' ',category) like"."'".$key."';";
+        //execute
+        $this->db->query($query);
+        $results = $this->db->resultset();
+        return $results;
+    }
+
+    public function getProductDetails($id)
+    {
+        // get product info
+        $query = "SELECT * from product where id =".$id;
+        $this->db->query($query);
+        $productData = $this->db->resultset();
+        //get inventory info
+        $query = "SELECT * from inventory where FK_product_id_inv_prod=".$id;
+        $this->db->query($query);
+        $inventoryData = $this->db->resultset();
+        //get image list names
+        $dir  = 'images/img-list/'.$productData[0]->imgFolder; 
+        $imgList = scandir($dir);
+        //result array
+        $result[0] = $productData;
+        $result[1] = $inventoryData;
+        $result[2] = $imgList;
+
+        return $result;
     }
 
     
