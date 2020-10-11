@@ -7,22 +7,16 @@ if(!isset($_SESSION['_token']))
 session_regenerate_id();
 
 
-$data = [
-    'brand'=>'All',
-    'category' => 'All',
-    'gender' => 'All',
-    'size' => 'All',
-    'color' => '%brown',
-    'discount' => 'All',
-    'orderBy' => 'Discount-highest'
-];
+
 
 require_once('models/Product.php');
 
 $prod = new Product();
 
-$result = $prod->filterProducts($data);
+$result = $prod->getProductDetails("181004");
 
-$x = 0;
+for($i=0; $i<count($result[2]);$i++){
+    echo $result[2][$i]."<br>";
+}
 ?>
 

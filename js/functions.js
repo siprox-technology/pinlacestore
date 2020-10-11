@@ -2396,22 +2396,29 @@ function getProductDetails() {
                     "></i></div>");
                 }
                 //display images
-                for (i = 0; i < (images.length) - 2; i++) {
+                for (i = 0; i < (images.length); i++) {
+                var imgSource = "images/img-list/" + result[0][0].imgFolder + "/" +images[i]+".jpg'";
+
                     $('#imgList').append(
-                        "<div class = 'carousel-item" +((i==0)?" active":"")+"'>"+
+                        "<div class = 'carousel-item" +((i==2)?" active":"")+"'>"+
                         "<img class = 'w-100'" +
-                        "src = 'images/img-list/" + result[0][0].imgFolder + "/" +
-                        images[i + 2] + "'" +
+                        "src = '" +imgSource+
                         "alt = ''></div>"
                     );
                     /* zoom gallary */
                     $('#imgListZoom').append(
-                        "<div class = 'carousel-item" +((i==0)?" active":"")+"'>"+
+                        "<div class = 'carousel-item" +((i==2)?" active":"")+"'>"+
                         "<img class = ''" +
-                        "src = 'images/img-list/" + result[0][0].imgFolder + "/" +
-                        images[i + 2] + "'" +
+                        "src = '" +imgSource+
                         "alt = ''></div>"
                     );
+
+/*                     $('#imgList').append(
+                        "<div class = 'carousel-item" +((i==0)?" active":"")+"'>"+
+                        "<img class = 'w-100'" +
+                        "src = 'images/img-list/7/242142-black-grey-1.jpg'" +
+                        "alt = ''></div>"
+                    ); */
                 }
             }
         },

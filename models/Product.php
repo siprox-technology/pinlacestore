@@ -111,10 +111,22 @@ class Product{
         //get image list names
         $dir  = 'images/img-list/'.$productData[0]->imgFolder; 
         $imgList = scandir($dir);
+        $list=[];
+        //remove file extension
+        for($i=0; $i<count($imgList);$i++)
+        {
+            $imgList[$i] = str_replace(".","",$imgList[$i]);
+            $imgList[$i] = str_replace("..","",$imgList[$i]);
+            $imgList[$i] = str_replace("jpg","",$imgList[$i]);
+            if($imgList[$i]!=="")
+            {
+                array_push($list,$imgList[$i]);
+            }
+        }
         //result array
         $result[0] = $productData;
         $result[1] = $inventoryData;
-        $result[2] = $imgList;
+        $result[2] = $list;
 
         return $result;
     }
