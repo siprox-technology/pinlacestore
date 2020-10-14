@@ -189,7 +189,7 @@ include_once 'inc/header.php'
                         <div class="accordion-item "><a href="#tab3">Review</a></div><div id="tab3" style="">
                             <div class="profile_bg bottom30">
                                 <div class="profile">
-                                    <div class="p_pic"><img src="images/profile4.jpg" alt="instructure"></div>
+                                    <div class="p_pic"><img src="" alt="instructure"></div>
                                     <div class="profile_text">
                                         <h5><strong>JOHN PARKER</strong> - <span>Awesome Quality</span></h5>
                                         <ul class="comment">
@@ -201,7 +201,7 @@ include_once 'inc/header.php'
                             </div>
                             <div class="profile_bg bottom30">
                                 <div class="profile">
-                                    <div class="p_pic"><img src="images/profile3.jpg" alt="instructure"></div>
+                                    <div class="p_pic"><img src="" alt="instructure"></div>
                                     <div class="profile_text">
                                         <h5><strong>JANE MILLER</strong> - <span>Awesome Quality</span></h5>
                                         <ul class="comment">
