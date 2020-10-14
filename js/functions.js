@@ -2476,7 +2476,7 @@ function getProductDetails(colorSeleced,sizeSelected) {
                             '<div class="shop-content text-center">' +
                             "<h4 class='darkcolor'><a href='product-details.php?k=" + result[3][i].id + "'" + ">" + result[3][i].brand + "</a></h4>" +
                             '<p>' + result[3][i].name + '</p>' +
-                            '<h4 class="price-product">' + result[3][i].price + '</h4>' +
+                            '<h4 class="price-product">' +parseFloat(result[3][i].price).toFixed(2) + '</h4>' +
                             '</div>' +
                             '</div>' +
                             '</div>'
