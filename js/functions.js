@@ -2329,10 +2329,25 @@ jQuery.ui.autocomplete.prototype._resizeMenu = function () {
     var ul = this.menu.element;
     ul.outerWidth(this.element.outerWidth());
 }
+//get price based on selected size and color
+
+function calculatePrice(productData,color,size)
+{
+    var result=[null,null];
+    for(i=0;i<productData.length;i++)
+    {
+        if(((productData[i].size)==size)&&(productData[i].color)==color)
+        {
+            result[0]=productData[i].price;
+            result[1]=productData[i].discount;
+        }
+    }
+    return result;
+}
 
 //get product details
 
-function getProductDetails() {
+function getProductDetails(colorSeleced,sizeSelected) {
     $.ajax({
         url: 'process.php',
         type: 'post',
@@ -2352,16 +2367,15 @@ function getProductDetails() {
                 var colorImg = [];
                 var sizes = [];
                 var images = result[2];
+                colorSeleced = (((colorSeleced)==null)?result[1][0].color:colorSeleced);
+                sizeSelected = (((sizeSelected)==null)?result[1][0].size:sizeSelected);
 
                 //display brand and name
-                $('#brand-name').text(result[0][0].brand);
-                $('#gallary-name').text(result[0][0].name);
-                //display price and discount
-                var price = result[1][1].price;
-                var priceDiscount =parseFloat(((result[1][1].discount)*(price))/100).toFixed(2);
-                $('#price-discount-list').text("$"+priceDiscount).append(
-                    "<del class='ml-3 text-danger'>"+"$"+price+"</del>"
+                $('#brand-name').empty().append(
+                    result[0][0].brand+
+                     "<span class='divider-left'></span>"
                 );
+                $('#gallary-name').text(result[0][0].name);
                 //find available colors and sizes
                 for (i = 0; i < result[1].length; i++) {
                     if (($.inArray(result[1][i].color, colors) < 0)) {
@@ -2372,6 +2386,7 @@ function getProductDetails() {
                     }
                 }
                 //display colors 
+                $('#product-colors-list').empty();
                 for (i = 0; i < colors.length; i++) {
                     $('#product-colors-list').append(
                         "<div class = 'position-relative'" +
@@ -2381,49 +2396,99 @@ function getProductDetails() {
                         "<img src = 'images/img-list/" + result[0][0].imgFolder +
                         "/" + result[0][0].id + "-" + colors[i] + "-1.jpg'" +
                         "id ='"+colors[i] +"'"+"class = 'rounded-circle shadow product-color-selector"+
-                        ((i==0)?" selected":"")+"'>" +
-                        "<i class = 'fas fa-check"+ 
-                        ((i==0)? "":" d-none")+"'></i> </div>");
+                        ((colors[i]==colorSeleced)?" selected":"")+"'>" +
+                        "<i id='checked' class = 'fas fa-check"+ 
+                        ((colors[i]==colorSeleced)? "":" d-none")+"'></i> </div>");
                 }
-                var x = 0;
+    
                 //display sizes
+                $('#product-sizes-list').empty();
                 for (i = 0; i < sizes.length; i++) {
                     $('#product-sizes-list').append("<div class='product-size-selector position-relative'>"+
                     "<p value='"+sizes[i]+"'"+"id='"+(i+1)+"'"+
-                     "class='pt-4 text-center"+((i==0)?" selected'":"'")+
+                     "class='pt-4 text-center"+((sizes[i]==sizeSelected)?" selected'":"'")+
                      "'>"+sizes[i]+"</p>"+
-                    "<i class='fas fa-check"+((i==0)?"'":" d-none'")+
+                    "<i id='checked' class='fas fa-check"+((sizes[i]==sizeSelected)?"'":" d-none'")+
                     "></i></div>");
                 }
                 //display images
+                $('#imgList').empty();
+                $('#imgListZoom').empty();
                 for (i = 0; i < (images.length); i++) {
-                var imgSource = "images/img-list/" + result[0][0].imgFolder + "/" +images[i]+".jpg'";
-
+                    var imgSource = "images/img-list/" + result[0][0].imgFolder + "/" +images[i]+".jpg'";
                     $('#imgList').append(
-                        "<div class = 'carousel-item" +((i==2)?" active":"")+"'>"+
+                        "<div class = 'carousel-item" +((i==0)?" active":"")+"'>"+
                         "<img class = 'w-100'" +
                         "src = '" +imgSource+
                         "alt = ''></div>"
                     );
                     /* zoom gallary */
                     $('#imgListZoom').append(
-                        "<div class = 'carousel-item" +((i==2)?" active":"")+"'>"+
+                        "<div class = 'carousel-item" +((i==0)?" active":"")+"'>"+
                         "<img class = ''" +
                         "src = '" +imgSource+
                         "alt = ''></div>"
                     );
-
-/*                     $('#imgList').append(
-                        "<div class = 'carousel-item" +((i==0)?" active":"")+"'>"+
-                        "<img class = 'w-100'" +
-                        "src = 'images/img-list/7/242142-black-grey-1.jpg'" +
-                        "alt = ''></div>"
-                    ); */
+                }
+                $('#product-colors-name').text(
+                    ($('#product-colors-list img.selected').attr('id'))
+                );
+                //product description
+                $("#product-description").text(
+                    result[0][0].description
+                );
+                //product number
+                $("#product-number").text(
+                   "Product number : "+ result[0][0].id
+                );
+                // calculate and display price and discount
+                var pricePackage = calculatePrice(result[1],colorSeleced,sizeSelected);
+                if(pricePackage[0]==null)
+                {
+                    $('#price-discount-list').empty();
+                    $('#price-discount-list').append(
+                        "<h4 class='text-danger'>Out of stock !</h4>"
+                    );
+                }
+                else
+                {
+                    var price =parseFloat(((pricePackage[0])*(pricePackage[1]))/100).toFixed(2);
+                    $('#price-discount-list').empty();
+                    $('#price-discount-list').text("$"+price).append(
+                        "<del class='ml-3 text-danger'>"+"$"+pricePackage[0]+"</del>"
+                    );
+                }
+                //display related products
+                $('#related-products-list').empty();
+                for (i = 0; i < result[3].length; i++) {
+                    if((result[3][i].name) !=(result[0][0].name))
+                    {
+                        $('#related-products-list').append(
+                            '<div class="col-lg-3 col-md-4 col-sm-6 col-6 wow fadeIn" data-wow-delay="300ms">' +
+                            '<div class="shopping-box bottom30">' +
+                            '<div class="image sale" data-sale=' + result[3][i].discount + '>' +
+                            "<img src='images/img-list/" + result[3][i].imgFolder + "/" + result[3][i].id + "-thumb.jpg' alt='shop'>" +
+                            '<div class="overlay center-block">' +
+                            '<a class="opens" href="shop-cart.html" title="Add To Cart"><i ' +
+                            'class="fa fa-shopping-cart"></i></a>' +
+                            '</div>' +
+                            '</div>' +
+                            '<div class="shop-content text-center">' +
+                            "<h4 class='darkcolor'><a href='product-details.php?k=" + result[3][i].id + "'" + ">" + result[3][i].brand + "</a></h4>" +
+                            '<p>' + result[3][i].name + '</p>' +
+                            '<h4 class="price-product">' + result[3][i].price + '</h4>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>'
+                        );
+                    }
                 }
             }
         },
     });
 }
+
+
 
 $('.carousel').carousel({
     interval: false,
@@ -2441,7 +2506,8 @@ $('#close').on('click', function () {
     $('#img-galary-zoom').removeClass().addClass('img-galary-zoom d-none');
 })
 
-//check and uncheck color selected by user and mark selected
+//check and uncheck color selected by user and mark selected 
+
 $(document).on("click", "#product-colors-list div", function(event) {
     $("#product-colors-list div i").each(function () {
         $(this).removeClass().addClass('fas fa-check d-none');
@@ -2451,6 +2517,13 @@ $(document).on("click", "#product-colors-list div", function(event) {
     });
     $("#" + event.target.id).next().removeClass().addClass('fas fa-check');
     $("#" + event.target.id).removeClass().addClass('rounded-circle shadow product-color-selector selected');
+    //show color names
+    $('#product-colors-name').text(
+        ($('#product-colors-list img.selected').attr('id'))
+    );
+    //calculate new price based on size and color selected
+    getProductDetails(event.target.id,$("#product-sizes-list p.selected").text());
+
 });
 
 //check and uncheck size selected by user and mark selected
@@ -2464,5 +2537,6 @@ $(document).on("click", "#product-sizes-list div", function(event) {
     });
     $("#" + event.target.id).next().removeClass().addClass('fas fa-check');
     $("#" + event.target.id).removeClass().addClass('pt-4 text-center selected');
-
+    //calculate new price based on size and color selected
+    getProductDetails($("#product-colors-list img.selected").attr('id'),$("#" + event.target.id).text());
 });

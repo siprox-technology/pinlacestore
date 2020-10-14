@@ -98,6 +98,7 @@ class Product{
         return $results;
     }
 
+
     public function getProductDetails($id)
     {
         // get product info
@@ -105,14 +106,15 @@ class Product{
         $this->db->query($query);
         $productData = $this->db->resultset();
         //get inventory info
-        $query = "SELECT * from inventory where FK_product_id_inv_prod=".$id;
+        $query = "SELECT * from inventory where quantity !='0' and 
+        FK_product_id_inv_prod=".$id;
         $this->db->query($query);
         $inventoryData = $this->db->resultset();
         //get image list names
         $dir  = 'images/img-list/'.$productData[0]->imgFolder; 
         $imgList = scandir($dir);
-        $list=[];
-        //remove file extension
+        $imageList=[];
+        //remove file extensions from image file names
         for($i=0; $i<count($imgList);$i++)
         {
             $imgList[$i] = str_replace(".","",$imgList[$i]);
@@ -120,14 +122,25 @@ class Product{
             $imgList[$i] = str_replace("jpg","",$imgList[$i]);
             if($imgList[$i]!=="")
             {
-                array_push($list,$imgList[$i]);
+                array_push($imageList,$imgList[$i]);
             }
         }
+        //get related products
+        $query = "select distinct 
+        (select MIN(price) from inventory where FK_product_id_inv_prod =".$id.") as price,
+        (select MAX(discount) from inventory where FK_product_id_inv_prod =".$id.") as discount,
+        (product.id) as id,brand,name,category,description,imgFolder from inventory inner join
+        product
+        on inventory.FK_product_id_inv_prod = product.id
+        where category = (select category from product where id =".$id.");";
+        $this->db->query($query);
+        $relatedProducts = $this->db->resultset();
+
         //result array
         $result[0] = $productData;
         $result[1] = $inventoryData;
-        $result[2] = $list;
-
+        $result[2] = $imageList;
+        $result[3] = $relatedProducts;
         return $result;
     }
 

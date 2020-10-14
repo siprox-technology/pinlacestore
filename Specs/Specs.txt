@@ -61,19 +61,16 @@ Possible functionalities:
 -user profile update account details**
 -user change password.**
 -user add and remove addresses.**
--User add product to wish list.
--user add review to items bought.
--User makes an order and pay.
 -search products by brand and caregory name **
--display product details page--
--display product sizes and colors and price and availabality
- according to user select.
 -sort products by brands,gender,
   category,size,color,price,discount**
 -sort by price, discount**
+-display product details page with available colors and sizes.**
+-display price according to selected color and sizes by user**
+-User add product to wish list.
+-user add review to items bought.
+-User makes an order and pay.
 -signup to newsLetter.
-
-
 *****************************************
 Front end structure:
 1-Home page: 

@@ -2,7 +2,7 @@
     <footer id="site-footer" class=" bgdark padding_top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-12 p-3 p-md-2 p-lg-1">
                     <div class="footer_panel padding_bottom_half bottom20">
                         <a href="index.php" class="footer_logo bottom25"><img src="images/logo-transparent.png"
                                 alt="trax"></a>
@@ -22,7 +22,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-12 p-3 p-md-2 p-lg-1">
                     <div class="footer_panel padding_bottom_half bottom20">
                         <h3 class="whitecolor bottom25">Our Services</h3>
                         <ul class="links">
@@ -35,7 +35,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-12 p-3 p-md-2 p-lg-1">
                     <div class="footer_panel padding_bottom_half bottom20">
                         <h3 class="whitecolor bottom25">Latest News</h3>
                         <ul class="latest_news whitecolor">
@@ -48,7 +48,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6 col-sm-12 p-3 p-md-2 p-lg-1">
                     <div class="footer_panel padding_bottom_half bottom20">
                         <h3 class="whitecolor bottom25">Business hours</h3>
                         <p class="whitecolor bottom25">Our support available to help you 24 hours a day, seven days week

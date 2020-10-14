@@ -6,3 +6,8 @@
 -sign up form navigation comes inside form when scrolling down
 - this error situation with first log in gievs server error then disapears
 - when going to products.php the select all product funtion does not load any product
+-logout goes back to the same page except when in profile page
+-return and exchange info page
+-products.php click area for going to products details
+- animation fadeIN for page sections
+-set email of SIPROX website to forward to siproxtech@gmail.com
