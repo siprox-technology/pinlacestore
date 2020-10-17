@@ -10,7 +10,8 @@ gender,Description,saleRecord,imgFolder
 ---------------------------------
 Inventory:
 id,FK_product_id_inv_prod,
-color,size,price,discount,quantity
+color,size,price,discount,stock,created_at,
+updated_at
 
 ------------------------------
 Review:
@@ -43,12 +44,17 @@ FK_inventory_id_shop_inven,
 
 --------------------------------
 Order:
-id,date,time,status,amount,
-payMethod
-lastFourdigit,pymnt_ref,
+id,date,created_at,updated_at,status,
 FK_user_id_order_user,
 FK_inventory_id_order_inven,
 FK_address_id_order_address,
+
+----------------------------------------
+
+Payment:
+id,amount,paymen_method,last_four_digit,
+payment_ref,FK_order_id_pay_order
+
 
 *****************************************
 
@@ -61,6 +67,7 @@ Possible functionalities:
 -user profile update account details**
 -user change password.**
 -user add and remove addresses.**
+-user change contact preferences--
 -search products by brand and caregory name **
 -sort products by brands,gender,
   category,size,color,price,discount**
