@@ -7116,3 +7116,7 @@ ul.latest_news li a:focus+span.defaultcolor {
 #zoom-icon:hover {
     color: #23ced5;
 }
+
+.cursor-none {
+    cursor: default !important;
+}

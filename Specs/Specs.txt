@@ -60,20 +60,20 @@ payment_ref,FK_order_id_pay_order
 
 Possible functionalities: 
 
--User registration and activation.**
--User log in\log out session time.**
--resend verification email**
--User reset fotgotten password through email.**
--user profile update account details**
--user change password.**
--user add and remove addresses.**
+-User registration and activation.***
+-User log in\log out session time.***
+-resend verification email***
+-User reset fotgotten password through email.***
+-user profile update account details***
+-user change password.***
+-user add and remove addresses.***
 -user change contact preferences--
--search products by brand and caregory name **
+-search products by brand and caregory name ***
 -sort products by brands,gender,
-  category,size,color,price,discount**
--sort by price, discount**
--display product details page with available colors and sizes.**
--display price according to selected color and sizes by user**
+  category,size,color,price,discount***
+-sort by price, discount***
+-display product details page with available colors and sizes.***
+-display price according to selected color and sizes by user***
 -User makes an order and pay.
 -User add product to wish list.
 -user add review to items bought.

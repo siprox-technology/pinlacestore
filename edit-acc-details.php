@@ -113,8 +113,8 @@ if(isset ($_GET['msg'])){
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="" >Account status:</label>
-                                            <label  class="<?php echo ($_SESSION['act_code'])>0?'text-danger':'text-success'; ?>"
-                                            id= "<?php echo ($_SESSION['act_code'])>0?'resend_verify_email':' ' ?>">
+                                            <label  class="<?php echo ($_SESSION['act_code'])>0?'text-danger':'text-success cursor-none'; ?>"
+                                            id= "<?php echo ($_SESSION['act_code'])>0?'resend_verify_email':'' ?>">
                                             <?php echo ($_SESSION['act_code'])>0?'Not Verified-Resend confirmation email?':'Verified'; ?> </label>
                                             <input type="hidden" id="_token" name='_token' value='<?php echo $_SESSION['_token'] ?>'>
                                             <input type="hidden" name='request_name' value='edit account details'>
