@@ -2631,6 +2631,7 @@ $('#add-to-cart').on("click",function(){
                     $('#proceed-checkout h4').removeClass().addClass('text-danger')
                     .empty().append("Quantity is more than stock available for this item");
                     $('#proceed-checkout').modal({backdrop: 'static', keyboard: false});
+                    $('#proceed-checkout-btn').removeClass().addClass('btn-common gradient-btn d-none');
                     break;
 
                 case 'server error':
@@ -2642,7 +2643,7 @@ $('#add-to-cart').on("click",function(){
 
                 case 'invalid params':
                     break;
-                    
+
                 default:
                 break;
             }
