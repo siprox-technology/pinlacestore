@@ -24,7 +24,7 @@ class Validate{
     public function validateAnyname($txt){
         // check txt for corect characters
         $txt = str_split($txt);
-        $pattern =["!","#","@","_",";","$","%","^","&","*","(",")","=","+","'\'","|","{","}","~",":","<",">","?","/","'"];
+        $pattern =["!","#","@","_",";","$","%","^","&","*","(",")","=","+","'\'","|","{","}","~",":","<",">","?","/"];
         $result = array_intersect($txt,$pattern);
             if (empty($result)){
                 return true;
@@ -34,6 +34,19 @@ class Validate{
                 return false;
             }
     } 
+    public function validateImageAddress($txt){
+        // check txt for corect characters
+        $txt = str_split($txt);
+        $pattern =["!","#","@","_",";","$","%","^","&","*","(",")","=","+","'\'","|","{","}","~",":","<",">","?"];
+        $result = array_intersect($txt,$pattern);
+            if (empty($result)){
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+    }
     public function validtePhone($phone){
         // check phone for corect digits for english phone number
         $phone = str_split($phone);

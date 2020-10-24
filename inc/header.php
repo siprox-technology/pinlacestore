@@ -1,5 +1,6 @@
+
     <!-- header -->
-    <header class="site-header">
+    <header class="site-header d-flex flex-column">
         <nav class="navbar navbar-expand-lg padding-nav static-nav">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
@@ -87,9 +88,21 @@
                 </div>
                 <ul class="social-icons social-icons-simple d-lg-inline-block d-none animated fadeInUp"
                     data-wow-delay="300ms">
-                    <li><a href="#."><i class="fab fa-facebook-f"></i> </a> </li>
-                    <li><a href="#."><i class="fab fa-twitter"></i> </a> </li>
-                    <li><a href="#."><i class="fab fa-linkedin-in"></i> </a> </li>
+                    <!-- shopping cart -->
+                    <li class="shopping-cart">
+                        <div id="cart-items-quantity">
+                            <p class ="m-0 text-center">
+                                <!-- get number of items in basket -->
+                                <?php
+                                require_once('models/Cart.php');
+                                $basket = new cart();
+                                $numberInBasket = count($basket->getItems());
+                                echo $numberInBasket;
+                                ?>
+                            </p>
+                        </div>
+                        <a id="cart-icon" href="" class="m-0"><i class="fas fa-shopping-cart"></i></a>
+                    </li>
                 </ul>
             </div>
             <!--side menu open button-->
@@ -232,10 +245,13 @@
                 </nav>
                 <div class="side-footer w-100">
                     <ul class="social-icons-simple white top40">
-                        <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i> </a> </li>
-                        <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i> </a> </li>
-                        <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i> </a> </li>
-                    </ul>
+                        <!-- shopping cart -->
+                        <li class="shopping-cart">
+                            <div id="cart-items-quantity">
+                                <p class ="m-0 text-center">2</p>
+                            </div>
+                            <a id="cart-icon" href="" class="m-0"><i class="fas fa-shopping-cart"></i></a>
+                        </li>                    </ul>
                     <p class="whitecolor">&copy; <span id="year"></span> Trax. Made With Love by ThemesIndustry</p>
                 </div>
             </div>
@@ -243,6 +259,9 @@
         <div id="close_side_menu" class="tooltip"></div>
         <!-- End side menu -->
     </header>
+
+
+    
     <!-- header End-->
     <!--search products-->
     <input type="hidden" id="_token" name="_token" value="<?php echo $_SESSION['_token']?>">

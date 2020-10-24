@@ -601,6 +601,47 @@ else
             }
         break;
 
+        //add items to cart
+        case 'add items to basket':
+            $POST['product_id'] = ($validate->validateDigits($_POST['product_id']))==true?$_POST['product_id']:false;
+            $POST['size'] = ($validate->validateSize($_POST['size']))==true?$_POST['size']:false;
+            $POST['color'] = ($validate->validateAnyname($_POST['color']))==true?$_POST['color']:false;
+            $POST['quantity'] = ($validate->validateDigits($_POST['quantity']))==true? $_POST['quantity']:false;          
+            
+            if($POST['product_id']&&$POST['size']&&$POST['color']&&$POST['quantity'])
+            {
+                try
+                {
+                    require_once('models/Product.php');
+                    $newProduct = new Product();
+                
+                    if(($newProduct->getInventoryDetails($POST['product_id'],$POST['size'],$POST['color'],$POST['quantity'])) !== false)
+                    {
+                        $inventory_id = ($newProduct->getInventoryDetails($POST['product_id'],$POST['size'],$POST['color'],$POST['quantity']))[0]->id;
+                        require_once('models/Cart.php');
+                        $newCookie = new Cart();
+                        if($newCookie->save($inventory_id,$POST['quantity']))
+                        {
+                            echo 'item saved success';
+                        }
+                    }
+                    else
+                    {
+                        echo 'quantity not available';
+                    }
+                }
+                catch(Exception $e)
+                {
+                    echo 'server error';
+                }
+ 
+            }
+            else
+            {
+                echo 'invalid params';
+            }
+
+        break;
 
 
         

@@ -7,7 +7,6 @@ if(!isset($_SESSION['_token']))
 }
 session_regenerate_id();
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +26,7 @@ include_once 'inc/head.php'
         </div>
     </div>
     <!--PreLoader Ends-->
+
     <?php 
     include_once 'inc/header.php' 
     ?>

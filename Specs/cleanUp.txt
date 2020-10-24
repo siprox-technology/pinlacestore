@@ -13,3 +13,6 @@
 -set email of SIPROX website to forward to siproxtech@gmail.com
 -close icon in gallary zoom overlaps with menu when clicking.
 - remove uniqe id warnings on address.php
+-add browser compatibility code for css
+-remove unnecessary links for improving loading times
+-cookie accept msg?

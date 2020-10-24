@@ -98,8 +98,9 @@ include_once 'inc/header.php'
                             <div class="col-md-8 mt-1 mb-4">
                                 <div class="quote">
                                     <label for="quantity" class="d-none"></label>
-                                    <a href="" class="btn-common gradient-btn">wish list <i class="fas fa-star"></i></a>
-                                    <a href="" class="btn-common gradient-btn">Add to Cart <i class="fa fa-cart-plus"></i></a>
+                                    <button class="btn-common gradient-btn">wish list <i class="fas fa-star"></i></button>
+                                    <button id ="add-to-cart"class="btn-common gradient-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                                    <input type="number" placeholder="Quantity" min="1" max="100" value="1" class="quote pl-4" id="add-cart-quantity">
                                 </div>
                             </div>
                         </div>
@@ -127,17 +128,18 @@ include_once 'inc/header.php'
                             <!-- Name -->
                             <h4 class="text-capitalize font-normal text-left  mt-3" id="gallary-name"></h4>
                             <!-- price and discount -->
-                            <h3 class="mt-3" id="price-discount-list"></h3>
+                            <h3 class="mt-3 d-flex" id="price-discount-list"></h3>
                             <!-- color names -->
-                            <h3 class="text-center text-dark mt-5">Colors:</h3>
+                            <h3 class="text-center text-dark mt-5">Color:</h3>
                             <div class="mt-3 row justify-content-center">
                                 <div id="product-colors-list">
                                 </div> 
                             </div>
-                            <h4 class="text-center mt-2 text-capitalize font-normal" id="product-colors-name"></h4> 
+                            <h4 class="text-center mt-2 font-normal" id="product-color-name"></h4> 
                             <!-- sizes -->
-                            <div class="text-center text-dark mt-4">
-                                <h3>Sizes:</h3>
+                            <div class="text-center mt-4 d-flex justify-content-center">
+                                <h3 class="mr-2 text-dark">Size:</h3>
+                                <h4 class="text-center mt-1  font-normal" id="product-size-name"></h4>
                             </div>
                             <div class="row mt-3 justify-content-center" id="product-sizes-list">
                                 <!-- available sizes goes here -->
@@ -285,10 +287,29 @@ include_once 'inc/header.php'
         </div>
     </div>
 </section>
-
+<!-- proceed to checkout modal -->
+<div id="proceed-checkout" class="modal fade" role="dialog" >
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header d-flex">
+                <div class="col-12">
+                    <div class="row justify-content-center my-4">
+                        <h4 class="text-center"></h4>
+                    </div>
+                    <div class="quote d-flex flex-row justify-content-around">
+                        <a href="" id="continue-shopping"class="btn-common gradient-btn" >Continue shopping</a>
+                        <a href="checkout.php" id="proceed-checkout-btn" class="btn-common gradient-btn" >Proceed to checkout<i class="fa fa-cart-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!--Gallery Details Ends-->
 <input type="hidden" name="k" value="<?php echo $_GET['k']?>" id="product-id">
-                        <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
+<input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
+
 
 <?php include_once 'inc/footer.php';
      include_once 'inc/scripts.php'?>

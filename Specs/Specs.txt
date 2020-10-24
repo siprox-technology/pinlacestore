@@ -41,6 +41,7 @@ ShoppingCart:
 id,
 FK_user_id_shop_user,
 FK_inventory_id_shop_inven,
+quntity
 
 --------------------------------
 Order:

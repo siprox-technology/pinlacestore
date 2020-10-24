@@ -1762,6 +1762,8 @@ ul.links li a::before,
 
 
 
+
+
 @-webkit-keyframes animationFade {
     from {
         opacity: 0;
@@ -7119,4 +7121,36 @@ ul.latest_news li a:focus+span.defaultcolor {
 
 .cursor-none {
     cursor: default !important;
+}
+
+
+.shopping-cart {
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.shopping-cart #cart-items-quantity {
+    position: absolute;
+    top: 15%;
+    left: 26%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(36, 204, 213);
+    z-index: 5;
+}
+
+.shopping-cart #cart-items-quantity p {
+    font-size: 12px;
+    color: white;
+}
+
+.shopping-cart #cart-icon {
+    position: absolute;
+    top: 33%;
+}
+
+.shopping-cart #cart-icon i {
+    font-size: 16px;
 }
