@@ -5520,9 +5520,9 @@ ul.rounded li::before {
     border: 2px solid #24CDD5;
 }
 
-.carousel-shop-detail .owl-stage-outer {
-    /*height: 350px;*/
-}
+/* .carousel-shop-detail .owl-stage-outer {
+ 
+} */
 
 #syncCarousel .owl-stage {
     pointer-events: auto;
