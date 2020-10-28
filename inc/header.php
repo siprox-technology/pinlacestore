@@ -101,7 +101,7 @@
                                 ?>
                             </p>
                         </div>
-                        <a id="cart-icon" href="" class="m-0"><i class="fas fa-shopping-cart"></i></a>
+                        <a id="cart-icon" href="checkout.php" class="m-0"><i class="fas fa-shopping-cart"></i></a>
                     </li>
                 </ul>
             </div>

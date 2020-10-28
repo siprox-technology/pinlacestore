@@ -7,6 +7,11 @@ if(!isset($_SESSION['_token']))
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
 session_regenerate_id();
+//redirect to login page if user not signed in
+if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
+{
+    header('location:login.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +38,12 @@ session_regenerate_id();
 <!-- shopping cart -->
 <section id="shop" class="padding">
    <div class="container">
+      <!-- back to products -->
+      <div class="row justify-content-start ml-auto mb-3">
+         <a class="" href="products.php"><i class="fas fa-arrow-left"></i></a>
+         <a class="ml-2" href="products.php">Continue shopping</a>
+      </div>
+      <!-- shopping basket -->
       <div class="row">
          <div class="col-md-12 cart_table wow fadeInUp" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeInUp;">
             <div class="table-responsive">
@@ -46,180 +57,84 @@ session_regenerate_id();
                      <th></th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <tr>
-                     <td>
-                        <div class="d-table">
-                           <div class="d-block d-lg-table-cell">
-                              <a class="shopping-product" href="shop-detail.html"><img src="images/shop-3.jpg" alt="product"></a>
-                           </div>
-                           <div class="d-block d-lg-table-cell">
-                              <h4 class="darkcolor product-name"><a href="shop-detail.html">Blue Shoe</a></h4>
-                              <p>We offer the most complete in the country</p>
-                           </div>
-                        </div>
-                     </td>
-                     <td>
-                        <h4 class="default-color text-center">$130.00</h4>
-                     </td>
-                     <td class="text-center">
-                        <div class="quote text-center">
-                           <label for="quantity1" class="d-none"></label>
-                           <input type="text" placeholder="1" class="quote" id="quantity1">
-                        </div>
-                     </td>
-                     <td>
-                        <h4 class="darkcolor text-center">$136.00</h4>
-                     </td>
-                     <td class="text-center"><a class="btn-close" href="#."><i class="fas fa-times"></i></a></td>
-                  </tr>
-                  <tr>
-                     <td>
-                        <div class="d-table">
-                           <div class="d-block d-lg-table-cell">
-                              <a class="shopping-product" href="shop-detail.html"><img src="images/shop-5.jpg" alt="product"></a>
-                           </div>
-                           <div class="d-block d-lg-table-cell">
-                              <h4 class="darkcolor product-name"><a href="shop-detail.html">Red Shoe</a></h4>
-                              <p>We offer the most complete in the country</p>
-                           </div>
-                        </div>
-                     </td>
-                     <td>
-                        <h4 class="default-color text-center">$130.00</h4>
-                     </td>
-                     <td class="text-center">
-                        <div class="quote text-center">
-                           <label for="quantity2" class="d-none"></label>
-                           <input type="text" placeholder="1" class="quote" id="quantity2">
-                        </div>
-                     </td>
-                     <td>
-                        <h4 class="darkcolor text-center">$136.00</h4>
-                     </td>
-                     <td class="text-center"><a class="btn-close" href="#."><i class="fas fa-times"></i></a></td>
-                  </tr>
+                  <tbody id="basket_items">
+                     <!-- items in the basket goes here -->
+
                   </tbody>
                </table>
             </div>
-            <div class="apply_coupon">
-               <div class="row">
-                  <div class="col-md-6 col-sm-12 coupon">
-                     <form class="findus form-inline bottom15 margin10">
-                        <div class="form-group">
-                           <label for="coupin1" class="d-none"></label>
-                           <input type="text" placeholder="Coupon Code" class="form-control" id="coupin1">
-                        </div>
-                        <button type="submit" class="button gradient-btn">Apply Coupon</button>
-                     </form>
-                  </div>
-                  <div class="col-md-6 col-sm-12 coupon d-sm-flex d-block justify-content-between align-self-center">
-                     <a href="#." class="button btn-primary mb-sm-0 bottom15">update</a>
-                     <a href="#." class="button btn-dark margin10">checkout</a>
-                  </div>
-               </div>
-            </div>
          </div>
       </div>
-      <div class="row">
+      <!-- shipping -->
+      <div class="row justify-content-between ">
          <div class="col-md-5 col-sm-12 wow fadeInLeft" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeInLeft;">
             <div class="totals margin_tophalf">
                <h3 class="bottom25 font-light2">Calculate Shipping:</h3>
-               <form class="findus">
-                  <div class="form-group">
-                     <label class="select form-control">
-                        <select name="country" id="country">
-                           <option>USA</option>
-                           <option>Canada</option>
-                           <option>Chilli</option>
-                           <option>France</option>
-                        </select>
-                     </label>
+               <form class="" id="delivery_options">
+                  <div class="form-check m-3">
+                     <input class="form-check-input" type="radio" name="exampleRadios" id="delivery_option_radio" value="9.99" checked>
+                     <p>
+                        Standard delivery
+                     </p>
                   </div>
-                  <div class="form-group">
-                     <label class="select form-control">
-                        <select name="state" id="states">
-                           <option>USA</option>
-                           <option>Canada</option>
-                           <option>Chilli</option>
-                           <option>France</option>
-                        </select>
-                     </label>
+                  <div class="form-check m-3">
+                     <input class="form-check-input" type="radio" name="exampleRadios" id="delivery_option_radio" value="15.99">
+                     <p >
+                        Fast delivery
+                     </p>
                   </div>
-                  <div class="form-group">
-                     <label for="zip" class="d-none"></label>
-                     <input type="text" class="form-control" placeholder="Postal Code / Zip" required="" id="zip">
+                  <div class="form-check m-3">
+                     <input class="form-check-input" type="radio" name="exampleRadios" id="delivery_option_radio" value="29.99">
+                     <p >
+                        International delivery
+                     </p>
                   </div>
-                  <button type="button" class="button btn-primary">Calculate</button>
+                  <button type="button" id="calculate_shipping_btn"class="button btn-primary mt-3">Calculate</button>
                </form>
             </div>
          </div>
-         <div class="col-lg-3 col-md-5 col-sm-12 wow fadeInUp margin_tophalf" data-wow-delay="400ms" style="visibility: visible; animation-delay: 400ms; animation-name: fadeInUp;">
+         <!-- total order amount -->
+         <div class="col-lg-5 col-md-5 col-sm-12 wow fadeInUp margin_tophalf" data-wow-delay="400ms" style="visibility: visible; animation-delay: 400ms; animation-name: fadeInUp;">
             <div class="totals margin_topalf h-100">
                <h3 class="bottom25 font-light2">Cart Totals:</h3>
                <table class="table table-responsive cart-total">
                   <tbody>
                   <tr class="w-100">
                      <td>Subtotal:</td>
-                     <td class="yellow_t text-right"><strong>$272.00</strong></td>
+                     <td id="total_order_price" class="yellow_t text-right"><strong></strong></td>
                   </tr>
                   <tr>
                      <td>Other Tax:</td>
-                     <td class="yellow_t text-right"><strong>$0</strong></td>
+                     <td id="total_order_tax"class="yellow_t text-right"><strong>$0</strong></td>
                   </tr>
                   <tr>
                      <td>Shipping:</td>
-                     <td class="yellow_t text-right"><strong>Free</strong></td>
+                     <td id="total_order_shipping" class="yellow_t text-right"><strong></strong></td>
                   </tr>
                   <tr>
                      <td>Order Total:</td>
-                     <td class="text-right"><strong>$272.00</strong></td>
+                     <td class="text-danger" id="total_order_toPay"><strong></strong></td>
                   </tr>
                   </tbody>
                </table>
             </div>
          </div>
-         <div class="col-md-4 col-sm-12 wow fadeInRight" data-wow-delay="500ms" style="visibility: visible; animation-delay: 500ms; animation-name: fadeInRight;">
-            <div class="totals margin_tophalf">
-               <h3 class="bottom25 font-light2">Personal Info:</h3>
-               <form class="findus">
-                  <div class="form-group">
-                     <label class="select form-control">
-                        <select name="country" id="cashMethod">
-                           <option>Bank Transfer</option>
-                           <option>Cash On Delivery</option>
-                           <option>Paypal</option>
-                           <option>Bitcoin</option>
-                           <option>Visa Card</option>
-                           <option>American Express</option>
-                        </select>
-                     </label>
-                  </div>
-                  <div class="form-group">
-                     <label class="select form-control">
-                        <select name="state" id="states1">
-                           <option>USA</option>
-                           <option>Canada</option>
-                           <option>Chilli</option>
-                           <option>France</option>
-                        </select>
-                     </label>
-                  </div>
-                  <div class="form-group">
-                     <label for="emailOrder" class="d-none"></label>
-                     <input type="email" class="form-control" placeholder="Email" required="" id="emailOrder">
-                  </div>
-                  <button type="button" class="button btn-primary">Order</button>
-               </form>
+      </div>
+      <div class="checkout-btn-container mt-3">
+         <div class="row">
+            <div class="col-12 coupon d-sm-flex d-block justify-content-end align-self-center">
+               <a href="#." class="button btn-dark margin10 d-none" id="pay_btn">Pay</a>
             </div>
          </div>
       </div>
    </div>
 </section>
 <!-- shopping cart ends -->
+<input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
 
     <?php  include_once 'inc/footer.php';
     include_once 'inc/scripts.php'?>
+    <script>getShoppingBasketDetails()</script>
 </body>
 
 </html>

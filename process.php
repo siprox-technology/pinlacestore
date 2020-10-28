@@ -615,9 +615,9 @@ else
                     require_once('models/Product.php');
                     $newProduct = new Product();
                 
-                    if(($newProduct->getInventoryDetails($POST['product_id'],$POST['size'],$POST['color'],$POST['quantity'])) !== false)
+                    if(($newProduct->checkInventory($POST['product_id'],$POST['size'],$POST['color'],$POST['quantity'])) !== false)
                     {
-                        $inventory_id = ($newProduct->getInventoryDetails($POST['product_id'],$POST['size'],$POST['color'],$POST['quantity']))[0]->id;
+                        $inventory_id = $newProduct->checkInventory($POST['product_id'],$POST['size'],$POST['color'],$POST['quantity']);
                         require_once('models/Cart.php');
                         $newCookie = new Cart();
                         if($newCookie->save($inventory_id,$POST['quantity']))
@@ -641,6 +641,49 @@ else
                 echo 'invalid params';
             }
 
+        break;
+
+        //get shopping basket details
+        case 'get shopping basket':
+            try
+            {
+                require_once('models/Product.php');
+                require_once('models/Cart.php');
+                $prod = new Product();
+                $cart = new Cart();
+                $items = $cart->getItems();
+                $basket = [];
+                for($i=0; $i<count($items);$i++)
+                {
+                    $basket[$i][0] = $prod->getInventoryDetails($items[$i][1]);
+                    $basket[$i][1]= $items[$i][0];
+                    $basket[$i][2]=$items[$i][2];
+                }
+                echo json_encode($basket);
+            }
+            catch(Exception $e)
+            {
+                echo 'server error';
+            }
+
+        break;
+
+        //delete basket items
+        case 'delete basket items':
+            $POST['basket_name'] = ($validate->validateAnyname($_POST['basket_name']))==true?$_POST['basket_name']:false;
+            if($POST['basket_name'])
+            {
+                try
+                {
+                    require_once('models/Cart.php');
+                    $cart = new Cart();
+                    $cart->delete($POST['basket_name']);
+                }
+                catch(Exception $e)
+                {
+                    echo 'server error';
+                }
+            }
         break;
 
 

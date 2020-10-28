@@ -144,19 +144,18 @@ class Product{
         return $result;
     }
 
-    public function getInventoryDetails($id,$size,$color,$quantity)
+    public function checkInventory($id,$size,$color,$quantity)
     {
-        //returns inventory info if quantity is more than 1
+        //returns inventory id if quantity is more than 1
         // get inventory info
-        $query = "SELECT * FROM product inner join inventory
-        on  product.id = inventory.FK_product_id_inv_prod 
+        $query = "SELECT * FROM inventory
         where FK_product_id_inv_prod ='".$id."' 
         and size ='".$size."' and color='".$color."' and quantity >='".$quantity."';";
         $this->db->query($query);
         $productData = $this->db->resultset();
         if(count($productData)==1)
         {
-           return $productData;
+           return $productData[0]->id;
         }
         else
         {
@@ -164,7 +163,22 @@ class Product{
         }
 
     }
-
+    public function getInventoryDetails($inventory_id)
+    {
+        $query = "SELECT * FROM product inner join inventory
+        on product.id = inventory.FK_product_id_inv_prod 
+        where inventory.id =".$inventory_id;  
+        $this->db->query($query);
+        $productData = $this->db->resultset();
+        if(count($productData)==1)
+        {
+            return $productData[0];
+        }
+        else
+        {
+            return false;
+        }
+    }
    
 
 }

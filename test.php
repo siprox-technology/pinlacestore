@@ -1,13 +1,17 @@
 <?php
 
 
-require_once('models/Cart.php');
+/* require_once('models/Product.php');
 
-$prod = new Cart();
+$prod = new Product();
 
-$x = $prod->getItems();
+$x = $prod->getInventoryDetails(10); */
 
-$c = 0;
+/* (strpos($a, 'are') !== false) */
+
+
+
+
 ?>
 
 

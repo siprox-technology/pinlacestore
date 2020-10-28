@@ -1688,8 +1688,7 @@ ul.hours_links li::before,
 .dropdown-toggle::after,
 .card-header .card-link:before,
 blockquote.blockquote::before,
-ul.links li a::before,
-.form-check label::before {
+ul.links li a::before {
     font-family: "Font Awesome 5 Free", serif;
     font-weight: 900;
 }
@@ -4712,9 +4711,7 @@ section#stayconnect {
 }
 
 .contactus-wrapp,
-.getin_form .form-control,
-.form-check label::before,
-.form-check input[type="checkbox"]:checked+label::before {
+.getin_form .form-control {
     background: #fff;
 }
 
@@ -4774,28 +4771,12 @@ section#stayconnect {
 
 .form-group label,
 .checkbox label,
-.form-check label::before,
 .contact-table .icon-cell,
 span.icon-contact {
     display: inline-block;
 }
 
-.form-check label::before {
-    content: "\f00c";
-    position: absolute;
-    width: 17px;
-    height: 17px;
-    left: 0;
-    margin-left: -20px;
-    border: 1px solid #ececec;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-    text-align: center;
-    color: transparent;
-    -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-    -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-    transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
-}
+
 
 .form-check input[type="checkbox"]:checked+label::before {
     background: #24cdd5;
@@ -7153,4 +7134,9 @@ ul.latest_news li a:focus+span.defaultcolor {
 
 .shopping-cart #cart-icon i {
     font-size: 16px;
+}
+
+#delete_basket_items {
+    color: red;
+    cursor: pointer;
 }

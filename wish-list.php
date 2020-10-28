@@ -110,7 +110,7 @@ session_regenerate_id();
                             </tbody>
                         </table>
                     </div>
-                    <div class="apply_coupon">
+                    <div class="checkout-btn-container">
                         <div class="row">
                             <div class="col-md-6 col-sm-12 coupon d-sm-flex d-block justify-content-between align-self-center">
                                 <a href="#." class="button btn-primary mb-sm-0 bottom15">update</a>

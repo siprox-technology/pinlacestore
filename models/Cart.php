@@ -42,13 +42,16 @@ class Cart
     public function getItems(){
 
         $results = [];
-        for($i=0;$i<count($_COOKIE);$i++)
+        $j=0;
+        foreach($_COOKIE as $k => $v)
         {
-            if(isset($_COOKIE["basket".$i]))
+            if(strpos($k,'basket')>-1)
             {
-                $results[$i] = explode(",", $_COOKIE["basket".$i]);
-                $results[$i][0] = strval(($results[$i][0])-8420); 
-                $results[$i][1] = strval(($results[$i][1])-6810); 
+                $results[$j][0]=$k;
+                $v = explode(",",$v);
+                $results[$j][1]= strval($v[0]-8420);
+                $results[$j][2]= $v[1];
+                $j++;
             }
         }
         return $results;

@@ -2656,3 +2656,112 @@ $('#add-to-cart').on("click",function(){
 $('#continue-shopping').on('click',function(){
     location.reload();
 })
+
+//get shopping basket data and display
+
+function getShoppingBasketDetails()
+{
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'get shopping basket',
+            _token: $('#_token').val()
+        },
+        beforeSend: function () {},
+        success: function (response) {
+            if(response !== "server error")
+            {
+                result = JSON.parse(response);
+                total_price =0.00;
+                for(i=0; i<result.length;i++)
+                {
+                    price = parseFloat(((result[i][0].price)-(((result[i][0].price)*(result[i][0].discount))/100))).toFixed(2);
+                    total = parseFloat((price)*(result[i][2])).toFixed(2);
+                    total_price+= parseFloat(total);
+                    $('#basket_items').append(
+                        "<tr>"+
+                        "<td>"+
+                           "<div class='d-table'>"+
+                              "<div class='d-block d-lg-table-cell'>"+
+                                 "<a class='shopping-product' href='product-details.php?k="+result[i][0].id+"'"+"><img src='"+"images/img-list/"+result[i][0].imgFolder+"/"+result[i][0].FK_product_id_inv_prod+"-thumb.jpg'"+"></a>"+
+                              "</div>"+
+                              "<div class='d-block d-lg-table-cell'>"+
+                                 "<h4 class='darkcolor product-name'><a href='product-details.php?k="+result[i][0].id+"'>"+result[i][0].brand+"</a></h4>"+
+                                 "<p>"+result[i][0].name+"</p>"+
+                              "</div>"+
+                           "</div>"+
+                        "</td>"+
+                        "<td>"+
+                           "<h4 class='default-color text-center'>"+price+"</h4>"+
+                        "</td>"+
+                        "<td class='text-center'>"+
+                           "<div class='quote text-center'>"+
+                              "<h4 class='default-color text-center'>"+result[i][2]+"</h4>"+
+                           "</div>"+
+                        "</td>"+
+                        "<td>"+
+                           "<h4 class='default-color text-center'>"+total+"</h4>"+
+                        "</td>"+
+                        "<td class='text-center'><a class='btn-close' value='"+result[i][1]+"' id='delete_basket_items'><i class='fas fa-times'></i></a></td>"+
+                     "</tr>"
+                    );
+                }
+                $('#total_order_price strong').text("$"+total_price);
+                $('#total_order_shipping strong').text("$"+
+                    $('#delivery_option_radio').attr('checked',true).val()
+                );
+                if(total_price == 0.00)
+                {
+                    $('#calculate_shipping_btn').removeClass()
+                    .addClass('button btn-primary mt-3 d-none');
+                }
+
+            }
+        },
+    });
+}
+
+//delete items in the basket
+
+$(document).on("click", "#delete_basket_items", function(event) {
+    var basket = $(this).attr('value');
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'delete basket items',
+            _token: $('#_token').val(),
+            basket_name : basket
+        },
+        beforeSend: function () {
+
+        },
+        success: function (response) {
+            if(response !== "server error")
+            {
+                location.reload();
+            }
+        
+        },
+    });
+    
+});
+
+//shipping prices option change
+$(document).on("click", "#delivery_option_radio", function(event) {
+    var option = $(this).attr('value');
+    $('#total_order_shipping strong').text("$"+option);
+    $('#total_order_toPay strong').text("");
+    $('#pay_btn').removeClass().addClass("button btn-dark margin10 d-none");
+});
+/* Calculate total amount*/
+$('#calculate_shipping_btn').on('click',function(){
+    total_price =Number($("#total_order_price strong").text().replace(/[^0-9.-]+/g,""));
+    total_tax =Number($("#total_order_tax strong").text().replace(/[^0-9.-]+/g,""));
+    total_shipping =Number($('#total_order_shipping strong').text().replace(/[^0-9.-]+/g,""));
+    sum = (total_price + total_tax + total_shipping).toFixed(2);
+
+    $('#total_order_toPay strong').text("$"+sum);
+    $('#pay_btn').removeClass().addClass("button btn-dark margin10");
+})
