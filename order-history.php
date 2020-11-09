@@ -46,82 +46,59 @@ session_regenerate_id();
                         <table class="table table-bordered" id="order-history">
                             <thead>
                                 <tr>
-                                    <th class="darkcolor">Product</th>
-                                    <th class="darkcolor ">Price</th>
-                                    <th class="darkcolor">Quantity</th>
-                                    <th class="darkcolor">Total</th>
+                                    <th class="darkcolor">Order ID</th>
+                                    <th class="darkcolor">Total Price</th>
                                     <th class="darkcolor">Date</th>
+                                    <th class="darkcolor">Status</th>                                    
                                     <th class="darkcolor">Payment method</th>
                                     <th class="darkcolor">Payment reference</th>
+                                    <th class="darkcolor"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>
-                                        <div class="d-table">
-                                        <div class="d-block d-lg-table-cell">
-                                            <a class="shopping-product" href="shop-detail.php"><img src="images/shop-3.jpg" alt="product"></a>
-                                        </div>
-                                        <div class="d-block d-lg-table-cell">
-                                            <h4 class="darkcolor product-name"><a href="shop-detail.html">Blue Shoe</a></h4>
-                                            <p>We offer the most complete in the country</p>
-                                        </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <h4 class="default-color text-center">$130.00</h4>
+                                        <h4 id="order_number" class="default-color text-center">63</h4>
                                     </td>
                                     <td class="text-center">
-                                        <div class="quote text-center">
-                                        <label for="quantity1" class="d-none"></label>
-                                        <input type="text" placeholder="1" class="quote" id="quantity1">
-                                        </div>
+                                        <h4 id="order_total_price" class="default-color text-center">$325.99</h4>
                                     </td>
                                     <td>
-                                        <h4 class="darkcolor text-center">$136.00</h4>
+                                        <h4 id="order_submit_date" class="default-color text-center">27/02/2020</h4>                                   
+                                    <td>
+                                        <h4 id="order_payment_status" class="text-success text-center">Complete</h4>                                    
                                     </td>
                                     <td>
-                                        <h4 class="default-color text-center">27/02/2020</h4>
+                                        <h4 id="order_payment_method" class="default-color text-center">Debit ***4567</h4>
                                     </td>
                                     <td>
-                                        <h4 class="default-color text-center">Debit ***4567</h4>
+                                        <h4 id ="order_payment_reference"class="default-color text-center">36457281</h4>
                                     </td>
                                     <td>
-                                        <h4 class="default-color text-center">36457281</h4>
+                                        <button type="button" id="order_details_btn" value="" class="button btn-primary mt-3">Details</button>                                    
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td>
-                                        <div class="d-table">
-                                        <div class="d-block d-lg-table-cell">
-                                            <a class="shopping-product" href="shop-detail.html"><img src="images/shop-5.jpg" alt="product"></a>
-                                        </div>
-                                        <div class="d-block d-lg-table-cell">
-                                            <h4 class="darkcolor product-name"><a href="shop-detail.html">Red Shoe</a></h4>
-                                            <p>We offer the most complete in the country</p>
-                                        </div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <h4 class="default-color text-center">$130.00</h4>
+                                        <h4 id="order_number" class="default-color text-center">63</h4>
                                     </td>
                                     <td class="text-center">
-                                        <div class="quote text-center">
-                                        <label for="quantity2" class="d-none"></label>
-                                        <input type="text" placeholder="1" class="quote" id="quantity2">
-                                        </div>
+                                        <h4 id="order_total_price" class="default-color text-center">$325.99</h4>
                                     </td>
                                     <td>
-                                        <h4 class="darkcolor text-center">$136.00</h4>
+                                        <h4 id="order_submit_date" class="default-color text-center">27/02/2020</h4>                                    </td>
+                                    <td>
+                                        <h4 id="order_payment_status" class="text-danger text-center">Pending</h4>                                    </td>
                                     </td>
                                     <td>
-                                        <h4 class="default-color text-center">27/02/2020</h4>
+                                        <h4 id="order_payment_method" class="default-color text-center">Debit ***4567</h4>
                                     </td>
                                     <td>
-                                        <h4 class="default-color text-center">Debit ***4567</h4>
+                                        <h4 id ="order_payment_reference"class="default-color text-center">36457281</h4>
                                     </td>
                                     <td>
-                                        <h4 class="default-color text-center">36457281</h4>
+                                        <button type="button" id="order_details_btn" value="" class="button btn-primary mt-3">Details</button>                                    
                                     </td>
                                 </tr>
                             </tbody>

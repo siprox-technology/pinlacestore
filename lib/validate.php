@@ -94,7 +94,7 @@ class Validate{
     public function validateDigits($num){
         $num = str_split($num);
         $pattern =["1","2","3","4","5","6","7","8","9",
-        "0"];
+        "0","."];
         $result = array_diff($num,$pattern);
             if (empty($result)){
                 return true;

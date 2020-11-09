@@ -16,4 +16,7 @@
 -add browser compatibility code for css
 -remove unnecessary links for improving loading times
 -cookie accept msg?
-
+-cookie shopping card when user logs in and out
+- when adding items to basket 'something wrong with server error' comes on. two items identical saves i+in basket
+- total price shows lots of decimal points 
+- no need to refresh when items quantity not available

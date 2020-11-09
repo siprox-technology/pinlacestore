@@ -2176,11 +2176,8 @@ function selectAllProducts() {
             _token: $('#_token').val()
         },
         beforeSend: function () {
-            /*             // Show preloader
-                        $('.loader').css('display', 'block'); */
         },
         success: function (response) {
-            /*             $('.loader').css('display', 'none'); */
 
             if (response == 'server error') {
                 $('#products-body #notification').removeClass()
@@ -2680,7 +2677,7 @@ function getShoppingBasketDetails()
                     total = parseFloat((price)*(result[i][2])).toFixed(2);
                     total_price+= parseFloat(total);
                     $('#basket_items').append(
-                        "<tr>"+
+                        "<tr id='"+i+"' basket='"+result[i][1]+"' value='"+result[i][0].id+"'"+"quantity='"+result[i][2]+"' price='"+total+"'>"+
                         "<td>"+
                            "<div class='d-table'>"+
                               "<div class='d-block d-lg-table-cell'>"+
@@ -2697,24 +2694,22 @@ function getShoppingBasketDetails()
                         "</td>"+
                         "<td class='text-center'>"+
                            "<div class='quote text-center'>"+
-                              "<h4 class='default-color text-center'>"+result[i][2]+"</h4>"+
+                              "<h4 id='basket_item_quantity' class='default-color text-center'>"+result[i][2]+"</h4>"+
                            "</div>"+
                         "</td>"+
                         "<td>"+
-                           "<h4 class='default-color text-center'>"+total+"</h4>"+
+                           "<h4 id='basket_item_price' class='default-color text-center'>"+total+"</h4>"+
                         "</td>"+
                         "<td class='text-center'><a class='btn-close' value='"+result[i][1]+"' id='delete_basket_items'><i class='fas fa-times'></i></a></td>"+
                      "</tr>"
                     );
                 }
                 $('#total_order_price strong').text("$"+total_price);
-                $('#total_order_shipping strong').text("$"+
-                    $('#delivery_option_radio').attr('checked',true).val()
+                $('#total_order_shipping strong').text("$9.99"
                 );
                 if(total_price == 0.00)
                 {
-                    $('#calculate_shipping_btn').removeClass()
-                    .addClass('button btn-primary mt-3 d-none');
+                    $('#order_shipping_info').removeClass().addClass('row d-none');
                 }
 
             }
@@ -2749,11 +2744,11 @@ $(document).on("click", "#delete_basket_items", function(event) {
 });
 
 //shipping prices option change
-$(document).on("click", "#delivery_option_radio", function(event) {
+$(document).on("click", "#delivery_options input", function(event) {
     var option = $(this).attr('value');
     $('#total_order_shipping strong').text("$"+option);
     $('#total_order_toPay strong').text("");
-    $('#pay_btn').removeClass().addClass("button btn-dark margin10 d-none");
+    $('#confirm_order_btn').removeClass().addClass("button btn-dark margin10 d-none");
 });
 /* Calculate total amount*/
 $('#calculate_shipping_btn').on('click',function(){
@@ -2763,5 +2758,88 @@ $('#calculate_shipping_btn').on('click',function(){
     sum = (total_price + total_tax + total_shipping).toFixed(2);
 
     $('#total_order_toPay strong').text("$"+sum);
-    $('#pay_btn').removeClass().addClass("button btn-dark margin10");
+    $('#confirm_order_btn').removeClass().addClass("button btn-dark margin10");
+    //set total amount for payment
+    $('#amount_for_payment').val(sum).text(sum);
+
+})
+
+//alert user to set at least one delivery addresss to place an order
+
+if($('#delivery_addresses option').length <2)
+{
+    $('#delivery_address_warning').removeClass()
+    .addClass('text-danger ');
+}
+
+//select delivery address and enable calculate shipping btn
+
+$('#delivery_addresses').on('change',function(){
+    //remove confirm order btn
+    $('#confirm_order_btn').removeClass().addClass("button btn-dark margin10 d-none");
+    //remove calculate shippoing btn
+    $('#calculate_shipping_btn').removeClass()
+        .addClass('button btn-primary mt-3 d-none');
+    $('#selected_delivery_address').empty()
+    .append($('#delivery_addresses option:selected').val());
+    if($('#delivery_addresses option:selected').val() !== 'Please select a delivery address')
+    {
+        $('#calculate_shipping_btn').removeClass()
+        .addClass('button btn-primary mt-3');
+    }
+})
+
+//save order info and delete shopping basket then ask to proceed to payment
+$(document).on("click", "#confirm_order_btn", function(event) {
+    //prepare basket items 
+    var basket_items= [];
+    for(i=0; i<$('#basket_items').children().length;i++)
+    {
+        basket_items[i]= [
+        $('#basket_items tr')[i].attributes[1].value,
+        $('#basket_items tr')[i].attributes[2].value,
+        $('#basket_items tr')[i].attributes[3].value,
+        $('#basket_items tr')[i].attributes[4].value];
+    }
+    basket_items =JSON.stringify(basket_items);
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'save order',
+            _token: $('#_token').val(),
+            user_id: $('#recipient_user_id').val(),
+            address_id:$('#delivery_addresses option:selected').attr('id'),
+            delivery_price: $('#total_order_shipping strong').text().replace("$",""),
+            total_price:$('#total_order_toPay').text().replace("$",""),
+            order_items:basket_items
+
+        },
+        beforeSend: function () {
+                        // Show preloader
+            $('.loader').css('display', 'block');
+        },
+        success: function (response) {
+            $('.loader').css('display', 'none');
+            result = JSON.parse(response);
+           switch(result[0])
+           {
+               case 'order save success':
+                $('#order_id_for_payment').val(result[1]);
+                $('#paymentModal').modal({backdrop: 'static', keyboard: false});
+                   
+               break;
+
+               default:
+                   break;
+           }
+        },
+    });
+});
+
+
+//refresh the page after clicking countinue shopping
+$('#paymentModal #close').on('click',function(){
+/*     $('#paymentModal').modal('hide'); */
+    location.reload();
 })

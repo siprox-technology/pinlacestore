@@ -1,17 +1,12 @@
 <?php
 
 
-/* require_once('models/Product.php');
 
-$prod = new Product();
+require_once('models/Order.php');
 
-$x = $prod->getInventoryDetails(10); */
+$order = new Order();
 
-/* (strpos($a, 'are') !== false) */
-
-
-
+$x = $order->updateOrder_Payment_status(76);
+$c = 0;
 
 ?>
-
-

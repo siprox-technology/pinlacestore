@@ -127,7 +127,8 @@ else
                             if(count($addresses)>0){
                                 for($i = 0; $i<count($addresses); $i++)
                                 {
-                
+                                    $_SESSION['address'.($addresses[$i]->number)]['number']=$addresses[$i]->number;
+                                    $_SESSION['address'.($addresses[$i]->number)]['id']=$addresses[$i]->id;
                                     $_SESSION['address'.($addresses[$i]->number)]['address']=$addresses[$i]->address;
                                     $_SESSION['address'.($addresses[$i]->number)]['city']=$addresses[$i]->city;
                                     $_SESSION['address'.($addresses[$i]->number)]['state']=$addresses[$i]->state;
@@ -686,6 +687,165 @@ else
             }
         break;
 
+        case 'save order':
+            $POST['order_items'] = json_decode($_POST['order_items']);
+            $order_items_count= count($POST['order_items']);
+            for($i=0; $i<$order_items_count;$i++)
+            {
+                if(
+                    ($validate->validateAnyname($POST['order_items'][$i][0])==false)||
+                    ($validate->validateDigits($POST['order_items'][$i][1])==false)||
+                    ($validate->validateDigits($POST['order_items'][$i][2])==false)||
+                    ($validate->validateDigits($POST['order_items'][$i][3])==false)
+                )
+                {
+                    $POST['order_items']= false;
+                }
+            }
+            
+            $POST['user_id'] = ($validate->validateDigits($_POST['user_id']))==true?$_POST['user_id']:false;
+            $POST['address_id'] = ($validate->validateSize($_POST['address_id']))==true?$_POST['address_id']:false;
+            $POST['delivery_price'] = ($validate->validateAnyname($_POST['delivery_price']))==true?$_POST['delivery_price']:false;
+            $POST['total_price'] = ($validate->validateDigits($_POST['total_price']))==true? $_POST['total_price']:false;          
+            // save order with order items
+            try
+            {
+                require_once('models/Order.php');
+                require_once('models/Cart.php');
+                require_once('models/Inventory.php');
+                $newOrder = new Order();
+                $shopping_cart = new Cart();
+                $inventory = new Inventory();
+                $result = [];
+                //if order saves success delete basket
+                $order_id = $newOrder->saveOrder($POST);
+                if($order_id)
+                {
+                    //update inventory delete shopping cart
+                    for($i=0;$i<count($POST['order_items']);$i++)
+                    {
+                        $shopping_cart->delete($POST['order_items'][$i][0]);
+                        $inventory->update_quantity($POST['order_items'][$i][1],(($POST['order_items'][$i][2])*(-1)));
+                    }
+
+                    $result[0]='order save success';
+                    $result[1] = $order_id;
+                }
+                else
+                {
+                    $result[0]='order save failed';
+                }
+                
+            }
+            catch(Exception $e)
+            {
+                $result[0]='server error';
+            }
+            echo json_encode($result);
+        break;
+        
+        // payment request to stripe API
+
+        case 'payment':
+        //-------------------
+        
+
+        require_once('vendor/autoload.php');
+        require_once('config/db.php');
+        require_once('lib/pdo_db.php');
+        require_once('models/Payments.php');
+        require_once('models/Order.php');
+        
+        // This is your real test secret API key.
+        \Stripe\Stripe::setApiKey('sk_test_51HcWlxGzZBtnGj1lUdweCw4OboX34Ku0oaXsjzQ06qygmZRlileOThhDPjB3nF2PMjeCdEoCstRi3CvUTFLrR5KP00A7XFd8hP');
+        
+         // Sanitize POST Array
+         $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
+        
+         $first_name = ($validate->validateAnyname($POST['first_name'])==true)?$POST['first_name']:false;
+         $last_name = ($validate->validateAnyname($POST['last_name'])==true)?$POST['last_name']:false;
+         $email = ($validate->validateEmail($POST['email'])==true)?$POST['email']:false;
+         $address_line_1 = ($validate->validateAnyname($POST['address_line_1'])==true)?$POST['address_line_1']:false;
+         $country = ($validate->validateAnyname($POST['country'])==true)?$POST['country']:false;
+         $zip = ($validate->validateAnyname($POST['zip_code'])==true)?$POST['zip_code']:false;
+         $amount = ($validate->validateDigits($POST['amount'])==true)?$POST['amount']:false;
+         $user_id = ($validate->validateDigits($POST['user_id'])==true)?$POST['user_id']:false;
+         $order_id = ($validate->validateDigits($POST['order_id'])==true)?$POST['order_id']:false;
+         $token = $POST['stripeToken'];
+         //
+
+         /* address array */
+         $address = [
+            "line1"=>$address_line_1,
+            "country" => $country,
+            "postal_code"=>$zip
+          ];
+
+         try {
+          // Use Stripe's library to make requests...
+         // Create Customer In Stripe
+         $customer = \Stripe\Customer::create(array(
+            "name" =>$first_name." ".$last_name,
+          "email" => $email,
+          "address" => $address,
+          "source" => $token
+        ));
+        
+        
+        header('Content-Type: application/json');
+        
+        $charge = \Stripe\Charge::create(array(
+          "amount" => ($POST['amount'])*100,
+          "currency" => "usd",
+          "description" => "order number: ".$POST['order_id'],
+          "customer" => $customer->id
+        ));
+
+        $transactionData = [
+          'transaction_id' => $charge->id,
+          'amount' => (($charge->amount)/100),
+          'currency' => $charge->currency,
+          'status' => $charge->status,
+          'payment_method' =>$charge->payment_method_details->card->network,
+          'last_4' => $charge->payment_method_details->card->last4,
+          'order_id'=>$order_id
+        ];
+        /* add transaction to payments */
+        $payment = new Payment();
+        $x = $payment->savePayment($transactionData);
+        /* update order status to 1 */
+        $order = new Order();
+        $y = $order->updateOrder_Payment_status($order_id);
+        header('location:vendor/success.php?tid='.$charge->id.'&product='.$charge->description);
+        /* here to optimise payment process */
+        
+        } catch(\Stripe\Exception\CardException $e) {
+          // Since it's a decline, \Stripe\Exception\CardException will be caught
+          echo 'Status is:' . $e->getHttpStatus() . '\n';
+          echo 'Type is:' . $e->getError()->type . '\n';
+          echo 'Code is:' . $e->getError()->code . '\n';
+          // param is '' in this case
+          echo 'Param is:' . $e->getError()->param . '\n';
+          echo 'Message is:' . $e->getError()->message . '\n';
+        } catch (\Stripe\Exception\RateLimitException $e) {
+          // Too many requests made to the API too quickly
+        } catch (\Stripe\Exception\InvalidRequestException $e) {
+          // Invalid parameters were supplied to Stripe's API
+        } catch (\Stripe\Exception\AuthenticationException $e) {
+          // Authentication with Stripe's API failed
+          // (maybe you changed API keys recently)
+        } catch (\Stripe\Exception\ApiConnectionException $e) {
+          // Network communication with Stripe failed
+        } catch (\Stripe\Exception\ApiErrorException $e) {
+          // Display a very generic error to the user, and maybe send
+          // yourself an email
+        } catch (Exception $e) {
+          // Something else happened, completely unrelated to Stripe
+        }
+        
+
+
+        break;
 
         
         default:

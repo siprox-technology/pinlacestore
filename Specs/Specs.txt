@@ -37,18 +37,20 @@ id,number,address,city,state,country,postCode,
 FK_user_id_addr_user,
 
 ---------------------------------
-ShoppingCart:
-id,
-FK_user_id_shop_user,
-FK_inventory_id_shop_inven,
-quntity
 
---------------------------------
 Order:
 id,date,created_at,updated_at,status,
 FK_user_id_order_user,
-FK_inventory_id_order_inven,
 FK_address_id_order_address,
+delivery_price,
+total_price,
+
+--------------------------------
+
+order_items:
+id, FK_inventory_id_items_inven,
+,quantity,price,
+FK_order_id_items_order
 
 ----------------------------------------
 
