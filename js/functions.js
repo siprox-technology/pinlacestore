@@ -2840,6 +2840,5 @@ $(document).on("click", "#confirm_order_btn", function(event) {
 
 //refresh the page after clicking countinue shopping
 $('#paymentModal #close').on('click',function(){
-/*     $('#paymentModal').modal('hide'); */
     location.reload();
 })

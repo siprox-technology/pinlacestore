@@ -81,15 +81,10 @@ class Order{
             return false;
         }
     }
-
-    public function getOrderId()
+    
+    public function getOrders()
     {
-
-    }
-
-    public function deleteOrder()
-    {
-
+        
     }
     
 }

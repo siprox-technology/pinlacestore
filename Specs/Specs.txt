@@ -77,10 +77,9 @@ Possible functionalities:
 -sort by price, discount***
 -display product details page with available colors and sizes.***
 -display price according to selected color and sizes by user***
--User makes an order and pay.
--User add product to wish list.
--user add review to items bought.
--signup to newsLetter.
+-User makes an order and pay--
+-User add product to wish list--
+-user add review to items bought--
 *****************************************
 Front end structure:
 1-Home page: 
