@@ -560,10 +560,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
   </div>
 </div>
 
-   <!-- Button to Open the Modal -->
-   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal">
-      Open modal
-   </button>
+
     <?php  include_once 'inc/footer.php';
     include_once 'inc/scripts.php'?>
     <script>getShoppingBasketDetails()</script>
