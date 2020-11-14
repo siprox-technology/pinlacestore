@@ -2788,9 +2788,13 @@ $('#delivery_addresses').on('change',function(){
         .addClass('button btn-primary mt-3');
     }
 })
+$(document).on("click", "#confirm_order_btn", function(event) {
+    saveOrder();
+});
 
 //save order info and delete shopping basket then ask to proceed to payment
-$(document).on("click", "#confirm_order_btn", function(event) {
+function saveOrder()
+{
     //prepare basket items 
     var basket_items= [];
     for(i=0; i<$('#basket_items').children().length;i++)
@@ -2822,20 +2826,29 @@ $(document).on("click", "#confirm_order_btn", function(event) {
         success: function (response) {
             $('.loader').css('display', 'none');
             result = JSON.parse(response);
-           switch(result[0])
-           {
-               case 'order save success':
-                $('#order_id_for_payment').val(result[1]);
-                $('#paymentModal').modal({backdrop: 'static', keyboard: false});
-                   
-               break;
+            switch(result[0])
+            {
+                case 'order save success':
+                    $('#order_process_error').text("");
+                    $('#order_id_for_payment').val(result[1]);
+                    $('#paymentModal').modal({backdrop: 'static', keyboard: false});
+                        
+                break;
 
-               default:
-                   break;
-           }
+                case 'order save failed':
+                    $('#order_process_error').text('Order can not be processed !');
+                break;
+
+                case 'order save failed-inventory or cart object':
+                    $('#order_process_error').text('Order can not be processed now! Please try again later');
+                break;
+
+                default:
+                    break;
+            }
         },
     });
-});
+}
 
 
 //refresh the page after clicking countinue shopping

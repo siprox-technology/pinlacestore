@@ -20,3 +20,7 @@
 - when adding items to basket 'something wrong with server error' comes on. two items identical saves i+in basket
 - total price shows lots of decimal points 
 - no need to refresh when items quantity not available
+-cookie items number in mobile view
+-mobile view rights scroll bar issue
+
+PDO::__construct(): send of 5 bytes failed with errno=32 Broken pipe

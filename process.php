@@ -688,6 +688,7 @@ else
         break;
 
         case 'save order':
+            //validate order items
             $POST['order_items'] = json_decode($_POST['order_items']);
             $order_items_count= count($POST['order_items']);
             for($i=0; $i<$order_items_count;$i++)
@@ -702,49 +703,51 @@ else
                     $POST['order_items']= false;
                 }
             }
-            
+            //validate order info
             $POST['user_id'] = ($validate->validateDigits($_POST['user_id']))==true?$_POST['user_id']:false;
             $POST['address_id'] = ($validate->validateSize($_POST['address_id']))==true?$_POST['address_id']:false;
             $POST['delivery_price'] = ($validate->validateAnyname($_POST['delivery_price']))==true?$_POST['delivery_price']:false;
             $POST['total_price'] = ($validate->validateDigits($_POST['total_price']))==true? $_POST['total_price']:false;          
             // save order with order items
-            try
+            require_once('models/Order.php');
+            require_once('models/Cart.php');
+            require_once('models/Inventory.php');
+            $newOrder = new Order();
+            $shopping_cart = new Cart();
+            $inventory = new Inventory();
+            $result = [];
+            $isUpdated = false;
+            //if order saves success delete basket
+            $order_id = $newOrder->saveOrder($POST);
+            if($order_id)
             {
-                require_once('models/Order.php');
-                require_once('models/Cart.php');
-                require_once('models/Inventory.php');
-                $newOrder = new Order();
-                $shopping_cart = new Cart();
-                $inventory = new Inventory();
-                $result = [];
-                //if order saves success delete basket
-                $order_id = $newOrder->saveOrder($POST);
-                if($order_id)
+                //update inventory and delete shopping cart
+                for($i=0;$i<count($POST['order_items']);$i++)
                 {
-                    //update inventory delete shopping cart
-                    for($i=0;$i<count($POST['order_items']);$i++)
-                    {
-                        $shopping_cart->delete($POST['order_items'][$i][0]);
-                        $inventory->update_quantity($POST['order_items'][$i][1],(($POST['order_items'][$i][2])*(-1)));
-                    }
+                    $isUpdated = $inventory->update_quantity($POST['order_items'][$i][1],(($POST['order_items'][$i][2])*(-1)));
+                    if($isUpdated == false) {break;}
+                    $shopping_cart->delete($POST['order_items'][$i][0]);
 
+                }
+                if($isUpdated)
+                {
                     $result[0]='order save success';
                     $result[1] = $order_id;
                 }
                 else
                 {
-                    $result[0]='order save failed';
+                    $newOrder->deleteOrder($order_id);
+                    $result[0]='order save failed-inventory or cart object';
                 }
-                
             }
-            catch(Exception $e)
+            else
             {
-                $result[0]='server error';
+                $result[0]='order save failed';
             }
             echo json_encode($result);
         break;
         
-        // payment request to stripe API
+        // payment request to stripe API here to payment-------
 
         case 'payment':      
             require_once('vendor/autoload.php');

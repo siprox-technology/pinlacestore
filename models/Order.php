@@ -9,25 +9,45 @@ class Order{
 
     public function saveOrder($data)
     {
+        //temp var 
+        $temp = false;
         //save order
-        $query = "INSERT INTO orders 
-        (delivery_price,total_price
-        ,FK_user_id_order_user,
-        FK_address_id_order_address) VALUES
-        ("."'".$data['delivery_price']."'".
-        ",'".$data['total_price']."','".
-        $data['user_id']."','".$data['address_id']."');";
-        $this->db->query($query);     
-
-        if(($this->db->execute()) && ($this->db->rowCount()>0)) 
+        try{
+            $query = "INSERT INTO orders 
+            (delivery_price,total_price
+            ,FK_user_id_order_user,
+            FK_address_id_order_address) VALUES
+            ("."'".$data['delivery_price']."'".
+            ",'".$data['total_price']."','".
+            $data['user_id']."','".$data['address_id']."');";
+            $this->db->query($query);
+            if(($this->db->execute()) && ($this->db->rowCount()>0))
+            {
+                $temp = true;
+            }
+            else
+            {
+                $temp = false;
+            }
+        }    
+        catch(Exception $e)
         {
+            $temp = false;
+        }
+        if($temp == false)
+        {
+            return false;
+        }
+        //if save order is success proceed to save order items
+        try
+        {   
             //get last inserted id from order
             $order_id = $this->db->lastInsertId();
             $row_count = 0;
             // insert items in order_items
             for($i=0; $i<count($data['order_items']); $i++)
             {
-                $query = "INSERT INTO order_items 
+                $query = "INSERT INTO order_items
                 (FK_inventory_id_items_inven,FK_order_id_items_order
                 ,quantity,
                 price) VALUES
@@ -41,31 +61,47 @@ class Order{
                 }
                 else
                 {
-                    //if can not insert order items delete last inserted order
-                    $query = "DELETE FROM orders WHERE id = ".$order_id;
-                    $this->db->query($query);
-                    $this->db->execute();
-                    return false;
+                    $temp = false;
                 }
             }
             //ensure all items in the basket added to order_items
             if($row_count == count($data['order_items']))
             {
-                return $order_id;
+                $temp = true;
             }
             else
             {
-                $query = "DELETE FROM orders WHERE id =".$order_id;
-                $this->db->query($query);
-                $this->db->execute();
-                return false;
-            }
-        } 
-        else 
+                $temp = false;
+            }    
+            
+        }
+        catch(Exception $e)
+        {
+            $temp = false;
+        }
+        //if temp = false remove last order
+        if($temp == false)
+        {
+            $this->deleteOrder($order_id);
+            return false;
+        }
+        else
+        {
+            return $order_id;
+        }
+    }
+    public function deleteOrder($id)
+    {
+        $query = "DELETE FROM orders WHERE id = ".$id;
+        $this->db->query($query);
+        if(($this->db->execute()) && ($this->db->rowCount()>0))
+        {
+            return true;
+        }
+        else
         {
             return false;
         }
-
     }
 
     public function updateOrder_Payment_status($id)

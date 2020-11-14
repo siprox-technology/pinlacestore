@@ -245,6 +245,12 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                <button class="button btn-dark margin10 d-none"  id="confirm_order_btn">Confirm order</button>
             </div>
          </div>
+         <!-- reporting error -->
+         <div class="row">
+            <div class="col-12">
+               <h3 id="order_process_error" class="text-danger"></h3>
+            </div>
+         </div>
       </div>
    </div>
 </section>
