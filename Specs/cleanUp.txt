@@ -24,3 +24,6 @@
 -mobile view rights scroll bar issue
 
 PDO::__construct(): send of 5 bytes failed with errno=32 Broken pipe
+
+-if can direct user to shop after login is required
+-catch http errors like 500
