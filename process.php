@@ -755,7 +755,7 @@ else
             require_once('lib/pdo_db.php');
             require_once('models/Payments.php');
             require_once('models/Order.php');
-            
+            require_once('lib/mail.php');
             // This is your real test secret API key.
             \Stripe\Stripe::setApiKey('sk_test_51HcWlxGzZBtnGj1lUdweCw4OboX34Ku0oaXsjzQ06qygmZRlileOThhDPjB3nF2PMjeCdEoCstRi3CvUTFLrR5KP00A7XFd8hP');
             
@@ -893,9 +893,14 @@ else
 
                 $payment = new Payment();
                 $order = new Order();
+                $newMail = new Mail();
                 $x = $payment->savePayment($transactionData);
                 $y = $order->updateOrder_Payment_status($order_id);
                 //---------------testing---------------------------
+                
+                $z = $newMail->send_order_confirmation($email,$transactionData);
+
+
 
                 $payment_status = "payment success";
                 header('location:payment-result.php?status='.$payment_status.

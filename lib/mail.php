@@ -41,6 +41,27 @@ require_once("config/email-info.php");
       {
         return false;
       }
-   }
+    }
+    public function send_order_confirmation($to_email,$data)
+    {
+      $this->to = $to_email;
+      if(mail($this->to,'Order number: '.$data['order_id'] .
+      ' confirmation',
+      '<h3>Your order has been successfully submitted with the following information:</h3>.<br>'.
+      'Order number: '.'<b>'.$data['order_id'].'</b><br>'.
+      'Payment transaction ID: '.'<b>'.$data['transaction_id'].'</b><br>'.
+      'Amount: '.'<b>$'.$data['amount'].'</b><br>'.
+      'Payment method: '.'<b>'.$data['payment_method'].'****'.$data['last_4'].'</b><br>',
+      $this->headers))
+      {
+        return true;
+      }
+      else
+      {
+        return false;
+      }
+
+    }
+
 
   }
