@@ -747,7 +747,7 @@ else
             echo json_encode($result);
         break;
         
-        // payment request to stripe API here to payment-------
+        // payment request to stripe API
 
         case 'payment':      
             require_once('vendor/autoload.php');
@@ -759,10 +759,11 @@ else
             // This is your real test secret API key.
             \Stripe\Stripe::setApiKey('sk_test_51HcWlxGzZBtnGj1lUdweCw4OboX34Ku0oaXsjzQ06qygmZRlileOThhDPjB3nF2PMjeCdEoCstRi3CvUTFLrR5KP00A7XFd8hP');
             
-            $payment_status = '';
+            $payment_status[] = '';
+            $temp = false;
+            $stripe_customer_id = '';
             // Sanitize POST Array
             $POST = filter_var_array($_POST, FILTER_SANITIZE_STRING);
-            
             $name = ($validate->validateAnyname($POST['name'])==true)?$POST['name']:false;
             $email = ($validate->validateEmail($POST['email'])==true)?$POST['email']:false;
             $address_line_1 = ($validate->validateAnyname($POST['address_line_1'])==true)?$POST['address_line_1']:false;
@@ -779,32 +780,29 @@ else
                 "country" => $country,
                 "postal_code"=>$zip
             ];
-            try{
+            //----new code starts--
 
-                // create customer and charge
-                try{
+            if(
+            (($name == true)&&
+            ($email == true)&&
+            ($address_line_1 == true)&&
+            ($country == true)&&
+            ($zip == true)&&
+            ($amount == true)&&
+            ($user_id == true)&&
+            ($order_id == true)&&
+            ($POST == true))
+            ){
+                //add customer
+                try
+                {
                     $customer = \Stripe\Customer::create(array(
                         "name" =>$name,
                     "email" => $email,
                     "address" => $address,
                     "source" => $token
                     ));
-
-                    header('Content-Type: application/json');
-                    $charge = \Stripe\Charge::create(array(
-                    "amount" => ($POST['amount'])*100,
-                    "currency" => "usd",
-                    "description" => "order number: ".$POST['order_id'],
-                    "customer" => $customer->id
-                    ));
-                    $transactionData = [
-                        'transaction_id' => $charge->id,
-                        'amount' => (($charge->amount)/100),
-                        'currency' => $charge->currency,
-                        'payment_method' =>$charge->payment_method_details->card->network,
-                        'last_4' => $charge->payment_method_details->card->last4,
-                        'order_id'=>$order_id
-                        ];
+                    $stripe_customer_id = $customer->id;
                 }
                 catch(\Stripe\Exception\CardException $e) 
                 {
@@ -817,15 +815,88 @@ else
                     //An error occurred while processing your card. Try again in a little bit.
                     $payment_status = 'Payment failed: '.$e->getMessage();
                     header('location:payment-result.php?status='.$payment_status);
-                break;
+                    break;
                 } 
+                catch(Exception $e)
+                {
+                    $payment_status = 'payment failed : can not add customer';
+                    header('location:payment-result.php?status='.$payment_status);
+                    break;
+                }
+            }
+            else
+            {
+                $payment_status = 'payment failed : parameters invalid';
+                header('location:payment-result.php?status='.$payment_status);
+                break;
+            }
+    
+            //charge 
+            try{
+                header('Content-Type: application/json');
+                $charge = \Stripe\Charge::create(array(
+                "amount" => ($POST['amount'])*100,
+                "currency" => "usd",
+                "description" => "order number: ".$POST['order_id'],
+                "customer" => $customer->id
+                ));
+                $transactionData = [
+                    'transaction_id' => $charge->id,
+                    'amount' => (($charge->amount)/100),
+                    'currency' => $charge->currency,
+                    'payment_method' =>$charge->payment_method_details->card->network,
+                    'last_4' => $charge->payment_method_details->card->last4,
+                    'order_id'=>$order_id
+                    ];
+            }
+            catch(\Stripe\Exception\CardException $e) 
+            {
+                //The zip code you supplied failed validation.
+                //Your card's security code is incorrect.
+                //Your card has insufficient funds.
+                //Your card was declined.
+                //Your card has expired.
+                //Your card's security code is incorrect.
+                //An error occurred while processing your card. Try again in a little bit.
+                
+                //delete customer if charge fails
+                $stripe = new \Stripe\StripeClient(
+                    'sk_test_51HcWlxGzZBtnGj1lUdweCw4OboX34Ku0oaXsjzQ06qygmZRlileOThhDPjB3nF2PMjeCdEoCstRi3CvUTFLrR5KP00A7XFd8hP'
+                    );
+                    $stripe->customers->delete(
+                    $stripe_customer_id,
+                    []
+                    );
+                $payment_status = 'Payment failed: '.$e->getMessage();
+                header('location:payment-result.php?status='.$payment_status);
+                break;
+            } 
+            catch(Exception $e)
+            {
+                //delete customer if charge fails
+                $stripe = new \Stripe\StripeClient(
+                    'sk_test_51HcWlxGzZBtnGj1lUdweCw4OboX34Ku0oaXsjzQ06qygmZRlileOThhDPjB3nF2PMjeCdEoCstRi3CvUTFLrR5KP00A7XFd8hP'
+                    );
+                    $stripe->customers->delete(
+                    $stripe_customer_id,
+                    []
+                    );
+                $payment_status = 'Payment failed: please try again later';
+                header('location:payment-result.php?status='.$payment_status);
+                break;
+            }
 
-                /* add transaction to payments */
+            //save payment info
+            try
+            {
+                /* add transaction to payments-***- keep testing ****/
+
                 $payment = new Payment();
-                $x = $payment->savePayment($transactionData);
-                /* update order status to 1 */
                 $order = new Order();
+                $x = $payment->savePayment($transactionData);
                 $y = $order->updateOrder_Payment_status($order_id);
+                //---------------testing---------------------------
+
                 $payment_status = "payment success";
                 header('location:payment-result.php?status='.$payment_status.
                 '&tid='.$transactionData['transaction_id'].
@@ -833,13 +904,16 @@ else
                 $transactionData['currency'].'&payment_method='.
                 $transactionData['payment_method'].'&last_4='.
                 $transactionData['last_4'].'&order_id='.$transactionData['order_id']);
-            } 
-            catch (Exception $e) 
+            }
+            catch(Exception $e)
             {
-                $payment_status = 'Payment success but could not save payment'.$e->getMessage();
+
+                $payment_status = 'Payment success: Payment info could not be saved in system'.$e->getMessage();;
                 header('location:payment-result.php?status='.$payment_status);
-            break;
-            }     
+                break;
+            }
+
+            //---new code ends--
         break;
 
         

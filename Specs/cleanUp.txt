@@ -23,7 +23,7 @@
 -cookie items number in mobile view
 -mobile view rights scroll bar issue
 
-PDO::__construct(): send of 5 bytes failed with errno=32 Broken pipe
+- check persistent connection error on process.php line commented as' testing'
 
 -if can direct user to shop after login is required
 -catch http errors like 500

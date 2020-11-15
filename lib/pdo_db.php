@@ -21,11 +21,11 @@ class Database {
 		// Set DSN
 		$dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbname;
 		$options = array (
-			PDO::ATTR_PERSISTENT => true,
-			PDO::ATTR_TIMEOUT => 3600,
+			PDO::ATTR_PERSISTENT => false,
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION 
 		);
-    
+		//try couple of times for connection
+		$counter = 0;
 		// Create a new PDO instanace
 		try {
 			$this->dbh = new PDO ($dsn, $this->user, $this->pass, $options);
