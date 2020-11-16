@@ -2832,7 +2832,6 @@ function saveOrder()
                     $('#order_process_error').text("");
                     $('#order_id_for_payment').val(result[1]);
                     $('#paymentModal').modal({backdrop: 'static', keyboard: false});
-                        
                 break;
 
                 case 'order save failed':
@@ -2855,3 +2854,77 @@ function saveOrder()
 $('#paymentModal #close').on('click',function(){
     location.reload();
 })
+
+// get all orders and payment for a user
+
+function getAllOrders(){
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'get all orders',
+            _token: $('#_token').val()
+        },
+        beforeSend: function () {
+        },
+        success: function (response) {
+
+            result = JSON.parse(response);
+            
+            switch(result[0])
+            {
+                case true:
+                    for(i=0; i<result[1].length; i++)
+                    {
+                        payment_method = '';
+                        payment_reference ='';
+                        if((result[1][i].status)== '1')
+                        {
+                            for(j=0; j<result[2].length; j++)
+                            {
+                                if((result[2][j].FK_order_id_pay_order)==(result[1][i].id))
+                                {
+                                    payment_method = (result[2][j].payment_method)+'****'+(result[2][j].last_four_digit);  
+                                    payment_reference = result[2][j].payment_ref;
+                                }
+                            }
+                        }
+                    $('#order_history').append(
+                        "<tr id='"+result[1][i].id+"'>"+ 
+                        "<td>"+
+                            "<h4 class='default-color text-center'>"+result[1][i].id+"</h4>"+
+                        "</td>"+
+                        "<td class='text-center'>"+
+                            "<h4 class='default-color text-center'>"+result[1][i].total_price+"</h4>"+
+                        "</td>"+
+                        "<td>"+
+                            "<h4 class='default-color text-center'>"+result[1][i].created_at+"</h4>"+                             
+                        "</td>"+
+                        "<td>"+
+                            "<h4 class='"+((result[1][i].status)=='1'?'text-center text-success':'text-center text-danger')+"'>"+((result[1][i].status)=='1'?"Complete":"Pending")+"</h4>"+                                    
+                        "</td>"+
+                        "<td>"+
+                            "<h4 class='default-color text-center'>"+payment_method+"</h4>"+
+                        "</td>"+
+                        "<td>"+
+                            "<h4 class='default-color text-center'>"+payment_reference+"</h4>"+
+                        "</td>"+
+                        "<td>"+
+                            "<button type='button' class='"+((result[1][i].status)=='1'?'button btn-primary mt-3 d-none':'button btn-primary mt-3')+"'"+">Pay</button>"+                                  
+                        "</td>"+
+                    "</tr>"
+                    );
+                    }
+                break;
+
+                case false:
+                break;
+
+                default:
+                    break;
+            }
+        },
+    });
+
+}
+

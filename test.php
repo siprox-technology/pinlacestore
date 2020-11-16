@@ -1,7 +1,9 @@
 <?php 
 
-require_once ('lib/mail.php');
+require_once ('models/Order.php');
 
-$newMail = new Mail();
+$newMail = new Order();
 
-$newMail->send_order_confirmation('integralproject1988@gmail.com',);
+$t = $newMail->getOrders(68);
+
+$x = 0;

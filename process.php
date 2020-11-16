@@ -889,8 +889,7 @@ else
             //save payment info
             try
             {
-                /* add transaction to payments-***- keep testing ****/
-
+                /*------------keep testing-------- */
                 $payment = new Payment();
                 $order = new Order();
                 $newMail = new Mail();
@@ -898,10 +897,9 @@ else
                 $y = $order->updateOrder_Payment_status($order_id);
                 //---------------testing---------------------------
                 
+                //email confirmation to user
                 $z = $newMail->send_order_confirmation($email,$transactionData);
-
-
-
+              
                 $payment_status = "payment success";
                 header('location:payment-result.php?status='.$payment_status.
                 '&tid='.$transactionData['transaction_id'].
@@ -912,13 +910,47 @@ else
             }
             catch(Exception $e)
             {
-
                 $payment_status = 'Payment success: Payment info could not be saved in system'.$e->getMessage();;
                 header('location:payment-result.php?status='.$payment_status);
                 break;
             }
 
             //---new code ends--
+        break;
+
+        //get all orders
+
+        case 'get all orders':
+            require_once('models/Payments.php');
+            require_once('models/Order.php');
+            $result = [];
+            try{
+                $orders = new Order();
+                $payments = new Payment();
+                $order_info = $orders->getOrders($_SESSION['id']);
+                $payment_info = $payments->getPayments($order_info);
+                if(($order_info)&&($payment_info))
+                {
+                    $result[0] = true;
+                    $result[1] = $order_info;
+                    $result[2] = $payment_info;
+                    echo json_encode($result);
+                }
+                else
+                {
+                    $result[0] = false;
+                    $result[1] = "unable to get order or payment info";
+                    echo json_encode($result);
+                }
+                
+            }
+            catch(Exception $e)
+            {
+                $result[0] = false;
+                $result[1] = "database error";
+                echo json_encode($result);
+            }
+
         break;
 
         

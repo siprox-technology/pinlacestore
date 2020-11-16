@@ -118,9 +118,18 @@ class Order{
         }
     }
     
-    public function getOrders()
+    public function getOrders($id)
     {
-        
+        try{
+            $query = "SELECT * FROM orders where FK_user_id_order_user=".$id." ORDER BY created_at asc";
+            $this->db->query($query);
+            $results = $this->db->resultset();
+            return $results;
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
     }
     
 }

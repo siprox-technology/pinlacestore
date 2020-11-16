@@ -27,3 +27,4 @@
 
 -if can direct user to shop after login is required
 -catch http errors like 500
+-review try and catch in object functions and in process.php

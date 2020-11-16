@@ -55,52 +55,8 @@ session_regenerate_id();
                                     <th class="darkcolor"></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <h4 id="order_number" class="default-color text-center">63</h4>
-                                    </td>
-                                    <td class="text-center">
-                                        <h4 id="order_total_price" class="default-color text-center">$325.99</h4>
-                                    </td>
-                                    <td>
-                                        <h4 id="order_submit_date" class="default-color text-center">27/02/2020</h4>                                   
-                                    <td>
-                                        <h4 id="order_payment_status" class="text-success text-center">Complete</h4>                                    
-                                    </td>
-                                    <td>
-                                        <h4 id="order_payment_method" class="default-color text-center">Debit ***4567</h4>
-                                    </td>
-                                    <td>
-                                        <h4 id ="order_payment_reference"class="default-color text-center">36457281</h4>
-                                    </td>
-                                    <td>
-                                        <button type="button" id="order_details_btn" value="" class="button btn-primary mt-3">Details</button>                                    
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>
-                                        <h4 id="order_number" class="default-color text-center">63</h4>
-                                    </td>
-                                    <td class="text-center">
-                                        <h4 id="order_total_price" class="default-color text-center">$325.99</h4>
-                                    </td>
-                                    <td>
-                                        <h4 id="order_submit_date" class="default-color text-center">27/02/2020</h4>                                    </td>
-                                    <td>
-                                        <h4 id="order_payment_status" class="text-danger text-center">Pending</h4>                                    </td>
-                                    </td>
-                                    <td>
-                                        <h4 id="order_payment_method" class="default-color text-center">Debit ***4567</h4>
-                                    </td>
-                                    <td>
-                                        <h4 id ="order_payment_reference"class="default-color text-center">36457281</h4>
-                                    </td>
-                                    <td>
-                                        <button type="button" id="order_details_btn" value="" class="button btn-primary mt-3">Details</button>                                    
-                                    </td>
-                                </tr>
+                            <tbody id = "order_history">
+                            <!-- order information goes here -->
                             </tbody>
                         </table>
                     </div>
@@ -108,9 +64,12 @@ session_regenerate_id();
             </div>
         </div>
     </section>
+    <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
+
     <!--wish list ends-->
     <?php  include_once 'inc/footer.php';
     include_once 'inc/scripts.php'?>
+    <script>getAllOrders()</script>
 </body>
 
 </html>
