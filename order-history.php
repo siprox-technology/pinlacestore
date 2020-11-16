@@ -48,11 +48,11 @@ session_regenerate_id();
                                 <tr>
                                     <th class="darkcolor">Order ID</th>
                                     <th class="darkcolor">Total Price</th>
-                                    <th class="darkcolor">Date</th>
-                                    <th class="darkcolor">Status</th>                                    
+                                    <th class="darkcolor">Date</th>                                 
                                     <th class="darkcolor">Payment method</th>
-                                    <th class="darkcolor">Payment reference</th>
+                                    <th class="darkcolor">Payment reference</th> 
                                     <th class="darkcolor"></th>
+                                    <th class="darkcolor">Status</th>  
                                 </tr>
                             </thead>
                             <tbody id = "order_history">
