@@ -2901,13 +2901,11 @@ function getAllOrders(){
                                 "<h4 class='default-color text-center'>"+result[1][i].created_at+"</h4>"+                             
                             "</td>"+
                             "<td>"+
-                                "<h4 class='default-color text-center'>"+payment_method+"</h4>"+
+                                ((result[1][i].status)=='1'?"<h4 class='default-color text-center'>"+payment_method+"</h4>":
+                                "<button type='button' class='button btn-primary mt-3'>Pay</button>")+
                             "</td>"+
                             "<td>"+
                                 "<h4 class='default-color text-center'>"+payment_reference+"</h4>"+
-                            "</td>"+
-                            "<td>"+
-                                "<button type='button' class='"+((result[1][i].status)=='1'?'button btn-primary mt-3 d-none':'button btn-primary mt-3')+"'"+">Pay</button>"+                                  
                             "</td>"+
                             "<td>"+
                             "<h4 class='"+((result[1][i].status)=='1'?'text-center text-success':'text-center text-danger')+"'>"+((result[1][i].status)=='1'?"Complete":"Pending")+"</h4>"+                                    

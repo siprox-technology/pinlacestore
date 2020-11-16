@@ -51,7 +51,6 @@ session_regenerate_id();
                                     <th class="darkcolor">Date</th>                                 
                                     <th class="darkcolor">Payment method</th>
                                     <th class="darkcolor">Payment reference</th> 
-                                    <th class="darkcolor"></th>
                                     <th class="darkcolor">Status</th>  
                                 </tr>
                             </thead>
