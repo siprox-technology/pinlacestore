@@ -41,6 +41,11 @@ class Payment{
                     array_push($results,$this->db->single());
                 }
             }
+            if(count($results)<1)
+            {
+                $results[0] = "";
+            }
+            
             return $results;
         }
         catch(Exception $e)

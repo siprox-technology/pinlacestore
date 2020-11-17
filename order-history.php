@@ -61,6 +61,8 @@ session_regenerate_id();
                     </div>
                 </div>
             </div>
+            <p class="text-danger m-0">*Full payment for pending orders must be completed within 24 hours.</p>
+            <p class="text-danger m-0">*Pending orders will be removed from this list after 24 hours.</p>
         </div>
     </section>
     <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
