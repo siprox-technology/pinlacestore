@@ -106,7 +106,7 @@ class Order{
 
     public function updateOrder_Payment_status($id)
     {
-        $query = "UPDATE orders set status = 1 where id=".$id;
+        $query = "UPDATE orders set status = 1,updated_at = CURRENT_TIMESTAMP() where id=".$id;
         $this->db->query($query);
         if($this->db->execute())
         {
@@ -121,7 +121,27 @@ class Order{
     public function getOrders($id)
     {
         try{
-            $query = "SELECT * FROM orders where FK_user_id_order_user=".$id." ORDER BY created_at asc";
+            $query = "SELECT * FROM orders where FK_user_id_order_user=".$id." ORDER BY created_at desc";
+            $this->db->query($query);
+            $results = $this->db->resultset();
+            return $results;
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
+    }
+
+    public function getOrderDetails($id)
+    {
+        try{
+            $query = "SELECT order_items.quantity,size,color,total_price,delivery_price,name,product.id,imgFolder from order_items inner join orders 
+            on order_items.FK_order_id_items_order = orders.id
+            inner join inventory 
+            on order_items.FK_inventory_id_items_inven = inventory.id
+            inner join product on
+            inventory.FK_product_id_inv_prod = product.id
+            where orders.id =".$id;
             $this->db->query($query);
             $results = $this->db->resultset();
             return $results;

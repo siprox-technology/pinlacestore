@@ -46,12 +46,12 @@ session_regenerate_id();
                         <table class="table table-bordered" id="order-history">
                             <thead>
                                 <tr>
-                                    <th class="darkcolor">Order ID</th>
-                                    <th class="darkcolor">Total Price</th>
-                                    <th class="darkcolor">Date</th>                                 
-                                    <th class="darkcolor">Payment method</th>
-                                    <th class="darkcolor">Payment reference</th> 
-                                    <th class="darkcolor">Status</th>  
+                                    <th class="darkcolor p-2">Order ID</th>
+                                    <th class="darkcolor p-2">Total Price</th>
+                                    <th class="darkcolor p-2">Date</th>                                 
+                                    <th class="darkcolor p-2">Payment method</th>
+                                    <th class="darkcolor p-2">Payment reference</th> 
+                                    <th class="darkcolor p-2">Status</th>  
                                 </tr>
                             </thead>
                             <tbody id = "order_history">
@@ -64,11 +64,34 @@ session_regenerate_id();
         </div>
     </section>
     <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
+    <!-- order details modal -->
 
-    <!--wish list ends-->
-    <?php  include_once 'inc/footer.php';
-    include_once 'inc/scripts.php'?>
-    <script>getAllOrders()</script>
+    <!-- The order details Modal -->
+    <div class="modal fade" id="order_details_modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header px-3 m-auto">
+                <h3 class="heading darkcolor font-light2">Order number : 
+                <span class="font-normal" id='order_id'></span>
+                    <span class="divider-center" style="width:90%"></span>
+                </h3>
+            </div>
+
+            <!-- Modal body -->
+                <div class="modal-body mx-3 pt-0 pb-4" id="order_items">
+                    <!-- items and prices-->
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
+include_once 'inc/stripe-modal.php'; 
+include_once 'inc/footer.php';
+include_once 'inc/scripts.php'
+?>
+<script>getAllOrders()</script>
 </body>
 
 </html>

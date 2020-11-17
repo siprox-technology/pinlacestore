@@ -921,6 +921,7 @@ else
         //get all orders
 
         case 'get all orders':
+
             require_once('models/Payments.php');
             require_once('models/Order.php');
             $result = [];
@@ -948,6 +949,47 @@ else
             {
                 $result[0] = false;
                 $result[1] = "database error";
+                echo json_encode($result);
+            }
+
+        break;
+
+        //get order details in order history
+
+        case 'get order details':
+            require_once('models/Order.php');
+            $order_id = ($validate->validateDigits($_POST['order_id']))==true?$_POST['order_id']:false;
+            $result = [];
+            if($order_id)
+            {
+                try{
+                    $orders = new Order();
+                    $order_info = $orders->getOrderDetails($order_id);
+                    if($order_info)
+                    {
+                        $result[0] = true;
+                        $result[1] = $order_info;
+                        echo json_encode($result);
+                    }
+                    else
+                    {
+                        $result[0] = false;
+                        $result[1] = "unable to get order info";
+                        echo json_encode($result);
+                    }
+                    
+                }
+                catch(Exception $e)
+                {
+                    $result[0] = false;
+                    $result[1] = "database error";
+                    echo json_encode($result);
+                }
+            }
+            else
+            {
+                $result[0] = false;
+                $result[1] = "invalid parameter";
                 echo json_encode($result);
             }
 

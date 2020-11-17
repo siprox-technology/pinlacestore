@@ -4,6 +4,6 @@ require_once ('models/Order.php');
 
 $newMail = new Order();
 
-$t = $newMail->getOrders(68);
+$t = $newMail->getOrderDetails(228);
 
 $x = 0;

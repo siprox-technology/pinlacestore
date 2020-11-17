@@ -2891,24 +2891,27 @@ function getAllOrders(){
                         }
                     $('#order_history').append(
                         "<tr id='"+result[1][i].id+"'>"+ 
-                            "<td>"+
+                            "<td class='p-2'>"+
                                 "<h4 class='default-color text-center'>"+result[1][i].id+"</h4>"+
                             "</td>"+
-                            "<td class='text-center'>"+
+                            "<td class='text-center p-2'>"+
                                 "<h4 class='default-color text-center'>"+result[1][i].total_price+"</h4>"+
                             "</td>"+
-                            "<td>"+
+                            "<td class='p-2'>"+
                                 "<h4 class='default-color text-center'>"+result[1][i].created_at+"</h4>"+                             
                             "</td>"+
-                            "<td>"+
+                            "<td class='p-2'>"+
                                 ((result[1][i].status)=='1'?"<h4 class='default-color text-center'>"+payment_method+"</h4>":
-                                "<button type='button' class='button btn-primary mt-3'>Pay</button>")+
+                                "<button id='"+result[1][i].id+"' value='"+result[1][i].total_price +"'type='button' class='button btn-primary payBtn'>Pay</button>")+
                             "</td>"+
-                            "<td>"+
+                            "<td class='p-2'>"+
                                 "<h4 class='default-color text-center'>"+payment_reference+"</h4>"+
                             "</td>"+
-                            "<td>"+
+                            "<td class='p-2'>"+
                             "<h4 class='"+((result[1][i].status)=='1'?'text-center text-success':'text-center text-danger')+"'>"+((result[1][i].status)=='1'?"Complete":"Pending")+"</h4>"+                                    
+                            "</td>"+
+                            "<td class='p-2'>"+
+                                "<button id='"+result[1][i].id+"' type='button' class='button btn-primary detailsBtn'>Details</button>"+
                             "</td>"+
                         "</tr>"
                     );
@@ -2925,4 +2928,78 @@ function getAllOrders(){
     });
 
 }
+
+
+//open payment modal to pay pending orders
+$(document).on("click", "#order_history button.payBtn", function(event) {
+    $('#paymentModal').modal({backdrop: 'static', keyboard: false});
+    $("#amount_for_payment").val(this.value);
+    $("#order_id_for_payment").val(this.id);
+})
+
+//open order details modal in order history
+
+$(document).on("click", "#order_history button.detailsBtn", function(event) {
+    $('#order_details_modal').modal();
+    order_id = this.id;
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'get order details',
+            _token: $('#_token').val(),
+            order_id: order_id
+        },
+        beforeSend: function () {
+        },
+        success: function (response) {
+
+            result = JSON.parse(response);
+            switch(result[0])
+            {
+                case true:
+                    numOfItems = result[1].length;
+                    $('#order_details_modal #order_items').empty();
+                    $('#order_details_modal #order_id').text(order_id);
+                    for(i=0; i<numOfItems;i++)
+                    {
+                        $('#order_details_modal #order_items').append(
+                            "<div class='row border-top mt-2'>"+
+                                "<div class='col-9'>"+
+                                    "<h4 class='mt-2'>"+result[1][i].name+"</h4>"+
+                                    "<h4 class='mt-2 font-light'>Quanity : <span>"+result[1][i].quantity+"</span></h4>"+
+                                    "<h4 class='mt-2 font-light'>Color : <span>"+result[1][i].color+"</span></h4>"+
+                                    "<h4 class='mt-2 font-light'>Size : <span>"+result[1][i].size+"</span></h4>"+
+                                "</div>"+
+                                "<div class='col-3'>"+
+                                    "<img src='images/img-list/"+result[1][i].imgFolder+"/"+result[1][i].id+"-thumb.jpg'"+ "class='w-100'>"+
+                                "</div>"+
+                            "</div>"
+                        );
+                    }
+                    $('#order_details_modal #order_items').append(
+                        "<div class='row border-top mt-2'>"+
+                            "<div class='col-6'>"+
+                                "<h4 class='mt-2'>Delivery price: </h4>"+
+                                "<h4 class='mt-2'>Total price: </h4>"+
+                            "</div>"+
+                            "<div class='col-6'>"+
+                                "<h4 class='mt-2 text-right'>"+result[1][0].delivery_price+"</h4>"+
+                                "<h4 class='mt-2 text-right'>"+result[1][0].total_price+"</h4>"+
+                            "</div>"+
+                        "</div>"
+                    );
+                break;
+
+                case false:
+                    $('#order_details_modal #order_items').empty().append('<h4 class="text-danger"> Unable to fetch order information </h4>');
+                break;
+
+                default:
+                    break;
+            }
+        },
+    });
+})
+
 
