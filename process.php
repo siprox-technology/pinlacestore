@@ -889,13 +889,11 @@ else
             //save payment info
             try
             {
-                /*------------keep testing-------- */
                 $payment = new Payment();
                 $order = new Order();
                 $newMail = new Mail();
                 $x = $payment->savePayment($transactionData);
                 $y = $order->updateOrder_Payment_status($order_id);
-                //---------------testing---------------------------
                 
                 //email confirmation to user
                 $z = $newMail->send_order_confirmation($email,$transactionData);

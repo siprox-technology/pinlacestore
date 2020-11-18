@@ -120,6 +120,8 @@ class Order{
     
     public function getOrders($id)
     {
+        //delete pending orders
+        $this->deletePendingOrders();
         try{
             $query = "SELECT * FROM orders where FK_user_id_order_user=".$id." ORDER BY created_at desc";
             $this->db->query($query);
@@ -144,6 +146,20 @@ class Order{
             where orders.id =".$id;
             $this->db->query($query);
             $results = $this->db->resultset();
+            return $results;
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
+    }
+    //delete unpaid orders after 24 h = 86400 s
+    private function deletePendingOrders()
+    {
+        try{
+            $query = "DELETE FROM orders WHERE status = '0' AND (now() - orders.created_at) > '86400' ";
+            $this->db->query($query);
+            $results = $this->db->execute();
             return $results;
         }
         catch(Exception $e)
