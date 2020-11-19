@@ -176,5 +176,24 @@ class User{
           return false;
         }
     }  
+
+    public function updateContactPref($data)
+    {
+        // Prepare Query
+        $this->db->query('UPDATE user set contacPref = :contactPref
+        where id = :id'); 
+
+
+        // Bind Values
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':contactPref', $data['contactPref']);
+ 
+        // Execute
+        if(($this->db->execute()) && ($this->db->rowCount()>0)) {
+          return true;
+        } else {
+          return false;
+        }
+    }
 }
 ?>

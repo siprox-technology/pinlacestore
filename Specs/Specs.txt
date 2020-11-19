@@ -70,7 +70,7 @@ Possible functionalities:
 -user profile update account details***
 -user change password.***
 -user add and remove addresses.***
--user change contact preferences--
+-user change contact preferences***
 -search products by brand and caregory name ***
 -sort products by brands,gender,
   category,size,color,price,discount***

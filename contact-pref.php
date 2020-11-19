@@ -30,13 +30,14 @@ session_regenerate_id();
     ?>
     <!-- contact preferences -->
     <section id="contact-pref-section" class="bglight position-relative padding noshadow">
-        <div class="row justify-content-center">
-            <a class="" href="user-profile.php"><i class="fas fa-arrow-left"></i></a>
-        </div>
         <div class="container whitebox">
-            <div class="row justify-content-center">
-                <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Contact</span>
-                 preferences
+            <div class="col-md-12 text-center wow fadeIn mt-n3" data-wow-delay="300ms" style="visibility: visible;">
+                <div class="row justify-content-center">
+                    <a class="" href="user-profile.php"><i class="fas fa-arrow-left"></i></a>
+                </div>
+                <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Contact
+                    </span>
+                    Preferences
                     <span class="divider-center"></span>
                 </h2>
             </div>
@@ -45,43 +46,25 @@ session_regenerate_id();
                 Please tell us how you would like to be contacted.
                 </p>
             </div>
-            <div class="owl-carousel owl-theme" id="contact-pref-slider">
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="details-box text-center w-100 det-box" id="contact-item" data-wow-delay="300ms" data-sale="60">
-                            <h3 class="font-light darkcolor">SMS</h3>
-                            <p class="bottom30">The standard version</p>
-                            <input class="form-check-input m-0" type="checkbox" value="" id="sms-option">
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="details-box text-center w-100 det-box" id="contact-item" data-wow-delay="380ms" data-sale="40">
-                            <h3 class="font-light darkcolor">EMAIL</h3>
-                            <p class="bottom30">The standard version</p>
-                            <input class="form-check-input m-0" type="checkbox" value="" id="email-option"                          </div>
-                       </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="col-md-12">
-                        <div class="details-box text-center w-100 det-box" id="contact-item" data-wow-delay="460ms" data-sale="30">
-                            <h3 class="font-light darkcolor">PHONE</h3>
-                            <p class="bottom30">The standard version</p>
-                            <input class="form-check-input m-0" type="checkbox" value="" id="phone-option">
-                          </div>
-                        </div>
-                    </div>
+            <!-- contact options -->
+            <div class="form-group text-center" id="contact_pref_options">
+                <p style="font-size:0.875rem" class="text-center">Contact Preferences: </p>
+                <label><input class="m-1" type="radio" name="contactPref" value="0">SMS</label>
+                <label><input class="m-1" type="radio" name="contactPref" value="1">Email</label>
+                <label><input class="m-1" type="radio" name="contactPref" value="2">Phone</label>
+            </div>
+            <!-- result -->
+            <div class="row justify-content-center mt-4">
+                <div class="d-flex flex-column">
+                    <button class="button btn-primary mb-sm-0 bottom15"id='update_contact_pref_btn' disabled>update</button>
+                    <label class="text-success mt-3 float-center text-center d-none" id="save-contact-det-result"></label>
                 </div>
             </div>
-            <div class="row justify-content-center mt-2">
-                <!-- result label -->
-                <label class="text-success mt-3 float-center" id="save-contact-det-result">success</label>
-            </div>
+
         </div>
     </section>
     <!--contact prefernces ends-->
+    <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
 
     <?php  include_once 'inc/footer.php';
     include_once 'inc/scripts.php'?>

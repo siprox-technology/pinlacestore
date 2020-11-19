@@ -748,7 +748,6 @@ else
         break;
         
         // payment request to stripe API
-
         case 'payment':      
             require_once('vendor/autoload.php');
             require_once('config/db.php');
@@ -917,7 +916,6 @@ else
         break;
 
         //get all orders
-
         case 'get all orders':
 
             require_once('models/Payments.php');
@@ -953,7 +951,6 @@ else
         break;
 
         //get order details in order history
-
         case 'get order details':
             require_once('models/Order.php');
             $order_id = ($validate->validateDigits($_POST['order_id']))==true?$_POST['order_id']:false;
@@ -992,6 +989,41 @@ else
             }
 
         break;
+
+        //change contact preferences
+        case 'change contact preferences':
+            $contactPref = ($validate->validateDigits($_POST['contact_pref']))==true?$_POST['contact_pref']:false;
+            $user_id = $_SESSION['id'];
+            $result = [];
+            if($contactPref !== false)
+            {
+                try
+                {
+                    require_once('models/User.php');
+                    $theUser = new User();
+                    $data=['id'=>$user_id, 'contactPref'=>$contactPref];
+
+                    if($theUser->updateContactPref($data))
+                    {
+                        $result[0] = true;
+                        $result[1] = 'success';
+                        echo json_encode($result);
+                    }
+                }
+                catch(Exception $e)
+                {
+                    $result[0] = false;
+                    $result[1] = 'database error';
+                    echo json_encode($result);
+                }
+            }
+            else
+            {
+                $result[0] = false;
+                $result[1] = 'invalid parameter';
+                echo json_encode($result);
+            }
+        break; 
 
         
         default:

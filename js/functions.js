@@ -211,59 +211,6 @@ jQuery($ => {
             }
         })
     }
-    /* sticky shopping cart */
-/*     let headerHeight = $("header").outerHeight();
-    let navbar = $("nav.navbar");
-    if (navbar.not('.fixed-bottom').hasClass("static-nav")) {
-        $window.scroll(function () {
-            let $scroll = $window.scrollTop();
-            let $navbar = $(".static-nav");
-            let nextSection = $(".section-nav-smooth");
-            if ($scroll > 250) {
-                $navbar.addClass("fixedmenu");
-                nextSection.css("margin-top", headerHeight);
-            } else {
-                $navbar.removeClass("fixedmenu");
-                nextSection.css("margin-top", 0);
-            }
-            if ($scroll > 125) {
-                $('.header-with-topbar nav').addClass('mt-0');
-            } else {
-                $('.header-with-topbar nav').removeClass('mt-0');
-            }
-        });
-        $(function () {
-            if ($window.scrollTop() >= $(window).height()) {
-                $(".static-nav").addClass('fixedmenu');
-            }
-        })
-    }
-    if (navbar.hasClass("fixed-bottom")) {
-        let navTopMargin = $(".fixed-bottom").offset().top;
-        let scrollTop = $window.scrollTop();
-        $(window).scroll(function () {
-            if ($(window).scrollTop() > navTopMargin) {
-                $('.fixed-bottom').addClass('fixedmenu');
-            } else {
-                $('.fixed-bottom').removeClass('fixedmenu');
-            }
-            if ($(window).scrollTop() < 260) {
-                $('.fixed-bottom').addClass('menu-top');
-            } else {
-                $('.fixed-bottom').removeClass('menu-top');
-            }
-        });
-        $(function () {
-            if (scrollTop < 230) {
-                $('.fixed-bottom').addClass('menu-top');
-            } else {
-                $('.fixed-bottom').removeClass('menu-top');
-            }
-            if (scrollTop >= $(window).height()) {
-                $('.fixed-bottom').addClass('fixedmenu');
-            }
-        })
-    } */
 
     /*Menu Onclick*/
     let sideMenuToggle = $("#sidemenu_toggle");
@@ -3001,5 +2948,53 @@ $(document).on("click", "#order_history button.detailsBtn", function(event) {
         },
     });
 })
+
+//update contact preferences
+$(document).on("click", "#contact_pref_options input", function(event) {
+    $('#update_contact_pref_btn').attr('disabled',false);
+});
+
+$('#update_contact_pref_btn').on('click', function(){
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'change contact preferences',
+            _token: $('#_token').val(),
+            contact_pref: $('#contact_pref_options input[name="contactPref"]:checked').val()
+        },
+        beforeSend: function () {
+            // Show preloader
+            $('.loader').css('display', 'block');
+        },
+        success: function (response) {
+            $('.loader').css('display', 'none');
+            result = JSON.parse(response);
+            switch(result[0])
+            {
+                case true:
+                    $("#save-contact-det-result").removeClass()
+                    .addClass('text-success mt-3 float-center text-center')
+                    .text('Your contact preferences updated successfully.');
+                    break;
+                
+                case false:
+                    $("#save-contact-det-result").removeClass()
+                    .addClass('text-danger mt-3 float-center text-center')
+                    .text('Unable to update your contact preferences !');
+                    break;
+
+                default:
+                    break;
+            }
+
+        },
+    });
+
+
+});
+
+
+
 
 
