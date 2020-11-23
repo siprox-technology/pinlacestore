@@ -15,9 +15,11 @@ updated_at
 
 ------------------------------
 Review:
+
+id,star_number,date
+text,
 FK_product_id_review_prod,
-id,reviewer_name,star_number,date
-title,text,is_recommend
+FK_user_id_review_user
 
 ---------------------------------
 

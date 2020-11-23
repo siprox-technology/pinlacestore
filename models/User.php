@@ -129,7 +129,7 @@ class User{
          :country, :postCode, :FK_user_id_addr_user) 
          AS tmp
          WHERE NOT EXISTS (
-         SELECT * FROM address WHERE number = :number
+         SELECT * FROM address WHERE number = :number AND FK_user_id_addr_user = :FK_user_id_addr_user
          ) LIMIT 1'); 
 
 

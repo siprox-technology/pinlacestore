@@ -4155,10 +4155,16 @@ iframe {
 /*styling for star rating*/
 
 .test-star {
-    font-size: 12px;
+    font-size: 16px;
     color: #ffc13c;
     cursor: pointer;
 }
+
+.yellow-star {
+    font-size: 16px;
+    color: #ffc13c;
+}
+
 
 #rattingIcon .fa-star {
     color: #ffc107;

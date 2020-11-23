@@ -1025,6 +1025,91 @@ else
             }
         break; 
 
+        //add product review
+        case 'add review':
+            //validate
+            $email = ($validate->validateEmail($_POST['email']))==true?$_POST['email']:false;
+            $rating = ($validate->validateAnyname($_POST['rating_text']))==true?$_POST['rating_text']:false;
+            $product_id = ($validate->validateDigits($_POST['product_id']))==true?$_POST['product_id']:false;
+            $text = $validate->sanitizeString($_POST['text']);
+            $result = [];
+            if(($email)&&($text)&&($rating))
+            {
+                try{
+                    require_once('models/Order.php');
+                    require_once('models/Review.php');
+                    $id = $_SESSION['id'];
+                    $theOrder = new Order();
+                    $theReview = new Review(); 
+                    if($theOrder->checkItemsBought($product_id,$email))
+                    {
+                        if($theReview->isSubmitted($id,$product_id))
+                        {
+                            echo 'You already submitted review for this product';
+                        }
+                        else
+                        {
+                            //calculate star rating
+                            switch($rating)
+                            {
+                                case 'Excellent':
+                                    $rating= '5';
+                                break;
+
+                                case 'Very Good':
+                                    $rating= '4';
+                                break;
+
+                                case 'Good':
+                                    $rating= '3';
+                                break;
+
+                                case 'Average':
+                                    $rating= '2';
+                                break;
+                                
+                                case 'Poor':
+                                    $rating= '1';
+                                break;
+
+                                case 'Please Select':
+                                    $rating= '0';
+                                break;
+
+                                default:
+                                    $rating= '0';
+                                break;
+
+                            }
+                            //add review to db
+                            if($theReview->addReview($rating,$text,$product_id,$id))
+                            {
+                                echo 'success';
+                            }
+                            else
+                            {
+                                echo 'unable to submit review';
+                            }
+                        }
+                    }
+                    else
+                    {
+                        echo 'item is not ordered before';
+                    }
+                }
+                catch(Exception $e)
+                {
+                    echo 'Database error';
+                }
+
+            }
+            else
+            {
+                echo 'invalid parameters';
+            }
+            
+        break;
+
         
         default:
         session_unset();

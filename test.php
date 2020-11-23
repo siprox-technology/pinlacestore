@@ -1,9 +1,5 @@
 <?php 
 
-require_once ('models/Order.php');
+session_start();
 
-$newMail = new Order();
-
-$t = $newMail->deletePendingOrders();
-
-$x = 0;
+var_dump($_SESSION);

@@ -133,7 +133,7 @@ class Validate{
             return true;
         }
     }
-    private function sanitizeString($var){
+    public function sanitizeString($var){
         if (get_magic_quotes_gpc()) {
             $var = stripslashes($var);
         } 

@@ -167,6 +167,30 @@ class Order{
             return false;
         }
     }
+
+    function checkItemsBought($id,$email){
+        try {
+            $query = "SELECT * from user where email='".$email. "' and id in
+            (SELECT FK_user_id_order_user from orders where id in
+            (SELECT FK_order_id_items_order from order_items where FK_inventory_id_items_inven in 
+            (SELECT id from inventory where FK_product_id_inv_prod =".$id.")));";
+            $this->db->query($query);
+           /*  $result = ; */
+                if(($this->db->single()) && ($this->db->rowCount()>0))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            } 
+            catch (\Throwable $th) 
+            {
+                return false;
+            }
+
+    }
     
 }
 

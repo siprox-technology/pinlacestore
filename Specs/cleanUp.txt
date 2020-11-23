@@ -26,3 +26,5 @@
 - check persistent connection error on process.php line commented as' testing'
 -catch http errors like 500
 -review try and catch in object functions and in process.php
+-related products images is not link to products details
+-favicon problem

@@ -87,19 +87,19 @@ jQuery($ => {
             ratingText.removeClass('scale-price');
             switch (n) {
                 case 0:
-                    ratingText.text('Poor!');
+                    ratingText.text('Poor');
                     break;
                 case 1:
-                    ratingText.text('Average!');
+                    ratingText.text('Average');
                     break;
                 case 2:
-                    ratingText.text('Good!');
+                    ratingText.text('Good');
                     break;
                 case 3:
-                    ratingText.text('Very Good!');
+                    ratingText.text('Very Good');
                     break;
                 case 4:
-                    ratingText.text('Excellent!');
+                    ratingText.text('Excellent');
             }
         }, 180);
     }
@@ -2994,6 +2994,80 @@ $('#update_contact_pref_btn').on('click', function(){
 
 });
 
+//add review
+                         
+$('#add_review_btn').on("click",function(){
+    if(
+    ($('#reviewer_email').val())&&
+    ($('#reviewer_comment_text').val())&&
+    ($('#ratingText').text()!==('Please Select')))
+        {
+            $('#review_submit_result').removeClass()
+            .addClass('d-none w-100 ')
+            .text('');
+            $.ajax({
+                url: 'process.php',
+                type: 'post',
+                data: {
+                    request_name: 'add review',
+                    _token: $('#_token').val(),
+                    email:$('#reviewer_email').val(),
+                    text:$('#reviewer_comment_text').val(),
+                    product_id:$('#product-id').val(),
+                    rating_text:$('#ratingText').text()
+                },
+                beforeSend: function () {
+                },
+                success: function (response) {
+                    switch(response)
+                    {
+                        case 'invalid parameters':
+                            $('#review_submit_result').removeClass()
+                            .addClass('w-100 text-danger')
+                            .text('Invalid parameters submitted. please check your inputs.');
+                        break;
+
+                        case 'Database error':
+                            $('#review_submit_result').removeClass()
+                            .addClass('w-100 text-danger')
+                            .text('Unable to submit review at the moment. Please try again later.');
+                        break;
+                        
+                        case 'item is not ordered before':
+                            $('#review_submit_result').removeClass()
+                            .addClass('w-100 text-danger')
+                            .text('You can only submit review for ordered items.');
+                        break;
+                        
+                        case 'You already submitted review for this product':
+                            $('#review_submit_result').removeClass()
+                            .addClass('w-100 text-danger')
+                            .text('You already submitted review for this product.');
+                        break;
+
+                        case 'unable to submit review':
+                            $('#review_submit_result').removeClass()
+                            .addClass('w-100 text-danger')
+                            .text('Unable to submit review at the moment. Please try again later.');
+                        break;
+
+                        case 'success':
+                            $('#review_submit_result').removeClass()
+                            .addClass('w-100 text-success')
+                            .text('Your review has been submitted successfully.');
+                        break;
+                    }        
+                },
+            });
+        }
+        else
+        {
+            $('#review_submit_result').removeClass()
+            .addClass('text-danger w-100 ')
+            .text('Please fill out all fields !');
+        }
+
+})
 
 
 

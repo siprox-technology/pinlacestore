@@ -248,7 +248,14 @@
                         <!-- shopping cart -->
                         <li class="shopping-cart">
                             <div id="cart-items-quantity">
-                                <p class ="m-0 text-center">2</p>
+                                <p class ="m-0 text-center">
+                                    <?php
+                                    require_once('models/Cart.php');
+                                    $basket = new cart();
+                                    $numberInBasket = count($basket->getItems());
+                                    echo $numberInBasket;
+                                    ?>
+                                </p>
                             </div>
                             <a id="cart-icon" href="" class="m-0"><i class="fas fa-shopping-cart"></i></a>
                         </li>                    </ul>

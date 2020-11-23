@@ -191,11 +191,16 @@ include_once 'inc/header.php'
                         <div class="accordion-item "><a href="#tab3">Review</a></div><div id="tab3" style="">
                             <div class="profile_bg bottom30">
                                 <div class="profile">
-                                    <div class="p_pic"><img src="" alt="instructure"></div>
                                     <div class="profile_text">
                                         <h5><strong>JOHN PARKER</strong> - <span>Awesome Quality</span></h5>
                                         <ul class="comment">
-                                            <li><a href="javascript:void(0)" class="text-warning-hvr"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-alt"></i></a></li>
+                                            <li>
+                                                <i class="fa fa-star yellow-star"></i> 
+                                                <i class="fa fa-star"></i> 
+                                                <i class="fa fa-star"></i> 
+                                                <i class="fa fa-star"></i> 
+                                                <i class="fa fa-star-half-alt yellow-star"></i>
+                                            </li>
                                         </ul>
                                         <p>Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium.</p>
                                     </div>
@@ -203,56 +208,66 @@ include_once 'inc/header.php'
                             </div>
                             <div class="profile_bg bottom30">
                                 <div class="profile">
-                                    <div class="p_pic"><img src="" alt="instructure"></div>
                                     <div class="profile_text">
-                                        <h5><strong>JANE MILLER</strong> - <span>Awesome Quality</span></h5>
+                                        <h5><strong>JOHN PARKER</strong> - <span>Awesome Quality</span></h5>
                                         <ul class="comment">
-                                            <li><a href="javascript:void(0)" class="text-warning-hvr"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-half-alt"></i></a></li>
+                                            <li>
+                                                <i class="fa fa-star yellow-star"></i> 
+                                                <i class="fa fa-star"></i> 
+                                                <i class="fa fa-star"></i> 
+                                                <i class="fa fa-star"></i> 
+                                                <i class="fa fa-star-half-alt yellow-star"></i>
+                                            </li>
                                         </ul>
                                         <p>Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium.</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="add-review">
-                                <h3 class="heading darkcolor font-light2 bottom25">Add Your Review<span class="divider-left"></span></h3>
-                                <h5 class="pb-1">Your Rating : <span id="ratingText" class="text-warning">Please Select</span></h5>
-                                <ul class="comment bottom15 top10">
-                                    <li><a href="javascript:void(0)" id="rattingIcon">
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                        <i class="far fa-star"></i>
-                                    </a>
-                                    </li>
-                                </ul>
-                                <form class="findus" id="contact-form" onsubmit="return false">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div id="result1"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
+                            <!-- submit reviews -->
+                            <div class="row" id="review_section">
+                                <div class="col-12">
+                                    <h3 class="heading darkcolor font-light2 bottom25">Add Your Review<span class="divider-left"></span></h3>
+                                </div>
+                                <div class="col-12 <?php if((isset($_SESSION['loggedIn']))){echo "d-none";} ?>">
+                                    <h3 class="heading text-warning font-light2 bottom25">You have to log in to add reviews ! </h3>
+                                    <a class="nav-link p-0" href="login.php">Login</a>
+                                </div>
+                                <!-- star rating -->
+                                <div class="add-review col-12 <?php if(!(isset($_SESSION['loggedIn']))){echo "d-none";} ?>">
+                                    <h5 class="pb-1">Your Rating : <span id="ratingText" class="text-warning">Please Select</span></h5>
+                                    <ul class="comment bottom15 top10">
+                                        <li>
+                                            <a href="javascript:void(0)" id="rattingIcon">
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- email and comment -->
+                                    <form>
+                                        <div class="row">
                                         <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="name" class="d-none"></label>
-                                                <input type="text" class="form-control" placeholder="Name" name="name" id="name" required="">
+                                                <div class="form-group">
+                                                    <label for="email1" class="d-none"></label>
+                                                    <input type="email" class="form-control" placeholder="Email *" name="email" id="reviewer_email" required="">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <label for="email1" class="d-none"></label>
-                                                <input type="email" class="form-control" placeholder="Email *" name="email" id="email1" required="">
+                                        <div class="row">
+                                            <div class="col-md-6 col-sm-6 mb-4">
+                                                <label  id= "review_submit_result" class="w-100 d-none"></label>
+                                                <textarea class="w-100"  placeholder="Comment *" name="message" id="reviewer_comment_text"required=""></textarea>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 col-sm-12 mb-4">
-                                            <label for="message" class="d-none"></label>
-                                            <textarea placeholder="Comment *" name="message" id="message"></textarea>
-                                            <button class="button gradient-btn" id="btn_submit">Add Review</button>
-                                        </div>
-                                    </div>
-                                </form>
+                                    </form>
+                                    <!-- submit review btn -->
+                                    <button class="button gradient-btn" id="add_review_btn">Add Review</button>
+                                </div> 
                             </div>
+
                         </div>
                         <!-- delivery info -->
                         <div class="accordion-item "><a href="#tab4">Delivery info</a></div><div id="tab4" style="">
