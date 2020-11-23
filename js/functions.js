@@ -2474,8 +2474,7 @@ function getProductDetails(colorSeleced,sizeSelected) {
                             '<div class="image sale" data-sale=' + result[3][i].discount + '>' +
                             "<img src='images/img-list/" + result[3][i].imgFolder + "/" + result[3][i].id + "-thumb.jpg' alt='shop'>" +
                             '<div class="overlay center-block">' +
-                            '<a class="opens" href="shop-cart.html" title="Add To Cart"><i ' +
-                            'class="fa fa-shopping-cart"></i></a>' +
+                            "<a class='w-100 h-100' href='product-details.php?k=" + result[3][i].id + "'" + "></a>"+
                             '</div>' +
                             '</div>' +
                             '<div class="shop-content text-center">' +
@@ -2486,6 +2485,7 @@ function getProductDetails(colorSeleced,sizeSelected) {
                             '</div>' +
                             '</div>'
                         );
+
                     }
                 }
             }
