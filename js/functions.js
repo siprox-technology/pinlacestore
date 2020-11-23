@@ -3036,7 +3036,7 @@ $('#add_review_btn').on("click",function(){
                         case 'item is not ordered before':
                             $('#review_submit_result').removeClass()
                             .addClass('w-100 text-danger')
-                            .text('You can only submit review for ordered items.');
+                            .text('You can only submit review for purchased items.');
                         break;
                         
                         case 'You already submitted review for this product':
