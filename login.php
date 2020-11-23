@@ -72,12 +72,12 @@ if(isset ($_GET['msg'])){
                     </div>
                 </div>
                 <div class="col-lg-6 pr-lg-0 col-md-12 d-none d-lg-flex">
-                    <div class=" image login-image h-100">
+                    <div class=" image login-image">
                         <img src="images/login-section.jpg" alt="" class="w-100 h-100">
                     </div>
                 </div>
                 <div class="col-lg-6 pl-lg-0 col-md-12 whitebox">
-                    <div class="widget logincontainer text-center text-lg-left">
+                    <div class="widget logincontainer text-center text-lg-left h-100">
                         <h3 class="darkcolor bottom30 text-center text-lg-left" id='loginTitle'>Sign In </h3>
                         <form class="getin_form border-form" id="login" method="post" action="process.php">
                             <div class="row">
