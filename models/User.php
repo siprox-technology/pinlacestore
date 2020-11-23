@@ -140,11 +140,11 @@ class User{
         $this->db->bind(':state', $data['state']);
         $this->db->bind(':country', $data['country']);
         $this->db->bind(':postCode', $data['postCode']);
-        $this->db->bind(':FK_user_id_addr_user', $data['FK_id']);
+        $this->db->bind(':FK_user_id_addr_user', $data['FK_user_id']);
  
         // Execute
         if(($this->db->execute()) && ($this->db->rowCount()>0)) {
-          return true;
+          return $this->db->lastInsertId();
         } else {
           return false;
         }

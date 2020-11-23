@@ -121,7 +121,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                            <?php
                               if(isset($_SESSION['address1']))
                               {
-                                 echo "<option id='".$_SESSION['address1']['id']."'"."
+                                 echo "<option id='".$_SESSION['address1']['address_id']."'"."
                                  value='".$_SESSION['address1']['address'].
                                  ", ".$_SESSION['address1']['city'].
                                  ", ".$_SESSION['address1']['state'].
@@ -131,7 +131,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                               }
                               if(isset($_SESSION['address2']))
                               {
-                                 echo "<option id='".$_SESSION['address2']['id']."'"."
+                                 echo "<option id='".$_SESSION['address2']['address_id']."'"."
                                  <option value='".$_SESSION['address2']['address'].
                                  ", ".$_SESSION['address2']['city'].
                                  ", ".$_SESSION['address2']['state'].
@@ -140,7 +140,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                                  "' default>".$_SESSION['address2']['address']."</option>";                              }
                               if(isset($_SESSION['address3']))
                               {
-                                 echo "<option id='".$_SESSION['address3']['id']."'"."
+                                 echo "<option id='".$_SESSION['address3']['address_id']."'"."
                                  <option value='".$_SESSION['address3']['address'].
                                  ", ".$_SESSION['address3']['city'].
                                  ", ".$_SESSION['address3']['state'].
@@ -149,7 +149,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                                  "' default>".$_SESSION['address3']['address']."</option>";                              }
                               if(isset($_SESSION['address4']))
                               {
-                                 echo "<option id='".$_SESSION['address4']['id']."'"."
+                                 echo "<option id='".$_SESSION['address4']['address_id']."'"."
                                  <option value='".$_SESSION['address4']['address'].
                                  ", ".$_SESSION['address4']['city'].
                                  ", ".$_SESSION['address4']['state'].
@@ -158,7 +158,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                                  "' default>".$_SESSION['address4']['address']."</option>";                              }
                               if(isset($_SESSION['address5']))
                               {
-                                 echo "<option id='".$_SESSION['address5']['id']."'"."
+                                 echo "<option id='".$_SESSION['address5']['address_id']."'"."
                                  <option value='".$_SESSION['address5']['address'].
                                  ", ".$_SESSION['address5']['city'].
                                  ", ".$_SESSION['address5']['state'].
@@ -167,7 +167,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                                  "' default>".$_SESSION['address5']['address']."</option>";                              }
                               if(isset($_SESSION['address6']))
                               {
-                                 echo "<option id='".$_SESSION['address6']['id']."'"."
+                                 echo "<option id='".$_SESSION['address6']['address_id']."'"."
                                  <option value='".$_SESSION['address6']['address'].
                                  ", ".$_SESSION['address6']['city'].
                                  ", ".$_SESSION['address6']['state'].

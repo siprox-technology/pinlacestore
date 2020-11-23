@@ -384,7 +384,7 @@ else
                 $POST['state'] = ($validate->validateAnyname($_POST['state']))==true?$_POST['state']:false;
                 $POST['country'] = ($validate->validateAnyname($_POST['country']))==true? $_POST['country']:false;
                 $POST['postCode'] = ($validate->validateAnyname($_POST['postCode']))==true?$_POST['postCode']:false;
-                $POST['FK_id'] = $_SESSION['id'];
+                $POST['FK_user_id'] = $_SESSION['id'];
                 
 
                 if(($POST['number']) && 
@@ -393,10 +393,10 @@ else
                 ($POST['state'])&& 
                 ($POST['country'])&&
                 ($POST['postCode'])&&
-                ($POST['FK_id'])&&
+                ($POST['FK_user_id'])&&
                 ($request_name))
                 {
-                    //set User Data
+                    //set User address Data
                     $userData = [
                         'number'=>$POST['number'],
                         'address' => $POST['address'],
@@ -404,16 +404,19 @@ else
                         'state' => $POST['state'],
                         'country' => $POST['country'],
                         'postCode' => $POST['postCode'],
-                        'FK_id'=> $POST['FK_id'],
+                        'FK_user_id' => $POST['FK_user_id'],
+                        'address_id' => ''
                     ];
                     try{
                         require_once('models/User.php');
                         // Instantiate User
                         $user = new User();
                         // Add User To DB
-                        if($user->addAddress($userData))
+                        $userData['address_id'] = $user->addAddress($userData);
+                        if($userData['address_id'])
                         {
                             //add address array to session
+
                             $_SESSION['address'.$_POST['number']] = $userData;
                             header('location:address.php?msg=addressaddsuccess');
                             break;
