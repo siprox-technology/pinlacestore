@@ -115,15 +115,10 @@ include_once 'inc/header.php'
                             <!-- brand -->
                             <h2 class="heading darkcolor font-light2 bottom15" id="brand-name"></h2>
                             <!-- rating -->
-                            <span class="text-warning heading">
-                                <a href="#." class="hover-underline" title="4.4">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>&nbsp;
-                                    <span class="text-grey"><span class="font-bold">4.4 </span>(21)</span>
-                                </a>
+                            <span class="">
+                                <p class="" id="top_page_rating">
+
+                                </p>
                             </span>
                             <!-- Name -->
                             <h4 class="text-capitalize font-normal text-left  mt-3" id="gallary-name"></h4>

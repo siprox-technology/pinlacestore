@@ -896,10 +896,16 @@ else
                 $newMail = new Mail();
                 $x = $payment->savePayment($transactionData);
                 $y = $order->updateOrder_Payment_status($order_id);
-                
                 //email confirmation to user
                 $z = $newMail->send_order_confirmation($email,$transactionData);
+                
               
+                //update sale record number
+                if($x && $y)
+                {
+                    //---
+                }
+
                 $payment_status = "payment success";
                 header('location:payment-result.php?status='.$payment_status.
                 '&tid='.$transactionData['transaction_id'].

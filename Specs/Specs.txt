@@ -82,6 +82,7 @@ Possible functionalities:
 -User makes an order and pay***
 -User add product to wish list--
 -user add review to items bought--
+-best selling items--
 *****************************************
 Front end structure:
 1-Home page: 

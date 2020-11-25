@@ -3088,9 +3088,11 @@ function displayProductReviews()
             switch(result[0])
             {
                 case true:
-                    for(i=0; i<result[1].length; i++)
+                    reviewCount = result[1].length
+                    starAverage = 0;
+                    //display each review and its star value
+                    for(i=0; i<reviewCount; i++)
                     {
-                        //start average section ---here
                         starNumText = '';
                         starItems = '';
                         switch(result[1][i].starNum)
@@ -3098,26 +3100,26 @@ function displayProductReviews()
                             case '1':
                                 starNumText = 'Poor';
                                 starItems= "<i class='fa fa-star yellow-star'></i>"+ 
-                                "<i class='fa fa-star'></i>" +
-                                "<i class='fa fa-star'></i>" +
-                                "<i class='fa fa-star'></i>" +
-                                "<i class='fa fa-star'></i>";
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>";
                             break;
                             case '2':
                                 starNumText = 'Average';
                                 starItems= "<i class='fa fa-star yellow-star'></i>"+ 
                                 "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='fa fa-star'></i>" +
-                                "<i class='fa fa-star'></i>" +
-                                "<i class='fa fa-star'></i>";
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>";
                             break;
                             case '3':
                                 starNumText = 'Good';
                                 starItems= "<i class='fa fa-star yellow-star'></i>"+ 
                                 "<i class='fa fa-star yellow-star'></i>" +
                                 "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='fa fa-star'></i>" +
-                                "<i class='fa fa-star'></i>";
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>";
                             break;
                             case '4':
                                 starNumText = 'Very Good';
@@ -3125,7 +3127,7 @@ function displayProductReviews()
                                 "<i class='fa fa-star yellow-star'></i>" +
                                 "<i class='fa fa-star yellow-star'></i>" +
                                 "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='fa fa-star'></i>";
+                                "<i class='far fa-star text-warning'></i>";
                             break;
                             case '5':
                                 starNumText = 'Excellent';
@@ -3159,7 +3161,106 @@ function displayProductReviews()
                                 "</div>"+
                             "</div>"
                         )
+                        starAverage +=(parseInt(result[1][i].starNum));
                     }
+                    starAverage = (starAverage/reviewCount);
+                    
+                    // calculate and display average start value for the item
+                    
+                    switch(true)
+                    {
+                        case (starAverage==1):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>&nbsp;"+
+                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                            )
+                            break;
+                        case (starAverage<2):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fa text-warning fa-star-half-alt'></i>" +
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>&nbsp;"+
+                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                            )
+                            break;
+                        case (starAverage==2):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>&nbsp;"+
+                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                            )
+                            break; 
+                        case (starAverage<3):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fa text-warning fa-star-half-alt'></i>" +
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>&nbsp;"+
+                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                            )
+                            break; 
+                        case (starAverage==3):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>&nbsp;"+
+                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                            )
+                            break;
+                        case (starAverage<4):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fa text-warning fa-star-half-alt'></i>" +
+                                "<i class='far fa-star text-warning'></i>&nbsp;"+
+                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                            )
+                            break; 
+                        case (starAverage==4):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<i class='far fa-star text-warning'></i>&nbsp;"+
+                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                            )
+                            break;
+                        case (starAverage<5):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fa text-warning fa-star-half-alt'></i>" +
+                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                            )
+                            break;
+                        case (starAverage==5):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                            )
+                            break; 
+                    }
+
                    break;
                 
                 case false:
