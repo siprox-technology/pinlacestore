@@ -2493,8 +2493,6 @@ function getProductDetails(colorSeleced,sizeSelected) {
     });
 }
 
-
-
 $('.carousel').carousel({
     interval: false,
 });
@@ -3069,6 +3067,113 @@ $('#add_review_btn').on("click",function(){
 
 })
 
+// display product review
 
+function displayProductReviews()
+{
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'display product reviews',
+            _token: $('#_token').val(),
+            product_id: $('#product-id').val()
+        },
+        beforeSend: function () {
+            // Show preloader
+        },
+        success: function (response) {
+
+            result = JSON.parse(response);
+            switch(result[0])
+            {
+                case true:
+                    for(i=0; i<result[1].length; i++)
+                    {
+                        //start average section ---here
+                        starNumText = '';
+                        starItems = '';
+                        switch(result[1][i].starNum)
+                        {
+                            case '1':
+                                starNumText = 'Poor';
+                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
+                                "<i class='fa fa-star'></i>" +
+                                "<i class='fa fa-star'></i>" +
+                                "<i class='fa fa-star'></i>" +
+                                "<i class='fa fa-star'></i>";
+                            break;
+                            case '2':
+                                starNumText = 'Average';
+                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
+                                "<i class='fa fa-star yellow-star'></i>" +
+                                "<i class='fa fa-star'></i>" +
+                                "<i class='fa fa-star'></i>" +
+                                "<i class='fa fa-star'></i>";
+                            break;
+                            case '3':
+                                starNumText = 'Good';
+                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
+                                "<i class='fa fa-star yellow-star'></i>" +
+                                "<i class='fa fa-star yellow-star'></i>" +
+                                "<i class='fa fa-star'></i>" +
+                                "<i class='fa fa-star'></i>";
+                            break;
+                            case '4':
+                                starNumText = 'Very Good';
+                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
+                                "<i class='fa fa-star yellow-star'></i>" +
+                                "<i class='fa fa-star yellow-star'></i>" +
+                                "<i class='fa fa-star yellow-star'></i>" +
+                                "<i class='fa fa-star'></i>";
+                            break;
+                            case '5':
+                                starNumText = 'Excellent';
+                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
+                                "<i class='fa fa-star yellow-star'></i>" +
+                                "<i class='fa fa-star yellow-star'></i>" +
+                                "<i class='fa fa-star yellow-star'></i>" +
+                                "<i class='fa fa-star yellow-star'></i>";
+                            break;
+
+                            default:
+                                starNumText = 'Poor';
+                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
+                                "<i class='fa fa-star'></i>" +
+                                "<i class='fa fa-star'></i>" +
+                                "<i class='fa fa-star'></i>" +
+                                "<i class='fa fa-star'></i>";
+                            break;
+                        }
+                        $("#tab3 #reviewItems").append(
+                            "<div class='review_bg bottom30'>"+
+                                "<div class='profile'>"+
+                                    "<div class='review_text'>"+
+                                        "<h5><strong>"+result[1][i].name+" "+result[1][i].lastName+"</strong> - <span>"+
+                                        starNumText+"</span></h5>"+
+                                        "<ul class='comment'>"+
+                                            "<li>"+starItems+"</li>"+
+                                        "</ul>"+
+                                        "<p>"+result[1][i].text+"</p>"+
+                                    "</div>"+
+                                "</div>"+
+                            "</div>"
+                        )
+                    }
+                   break;
+                
+                case false:
+                    $("#save-contact-det-result").removeClass()
+                    .addClass('text-danger mt-3 float-center text-center')
+                    .text('Unable to update your contact preferences !');
+                    break;
+
+                default:
+                    break;
+            }
+
+        },
+    });
+}
 
 

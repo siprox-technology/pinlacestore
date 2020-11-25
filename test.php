@@ -1,5 +1,9 @@
 <?php 
 
-session_start();
+require_once('models/Review.php');
 
-var_dump($_SESSION);
+$x = new Review();
+
+$c = $x->getReviews('94144');
+
+$z = 0;

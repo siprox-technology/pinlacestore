@@ -4922,7 +4922,7 @@ span.icon-contact {
 .eny_profile,
 blockquote.blockquote,
 .widget_search .input-group-addon,
-.eny_profile .profile_text {
+.eny_profile .review_text {
     position: relative;
 }
 
@@ -5606,7 +5606,7 @@ body:not(.rtl-layout) .readmore {
 
 /*Profile Image*/
 
-.profile_bg {
+.review_bg {
     background: #f2f2f2;
     -webkit-box-shadow: 0 0 2px #c8c8c8;
     box-shadow: 0 0 2px #c8c8c8;
@@ -5632,7 +5632,7 @@ body:not(.rtl-layout) .readmore {
 }
 
 .profile .p_pic,
-.profile .profile_text {
+.profile .review_text {
     display: table-cell;
 }
 
@@ -5648,21 +5648,21 @@ body:not(.rtl-layout) .readmore {
     border-radius: 50%;
 }
 
-.profile_text {
+.review_text {
     vertical-align: top;
     padding-right: 10px;
 }
 
-.profile_text h5 {
+.review_text h5 {
     margin-bottom: 8px;
 }
 
-.profile_text strong {
+.review_text strong {
     color: #b2cb20;
     font-size: 14px;
 }
 
-.profile_text span {
+.review_text span {
     color: #5b5b5b;
     font-size: 13px;
 }
@@ -5756,7 +5756,7 @@ ul.rounded li::before {
 }
 
 .eny_profile .profile_photo,
-.eny_profile .profile_text {
+.eny_profile .review_text {
     display: table-cell;
     vertical-align: middle;
 }
@@ -5770,11 +5770,11 @@ ul.rounded li::before {
     width: 100%;
 }
 
-.eny_profile .profile_text {
+.eny_profile .review_text {
     padding-left: 20px;
 }
 
-.eny_profile .profile_text .readmorebtn {
+.eny_profile .review_text .readmorebtn {
     position: absolute;
     right: 0;
     top: 5px;
@@ -6784,11 +6784,11 @@ ul.latest_news li a:focus+span.defaultcolor {
     }
 
     .profile .p_pic,
-    .profile .profile_text {
+    .profile .review_text {
         display: block;
     }
 
-    .profile_bg {
+    .review_bg {
         padding: 5px;
     }
 
@@ -6847,7 +6847,7 @@ ul.latest_news li a:focus+span.defaultcolor {
         padding-top: 0.5rem;
     }
 
-    .eny_profile .profile_text .readmorebtn {
+    .eny_profile .review_text .readmorebtn {
         top: auto;
         bottom: -20px;
     }
@@ -6866,7 +6866,7 @@ ul.latest_news li a:focus+span.defaultcolor {
     }
 
     .eny_profile .profile_photo,
-    .eny_profile .profile_text {
+    .eny_profile .review_text {
         display: block;
         margin: 10px auto;
         text-align: center;

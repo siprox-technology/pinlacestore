@@ -128,7 +128,7 @@ else
                                 for($i = 0; $i<count($addresses); $i++)
                                 {
                                     $_SESSION['address'.($addresses[$i]->number)]['number']=$addresses[$i]->number;
-                                    $_SESSION['address'.($addresses[$i]->number)]['id']=$addresses[$i]->id;
+                                    $_SESSION['address'.($addresses[$i]->number)]['address_id']=$addresses[$i]->id;
                                     $_SESSION['address'.($addresses[$i]->number)]['address']=$addresses[$i]->address;
                                     $_SESSION['address'.($addresses[$i]->number)]['city']=$addresses[$i]->city;
                                     $_SESSION['address'.($addresses[$i]->number)]['state']=$addresses[$i]->state;
@@ -1112,7 +1112,42 @@ else
             }
             
         break;
-
+    
+        case 'display product reviews':
+            $product_id = ($validate->validateDigits($_POST['product_id']))==true?$_POST['product_id']:false;
+            $result = [];
+            if($product_id)
+            {
+                try{
+                    require_once('models/Review.php');
+                    $reviews = new Review();
+                    $result[1] = $reviews->getReviews($product_id);
+                    if($result[1])
+                    {
+                        $result[0]= true;
+                        echo json_encode($result);
+                    }
+                    else
+                    {
+                        $result[0]= false;
+                        $result[1]="Unable to get reviews";
+                        echo json_encode($result);
+                    }
+                }
+                catch(Exception $e)
+                {
+                    $result[0]= false;
+                    $result[1]="Exception in process";
+                    echo json_encode($result);
+                }
+            }
+            else
+            {
+                $result[0]= false;
+                $result[1]="Invalid parameters";
+                echo json_encode($result);
+            }
+        break;
         
         default:
         session_unset();

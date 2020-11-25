@@ -35,14 +35,39 @@ class Review{
             $query = "INSERT INTO review (starNum,text,FK_product_id_review_prod,FK_user_id_review_user) VALUES
             ("."'".$startNumber."','".$text."','".$product_id."','".$user_id."');";
             $this->db->query($query);
-            if(($this->db->execute()) && ($this->db->rowCount()>0))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+                if(($this->db->execute()) && ($this->db->rowCount()>0))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            } 
+        catch (\Throwable $th) 
+        {
+            return false;
+        }
+    }
+
+    public function getReviews($product_id)
+    {
+        try {
+            $query = "SELECT starNum,text,FK_user_id_review_user,name,lastName
+            FROM review
+            INNER JOIN user 
+            WHERE user.id = FK_user_id_review_user AND
+            FK_product_id_review_prod =".$product_id;
+            $this->db->query($query);
+            $result = $this->db->resultSet();
+                if($this->db->rowCount()>0)
+                {
+                    return $result;
+                }
+                else
+                {
+                    return false;
+                }
             } 
         catch (\Throwable $th) 
         {

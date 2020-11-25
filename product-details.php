@@ -160,7 +160,7 @@ include_once 'inc/header.php'
                         <li class=""><a href="#tab4">Delivery information</a></li>
                     </ul>
                     <div class="tab-container p-4">
-                        <!-- description -->
+                        <!-- product description -->
                         <div class="accordion-item active"><a href="#tab1">Description</a></div><div id="tab1" style="display: none;">
                             <p class="pb-3" id="product-description">
                             </p>
@@ -188,40 +188,9 @@ include_once 'inc/header.php'
                             </ul>
                         </div>
                         <!-- reviews -->
-                        <div class="accordion-item "><a href="#tab3">Review</a></div><div id="tab3" style="">
-                            <div class="profile_bg bottom30">
-                                <div class="profile">
-                                    <div class="profile_text">
-                                        <h5><strong>JOHN PARKER</strong> - <span>Awesome Quality</span></h5>
-                                        <ul class="comment">
-                                            <li>
-                                                <i class="fa fa-star yellow-star"></i> 
-                                                <i class="fa fa-star"></i> 
-                                                <i class="fa fa-star"></i> 
-                                                <i class="fa fa-star"></i> 
-                                                <i class="fa fa-star-half-alt yellow-star"></i>
-                                            </li>
-                                        </ul>
-                                        <p>Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="profile_bg bottom30">
-                                <div class="profile">
-                                    <div class="profile_text">
-                                        <h5><strong>JOHN PARKER</strong> - <span>Awesome Quality</span></h5>
-                                        <ul class="comment">
-                                            <li>
-                                                <i class="fa fa-star yellow-star"></i> 
-                                                <i class="fa fa-star"></i> 
-                                                <i class="fa fa-star"></i> 
-                                                <i class="fa fa-star"></i> 
-                                                <i class="fa fa-star-half-alt yellow-star"></i>
-                                            </li>
-                                        </ul>
-                                        <p>Vivamus bibendum nibh in dolor pharetra, a euismod nulla dignissim. Aenean viverra tincidunt nibh, in imperdiet nunc. Suspendisse eu ante pretium.</p>
-                                    </div>
-                                </div>
+                        <div class="accordion-item"><a href="#tab3">Review</a></div><div id="tab3" style="">
+                            <!-- reviews items-->
+                            <div id="reviewItems">
                             </div>
                             <!-- submit reviews -->
                             <div class="row" id="review_section">
@@ -252,7 +221,7 @@ include_once 'inc/header.php'
                                         <div class="col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="email1" class="d-none"></label>
-                                                    <input type="email" class="form-control" placeholder="Email *" name="email" id="reviewer_email" required="">
+                                                    <input type="email" class="form-control" value="<?php echo $_SESSION['email'];?>" name="email" id="reviewer_email" disabled required="">
                                                 </div>
                                             </div>
                                         </div>
@@ -267,7 +236,6 @@ include_once 'inc/header.php'
                                     <button class="button gradient-btn" id="add_review_btn">Add Review</button>
                                 </div> 
                             </div>
-
                         </div>
                         <!-- delivery info -->
                         <div class="accordion-item "><a href="#tab4">Delivery info</a></div><div id="tab4" style="">
@@ -326,9 +294,14 @@ include_once 'inc/header.php'
 <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
 
 
-<?php include_once 'inc/footer.php';
-     include_once 'inc/scripts.php'?>
-<script>getProductDetails()</script>
+<?php 
+    include_once 'inc/footer.php';
+    include_once 'inc/scripts.php'
+?>
+<script>
+    getProductDetails();
+    displayProductReviews();
+</script>
 
 
 </body>
