@@ -63,7 +63,7 @@ class Product{
             break;
         }
         $query = "SELECT product.id as product_id,brand,name,category,gender,description,
-        saleRecordNum,imgFolder,inventory.id as inventory_id,
+        imgFolder,inventory.id as inventory_id,
         color,size,price,discount,quantity
         from product
         inner join inventory
@@ -85,7 +85,7 @@ class Product{
     {
         // prepare query
         $query = "SELECT id,brand as value,CONCAT(brand,' ',name,' ',category) as label,description,
-        saleRecordNum,imgFolder
+        imgFolder
         from product
         where
         brand like "."'".$key."'"."or

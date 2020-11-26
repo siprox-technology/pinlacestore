@@ -3053,6 +3053,7 @@ $('#add_review_btn').on("click",function(){
                             $('#review_submit_result').removeClass()
                             .addClass('w-100 text-success')
                             .text('Your review has been submitted successfully.');
+                            displayProductReviews();
                         break;
                     }        
                 },
@@ -3090,6 +3091,7 @@ function displayProductReviews()
                 case true:
                     reviewCount = result[1].length
                     starAverage = 0;
+                    $("#tab3 #reviewItems").empty();
                     //display each review and its star value
                     for(i=0; i<reviewCount; i++)
                     {
@@ -3264,9 +3266,15 @@ function displayProductReviews()
                    break;
                 
                 case false:
-                    $("#save-contact-det-result").removeClass()
-                    .addClass('text-danger mt-3 float-center text-center')
-                    .text('Unable to update your contact preferences !');
+                    $('#top_page_rating').empty().append(
+                        "<i class='far fa-star text-warning'></i>"+ 
+                        "<i class='far fa-star text-warning'></i>" +
+                        "<i class='far fa-star text-warning'></i>" +
+                        "<i class='far fa-star text-warning'></i>" +
+                        "<i class='far fa-star text-warning'></i>&nbsp;"+
+                        "<span class='text-grey'><span class='font-bold'>0.0</span>(0)</span>"
+                    )
+                    break;
                     break;
 
                 default:

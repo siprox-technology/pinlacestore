@@ -14,9 +14,8 @@
 - no need to refresh when items quantity not available
 -cookie items number in mobile view
 -mobile view rights scroll bar issue
-
-- check persistent connection error on process.php line commented as' testing'
 -catch http errors like 500
 -review try and catch in object functions and in process.php
 -related products images is not link to products details
 -favicon problem
+- twice payment in stripe for integralproject1988@gmail

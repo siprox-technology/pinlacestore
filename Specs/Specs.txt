@@ -80,8 +80,8 @@ Possible functionalities:
 -display product details page with available colors and sizes.***
 -display price according to selected color and sizes by user***
 -User makes an order and pay***
+-user add review to items bought**
 -User add product to wish list--
--user add review to items bought--
 -best selling items--
 *****************************************
 Front end structure:
