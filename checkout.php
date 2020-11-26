@@ -258,13 +258,11 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
 <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
 
 <?php
-include_once 'inc/stripe-modal.php';   
 include_once 'inc/footer.php';
-include_once 'inc/scripts.php'
+include_once 'inc/scripts.php';
+include_once 'inc/stripe-modal.php';   
 ?>
 <script>getShoppingBasketDetails()</script>
-<script src="https://js.stripe.com/v3/"></script>
-<script src="js/charge.js"></script>
 </body>
 
 </html>

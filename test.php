@@ -1,9 +1,9 @@
 <?php 
 
-require_once('models/Review.php');
+require_once('models/Payments.php');
 
-$x = new Review();
+$x = new Payment();
 
-$c = $x->getReviews('94144');
+$c = $x->gen_uuid();
 
 $z = 0;

@@ -760,7 +760,7 @@ else
             require_once('lib/mail.php');
             // This is your real test secret API key.
             \Stripe\Stripe::setApiKey('sk_test_51HcWlxGzZBtnGj1lUdweCw4OboX34Ku0oaXsjzQ06qygmZRlileOThhDPjB3nF2PMjeCdEoCstRi3CvUTFLrR5KP00A7XFd8hP');
-            
+            $payment = new Payment();
             $payment_status[] = '';
             $temp = false;
             $stripe_customer_id = '';
@@ -835,13 +835,23 @@ else
     
             //charge 
             try{
+                
+                //random idempotency_key
+                $key = $payment->gen_uuid();
+/*                 [
+                    'idempotency_key' => $key
+                ] */
                 header('Content-Type: application/json');
                 $charge = \Stripe\Charge::create(array(
                 "amount" => ($POST['amount'])*100,
                 "currency" => "usd",
                 "description" => "order number: ".$POST['order_id'],
-                "customer" => $customer->id
+                "customer" => $customer->id,
+
                 ));
+
+
+                
                 $transactionData = [
                     'transaction_id' => $charge->id,
                     'amount' => (($charge->amount)/100),
@@ -891,7 +901,7 @@ else
             //save payment info
             try
             {
-                $payment = new Payment();
+
                 $order = new Order();
                 $newMail = new Mail();
                 $x = $payment->savePayment($transactionData);
