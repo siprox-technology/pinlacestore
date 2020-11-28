@@ -3165,7 +3165,7 @@ function displayProductReviews()
                         )
                         starAverage +=(parseInt(result[1][i].starNum));
                     }
-                    starAverage = (starAverage/reviewCount);
+                    starAverage = Number((starAverage/reviewCount).toFixed(1));
                     
                     // calculate and display average start value for the item
                     

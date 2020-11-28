@@ -15,8 +15,15 @@ session_regenerate_id();
 <?php 
     include_once 'inc/head.php';
     //check cookies accepted
-    if(!isset($_COOKIE["accepted-user"]))
+    if(isset($_COOKIE["accepted-user"]))
     {
+        if($_COOKIE["accepted-user"] != $_SERVER['REMOTE_ADDR'])
+        {
+            setcookie("accepted-user",$_SERVER['REMOTE_ADDR']);
+            include_once 'inc/cookie-alert.php';
+        }
+    }
+    else {
         setcookie("accepted-user",$_SERVER['REMOTE_ADDR']);
         include_once 'inc/cookie-alert.php';
     }
