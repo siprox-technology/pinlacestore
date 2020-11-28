@@ -83,18 +83,6 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                                 </div>
                             </a>
                         </div>
-                        <!-- wish list -->
-                        <div class="col-lg-4 col-md-6">
-                            <a href="wish-list.php">
-                                <div class="details-box text-center w-100 det-box">
-                                    <div class="contact-box">
-                                        <span class="icon-contact defaultcolor"><i class="fa fa-heart"
-                                                aria-hidden="true"></i></span>
-                                        <h3 class="bottom0">Wish list</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
                         <!-- order history -->
                         <div class="col-lg-4 col-md-6">
                             <a href="order-history.php">

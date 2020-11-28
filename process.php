@@ -836,18 +836,12 @@ else
             //charge 
             try{
                 
-                //random idempotency_key
-                $key = $payment->gen_uuid();
-/*                 [
-                    'idempotency_key' => $key
-                ] */
                 header('Content-Type: application/json');
                 $charge = \Stripe\Charge::create(array(
                 "amount" => ($POST['amount'])*100,
                 "currency" => "usd",
                 "description" => "order number: ".$POST['order_id'],
                 "customer" => $customer->id,
-
                 ));
 
 
@@ -909,13 +903,6 @@ else
                 //email confirmation to user
                 $z = $newMail->send_order_confirmation($email,$transactionData);
                 
-              
-                //update sale record number
-                if($x && $y)
-                {
-                    //---
-                }
-
                 $payment_status = "payment success";
                 header('location:payment-result.php?status='.$payment_status.
                 '&tid='.$transactionData['transaction_id'].

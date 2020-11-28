@@ -1,12 +1,4 @@
-*check the js alert (loggedout) when clicking logout. 
-    it should be displayed when user logged out from other page.
-*return and exchange info page
--animation fadeIN for page sections
--set email of SIPROX website to forward to siproxtech@gmail.com
--close icon in gallary zoom overlaps with menu when clicking.
-- remove uniqe id warnings on address.php
--add browser compatibility code for css
--remove unnecessary links for improving loading times
+-remove unnecessary files and codes
 -cookie accept msg?
 -cookie shopping card when user logs in and out
 - when adding items to basket 'something wrong with server error' comes on. two items identical saves i+in basket

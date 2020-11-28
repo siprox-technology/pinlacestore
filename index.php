@@ -6,7 +6,6 @@ if(!isset($_SESSION['_token']))
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
 session_regenerate_id();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +13,13 @@ session_regenerate_id();
 <head>
     <title>Trax | Home</title>
 <?php 
-include_once 'inc/head.php' 
+    include_once 'inc/head.php';
+    //check cookies accepted
+    if(!isset($_COOKIE["accepted-user"]))
+    {
+        setcookie("accepted-user",$_SERVER['REMOTE_ADDR']);
+        include_once 'inc/cookie-alert.php';
+    }
 ?>
 </head>
 

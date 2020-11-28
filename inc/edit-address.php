@@ -25,31 +25,31 @@
                               <!-- Address -->
                               <div class="form-group">
                                   <label for="addressTwo" class="d-none"></label>
-                                  <input class="form-control" id="address" type="text" placeholder="Address"
+                                  <input class="form-control" type="text" placeholder="Address"
                                       required name="address" value="<?php if(isset($_SESSION['address1'])){echo $_SESSION['address1']['address'];}?>">
                               </div>
                               <!-- city -->
                               <div class="form-group">
                                   <label for="city" class="d-none"></label>
-                                  <input class="form-control" id="city" type="text" placeholder="City"
+                                  <input class="form-control" type="text" placeholder="City"
                                       required name="city" value="<?php if(isset($_SESSION['address1'])){echo $_SESSION['address1']['city'];}?>">
                               </div>
                               <!-- state\province -->
                               <div class="form-group">
                                   <label for="state" class="d-none"></label>
-                                  <input class="form-control" id="state" type="text" placeholder="State/Province"
+                                  <input class="form-control" type="text" placeholder="State/Province"
                                       required name="state"value="<?php if(isset($_SESSION['address1'])){echo $_SESSION['address1']['state'];}?>">
                               </div>
                               <!-- country-->
                               <div class="form-group">
                                   <label for="country" class="d-none"></label>
-                                  <input class="form-control" id="country" type="text" placeholder="Country"
+                                  <input class="form-control" type="text" placeholder="Country"
                                       required name="country"value="<?php if(isset($_SESSION['address1'])){echo $_SESSION['address1']['country'];}?>">
                               </div>  
                               <!-- post code-->
                               <div class="form-group">
                                   <label for="postCode" class="d-none"></label>
-                                  <input class="form-control" id="postCode" type="text" placeholder="Post code"
+                                  <input class="form-control" type="text" placeholder="Post code"
                                       required name="postCode"value="<?php if(isset($_SESSION['address1'])){echo $_SESSION['address1']['postCode'];}?>">
                               </div>
                               <input type="hidden" name='request_name' value='add new address'>
@@ -103,31 +103,31 @@
                               <!-- Address -->
                               <div class="form-group">
                                   <label for="addressTwo" class="d-none"></label>
-                                  <input class="form-control" id="address" type="text" placeholder="Address"
+                                  <input class="form-control"  type="text" placeholder="Address"
                                       required name="address"value="<?php if(isset($_SESSION['address2'])){echo $_SESSION['address2']['address'];}?>">
                               </div>
                               <!-- city -->
                               <div class="form-group">
                                   <label for="city" class="d-none"></label>
-                                  <input class="form-control" id="city" type="text" placeholder="City"
+                                  <input class="form-control"  type="text" placeholder="City"
                                       required name="city"value="<?php if(isset($_SESSION['address2'])){echo $_SESSION['address2']['city'];}?>">
                               </div>
                               <!-- state\province -->
                               <div class="form-group">
                                   <label for="state" class="d-none"></label>
-                                  <input class="form-control" id="state" type="text" placeholder="State/Province"
+                                  <input class="form-control" type="text" placeholder="State/Province"
                                       required name="state"value="<?php if(isset($_SESSION['address2'])){echo $_SESSION['address2']['state'];}?>">
                               </div>
                               <!-- country-->
                               <div class="form-group">
                                   <label for="country" class="d-none"></label>
-                                  <input class="form-control" id="country" type="text" placeholder="Country"
+                                  <input class="form-control" type="text" placeholder="Country"
                                       required name="country"value="<?php if(isset($_SESSION['address2'])){echo $_SESSION['address2']['country'];}?>">
                               </div>  
                               <!-- post code-->
                               <div class="form-group">
                                   <label for="postCode" class="d-none"></label>
-                                  <input class="form-control" id="postCode" type="text" placeholder="Post code"
+                                  <input class="form-control" type="text" placeholder="Post code"
                                       required name="postCode"value="<?php if(isset($_SESSION['address2'])){echo $_SESSION['address2']['postCode'];}?>">
                               </div>
                               <input type="hidden" name='request_name' value='add new address'>
@@ -181,31 +181,31 @@
                               <!-- Address -->
                               <div class="form-group">
                                   <label for="addressTwo" class="d-none"></label>
-                                  <input class="form-control" id="address" type="text" placeholder="Address"
+                                  <input class="form-control"  type="text" placeholder="Address"
                                       required name="address"value="<?php if(isset($_SESSION['address3'])){echo $_SESSION['address3']['address'];}?>">
                               </div>
                               <!-- city -->
                               <div class="form-group">
                                   <label for="city" class="d-none"></label>
-                                  <input class="form-control" id="city" type="text" placeholder="City"
+                                  <input class="form-control"  type="text" placeholder="City"
                                       required name="city"value="<?php if(isset($_SESSION['address3'])){echo $_SESSION['address3']['city'];}?>">
                               </div>
                               <!-- state\province -->
                               <div class="form-group">
                                   <label for="state" class="d-none"></label>
-                                  <input class="form-control" id="state" type="text" placeholder="State/Province"
+                                  <input class="form-control" type="text" placeholder="State/Province"
                                       required name="state"value="<?php if(isset($_SESSION['address3'])){echo $_SESSION['address3']['state'];}?>">
                               </div>
                               <!-- country-->
                               <div class="form-group">
                                   <label for="country" class="d-none"></label>
-                                  <input class="form-control" id="country" type="text" placeholder="Country"
+                                  <input class="form-control" type="text" placeholder="Country"
                                       required name="country"value="<?php if(isset($_SESSION['address3'])){echo $_SESSION['address3']['country'];}?>">
                               </div>  
                               <!-- post code-->
                               <div class="form-group">
                                   <label for="postCode" class="d-none"></label>
-                                  <input class="form-control" id="postCode" type="text" placeholder="Post code"
+                                  <input class="form-control" type="text" placeholder="Post code"
                                       required name="postCode"value="<?php if(isset($_SESSION['address3'])){echo $_SESSION['address3']['postCode'];}?>">
                               </div>
                               <input type="hidden" name='request_name' value='add new address'>
@@ -259,31 +259,31 @@
                               <!-- Address -->
                               <div class="form-group">
                                   <label for="addressTwo" class="d-none"></label>
-                                  <input class="form-control" id="address" type="text" placeholder="Address"
+                                  <input class="form-control"  type="text" placeholder="Address"
                                       required name="address"value="<?php if(isset($_SESSION['address4'])){echo $_SESSION['address4']['address'];}?>">
                               </div>
                               <!-- city -->
                               <div class="form-group">
                                   <label for="city" class="d-none"></label>
-                                  <input class="form-control" id="city" type="text" placeholder="City"
+                                  <input class="form-control"  type="text" placeholder="City"
                                       required name="city"value="<?php if(isset($_SESSION['address4'])){echo $_SESSION['address4']['city'];}?>">
                               </div>
                               <!-- state\province -->
                               <div class="form-group">
                                   <label for="state" class="d-none"></label>
-                                  <input class="form-control" id="state" type="text" placeholder="State/Province"
+                                  <input class="form-control" type="text" placeholder="State/Province"
                                       required name="state"value="<?php if(isset($_SESSION['address4'])){echo $_SESSION['address4']['state'];}?>">
                               </div>
                               <!-- country-->
                               <div class="form-group">
                                   <label for="country" class="d-none"></label>
-                                  <input class="form-control" id="country" type="text" placeholder="Country"
+                                  <input class="form-control" type="text" placeholder="Country"
                                       required name="country"value="<?php if(isset($_SESSION['address4'])){echo $_SESSION['address4']['country'];}?>">
                               </div>  
                               <!-- post code-->
                               <div class="form-group">
                                   <label for="postCode" class="d-none"></label>
-                                  <input class="form-control" id="postCode" type="text" placeholder="Post code"
+                                  <input class="form-control" type="text" placeholder="Post code"
                                       required name="postCode"value="<?php if(isset($_SESSION['address4'])){echo $_SESSION['address4']['postCode'];}?>">
                               </div>
                               <input type="hidden" name='request_name' value='add new address'>
@@ -337,31 +337,31 @@
                               <!-- Address -->
                               <div class="form-group">
                                   <label for="addressTwo" class="d-none"></label>
-                                  <input class="form-control" id="address" type="text" placeholder="Address"
+                                  <input class="form-control"  type="text" placeholder="Address"
                                       required name="address"value="<?php if(isset($_SESSION['address5'])){echo $_SESSION['address5']['address'];}?>">
                               </div>
                               <!-- city -->
                               <div class="form-group">
                                   <label for="city" class="d-none"></label>
-                                  <input class="form-control" id="city" type="text" placeholder="City"
+                                  <input class="form-control"  type="text" placeholder="City"
                                       required name="city"value="<?php if(isset($_SESSION['address5'])){echo $_SESSION['address5']['city'];}?>">
                               </div>
                               <!-- state\province -->
                               <div class="form-group">
                                   <label for="state" class="d-none"></label>
-                                  <input class="form-control" id="state" type="text" placeholder="State/Province"
+                                  <input class="form-control" type="text" placeholder="State/Province"
                                       required name="state"value="<?php if(isset($_SESSION['address5'])){echo $_SESSION['address5']['state'];}?>">
                               </div>
                               <!-- country-->
                               <div class="form-group">
                                   <label for="country" class="d-none"></label>
-                                  <input class="form-control" id="country" type="text" placeholder="Country"
+                                  <input class="form-control" type="text" placeholder="Country"
                                       required name="country"value="<?php if(isset($_SESSION['address5'])){echo $_SESSION['address5']['country'];}?>">
                               </div>  
                               <!-- post code-->
                               <div class="form-group">
                                   <label for="postCode" class="d-none"></label>
-                                  <input class="form-control" id="postCode" type="text" placeholder="Post code"
+                                  <input class="form-control" type="text" placeholder="Post code"
                                       required name="postCode"value="<?php if(isset($_SESSION['address5'])){echo $_SESSION['address5']['postCode'];}?>">
                               </div>
                               <input type="hidden" name='request_name' value='add new address'>
@@ -415,31 +415,31 @@
                               <!-- Address -->
                               <div class="form-group">
                                   <label for="addressTwo" class="d-none"></label>
-                                  <input class="form-control" id="address" type="text" placeholder="Address"
+                                  <input class="form-control"  type="text" placeholder="Address"
                                       required name="address"value="<?php if(isset($_SESSION['address6'])){echo $_SESSION['address6']['address'];}?>">
                               </div>
                               <!-- city -->
                               <div class="form-group">
                                   <label for="city" class="d-none"></label>
-                                  <input class="form-control" id="city" type="text" placeholder="City"
+                                  <input class="form-control"  type="text" placeholder="City"
                                       required name="city"value="<?php if(isset($_SESSION['address6'])){echo $_SESSION['address6']['city'];}?>">
                               </div>
                               <!-- state\province -->
                               <div class="form-group">
                                   <label for="state" class="d-none"></label>
-                                  <input class="form-control" id="state" type="text" placeholder="State/Province"
+                                  <input class="form-control" type="text" placeholder="State/Province"
                                       required name="state"value="<?php if(isset($_SESSION['address6'])){echo $_SESSION['address6']['state'];}?>">
                               </div>
                               <!-- country-->
                               <div class="form-group">
                                   <label for="country" class="d-none"></label>
-                                  <input class="form-control" id="country" type="text" placeholder="Country"
+                                  <input class="form-control" type="text" placeholder="Country"
                                       required name="country"value="<?php if(isset($_SESSION['address6'])){echo $_SESSION['address6']['country'];}?>">
                               </div>  
                               <!-- post code-->
                               <div class="form-group">
                                   <label for="postCode" class="d-none"></label>
-                                  <input class="form-control" id="postCode" type="text" placeholder="Post code"
+                                  <input class="form-control" type="text" placeholder="Post code"
                                       required name="postCode"value="<?php if(isset($_SESSION['address6'])){echo $_SESSION['address6']['postCode'];}?>">
                               </div>
                               <input type="hidden" name='request_name' value='add new address'>

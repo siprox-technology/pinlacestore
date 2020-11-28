@@ -104,6 +104,7 @@ Front end structure:
  *login link,shopping basket
  *search bar by product brand,
 4-Product page
+  -return and exchange info page
 5-Products list page
 6-User profile page
  *Account Details
