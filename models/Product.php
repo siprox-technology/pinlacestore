@@ -181,6 +181,12 @@ class Product{
     }
    
 
+
+/*     select count(FK_product_id_inv_prod), FK_product_id_inv_prod
+    from inventory where id in ( select FK_inventory_id_items_inven from order_items)
+    group by FK_product_id_inv_prod order by count(FK_product_id_inv_prod) desc;
+ */
+
 }
 
 

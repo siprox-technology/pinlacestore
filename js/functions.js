@@ -2134,7 +2134,7 @@ function selectAllProducts() {
                 result = JSON.parse(response);
                 for (i = 0; i < result.length; i++) {
                     $('#productList').append(
-                        '<div class="col-lg-3 col-md-4 col-sm-6 col-6 wow fadeIn" data-wow-delay="300ms">' +
+                        '<div class="col-lg-3 col-md-4 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms">' +
                         '<div class="shopping-box bottom30">' +
                         '<div class="image sale" data-sale=' + result[i].discount + '>' +
                         "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].id + "-thumb.jpg' alt='shop'>" +
@@ -2244,13 +2244,12 @@ function filterProducts() {
                 for (i = 0; i < result.length; i++) {
                     if (($.inArray(result[i].product_id, id) < 0)) {
                         $('#productList').append(
-                            '<div class="col-lg-3 col-md-4 col-sm-6 col-6 wow fadeIn" data-wow-delay="300ms">' +
+                            '<div class="col-lg-3 col-md-4 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms">' +
                             '<div class="shopping-box bottom30">' +
                             '<div class="image sale" data-sale=' + result[i].discount + '>' +
                             "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].product_id + "-thumb.jpg' alt='shop'>" +
                             '<div class="overlay center-block">' +
-                            '<a class="opens" href="shop-cart.html" title="Add To Cart"><i ' +
-                            'class="fa fa-shopping-cart"></i></a>' +
+                            "<a class='w-100 h-100' href='product-details.php?k=" + result[i].product_id + "'" + "></a>"+
                             '</div>' +
                             '</div>' +
                             '<div class="shop-content text-center">' +
@@ -2455,7 +2454,7 @@ function getProductDetails(colorSeleced,sizeSelected) {
                 }
                 else
                 {
-                    var price =parseFloat(((pricePackage[0])*(pricePackage[1]))/100).toFixed(2);
+                    var price =parseFloat((pricePackage[0])-(((pricePackage[0])*(pricePackage[1]))/100)).toFixed(2);
                     $('#price-discount-list').empty();
                     $('#price-discount-list').append("<div>$"+price+"</div>").append(
                         "<del class='ml-3 text-danger'>"+"$"+pricePackage[0]+"</del>"
