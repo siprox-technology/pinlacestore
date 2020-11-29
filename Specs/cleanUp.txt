@@ -1,11 +1,8 @@
 
 content=>
--add more products- payments- reviews
+*add more products- payments- reviews
 
 style=>
-    -favicon problem
-    -icon and logo design
-    
     -page designs=>
         -most popular products
     -clean all page style and css
@@ -14,5 +11,3 @@ testing=>
     -catch http errors like 500
     -review try and catch in object functions and in process.php
     -remove unnecessary files and codes
-    -when adding items to basket 'something wrong with server error' comes on. two items identical saves in basket
-    -twice payment in stripe for integralproject1988@gmail
