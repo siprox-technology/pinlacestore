@@ -1151,6 +1151,28 @@ else
                 echo json_encode($result);
             }
         break;
+
+        case 'get best selling items':
+            try
+            {
+                require_once ('models/Product.php');
+                $product = new Product();
+                $product_info_result = $product->getBestSellingProducts();
+                if($product_info_result)
+                {
+                    echo json_encode($product_info_result);
+                }
+                else
+                {
+                    echo 'database error';
+                }
+            }
+            catch(Exception $e)
+            {
+                echo 'exception';
+            }
+
+        break;
         
         default:
         session_unset();

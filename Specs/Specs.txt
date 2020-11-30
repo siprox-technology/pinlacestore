@@ -28,11 +28,6 @@ id,email,Name,lastName,phone
 ,password,contact_pref,created_at,act_code
 --------------------------------
 
-WishList:
-id,FK_user_id_wish_user,
-FK_inverntory_id_wish_inven,
-
---------------------------------
 
 Address:
 id,number,address,city,state,country,postCode,
@@ -88,7 +83,6 @@ Front end structure:
  *presentation of differnt products by category
   brand or specific items
  *top seller presentation
- *newsletter signup
 2-Footer:
   -customer service:
   *FAQ's, contact us,Returns and exchange, refunds

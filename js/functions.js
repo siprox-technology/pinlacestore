@@ -3284,5 +3284,50 @@ function displayProductReviews()
     });
 }
 
-
 $('#accept-cookie-modal').modal();
+
+//display best selling items
+
+function displayBestSelling()
+{
+    $.ajax({
+        url: 'process.php',
+        type: 'post',
+        data: {
+            request_name: 'get best selling items',
+            _token: $('#_token').val()
+        },
+        beforeSend: function () {
+        },
+        success: function (response) {
+
+            if((response !== 'exception')&&(response !== 'database error'))
+            {
+                // display products
+                result = JSON.parse(response);
+                for (i = 0; i < result.length; i++) {
+                    $('#bestSellingProducts').append(
+                        '<div class="col-lg-3 col-md-4 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms">' +
+                        '<div class="shopping-box bottom30">' +
+                        '<div class="image sale" data-sale=' + result[i].discount + '>' +
+                        "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].id + "-thumb.jpg' alt='shop'>" +
+                        '<div class="overlay center-block">' +
+                        "<a class='w-100 h-100' href='product-details.php?k=" + result[i].id + "'" + "></a>"+
+                        '</div>' +
+                        '</div>' +
+                        '<div class="shop-content text-center">' +
+                        "<h4 class='darkcolor'><a href='product-details.php?k=" + result[i].id + "'" + ">" + result[i].brand + "</a></h4>" +
+                        '<p>' + result[i].name + '</p>' +
+                        '<h4 class="price-product">' + result[i].price + '</h4>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>'
+                    );
+                }
+
+                
+            }
+     
+        },
+    });
+}

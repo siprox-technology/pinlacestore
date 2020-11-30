@@ -179,13 +179,35 @@ class Product{
             return false;
         }
     }
-   
 
+    public function getBestSellingProducts()
+    {
+        $query = "select count(FK_product_id_inv_prod) as count, FK_product_id_inv_prod as product_id
+        from inventory where id in ( select FK_inventory_id_items_inven from order_items)
+        group by FK_product_id_inv_prod order by count(FK_product_id_inv_prod) desc;";  
+        $this->db->query($query);
+        $productData = $this->db->resultset();
+        if(count($productData)>0)
+        {
+            for($i=0; $i<count($productData);$i++)
+            {
+                $this->db->query("select distinct 
+                product.id,brand,name,category,gender,imgFolder,price,(SELECT MAX(discount) FROM inventory 
+                where FK_product_id_inv_prod = product.id) as discount from 
+                product
+                inner join inventory
+                where
+                product.id =".$productData[$i]->product_id.";");
+                $results[$i] = $this->db->single();
+            }
 
-/*     select count(FK_product_id_inv_prod), FK_product_id_inv_prod
-    from inventory where id in ( select FK_inventory_id_items_inven from order_items)
-    group by FK_product_id_inv_prod order by count(FK_product_id_inv_prod) desc;
- */
+            return $results;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
 

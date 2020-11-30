@@ -1,13 +1,15 @@
 
 content=>
-*add more products- payments- reviews
+
 
 style=>
     -page designs=>
-        -most popular products
     -clean all page style and css
     -edit product images with paint
 testing=>
     -catch http errors like 500
     -review try and catch in object functions and in process.php
     -remove unnecessary files and codes
+    *add more products- payments- reviews
+
+
