@@ -21,7 +21,7 @@ class Product{
     }
 
     public function getAllFilters(){
-        $this->db->query('select distinct brand,category,size,color
+        $this->db->query('select distinct brand,category,size,color,gender
         from product
         inner join inventory
         where

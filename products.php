@@ -7,6 +7,7 @@ if(!isset($_SESSION['_token']))
 }
 session_regenerate_id();
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,10 +107,7 @@ session_regenerate_id();
                                 <div class="form-group  col-10">
                                     <label for="" class="text-white">Gender:</label>
                                     <select class="form-control" id="gender-select">
-                                        <option>All</option>
-                                        <option>Male</option>
-                                        <option>Female</option>
-                                        <option>Kids</option>
+                                        <option >All</option>
                                     </select>
                                 </div>
                                 <!-- sizes -->
@@ -140,9 +138,22 @@ session_regenerate_id();
    </div>
 
     <!--Trending Items in shop End-->
-   <?php include_once 'inc/footer.php';
-     include_once 'inc/scripts.php'?>
-     <script>selectAllProducts();selectAllFilters();</script>
+   <?php 
+    include_once 'inc/footer.php';
+     include_once 'inc/scripts.php';
+     if((isset($_GET['brand'])&&(isset($_GET['category'])&&(isset($_GET['gender'])))))
+        {
+            echo "<script>
+            selectAllFilters('".$_GET['brand']."','".$_GET['category']."','".$_GET['gender']."',"."'filtersSelected'".");
+            filterProducts('".$_GET['brand']."','".$_GET['category']."','".$_GET['gender']."',"."'parameters'".");
+            </script>";
+        }
+        else
+        {
+            echo "<script> selectAllProducts();selectAllFilters(); </script>";
+        }
+
+    ?>
 </body>
 
 </html>

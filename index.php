@@ -98,8 +98,7 @@ session_regenerate_id();
             <div class="row align-items-center text-center">
                 <div class="col-md-8 offset-2">
                     <div class="quote-wrapper">
-                        <h3>Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper, luctus
-                            pulvinar, hendrerit id, lorem.</h3>
+                        <h3>WE OFFER UNIQUE SELECTION OF FOOTWEAR WITH ATTRACTIVE PRICES FOR DIFFERENT STYLES AND TASTES</h3>
                     </div>
                 </div>
             </div>

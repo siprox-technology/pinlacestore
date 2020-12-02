@@ -78,7 +78,7 @@
                                 if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true){ 
                                     echo "<a class='nav-link' data-toggle='tooltip' data-placement='bottom'
                                     title=".$_SESSION['email']."
-                                    style='color:#086b70' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";
+                                    style='color:#23ced5' href='user-profile.php'>Hi, ". $_SESSION['name']."</a>";
                                     echo "<a class='nav-link' href='logout.php'>Logout</a>";
                                 } 
                                 else{echo "<a class='nav-link' href='login.php'>Login</a>";} 

@@ -2160,8 +2160,7 @@ function selectAllProducts() {
 }
 
 /* set all products filter */
-
-function selectAllFilters() {
+function selectAllFilters(brand,category,gender,func_Type) {
     $.ajax({
         url: 'process.php',
         type: 'post',
@@ -2177,7 +2176,33 @@ function selectAllFilters() {
             } else {
                 // display products
                 result = JSON.parse(response);
-                var brands = categories = sizes = colors = [];
+                var brands = categories = sizes = colors = genders= [];
+                //set filter option selected based on function parameters
+                if(func_Type == 'filtersSelected')
+                {
+                    if(brand !='All')
+                    {
+                        brands.push(brand);
+                        $('#filter-products-modal #brand-select').append(
+                            "<option selected>" + brand + "</option>"
+                        );
+                    }
+                    if(category !='All')
+                    {
+                        categories.push(category);
+                        $('#filter-products-modal #category-select').append(
+                            "<option selected>" + category + "</option>"
+                        );
+                    }
+                    if(gender != 'All')
+                    {
+                        genders.push(gender);
+                        $('#filter-products-modal #gender-select').append(
+                            "<option selected>" + gender + "</option>"
+                        );
+                    }
+                }
+                //set the remaining filters
                 for (i = 0; i < result.length; i++) {
                     //set brands
                     if (($.inArray(result[i].brand, brands) < 0)) {
@@ -2193,7 +2218,13 @@ function selectAllFilters() {
                         );
                         categories.push(result[i].category);
                     }
-                    // gender is set in html
+                    //set gender
+                    if (($.inArray(result[i].gender, genders) < 0)) {
+                        $('#filter-products-modal #gender-select').append(
+                            "<option>" + result[i].gender + "</option>"
+                        );
+                        genders.push(result[i].gender);
+                    }
                     // set size
                     if (($.inArray(result[i].size, sizes) < 0)) {
                         $('#filter-products-modal #size-select').append(
@@ -2211,71 +2242,135 @@ function selectAllFilters() {
                     //discount is set in html
 
                 }
+
             }
         },
     });
 }
 
 /* display filtered products */
-function filterProducts() {
-    $.ajax({
-        url: 'process.php',
-        type: 'post',
-        data: {
-            request_name: 'filter products',
-            _token: $('#_token').val(),
-            brand: $('#brand-select option:selected').text(),
-            category: $('#category-select option:selected').text(),
-            gender: $('#gender-select option:selected').text(),
-            size: $('#size-select option:selected').text(),
-            color: $('#color-select option:selected').text(),
-            orderBy: $('#sort-by-select option:selected').text()
-        },
-        beforeSend: function () {},
-        success: function (response) {
-            if (response == 'server error') {
-                $('#products-body #notification').removeClass()
-                    .addClass('text-center text-danger border border-danger border-rounded');
-            } else {
-                // display products
-                result = JSON.parse(response);
-                var id = [];
-                $('#productList').children().remove();
-                for (i = 0; i < result.length; i++) {
-                    if (($.inArray(result[i].product_id, id) < 0)) {
-                        $('#productList').append(
-                            '<div class="col-lg-3 col-md-4 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms">' +
-                            '<div class="shopping-box bottom30">' +
-                            '<div class="image sale" data-sale=' + result[i].discount + '>' +
-                            "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].product_id + "-thumb.jpg' alt='shop'>" +
-                            '<div class="overlay center-block">' +
-                            "<a class='w-100 h-100' href='product-details.php?k=" + result[i].product_id + "'" + "></a>"+
-                            '</div>' +
-                            '</div>' +
-                            '<div class="shop-content text-center">' +
-                            "<h4 class='arkcolor'><a href='product-details.php?k=" + result[i].product_id + "'" + ">" + result[i].brand + "</a></h4>" +
-                            '<p>' + result[i].name + '</p>' +
-                            '<h4 class="price-product">' + result[i].price + '</h4>' +
-                            '</div>' +
-                            '</div>' +
-                            '</div>'
-                        );
-                        id.push(result[i].product_id);
+function filterProducts(brand,category,gender,func_Type) {
+    //filter products by user selection in form
+    if(func_Type == 'filter')
+    {
+        $.ajax({
+            url: 'process.php',
+            type: 'post',
+            data: {
+                request_name: 'filter products',
+                _token: $('#_token').val(),
+                brand: $('#brand-select option:selected').text(),
+                category: $('#category-select option:selected').text(),
+                gender: $('#gender-select option:selected').text(),
+                size: $('#size-select option:selected').text(),
+                color: $('#color-select option:selected').text(),
+                orderBy: $('#sort-by-select option:selected').text()
+            },
+            beforeSend: function () {},
+            success: function (response) {
+                if (response == 'server error') {
+                    $('#products-body #notification').removeClass()
+                        .addClass('text-center text-danger border border-danger border-rounded');
+                } else {
+                    // display products
+                    result = JSON.parse(response);
+                    var id = [];
+                    $('#productList').children().remove();
+                    for (i = 0; i < result.length; i++) {
+                        if (($.inArray(result[i].product_id, id) < 0)) {
+                            $('#productList').append(
+                                '<div class="col-lg-3 col-md-4 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms">' +
+                                '<div class="shopping-box bottom30">' +
+                                '<div class="image sale" data-sale=' + result[i].discount + '>' +
+                                "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].product_id + "-thumb.jpg' alt='shop'>" +
+                                '<div class="overlay center-block">' +
+                                "<a class='w-100 h-100' href='product-details.php?k=" + result[i].product_id + "'" + "></a>"+
+                                '</div>' +
+                                '</div>' +
+                                '<div class="shop-content text-center">' +
+                                "<h4 class='arkcolor'><a href='product-details.php?k=" + result[i].product_id + "'" + ">" + result[i].brand + "</a></h4>" +
+                                '<p>' + result[i].name + '</p>' +
+                                '<h4 class="price-product">' + result[i].price + '</h4>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                            );
+                            id.push(result[i].product_id);
+                        }
                     }
+                    //set product counter
+                    $("#product-quantity").text(id.length);
                 }
-                //set product counter
-                $("#product-quantity").text(id.length);
-            }
+    
+            },
+        });
+    }
 
-        },
-    });
+    //filter products by parameters in function
+    if(func_Type == 'parameters')
+    {
+        $.ajax({
+            url: 'process.php',
+            type: 'post',
+            data: {
+                request_name: 'filter products',
+                _token: $('#_token').val(),
+                brand:brand,
+                category: category,
+                gender:gender,
+                size: 'All',
+                color: 'All',
+                orderBy:'Price-low to high' 
+            },
+            beforeSend: function () {},
+            success: function (response) {
+                if (response == 'server error') {
+                    $('#products-body #notification').removeClass()
+                        .addClass('text-center text-danger border border-danger border-rounded');
+                } else {
+                    // display products
+                    result = JSON.parse(response);
+                    var id = [];
+                    $('#productList').children().remove();
+                    for (i = 0; i < result.length; i++) {
+                        if (($.inArray(result[i].product_id, id) < 0)) {
+                            $('#productList').append(
+                                '<div class="col-lg-3 col-md-4 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms">' +
+                                '<div class="shopping-box bottom30">' +
+                                '<div class="image sale" data-sale=' + result[i].discount + '>' +
+                                "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].product_id + "-thumb.jpg' alt='shop'>" +
+                                '<div class="overlay center-block">' +
+                                "<a class='w-100 h-100' href='product-details.php?k=" + result[i].product_id + "'" + "></a>"+
+                                '</div>' +
+                                '</div>' +
+                                '<div class="shop-content text-center">' +
+                                "<h4 class='arkcolor'><a href='product-details.php?k=" + result[i].product_id + "'" + ">" + result[i].brand + "</a></h4>" +
+                                '<p>' + result[i].name + '</p>' +
+                                '<h4 class="price-product">' + result[i].price + '</h4>' +
+                                '</div>' +
+                                '</div>' +
+                                '</div>'
+                            );
+                            id.push(result[i].product_id);
 
+                        }
+                    }
+                    //set product counter
+                    $("#product-quantity").text(id.length); 
+                }
+            },
+        });
+    }
+    
 }
+
+
 // filter products when user selects different filter
 
 $("#brand-select,#category-select,#gender-select,#size-select,#color-select,#sort-by-select")
     .on("change", function () {
-        filterProducts();
+/*         window.location = window.location.href.split("?")[0];
+ */        filterProducts(null,null,null,'filter');
     });
 //filter and show suggested products by name, category, brand
 
