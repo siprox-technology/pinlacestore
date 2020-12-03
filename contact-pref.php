@@ -11,7 +11,7 @@ session_regenerate_id();
 <html lang="en">
 
 <head>
-    <title>Trax | Contact preferences</title>
+    <title>PinLace | Contact preferences</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

@@ -12,7 +12,7 @@ session_regenerate_id();
 <html lang="en">
 
 <head>
-    <title>Trax | Wish list</title>
+    <title>PinLace | Wish list</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

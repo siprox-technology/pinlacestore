@@ -19,7 +19,7 @@ if((!isset($_GET['k']))||(($validate->validateDigits($_GET['k']))==false))
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Trax | Product Details</title>
+    <title>PinLace | Product Details</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

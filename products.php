@@ -13,7 +13,7 @@ session_regenerate_id();
 <html lang="en">
 
 <head>
-    <title>Trax | Shop</title>
+    <title>PinLace | Shop</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

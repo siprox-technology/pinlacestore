@@ -18,7 +18,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
 <html lang="en">
 
 <head>
-    <title>Trax | Shopping Basket</title>
+    <title>PinLace | Shopping Basket</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

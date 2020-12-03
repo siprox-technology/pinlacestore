@@ -37,7 +37,7 @@ $userAddSuccess = "d-none";
 <html lang="en">
 
 <head>
-    <title>Trax | Register</title>
+    <title>PinLace | Register</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

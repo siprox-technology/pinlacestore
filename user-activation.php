@@ -56,7 +56,7 @@ $val = new Validate();
 <html lang="en">
 
 <head>
-    <title>Trax | Activation Result</title>
+    <title>PinLace | Activation Result</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

@@ -40,7 +40,7 @@ if(isset ($_GET['msg'])){
 <html lang="en">
 
 <head>
-    <title>Trax | Edit account</title>
+    <title>PinLace | Edit account</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

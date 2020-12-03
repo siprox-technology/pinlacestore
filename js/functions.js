@@ -2369,8 +2369,7 @@ function filterProducts(brand,category,gender,func_Type) {
 
 $("#brand-select,#category-select,#gender-select,#size-select,#color-select,#sort-by-select")
     .on("change", function () {
-/*         window.location = window.location.href.split("?")[0];
- */        filterProducts(null,null,null,'filter');
+        filterProducts(null,null,null,'filter');
     });
 //filter and show suggested products by name, category, brand
 

@@ -12,7 +12,7 @@ session_regenerate_id();
 
 <head>
     <!-- Required meta tags -->
-    <title>Trax | Contact</title>
+    <title>PinLace | Contact</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

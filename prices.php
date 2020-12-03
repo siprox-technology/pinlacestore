@@ -11,7 +11,7 @@ session_regenerate_id();
 <html lang="en">
 
 <head>
-    <title>Trax | Prices</title>
+    <title>PinLace | Prices</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

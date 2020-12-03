@@ -16,7 +16,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
 <html lang="en">
 
 <head>
-    <title>Trax | Account</title>
+    <title>PinLace | Account</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

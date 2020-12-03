@@ -15,7 +15,7 @@ if(count($_GET)<1)
 <html lang="en">
 
 <head>
-    <title>Trax | Order confirmation</title>
+    <title>PinLace | Order confirmation</title>
     <?php 
     include_once 'inc/head.php' 
     ?>

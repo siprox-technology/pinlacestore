@@ -37,7 +37,7 @@ if(isset ($_GET['msg'])){
 <html lang="en">
 
 <head>
-    <title>Trax | Login</title>
+    <title>PinLace | Login</title>
     <?php 
     include_once 'inc/head.php' 
     ?>
