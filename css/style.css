@@ -23,8 +23,6 @@ blockquote {
 
 html {
     font-size: 16px;
-    /*     scroll-behavior: smooth;
-    transition: 1s; */
 }
 
 ol,
@@ -1519,7 +1517,7 @@ ul.social-icons.white li a:focus {
     padding: .8rem 2.25rem !important;
 }
 
-.btnsecondary {}
+
 
 .btnprimary {
     background: #086b70;

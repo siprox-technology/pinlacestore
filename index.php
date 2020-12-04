@@ -69,7 +69,6 @@ session_regenerate_id();
             </div>
         </div>
     </section>
-    <!--Page Header ends -->
     <!--best selling items-->
     <section id="our-shop" class="padding">
         <div class="container">
@@ -83,14 +82,13 @@ session_regenerate_id();
                     </div>
                 </div>
                 <!-- products -->
-                <div id="bestSellingProducts" class="row">
+                <div id="bestSellingProducts" class="">
 
                 </div>   
 
             </div>
         </div>
     </section>
-    <!--Shopping ends-->
     <!-- Ladies shoes header-->
     <section id="our-feature" class="single-feature padding">
         <div class="container">
@@ -112,7 +110,7 @@ session_regenerate_id();
             </div>
         </div>
     </section>
-        <!-- Counters -->
+    <!-- Counters -->
     <section class="padding bg-shop-quote parallax">
         <div class="overlay overlay-dark opacity-6 z-index-0"></div>
             <div class="container">
