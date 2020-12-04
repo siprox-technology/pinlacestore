@@ -140,7 +140,7 @@ session_regenerate_id();
                         <a target="_blank" href="products.php?brand=All&amp;category=Boots&amp;gender=All" class="button btnsecondary gradient-btn mb-sm-0 mb-4">Learn More</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeIn;">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeIn;">
                     <div class="shopping-box bottom30">
                         <div class="image sale" data-sale="50">
                             <img src="images/img-list/3/182779-thumb.jpg" alt="shop">
@@ -157,8 +157,31 @@ session_regenerate_id();
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeIn;"><div class="shopping-box bottom30"><div class="image sale" data-sale="25"><img src="images/img-list/6/118066-thumb.jpg" alt="shop"><div class="overlay center-block"><a class="w-100 h-100" href="product-details.php?k=118066"></a></div></div><div class="shop-content text-center"><h4 class="arkcolor"><a href="product-details.php?k=118066">FIRETRAP</a></h4><p>Rhino Boots</p><h4 class="price-product">89.99</h4></div></div></div>
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeIn;"><div class="shopping-box bottom30"><div class="image sale" data-sale="75"><img src="images/img-list/1/182076-thumb.jpg" alt="shop"><div class="overlay center-block"><a class="w-100 h-100" href="product-details.php?k=182076"></a></div></div><div class="shop-content text-center"><h4 class="arkcolor"><a href="product-details.php?k=182076">KARRIMOR</a></h4><p>Blencathra Mens Walking Boots</p><h4 class="price-product">119.99</h4></div></div></div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeIn;"><div class="shopping-box bottom30"><div class="image sale" data-sale="25"><img src="images/img-list/6/118066-thumb.jpg" alt="shop"><div class="overlay center-block"><a class="w-100 h-100" href="product-details.php?k=118066"></a></div></div><div class="shop-content text-center"><h4 class="arkcolor"><a href="product-details.php?k=118066">FIRETRAP</a></h4><p>Rhino Boots</p><h4 class="price-product">89.99</h4></div></div></div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeIn;"><div class="shopping-box bottom30"><div class="image sale" data-sale="75"><img src="images/img-list/1/182076-thumb.jpg" alt="shop"><div class="overlay center-block"><a class="w-100 h-100" href="product-details.php?k=182076"></a></div></div><div class="shop-content text-center"><h4 class="arkcolor"><a href="product-details.php?k=182076">KARRIMOR</a></h4><p>Blencathra Mens Walking Boots</p><h4 class="price-product">119.99</h4></div></div></div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeIn;"><div class="shopping-box bottom30"><div class="image sale" data-sale="50"><img src="images/img-list/2/118287-thumb.jpg" alt="shop"><div class="overlay center-block"><a class="w-100 h-100" href="product-details.php?k=118287"></a></div></div><div class="shop-content text-center"><h4 class="arkcolor"><a href="product-details.php?k=118287">FLYER</a></h4><p>Doolittle Boots Mens</p><h4 class="price-product">109.99</h4></div></div></div>            </div>
+        </div>
+    </section>
+
+    <!-- mens shoes -->
+    <section id="mens-feature" class="single-feature padding">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class="col-lg-6 col-md-7 col-sm-7 text-sm-left text-center wow fadeInLeft" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeInLeft;">
+                    <div class="heading-title mb-4">
+                        <h2 class="darkcolor font-normal bottom30">Great performance<span class="defaultcolor"> Comes</span> here</h2>
+                    </div>
+                    <p class="bottom35 defaultcolor">We have a collection of running and working shoes for Gents. </p>
+                    <p class="bottom35">Start clocking miles in these lightweight running shoes. 
+                        On the treadmill or the streets, 
+                        they add comfort to each step with soft cushioning. 
+                        The supportive trainers have an airy material-mix upper and a midfoot cage 
+                        for extra support.</p>
+                    <a target="_blank" href="products.php?brand=All&amp;category=All&amp;gender=Male" class="button btnsecondary gradient-btn mb-sm-0 mb-4">Learn More</a>
+                </div>
+                <div class="col-lg-5 offset-lg-1 col-md-5 col-sm-5 wow fadeInRight" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeInRight;">
+                    <div class="image"><img src="images/nike-shield-mens-1410x574.webp"></div>
+                </div>
             </div>
         </div>
     </section>

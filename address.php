@@ -71,7 +71,7 @@ if(isset ($_GET['msg'])){
         </div>
         <div class="container whitebox">
             <div class="row justify-content-center">
-                <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Manage</span>
+                <h2 class="heading bottom30 darkcolor text-center font-light2 pt-1"><span class="font-normal">Manage</span>
                  Address Book
                     <span class="divider-center"></span>
                 </h2>

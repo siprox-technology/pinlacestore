@@ -3,13 +3,15 @@ content=>
 
 
 style=>
-    -page designs=>
-        -about contact privacy
+    **page designs=>
+    -profile and payment pages
 testing=>
+    *add more products- payments- reviews
+     -more kids- more ladies- more working boots
+
     -catch http errors like 500
     -review try and catch in object functions and in process.php
     -remove unnecessary files and codes.
-    *add more products- payments- reviews
-     -more kids- more ladies- more working boots
+
 
 
