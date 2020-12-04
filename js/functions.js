@@ -4,6 +4,17 @@ $(window).on("load", function () {
     $(".loader").fadeOut(800);
     $('.side-menu').removeClass('opacity-0');
 });
+//smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+            
+        });
+    });
+});
 
 
 jQuery($ => {
@@ -225,7 +236,7 @@ jQuery($ => {
                 }, 300);
             });
         });
-        $("#close_side_menu , #btn_sideNavClose , .side-nav .nav-link.pagescroll").on("click", function () {
+        $("#contact-link-side-menu,#close_side_menu , #btn_sideNavClose , .side-nav .nav-link.pagescroll").on("click", function () {
             $("body").removeClass("overflow-hidden");
             sideMenu.removeClass("side-menu-active");
             $("#close_side_menu").fadeOut(200);

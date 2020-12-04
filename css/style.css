@@ -23,6 +23,8 @@ blockquote {
 
 html {
     font-size: 16px;
+    /*     scroll-behavior: smooth;
+    transition: 1s; */
 }
 
 ol,
@@ -666,6 +668,7 @@ section,
     opacity: 1;
     visibility: visible;
 }
+
 
 .back-top,
 .back-top:hover,

@@ -6,23 +6,30 @@
                     <div class="footer_panel padding_bottom_half bottom20">
                         <a href="index.php" class="footer_logo bottom25"><img src="images/logo-transparent.png"
                                 alt="trax"></a>
-                        <p class="whitecolor bottom25">We are always committed to providing the best customer service.</p>
+                        <p class="whitecolor ">We are always committed to providing the best customer service.</p>
                         <div class="d-table w-100 address-item whitecolor bottom25">
                             <span class="d-table-cell align-middle"><i class="fas fa-mobile-alt"></i></span>
                             <p class="d-table-cell align-middle bottom0">
-                                +44-798-5505786 <a class="d-block" href="mailto:pinlacestore@gmail.com">web@support.com</a>
+                                +44-798-5505786 <a class="d-block" href="mailto:pinlacestore@gmail.com">pinlacestore@gmail.com</a>
+                            </p>
+                        </div>
+                        <div class="d-table w-100 address-item whitecolor bottom25">
+                            <span class="d-table-cell align-middle"><i class="fas fa-map-marker-alt"></i></span>
+                            <p class="d-table-cell align-middle bottom0">
+                                No 33 Woodbridge avenue, Clifton, NG11 8GP, 
+                                U.K.
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-12 p-3 p-md-2 p-lg-1">
                     <div class="footer_panel padding_bottom_half bottom20">
-                        <h3 class="whitecolor bottom25">Our Services</h3>
+                        <h3 class="whitecolor bottom30">Our Services</h3>
                         <ul class="links">
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="contact.php">Contact Us</a></li>
-                            <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                            <li class="p-2"><a href="index.php">Home</a></li>
+                            <li class="p-2"><a href="products.php?brand=All&amp;category=All&amp;gender=Male">Mens footwear</a></li>
+                            <li class="p-2"><a href="products.php?brand=All&amp;category=All&amp;gender=Female">Ladies footwear</a></li>
+                            <li class="p-2"><a href="products.php?brand=All&amp;category=All&amp;gender=Kids">Kids footwear</a></li>
                         </ul>
                     </div>
                 </div>

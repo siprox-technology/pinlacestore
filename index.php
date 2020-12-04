@@ -104,7 +104,7 @@ session_regenerate_id();
                         cushioned insole and padded ankle collar for great comfort, 
                         whilst the textured rubber outsole promotes greater traction 
                         and the foam midsole helps absorb the impact of each step you take.</p>
-                    <a href="products.php?brand=All&category=All&gender=Female" class="button btnsecondary gradient-btn mb-sm-0 mb-4">Learn More</a>
+                    <a target="_blank" href="products.php?brand=All&category=All&gender=Female" class="button btnsecondary gradient-btn mb-sm-0 mb-4">Learn More</a>
                 </div>
                 <div class="col-lg-5 offset-lg-1 col-md-5 col-sm-5 wow fadeInRight" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeInRight;">
                     <div class="image"><img alt="SEO" src="images/sd-xmas-p4-ladies-767x450.webp"></div>
@@ -137,7 +137,7 @@ session_regenerate_id();
                         <p>The Mens Safety Boots are great for the workplace, 
                         designed with an slip resistant outsole with an acid and oil resistant finish, 
                         teamed with a steel toe cap for extra protection. </p>
-                        <a href="products.php?brand=All&amp;category=Boots&amp;gender=All" class="button btnsecondary gradient-btn mb-sm-0 mb-4">Learn More</a>
+                        <a target="_blank" href="products.php?brand=All&amp;category=Boots&amp;gender=All" class="button btnsecondary gradient-btn mb-sm-0 mb-4">Learn More</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12 wow fadeIn" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeIn;">
@@ -167,7 +167,7 @@ session_regenerate_id();
         include_once 'inc/footer.php';
         include_once 'inc/scripts.php'
     ?>
-
+ 
      <script>
         displayBestSelling();
      </script>
