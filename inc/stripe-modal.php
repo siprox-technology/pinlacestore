@@ -16,14 +16,8 @@
                 <form action="process.php" method="post" id="payment-form">
                     <div class="form-row">
                     <!-- customer card owner -->
-                    <div class="form-group">
-                    <label>NAME</label>
                     <input type="text" name="name" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Full Name" required="" autofocus="">
-                    </div>  
-                    <div class="form-group">
-                    <label>EMAIL</label>
                     <input type="email" name="email" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Email Address" required="">            
-                    </div> 
                     <input type="text" name="address_line_1" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="Address line 1">
                     <select name="country" id="country"  class="form-control mb-3 StripeElement StripeElement--empty">
                         <option value="" default>Select country...</option>

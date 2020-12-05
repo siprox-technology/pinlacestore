@@ -89,9 +89,9 @@ session_regenerate_id();
         </div>
     </div>
 <?php
-include_once 'inc/stripe-modal.php'; 
-include_once 'inc/footer.php';
-include_once 'inc/scripts.php'
+    include_once 'inc/footer.php';
+    include_once 'inc/stripe-modal.php'; 
+    include_once 'inc/scripts.php';
 ?>
 <script>getAllOrders()</script>
 </body>

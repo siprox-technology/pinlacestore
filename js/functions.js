@@ -2505,7 +2505,7 @@ function getProductDetails(colorSeleced,sizeSelected) {
                 //display sizes
                 $('#product-sizes-list').empty();
                 for (i = 0; i < sizes.length; i++) {
-                    $('#product-sizes-list').append("<div class='product-size-selector position-relative'>"+
+                    $('#product-sizes-list').append("<div class='product-size-selector position-relative m-1'>"+
                     "<p value='"+sizes[i]+"'"+"id='"+(i+1)+"'"+
                      "class='pt-4 text-center"+((sizes[i]==sizeSelected)?" selected'":"'")+
                      "'>"+sizes[i]+"</p>"+

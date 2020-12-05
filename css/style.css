@@ -4884,6 +4884,8 @@ span.icon-contact {
 
 .product-img-item {
     background: #fff;
+    border-radius: 4%;
+
 }
 
 .product-img-item.shadow {
@@ -7018,12 +7020,14 @@ ul.latest_news li a:focus+span.defaultcolor {
     width: 70px;
     height: 70px;
     background-color: #0c2440;
-    border: 3px solid white;
+    border: 3px round white;
+    border-radius: 5%;
     color: white;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
 }
 
 .product-size-selector:hover {

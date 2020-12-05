@@ -258,9 +258,9 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
 <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
 
 <?php
-include_once 'inc/footer.php';
-include_once 'inc/scripts.php';
-include_once 'inc/stripe-modal.php';   
+   include_once 'inc/footer.php';
+   include_once 'inc/stripe-modal.php';  
+   include_once 'inc/scripts.php';
 ?>
 <script>getShoppingBasketDetails()</script>
 </body>

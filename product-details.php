@@ -65,16 +65,16 @@ include_once 'inc/header.php'
 <section id="gallery-detail" class=" padding_bottom_half">
     <div class="container">
         <!-- nav to all products -->
-        <div class="row justify-content-start ml-auto">
+        <div class="row justify-content-start ml-auto mb-1">
             <a class="" href="products.php"><i class="fas fa-arrow-left"></i></a>
             <a class="ml-2" href="products.php">Back to all products</a>
         </div>
         <!-- product images and info -->
         <div class="row">
             <!-- image gallary -->
-            <div class="col-md-5 top5" >
-                <div class="product-img-item shadow">
-                    <div class="product-desc text-center text-md-left p-1">
+            <div class="col-md-5 " >
+                <div class="product-img-item shadow p-3">
+                    <div class="text-center text-md-left">
                         <!-- image gallary -->
                         <div id="product-gallary-images" class="carousel slide w-100" data-ride="imgList">
                             <!-- The slideshow -->
@@ -94,23 +94,18 @@ include_once 'inc/header.php'
                             <i class="fas fa-search-plus" id='zoom-icon'></i>
                         </div>
                         <!-- add to cart -->
-                        <div class="row mt-5">
-                            <div class="col-md-8 mt-1 mb-4">
-                                <div class="quote">
-                                    <label for="quantity" class="d-none"></label>
-                                    <button class="btn-common gradient-btn">wish list <i class="fas fa-star"></i></button>
-                                    <button id ="add-to-cart"class="btn-common gradient-btn">Add to Cart <i class="fa fa-cart-plus"></i></button>
-                                    <input type="number" placeholder="Quantity" min="1" max="100" value="1" class="quote pl-4" id="add-cart-quantity">
-                                </div>
-                            </div>
+                        <div class="quote d-flex mt-5 justify-content-between w-100">
+                            <label for="quantity" class="d-none"></label>
+                            <button id ="add-to-cart"class="btn-common gradient-btn p-2 px-sm-4">Add to Cart <i class="fa fa-cart-plus"></i></button>
+                            <input type="number" placeholder="Quantity" min="1" max="100" value="1" class="quote p-2 p-sm-3" id="add-cart-quantity">
                         </div>
                     </div>
                 </div>
             </div>
             <!-- product description -->
-            <div class="col-md-7 top5" >
+            <div class="col-md-7 mt-3 mt-md-0" >
                 <div class="product-img-item shadow">
-                    <div class="product-desc text-center text-md-left p-1">
+                    <div class="product-desc text-center text-md-left p-4">
                         <div class="col-12">
                             <!-- brand -->
                             <h2 class="heading darkcolor font-light2 bottom15" id="brand-name"></h2>
@@ -121,9 +116,9 @@ include_once 'inc/header.php'
                                 </p>
                             </span>
                             <!-- Name -->
-                            <h4 class="text-capitalize font-normal text-left  mt-3" id="gallary-name"></h4>
+                            <h4 class="text-capitalize font-normal text-md-left text-center mt-3" id="gallary-name"></h4>
                             <!-- price and discount -->
-                            <h3 class="mt-3 d-flex" id="price-discount-list"></h3>
+                            <h3 class="mt-3 d-flex justify-content-md-start justify-content-center" id="price-discount-list"></h3>
                             <!-- color names -->
                             <h3 class="text-center text-dark mt-5">Color:</h3>
                             <div class="mt-3 row justify-content-center">
@@ -145,7 +140,7 @@ include_once 'inc/header.php'
             </div>
         </div>
         <!-- comments ratings and description and reviews -->
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-md-12 wow fadeInUp" data-wow-delay="300ms" style="visibility: visible; animation-delay: 300ms; animation-name: fadeInUp;">
                 <div class="tab-to-accordion heading_space">
                     <ul class="tabset-list flex-column flex-md-row">

@@ -81,8 +81,8 @@ session_regenerate_id();
                         <p>Select from variety of best selling running and general purpose walking shoes.</p>
                     </div>
                 </div>
-                <!-- products -->
-                <div id="bestSellingProducts" class="">
+                <!-- products-->
+                <div id="bestSellingProducts" class="row w-100 m-auto">
 
                 </div>   
 
