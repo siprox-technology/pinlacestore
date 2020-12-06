@@ -4,7 +4,9 @@ content=>
 
 style=>
     **page designs=>
-    -profile and payment pages
+    -click on next images scroll down the page on gallary
+    -close icon color in image zoom gallary
+    -
 testing=>
     *add more products- payments- reviews
      -more kids- more ladies- more working boots
