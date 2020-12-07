@@ -211,7 +211,7 @@ include_once 'inc/header.php'
                                         <div class="col-md-6 col-sm-6">
                                                 <div class="form-group">
                                                     <label for="email1" class="d-none"></label>
-                                                    <input type="email" class="form-control" value="<?php echo $_SESSION['email'];?>" name="email" id="reviewer_email" disabled required="">
+                                                    <input type="email" class="form-control" value="<?php if(isset($_SESSION['email'])){echo $_SESSION['email'];}?>" name="email" id="reviewer_email" disabled required="">
                                                 </div>
                                             </div>
                                         </div>
