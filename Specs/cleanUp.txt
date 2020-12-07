@@ -7,11 +7,8 @@ style=>
 
 testing=>
     *add more payments- reviews
-    *more kids- more ladies- more working boots
-
-    -catch http errors like 500
     -review try and catch in object functions and in process.php
-    -remove unnecessary files and codes.
+
 
 
 
