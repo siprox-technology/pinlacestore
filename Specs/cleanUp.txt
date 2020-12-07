@@ -4,12 +4,10 @@ content=>
 
 style=>
     **page designs=>
-    -click on next images scroll down the page on gallary
-    -close icon color in image zoom gallary
-    -
+
 testing=>
-    *add more products- payments- reviews
-     -more kids- more ladies- more working boots
+    *add more payments- reviews
+    *more kids- more ladies- more working boots
 
     -catch http errors like 500
     -review try and catch in object functions and in process.php

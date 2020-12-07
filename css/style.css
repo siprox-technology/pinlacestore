@@ -7083,7 +7083,7 @@ ul.latest_news li a:focus+span.defaultcolor {
 #close i {
     font-size: 24px;
     cursor: pointer;
-    color: #0c2440;
+    color: #23ced5;
 }
 
 #close i:hover {
@@ -7091,7 +7091,7 @@ ul.latest_news li a:focus+span.defaultcolor {
 }
 
 .carousel-control-prev #product-galary-icons {
-    color: #0c2440;
+    color: #23ced5;
 }
 
 .carousel-control-next #product-galary-icons {

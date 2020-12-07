@@ -82,10 +82,10 @@ include_once 'inc/header.php'
                             <!-- images goes here -->
                             </div>
                             <!-- Left and right controls -->
-                            <a class="carousel-control-prev " href="#product-gallary-images" data-slide="prev">
+                            <a class="carousel-control-prev " href="" data-target="#product-gallary-images" data-slide="prev">
                                 <i class="fas fa-angle-left text-dark" id="product-galary-icons"></i>
                             </a>
-                            <a class="carousel-control-next" href="#product-gallary-images" data-slide="next">
+                            <a class="carousel-control-next" href="" data-target="#product-gallary-images" data-slide="next">
                                 <i class="fas fa-angle-right text-dark" id="product-galary-icons"></i>
                             </a>
                         </div>
