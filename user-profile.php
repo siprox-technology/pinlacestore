@@ -46,6 +46,31 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                 <div class="details-box mt-2">
                 
                     <div class="row">
+                        <!-- shopping basket -->
+                        <div class="col-lg-4 col-md-6">
+                            <a href="checkout.php">
+                                <div class="details-box text-center w-100 det-box">
+                                    <div class="contact-box">
+                                        <span class="icon-contact defaultcolor">
+                                            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                            </i></span>
+                                        <h3 class="bottom0">Shopping basket</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- order history -->
+                        <div class="col-lg-4 col-md-6">
+                            <a href="order-history.php">
+                                <div class="details-box text-center w-100 det-box">
+                                    <div class="contact-box">
+                                        <span class="icon-contact defaultcolor"><i class="fa fa-list-alt"
+                                                aria-hidden="true"></i></span>
+                                        <h3 class="bottom0">Order history</h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                         <!-- My details -->
                         <div class="col-lg-4 col-md-6">
                             <a href="edit-acc-details.php">
@@ -79,18 +104,6 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                                         <span class="icon-contact defaultcolor"><i class="fa fa-home"
                                                 aria-hidden="true"></i></span>
                                         <h3 class="bottom0">Address details</h3>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <!-- order history -->
-                        <div class="col-lg-4 col-md-6">
-                            <a href="order-history.php">
-                                <div class="details-box text-center w-100 det-box">
-                                    <div class="contact-box">
-                                        <span class="icon-contact defaultcolor"><i class="fa fa-list-alt"
-                                                aria-hidden="true"></i></span>
-                                        <h3 class="bottom0">Order history</h3>
                                     </div>
                                 </div>
                             </a>

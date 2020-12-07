@@ -189,7 +189,7 @@ class User{
         $this->db->bind(':contactPref', $data['contactPref']);
  
         // Execute
-        if(($this->db->execute()) && ($this->db->rowCount()>0)) {
+        if(($this->db->execute())) {
           return true;
         } else {
           return false;

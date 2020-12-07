@@ -134,7 +134,7 @@
     
     <!-- header End-->
     <!--search products-->
-    <input type="hidden" id="_token" name="_token" value="<?php echo $_SESSION['_token']?>">
+    <input type="hidden" id="_token" name="_token" value="<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>">
     <div class="gradient-bg title-wrap">
         <div id ="search-product-form" class="py-3">
             <div class="row justify-content-center w-100">

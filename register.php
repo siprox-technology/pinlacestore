@@ -130,7 +130,7 @@ $userAddSuccess = "d-none";
                                     </div>
                                 </div>   
                                 <input type="hidden" name="request_name" value="register user">
-                                <input type="hidden" id="_logInToken" name="_token" value="<?php echo $_SESSION['_token'];?>">
+                                <input type="hidden" id="_logInToken" name="_token" value="<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];}?>">
                                 <!-- register btn -->              
                                 <div class="col-sm-12">
                                     <button type="submit" id="reg_btn" class="button gradient-btn w-100">Register</button>

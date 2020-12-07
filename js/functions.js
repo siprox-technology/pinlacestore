@@ -2753,6 +2753,7 @@ function getShoppingBasketDetails()
                      "</tr>"
                     );
                 }
+                total_price = parseFloat(total_price).toFixed(2);
                 $('#total_order_price strong').text("$"+total_price);
                 $('#total_order_shipping strong').text("$9.99"
                 );

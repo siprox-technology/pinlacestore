@@ -96,7 +96,7 @@ if(isset ($_GET['msg'])){
                                     </div>
                                 </div>
                                 <input type="hidden" name="request_name" value="sign in">
-                                <input type="hidden" id="_logInToken" name="_token" value="<?php echo $_SESSION['_token'];?>">
+                                <input type="hidden" id="_logInToken" name="_token" value="<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>">
                                 <div class="col-sm-12">
                                     <button type="submit" class="button gradient-btn" id="loginBtn">Login</button>
                                 </div>

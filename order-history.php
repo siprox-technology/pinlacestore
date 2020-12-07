@@ -7,6 +7,12 @@ if(!isset($_SESSION['_token']))
     $_SESSION['_token'] = strval(random_int (666666, 999999999));
 }
 session_regenerate_id();
+
+//redirect to home page if user not signed in
+if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
+{
+    header('location:index.php');
+}
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -65,7 +71,7 @@ session_regenerate_id();
             <p class="text-danger m-0">*Pending orders will be removed from this list after 24 hours.</p>
         </div>
     </section>
-    <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
+    <input type="hidden" name="_token" value="<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];}?>" id="#_token">
     <!-- order details modal -->
 
     <!-- The order details Modal -->

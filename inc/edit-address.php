@@ -144,7 +144,7 @@
                       <div class="row justify-content-center mt-3">
                           <button  class="button gradient-btn w-50 px-3 ">Remove</button>
                       </div>
-                      <input type="hidden" name='_token' value='<?php echo $_SESSION['_token'];?>'>
+                      <input type="hidden" name='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>'>
                       <input type="hidden" name='request_name' value='remove an address'>
                       <input type="hidden" name='number' value='2'>
                   </form>                       
@@ -209,7 +209,7 @@
                                       required name="postCode"value="<?php if(isset($_SESSION['address3'])){echo $_SESSION['address3']['postCode'];}?>">
                               </div>
                               <input type="hidden" name='request_name' value='add new address'>
-                              <input type="hidden" name ='_token' value='<?php echo $_SESSION['_token']?>'>                               
+                              <input type="hidden" name ='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>'>                               
                           </div>                            
                           <!-- save button -->
                           <div class="col-6">
@@ -222,7 +222,7 @@
                       <div class="row justify-content-center mt-3">
                           <button  class="button gradient-btn w-50 px-3 ">Remove</button>
                       </div>
-                      <input type="hidden" name='_token' value='<?php echo $_SESSION['_token'];?>'>
+                      <input type="hidden" name='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>'>
                       <input type="hidden" name='request_name' value='remove an address'>
                       <input type="hidden" name='number' value='3'>
                   </form>                       
@@ -287,7 +287,7 @@
                                       required name="postCode"value="<?php if(isset($_SESSION['address4'])){echo $_SESSION['address4']['postCode'];}?>">
                               </div>
                               <input type="hidden" name='request_name' value='add new address'>
-                              <input type="hidden" name ='_token' value='<?php echo $_SESSION['_token']?>'>                               
+                              <input type="hidden" name ='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>'>                               
                           </div>                            
                           <!-- save button -->
                           <div class="col-6">
@@ -300,7 +300,7 @@
                       <div class="row justify-content-center mt-3">
                           <button  class="button gradient-btn w-50 px-3 ">Remove</button>
                       </div>
-                      <input type="hidden" name='_token' value='<?php echo $_SESSION['_token'];?>'>
+                      <input type="hidden" name='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>'>
                       <input type="hidden" name='request_name' value='remove an address'>
                       <input type="hidden" name='number' value='4'>
                   </form>                       
@@ -365,7 +365,7 @@
                                       required name="postCode"value="<?php if(isset($_SESSION['address5'])){echo $_SESSION['address5']['postCode'];}?>">
                               </div>
                               <input type="hidden" name='request_name' value='add new address'>
-                              <input type="hidden" name ='_token' value='<?php echo $_SESSION['_token']?>'>                               
+                              <input type="hidden" name ='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>'>                               
                           </div>                            
                           <!-- save button -->
                           <div class="col-6">
@@ -378,7 +378,7 @@
                       <div class="row justify-content-center mt-3">
                           <button  class="button gradient-btn w-50 px-3 ">Remove</button>
                       </div>
-                      <input type="hidden" name='_token' value='<?php echo $_SESSION['_token'];?>'>
+                      <input type="hidden" name='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>'>
                       <input type="hidden" name='request_name' value='remove an address'>
                       <input type="hidden" name='number' value='5'>
                   </form>                       
@@ -443,7 +443,7 @@
                                       required name="postCode"value="<?php if(isset($_SESSION['address6'])){echo $_SESSION['address6']['postCode'];}?>">
                               </div>
                               <input type="hidden" name='request_name' value='add new address'>
-                              <input type="hidden" name ='_token' value='<?php echo $_SESSION['_token']?>'>                               
+                              <input type="hidden" name ='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>'>                               
                           </div>                            
                           <!-- save button -->
                           <div class="col-6">
@@ -456,7 +456,7 @@
                       <div class="row justify-content-center mt-3">
                           <button  class="button gradient-btn w-50 px-3 ">Remove</button>
                       </div>
-                      <input type="hidden" name='_token' value='<?php echo $_SESSION['_token'];?>'>
+                      <input type="hidden" name='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>'>
                       <input type="hidden" name='request_name' value='remove an address'>
                       <input type="hidden" name='number' value='6'>
                   </form>                       

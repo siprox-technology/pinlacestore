@@ -80,7 +80,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
          <div class="col-md-6 col-sm-12 wow fadeInUp margin_tophalf" data-wow-delay="400ms" style="visibility: visible; animation-delay: 400ms; animation-name: fadeInUp;">
             <div class="totals margin_topalf h-100">
                <h3 class="bottom25 font-light2">Recipient:</h3>
-               <input type="hidden" name="recipient_user_id" value="<?php echo $_SESSION['id'];?>" id="recipient_user_id">
+               <input type="hidden" name="recipient_user_id" value="<?php if(isset($_SESSION['id'])){echo $_SESSION['id'];} ?>" id="recipient_user_id">
                <table class="table table-responsive cart-total">
                   <tbody>
                   <tr class="">
@@ -88,7 +88,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                      <td id="delivery_name" class="yellow_t text-right">
                         <strong>
                            <?php
-                              echo $_SESSION['name'];
+                             if(isset($_SESSION['name'])){echo $_SESSION['name'];} 
                            ?>
                         </strong>
                      </td>
@@ -98,7 +98,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                      <td id="delivery_email"class="yellow_t text-right">
                         <strong>
                            <?php
-                              echo $_SESSION['email'];
+                               if(isset($_SESSION['email'])){echo $_SESSION['email'];}
                            ?>                           
                         </strong>
                      </td>
@@ -108,7 +108,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
                      <td id="" class="yellow_t text-right">
                         <strong>
                            <?php
-                              echo $_SESSION['phone'];
+                             if(isset($_SESSION['phone'])) {echo $_SESSION['phone'];}
                            ?>
                         </strong>
                      </td>
@@ -255,7 +255,7 @@ if(!isset($_SESSION['loggedIn']) || $_SESSION['loggedIn']==false)
    </div>
 </section>
 <!-- shopping cart ends -->
-<input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
+<input type="hidden" name="_token" value="<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>" id="#_token">
 
 <?php
    include_once 'inc/footer.php';

@@ -80,19 +80,19 @@ if(isset ($_GET['msg'])){
                                 <!-- code -->
                                 <div class="form-group ">
                                     <label  class=" pl-0">Code:</label>
-                                    <input class="form-control" name="resetCode" required id="resetCode">
+                                    <input class="form-control" name="resetCode" required id="resetCode" autocomplete="off">
                                 </div>
                                 <!-- new pass -->
                                 <div class="form-group ">
                                     <label class=" pl-0">New Password:</label>
-                                    <input class="form-control" name="newPass"  required id="resetNewPass">
+                                    <input class="form-control" name="newPass"  required id="resetNewPass" autocomplete="off">
                                 </div>
                                 <!-- confirm new pass -->
                                 <div class="form-group ">
                                     <label class=" pl-0">Confirm New Password:</label>
-                                    <input class="form-control" name="reNewPass" required id="resetReNewPass">
+                                    <input class="form-control" name="reNewPass" required id="resetReNewPass" autocomplete="off">
                                 </div>
-                                <input type="hidden" name="_token" value="<?php echo $_SESSION['_token']?>">
+                                <input type="hidden" name="_token" value="<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];}?>">
                                 <input type="hidden" name="request_name" value="reset user password">
                             </div>
                             <div class="col-sm-12 forget-buttons">

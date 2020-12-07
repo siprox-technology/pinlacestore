@@ -1015,11 +1015,17 @@ else
                         $result[1] = 'success';
                         echo json_encode($result);
                     }
+                    else
+                    {
+                        $result[0] = false;
+                        $result[1] = 'database error';
+                        echo json_encode($result);
+                    }
                 }
                 catch(Exception $e)
                 {
                     $result[0] = false;
-                    $result[1] = 'database error';
+                    $result[1] = 'exception';
                     echo json_encode($result);
                 }
             }

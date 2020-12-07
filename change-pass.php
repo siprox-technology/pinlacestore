@@ -114,7 +114,7 @@ if(isset ($_GET['msg'])){
                                                 placeholder="" required name="retypeNewPass">
                                         </div>
                                     </div>
-                                    <input type="hidden" id="_token" name='_token' value='<?php echo $_SESSION['_token'] ?>'>
+                                    <input type="hidden" id="_token" name='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];}?>'>
                                     <input type="hidden" name='request_name' value='change user password'>
                                     <!-- save button -->
                                     <div class="col-md-12 col-sm-12">

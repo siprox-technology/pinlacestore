@@ -280,8 +280,8 @@ include_once 'inc/header.php'
     </div>
 </div>
 <!--Gallery Details Ends-->
-<input type="hidden" name="k" value="<?php echo $_GET['k']?>" id="product-id">
-<input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
+<input type="hidden" name="k" value="<?php if(isset($_GET['k'])){echo $_GET['k'];} ?>" id="product-id">
+<input type="hidden" name="_token" value="<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];}?>" id="#_token">
 
 
 <?php 

@@ -273,9 +273,9 @@
                     </select>
                     <input type="text" name="zip_code" class="form-control mb-3 StripeElement StripeElement--empty" placeholder="zip code">
                     <!-- user info -->
-                    <input type="hidden" name="user_id" value="<?php echo $_SESSION['id'];?>">
+                    <input type="hidden" name="user_id" value="<?php if(isset($_SESSION['id'])){echo $_SESSION['id'];} ?>">
                     <input type="hidden" name="request_name" value="payment">
-                    <input type="hidden" name="_token" value="<?php echo $_SESSION['_token'];?>" id="#_token">
+                    <input type="hidden" name="_token" value="<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>" id="#_token">
 
                     <!-- order info -->
                     <span>$<input type="text" name="amount" class="form-control mb-3 StripeElement StripeElement--empty" id="amount_for_payment" value="" readonly></span>            

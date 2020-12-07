@@ -94,29 +94,29 @@ if(isset ($_GET['msg'])){
                                         <div class="form-group">
                                             <label for="name" class="">Name:</label>
                                             <input class="form-control" id="name" type="text" placeholder="Name:"
-                                                required name="name" value="<?php echo $_SESSION['name'] ?>">
+                                                required name="name" value="<?php if(isset($_SESSION['name'])){ echo $_SESSION['name'];} ?>">
                                         </div>
                                         <!-- last name -->
                                         <div class="form-group">
                                             <label for="lastName" class="">Last Name:</label>
                                             <input class="form-control" id="lastName" type="text"
-                                                placeholder="Last Name:" required name="lastName"value="<?php echo $_SESSION['lastName'] ?>" >
+                                                placeholder="Last Name:" required name="lastName"value="<?php if(isset($_SESSION['lastName'])){echo $_SESSION['lastName'];} ?>" >
                                         </div>
                                         <!-- phone -->
                                         <div class="form-group">
                                             <label for="phone" class="">Phone:</label>
                                             <input class="form-control" id="phone" type="tell" placeholder="Phone:"
-                                                required name="phone" value="<?php echo $_SESSION['phone'] ?>">
+                                                required name="phone" value="<?php if(isset($_SESSION['phone'])){echo $_SESSION['phone'];}?>">
                                         </div>
                                     </div>
                                     <!-- account verified status and resend verification email -->
                                     <div class="col-md-12 col-sm-12">
                                         <div class="form-group">
                                             <label for="" >Account status:</label>
-                                            <label  class="<?php echo ($_SESSION['act_code'])>0?'text-danger':'text-success cursor-none'; ?>"
-                                            id= "<?php echo ($_SESSION['act_code'])>0?'resend_verify_email':'' ?>">
-                                            <?php echo ($_SESSION['act_code'])>0?'Not Verified-Resend confirmation email?':'Verified'; ?> </label>
-                                            <input type="hidden" id="_token" name='_token' value='<?php echo $_SESSION['_token'] ?>'>
+                                            <label  class="<?php if(isset($_SESSION['act_code'])){echo ($_SESSION['act_code'])>0?'text-danger':'text-success cursor-none';}?>"
+                                            id= "<?php if(isset($_SESSION['act_code'])){echo ($_SESSION['act_code'])>0?'resend_verify_email':'';} ?>">
+                                            <?php if(isset($_SESSION['act_code'])){echo ($_SESSION['act_code'])>0?'Not Verified-Resend confirmation email?':'Verified';}?> </label>
+                                            <input type="hidden" id="_token" name='_token' value='<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];}?>'>
                                             <input type="hidden" name='request_name' value='edit account details'>
                                         </div>
                                     </div>

@@ -72,7 +72,7 @@ session_regenerate_id();
             </div>
         </div>
     </section>
-    <input type="hidden" name="_token" id="_token" value="<?php echo $_SESSION['_token'];?>">
+    <input type="hidden" name="_token" id="_token" value="<?php if(isset($_SESSION['_token'])){echo $_SESSION['_token'];} ?>">
 
 
     <!-- filter products modal-->
