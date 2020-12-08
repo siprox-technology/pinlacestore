@@ -1,9 +1,15 @@
 PinLace Sport Footwear website
+------------------------------
 
-Possible Database tables: Product, Inventory, Review, 
+Database tables => Product, Inventory, Review, 
 User, WishList, Address, ShoppingCart, Order
+---------------------------------------------
+Database diagram => (DataBaseDiagram.vsdx)
+---------------------------------------------
 
-Product has:
+Database tables details =>
+
+Product:
 id(product code),brand,name,category
 gender,Description,saleRecord,imgFolder
 
@@ -15,26 +21,22 @@ updated_at
 
 ------------------------------
 Review:
-
 id,star_number,date
 text,
 FK_product_id_review_prod,
 FK_user_id_review_user
 
 ---------------------------------
-
 User has:
 id,email,Name,lastName,phone
 ,password,contact_pref,created_at,act_code
---------------------------------
 
-
+-------------------------------
 Address:
 id,number,address,city,state,country,postCode,
 FK_user_id_addr_user,
 
----------------------------------
-
+--------------------------------
 Order:
 id,date,created_at,updated_at,status,
 FK_user_id_order_user,
@@ -43,14 +45,12 @@ delivery_price,
 total_price,
 
 --------------------------------
-
 order_items:
 id, FK_inventory_id_items_inven,
 ,quantity,price,
 FK_order_id_items_order
 
 ----------------------------------------
-
 Payment:
 id,amount,paymen_method,last_four_digit,
 payment_ref,FK_order_id_pay_order
@@ -58,55 +58,66 @@ payment_ref,FK_order_id_pay_order
 
 *****************************************
 
-Possible functionalities: 
+Back end functionalities=>
 
--User registration and activation.***
--User log in\log out session time.***
--resend verification email***
--User reset fotgotten password through email.***
--user profile update account details***
--user change password.***
--user add and remove addresses.***
--user change contact preferences***
--search products by brand and caregory name ***
--sort products by brands,gender,
-  category,size,color,price,discount***
--sort by price, discount***
--display product details page with available colors and sizes.***
--display price according to selected color and sizes by user***
--User makes an order and pay***
--user add review to items bought**
--best selling items--
+-User registration and activation by email.
+-Resend activation email if not received. 
+-User log in\log out and session time tracking by 5 mins.
+-User reset forgotten password through email.
+-User profile 
+  -Update account details
+  -Change password
+  -Address Details. add or remove 
+  -View shopping basket. remove items
+  -Order history
+  -Change contact Preferences 
+-Search products by brand,category,name and gender 
+-Display best selling items.
+-Sort products by brands,gender,
+  category,size,color,price,discount
+-Display product details page with available colors,sizes, reviews.
+-Display related products in product details page
+-Display price according to selected color and sizes by user
+-User add and remove order to and from shopping basket order 
+-User makes payment using Stripe payment(sandbox) api with a visa (test card=> 4242 4242 4242 4242 any zip and any date.)
+-Display Payment information if failed or success
+-Display order history and orders with failed payment
+-Retry payment for failed orders.
+-Add and display reviews to items that user has bought.
 *****************************************
-Front end structure:
+Front end page structure:
 1-Home page: 
  *presentation of differnt products by category
   brand or specific items
  *top seller presentation
 2-Footer:
   -customer service:
-  *FAQ's, contact us,Returns and exchange, refunds
-  -shopping
-  *Account,Delivery,Student discount
-  -About Us
-  *Terms and conditions,Security and privacy,site map
-  -Follow Us
-  *instagram, facebook
-  -Copy Right
+  -contact : phone, email, address
+  -Services
+  -business hours
 3-Header:
  *login link,shopping basket
- *search bar by product brand,
-4-Product page
+ *search by product, brand, name, gender
+4-Product details page
+  -images
+  -price and discount
+  -available sizes
+  -colors
+  -product description and number
+  -delivery information
+  -reviews 
   -return and exchange info page
-5-Products list page
+  -related products
+5-Products list
+  -all products sorted by price and discount
+  -filter products by Brand,Category,Gender,Size and color
 6-User profile page
- *Account Details
- *my details
- *change password
- *Address Details 
- * wish list
- *order history
- *Contact Preferences 
+ -Account Details and edit
+ -change password
+ -Address Details. add or remove 
+ -shopping basket
+ -order history
+ -Contact Preferences 
  
 
 

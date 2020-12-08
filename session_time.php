@@ -9,13 +9,13 @@ session_regenerate_id();
     }
 
     /* to be un commented */
-/*     if (isset($_SESSION['LAST_ACTIVITY']) && 
-    (time() - $_SESSION['LAST_ACTIVITY'] > 10)) {
+    if (isset($_SESSION['LAST_ACTIVITY']) && 
+    (time() - $_SESSION['LAST_ACTIVITY'] > 300)) {
     
         echo "timeOut";
     }
     else
     {
         $_SESSION['LAST_ACTIVITY'] = time();
-    } */
+    }
 ?>
