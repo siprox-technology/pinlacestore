@@ -11,13 +11,13 @@ Database tables details =>
 
 Product:
 id(product code),brand,name,category
-gender,Description,saleRecord,imgFolder
+gender,Description,imgFolder
 
 ---------------------------------
 Inventory:
-id,FK_product_id_inv_prod,
-color,size,price,discount,stock,created_at,
-updated_at
+id,color,size,price,discount,quantity,created_at,
+updated_at,
+FK_product_id_inv_prod
 
 ------------------------------
 Review:
@@ -39,16 +39,17 @@ FK_user_id_addr_user,
 --------------------------------
 Order:
 id,date,created_at,updated_at,status,
-FK_user_id_order_user,
-FK_address_id_order_address,
 delivery_price,
 total_price,
+FK_user_id_order_user,
+FK_address_id_order_address
 
 --------------------------------
 order_items:
-id, FK_inventory_id_items_inven,
+id,
 ,quantity,price,
-FK_order_id_items_order
+FK_order_id_items_order,
+FK_inventory_id_items_inven,
 
 ----------------------------------------
 Payment:
