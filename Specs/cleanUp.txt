@@ -7,7 +7,7 @@ style=>
 
 testing=>
     *add more payments- reviews
-    -review try and catch in object functions and in process.php\
+    -review try and catch in object functions and in process.php
 
 
 

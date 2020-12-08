@@ -11,7 +11,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
-            
+
         });
     });
 });
@@ -2133,8 +2133,7 @@ function selectAllProducts() {
             request_name: 'get all products',
             _token: $('#_token').val()
         },
-        beforeSend: function () {
-        },
+        beforeSend: function () {},
         success: function (response) {
 
             if (response == 'server error') {
@@ -2150,7 +2149,7 @@ function selectAllProducts() {
                         '<div class="image sale" data-sale=' + result[i].discount + '>' +
                         "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].id + "-thumb.jpg' alt='shop'>" +
                         '<div class="overlay center-block">' +
-                        "<a class='w-100 h-100' href='product-details.php?k=" + result[i].id + "'" + "></a>"+
+                        "<a class='w-100 h-100' href='product-details.php?k=" + result[i].id + "'" + "></a>" +
                         '</div>' +
                         '</div>' +
                         '<div class="shop-content text-center">' +
@@ -2171,7 +2170,7 @@ function selectAllProducts() {
 }
 
 /* set all products filter */
-function selectAllFilters(brand,category,gender,func_Type) {
+function selectAllFilters(brand, category, gender, func_Type) {
     $.ajax({
         url: 'process.php',
         type: 'post',
@@ -2187,26 +2186,22 @@ function selectAllFilters(brand,category,gender,func_Type) {
             } else {
                 // display products
                 result = JSON.parse(response);
-                var brands = categories = sizes = colors = genders= [];
+                var brands = categories = sizes = colors = genders = [];
                 //set filter option selected based on function parameters
-                if(func_Type == 'filtersSelected')
-                {
-                    if(brand !='All')
-                    {
+                if (func_Type == 'filtersSelected') {
+                    if (brand != 'All') {
                         brands.push(brand);
                         $('#filter-products-modal #brand-select').append(
                             "<option selected>" + brand + "</option>"
                         );
                     }
-                    if(category !='All')
-                    {
+                    if (category != 'All') {
                         categories.push(category);
                         $('#filter-products-modal #category-select').append(
                             "<option selected>" + category + "</option>"
                         );
                     }
-                    if(gender != 'All')
-                    {
+                    if (gender != 'All') {
                         genders.push(gender);
                         $('#filter-products-modal #gender-select').append(
                             "<option selected>" + gender + "</option>"
@@ -2260,10 +2255,9 @@ function selectAllFilters(brand,category,gender,func_Type) {
 }
 
 /* display filtered products */
-function filterProducts(brand,category,gender,func_Type) {
+function filterProducts(brand, category, gender, func_Type) {
     //filter products by user selection in form
-    if(func_Type == 'filter')
-    {
+    if (func_Type == 'filter') {
         $.ajax({
             url: 'process.php',
             type: 'post',
@@ -2295,7 +2289,7 @@ function filterProducts(brand,category,gender,func_Type) {
                                 '<div class="image sale" data-sale=' + result[i].discount + '>' +
                                 "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].product_id + "-thumb.jpg' alt='shop'>" +
                                 '<div class="overlay center-block">' +
-                                "<a class='w-100 h-100' href='product-details.php?k=" + result[i].product_id + "'" + "></a>"+
+                                "<a class='w-100 h-100' href='product-details.php?k=" + result[i].product_id + "'" + "></a>" +
                                 '</div>' +
                                 '</div>' +
                                 '<div class="shop-content text-center">' +
@@ -2312,26 +2306,25 @@ function filterProducts(brand,category,gender,func_Type) {
                     //set product counter
                     $("#product-quantity").text(id.length);
                 }
-    
+
             },
         });
     }
 
     //filter products by parameters in function
-    if(func_Type == 'parameters')
-    {
+    if (func_Type == 'parameters') {
         $.ajax({
             url: 'process.php',
             type: 'post',
             data: {
                 request_name: 'filter products',
                 _token: $('#_token').val(),
-                brand:brand,
+                brand: brand,
                 category: category,
-                gender:gender,
+                gender: gender,
                 size: 'All',
                 color: 'All',
-                orderBy:'Price-low to high' 
+                orderBy: 'Price-low to high'
             },
             beforeSend: function () {},
             success: function (response) {
@@ -2351,7 +2344,7 @@ function filterProducts(brand,category,gender,func_Type) {
                                 '<div class="image sale" data-sale=' + result[i].discount + '>' +
                                 "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].product_id + "-thumb.jpg' alt='shop'>" +
                                 '<div class="overlay center-block">' +
-                                "<a class='w-100 h-100' href='product-details.php?k=" + result[i].product_id + "'" + "></a>"+
+                                "<a class='w-100 h-100' href='product-details.php?k=" + result[i].product_id + "'" + "></a>" +
                                 '</div>' +
                                 '</div>' +
                                 '<div class="shop-content text-center">' +
@@ -2367,12 +2360,12 @@ function filterProducts(brand,category,gender,func_Type) {
                         }
                     }
                     //set product counter
-                    $("#product-quantity").text(id.length); 
+                    $("#product-quantity").text(id.length);
                 }
             },
         });
     }
-    
+
 }
 
 
@@ -2380,7 +2373,7 @@ function filterProducts(brand,category,gender,func_Type) {
 
 $("#brand-select,#category-select,#gender-select,#size-select,#color-select,#sort-by-select")
     .on("change", function () {
-        filterProducts(null,null,null,'filter');
+        filterProducts(null, null, null, 'filter');
     });
 //filter and show suggested products by name, category, brand
 
@@ -2432,15 +2425,12 @@ jQuery.ui.autocomplete.prototype._resizeMenu = function () {
 }
 //get price based on selected size and color
 
-function calculatePrice(productData,color,size)
-{
-    var result=[null,null];
-    for(i=0;i<productData.length;i++)
-    {
-        if(((productData[i].size)==size)&&(productData[i].color)==color)
-        {
-            result[0]=productData[i].price;
-            result[1]=productData[i].discount;
+function calculatePrice(productData, color, size) {
+    var result = [null, null];
+    for (i = 0; i < productData.length; i++) {
+        if (((productData[i].size) == size) && (productData[i].color) == color) {
+            result[0] = productData[i].price;
+            result[1] = productData[i].discount;
         }
     }
     return result;
@@ -2448,7 +2438,7 @@ function calculatePrice(productData,color,size)
 
 //get product details
 
-function getProductDetails(colorSeleced,sizeSelected) {
+function getProductDetails(colorSeleced, sizeSelected) {
     $.ajax({
         url: 'process.php',
         type: 'post',
@@ -2460,7 +2450,7 @@ function getProductDetails(colorSeleced,sizeSelected) {
         beforeSend: function () {},
         success: function (response) {
 
-            if ((response == 'server error') || (response.length <1)) {
+            if ((response == 'server error') || (response.length < 1)) {
                 document.location.href = 'products.php';
             } else {
                 result = JSON.parse(response);
@@ -2468,13 +2458,13 @@ function getProductDetails(colorSeleced,sizeSelected) {
                 var colorImg = [];
                 var sizes = [];
                 var images = result[2];
-                colorSeleced = (((colorSeleced)==null)?result[1][0].color:colorSeleced);
-                sizeSelected = (((sizeSelected)==null)?result[1][0].size:sizeSelected);
+                colorSeleced = (((colorSeleced) == null) ? result[1][0].color : colorSeleced);
+                sizeSelected = (((sizeSelected) == null) ? result[1][0].size : sizeSelected);
 
                 //display brand and name
                 $('#brand-name').empty().append(
-                    result[0][0].brand+
-                     "<span class='divider-left'></span>"
+                    result[0][0].brand +
+                    "<span class='divider-left'></span>"
                 );
                 $('#gallary-name').text(result[0][0].name);
                 //find available colors and sizes
@@ -2496,38 +2486,38 @@ function getProductDetails(colorSeleced,sizeSelected) {
                         "title ='" + colors[i] + "'>" +
                         "<img src = 'images/img-list/" + result[0][0].imgFolder +
                         "/" + result[0][0].id + "-" + colors[i] + "-1.jpg'" +
-                        "id ='"+colors[i] +"'"+"class = 'rounded-circle shadow product-color-selector"+
-                        ((colors[i]==colorSeleced)?" selected":"")+"'>" +
-                        "<i id='checked' class = 'fas fa-check"+ 
-                        ((colors[i]==colorSeleced)? "":" d-none")+"'></i> </div>");
+                        "id ='" + colors[i] + "'" + "class = 'rounded-circle shadow product-color-selector" +
+                        ((colors[i] == colorSeleced) ? " selected" : "") + "'>" +
+                        "<i id='checked' class = 'fas fa-check" +
+                        ((colors[i] == colorSeleced) ? "" : " d-none") + "'></i> </div>");
                 }
-    
+
                 //display sizes
                 $('#product-sizes-list').empty();
                 for (i = 0; i < sizes.length; i++) {
-                    $('#product-sizes-list').append("<div class='product-size-selector position-relative m-1'>"+
-                    "<p value='"+sizes[i]+"'"+"id='"+(i+1)+"'"+
-                     "class='pt-4 text-center"+((sizes[i]==sizeSelected)?" selected'":"'")+
-                     "'>"+sizes[i]+"</p>"+
-                    "<i id='checked' class='fas fa-check"+((sizes[i]==sizeSelected)?"'":" d-none'")+
-                    "></i></div>");
+                    $('#product-sizes-list').append("<div class='product-size-selector position-relative m-1'>" +
+                        "<p value='" + sizes[i] + "'" + "id='" + (i + 1) + "'" +
+                        "class='pt-4 text-center" + ((sizes[i] == sizeSelected) ? " selected'" : "'") +
+                        "'>" + sizes[i] + "</p>" +
+                        "<i id='checked' class='fas fa-check" + ((sizes[i] == sizeSelected) ? "'" : " d-none'") +
+                        "></i></div>");
                 }
                 //display images
                 $('#imgList').empty();
                 $('#imgListZoom').empty();
                 for (i = 0; i < (images.length); i++) {
-                    var imgSource = "images/img-list/" + result[0][0].imgFolder + "/" +images[i]+".jpg'";
+                    var imgSource = "images/img-list/" + result[0][0].imgFolder + "/" + images[i] + ".jpg'";
                     $('#imgList').append(
-                        "<div class = 'carousel-item" +((i==0)?" active":"")+"'>"+
+                        "<div class = 'carousel-item" + ((i == 0) ? " active" : "") + "'>" +
                         "<img class = 'w-100'" +
-                        "src = '" +imgSource+
+                        "src = '" + imgSource +
                         "alt = ''></div>"
                     );
                     /* zoom gallary */
                     $('#imgListZoom').append(
-                        "<div class = 'carousel-item" +((i==0)?" active":"")+"'>"+
+                        "<div class = 'carousel-item" + ((i == 0) ? " active" : "") + "'>" +
                         "<img class = ''" +
-                        "src = '" +imgSource+
+                        "src = '" + imgSource +
                         "alt = ''></div>"
                     );
                 }
@@ -2545,46 +2535,42 @@ function getProductDetails(colorSeleced,sizeSelected) {
 
                 //product number
                 $("#product-number").text(
-                   "Product number : "+ result[0][0].id
+                    "Product number : " + result[0][0].id
                 );
                 // calculate and display price and discount
-                var pricePackage = calculatePrice(result[1],colorSeleced,sizeSelected);
-                if(pricePackage[0]==null)
-                {
+                var pricePackage = calculatePrice(result[1], colorSeleced, sizeSelected);
+                if (pricePackage[0] == null) {
                     $('#price-discount-list').empty();
                     $('#price-discount-list').append(
                         "<h4 class='text-danger'>Out of stock !</h4>"
                     );
-                    $('#add-to-cart').attr('disabled',true);
-                }
-                else
-                {
-                    var price =parseFloat((pricePackage[0])-(((pricePackage[0])*(pricePackage[1]))/100)).toFixed(2);
+                    $('#add-to-cart').attr('disabled', true);
+                } else {
+                    var price = parseFloat((pricePackage[0]) - (((pricePackage[0]) * (pricePackage[1])) / 100)).toFixed(2);
                     $('#price-discount-list').empty();
-                    $('#price-discount-list').append("<div>$"+price+"</div>").append(
-                        "<del class='ml-3 text-danger'>"+"$"+pricePackage[0]+"</del>"
+                    $('#price-discount-list').append("<div>$" + price + "</div>").append(
+                        "<del class='ml-3 text-danger'>" + "$" + pricePackage[0] + "</del>"
                     );
-                    $('#add-to-cart').attr('disabled',false);
+                    $('#add-to-cart').attr('disabled', false);
 
                 }
                 //display related products
                 $('#related-products-list').empty();
                 for (i = 0; i < result[3].length; i++) {
-                    if((result[3][i].name) !=(result[0][0].name))
-                    {
+                    if ((result[3][i].name) != (result[0][0].name)) {
                         $('#related-products-list').append(
                             '<div class="col-lg-3 col-md-4 col-sm-6 col-6 wow fadeIn" data-wow-delay="300ms">' +
                             '<div class="shopping-box bottom30">' +
                             '<div class="image sale" data-sale=' + result[3][i].discount + '>' +
                             "<img src='images/img-list/" + result[3][i].imgFolder + "/" + result[3][i].id + "-thumb.jpg' alt='shop'>" +
                             '<div class="overlay center-block">' +
-                            "<a class='w-100 h-100' href='product-details.php?k=" + result[3][i].id + "'" + "></a>"+
+                            "<a class='w-100 h-100' href='product-details.php?k=" + result[3][i].id + "'" + "></a>" +
                             '</div>' +
                             '</div>' +
                             '<div class="shop-content text-center">' +
                             "<h4 class='darkcolor'><a href='product-details.php?k=" + result[3][i].id + "'" + ">" + result[3][i].brand + "</a></h4>" +
                             '<p>' + result[3][i].name + '</p>' +
-                            '<h4 class="price-product">' +parseFloat(result[3][i].price).toFixed(2) + '</h4>' +
+                            '<h4 class="price-product">' + parseFloat(result[3][i].price).toFixed(2) + '</h4>' +
                             '</div>' +
                             '</div>' +
                             '</div>'
@@ -2602,7 +2588,7 @@ $('.carousel').carousel({
 });
 
 //image gallary zoom page
-$('#zoom-icon').on('click',function(){
+$('#zoom-icon').on('click', function () {
     $('#gallary-zoom').removeClass().addClass('gallary-zoom ');
     $('#img-galary-zoom').removeClass().addClass('img-galary-zoom');
 })
@@ -2614,7 +2600,7 @@ $('#close').on('click', function () {
 })
 
 //check and uncheck color selected by user and mark selected 
-$(document).on("click", "#product-colors-list div", function(event) {
+$(document).on("click", "#product-colors-list div", function (event) {
     $("#product-colors-list div i").each(function () {
         $(this).removeClass().addClass('fas fa-check d-none');
     });
@@ -2628,12 +2614,12 @@ $(document).on("click", "#product-colors-list div", function(event) {
         ($('#product-colors-list img.selected').attr('id'))
     );
     //calculate new price based on size and color selected
-    getProductDetails(event.target.id,$("#product-sizes-list p.selected").text());
+    getProductDetails(event.target.id, $("#product-sizes-list p.selected").text());
 
 });
 
 //check and uncheck size selected by user and mark selected
-$(document).on("click", "#product-sizes-list div", function(event) {
+$(document).on("click", "#product-sizes-list div", function (event) {
 
     $("#product-sizes-list div i").each(function () {
         $(this).removeClass().addClass('fas fa-check d-none');
@@ -2643,47 +2629,55 @@ $(document).on("click", "#product-sizes-list div", function(event) {
     });
     $("#" + event.target.id).next().removeClass().addClass('fas fa-check');
     $("#" + event.target.id).removeClass().addClass('pt-4 text-center selected');
-        //show size names
-        $('#product-size-name').text(
-            $("#" + event.target.id).text()
-        );
+    //show size names
+    $('#product-size-name').text(
+        $("#" + event.target.id).text()
+    );
     //calculate new price based on size and color selected
-    getProductDetails($("#product-colors-list img.selected").attr('id'),$("#" + event.target.id).text());
+    getProductDetails($("#product-colors-list img.selected").attr('id'), $("#" + event.target.id).text());
 });
 
 //add items to cart
-$('#add-to-cart').on("click",function(){
+$('#add-to-cart').on("click", function () {
     $.ajax({
         url: 'process.php',
         type: 'post',
         data: {
             request_name: 'add items to basket',
             _token: $('#_token').val(),
-            product_id:$('#product-id').val(),
+            product_id: $('#product-id').val(),
             size: $("#product-size-name").text(),
-            color:$("#product-color-name").text(),
-            quantity:$("#add-cart-quantity").val()
+            color: $("#product-color-name").text(),
+            quantity: $("#add-cart-quantity").val()
         },
         beforeSend: function () {},
         success: function (response) {
-            switch (response)
-            {
-                case'item saved success':
-                    $('#proceed-checkout h4').empty().append("<b>"+$("#add-cart-quantity").val()+"</b>"+" x new item(s) added to the basket");
-                    $('#proceed-checkout').modal({backdrop: 'static', keyboard: false});
-                break;
+            switch (response) {
+                case 'item saved success':
+                    $('#proceed-checkout h4').empty().append("<b>" + $("#add-cart-quantity").val() + "</b>" + " x new item(s) added to the basket");
+                    $('#proceed-checkout').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    break;
 
                 case 'quantity not available':
                     $('#proceed-checkout h4').removeClass().addClass('text-danger')
-                    .empty().append("Quantity is more than stock available for this item");
-                    $('#proceed-checkout').modal({backdrop: 'static', keyboard: false});
+                        .empty().append("Quantity is more than stock available for this item");
+                    $('#proceed-checkout').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
                     $('#proceed-checkout-btn').removeClass().addClass('btn-common gradient-btn d-none');
                     break;
 
                 case 'server error':
                     $('#proceed-checkout h4').removeClass().addClass('text-danger')
-                    .empty().append("Something wrong with server. Please try again later");
-                    $('#proceed-checkout').modal({backdrop: 'static', keyboard: false});
+                        .empty().append("Something wrong with server. Please try again later");
+                    $('#proceed-checkout').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
                     $('#proceed-checkout-btn').removeClass().addClass('btn-common gradient-btn d-none');
                     break;
 
@@ -2691,7 +2685,7 @@ $('#add-to-cart').on("click",function(){
                     break;
 
                 default:
-                break;
+                    break;
             }
 
         },
@@ -2699,14 +2693,13 @@ $('#add-to-cart').on("click",function(){
 })
 
 //refresh the page after clicking countinue shopping
-$('#continue-shopping').on('click',function(){
+$('#continue-shopping').on('click', function () {
     location.reload();
 })
 
 //get shopping basket data and display
 
-function getShoppingBasketDetails()
-{
+function getShoppingBasketDetails() {
     $.ajax({
         url: 'process.php',
         type: 'post',
@@ -2716,49 +2709,45 @@ function getShoppingBasketDetails()
         },
         beforeSend: function () {},
         success: function (response) {
-            if(response !== "server error")
-            {
+            if (response !== "server error") {
                 result = JSON.parse(response);
-                total_price =0.00;
-                for(i=0; i<result.length;i++)
-                {
-                    price = parseFloat(((result[i][0].price)-(((result[i][0].price)*(result[i][0].discount))/100))).toFixed(2);
-                    total = parseFloat((price)*(result[i][2])).toFixed(2);
-                    total_price+= parseFloat(total);
+                total_price = 0.00;
+                for (i = 0; i < result.length; i++) {
+                    price = parseFloat(((result[i][0].price) - (((result[i][0].price) * (result[i][0].discount)) / 100))).toFixed(2);
+                    total = parseFloat((price) * (result[i][2])).toFixed(2);
+                    total_price += parseFloat(total);
                     $('#basket_items').append(
-                        "<tr id='"+i+"' basket='"+result[i][1]+"' value='"+result[i][0].id+"'"+"quantity='"+result[i][2]+"' price='"+total+"'>"+
-                        "<td>"+
-                           "<div class='d-table'>"+
-                              "<div class='d-block d-lg-table-cell'>"+
-                                 "<a class='shopping-product' href='product-details.php?k="+result[i][0].id+"'"+"><img src='"+"images/img-list/"+result[i][0].imgFolder+"/"+result[i][0].FK_product_id_inv_prod+"-thumb.jpg'"+"></a>"+
-                              "</div>"+
-                              "<div class='d-block d-lg-table-cell'>"+
-                                 "<h4 class='darkcolor product-name'><a href='product-details.php?k="+result[i][0].id+"'>"+result[i][0].brand+"</a></h4>"+
-                                 "<p>"+result[i][0].name+"</p>"+
-                              "</div>"+
-                           "</div>"+
-                        "</td>"+
-                        "<td>"+
-                           "<h4 class='default-color text-center'>"+price+"</h4>"+
-                        "</td>"+
-                        "<td class='text-center'>"+
-                           "<div class='quote text-center'>"+
-                              "<h4 id='basket_item_quantity' class='default-color text-center'>"+result[i][2]+"</h4>"+
-                           "</div>"+
-                        "</td>"+
-                        "<td>"+
-                           "<h4 id='basket_item_price' class='default-color text-center'>"+total+"</h4>"+
-                        "</td>"+
-                        "<td class='text-center'><a class='btn-close' value='"+result[i][1]+"' id='delete_basket_items'><i class='fas fa-times'></i></a></td>"+
-                     "</tr>"
+                        "<tr id='" + i + "' basket='" + result[i][1] + "' value='" + result[i][0].id + "'" + "quantity='" + result[i][2] + "' price='" + total + "'>" +
+                        "<td>" +
+                        "<div class='d-table'>" +
+                        "<div class='d-block d-lg-table-cell'>" +
+                        "<a target='_blank' class='shopping-product' href='product-details.php?k=" + result[i][0].FK_product_id_inv_prod + "'" + "><img src='" + "images/img-list/" + result[i][0].imgFolder + "/" + result[i][0].FK_product_id_inv_prod + "-thumb.jpg'" + "></a>" +
+                        "</div>" +
+                        "<div class='d-block d-lg-table-cell'>" +
+                        "<h4 class='darkcolor product-name'><a target='_blank' href='product-details.php?k=" + result[i][0].FK_product_id_inv_prod + "'>" + result[i][0].brand + "</a></h4>" +
+                        "<p>" + result[i][0].name + "</p>" +
+                        "</div>" +
+                        "</div>" +
+                        "</td>" +
+                        "<td>" +
+                        "<h4 class='default-color text-center'>" + price + "</h4>" +
+                        "</td>" +
+                        "<td class='text-center'>" +
+                        "<div class='quote text-center'>" +
+                        "<h4 id='basket_item_quantity' class='default-color text-center'>" + result[i][2] + "</h4>" +
+                        "</div>" +
+                        "</td>" +
+                        "<td>" +
+                        "<h4 id='basket_item_price' class='default-color text-center'>" + total + "</h4>" +
+                        "</td>" +
+                        "<td class='text-center'><a class='btn-close' value='" + result[i][1] + "' id='delete_basket_items'><i class='fas fa-times'></i></a></td>" +
+                        "</tr>"
                     );
                 }
                 total_price = parseFloat(total_price).toFixed(2);
-                $('#total_order_price strong').text("$"+total_price);
-                $('#total_order_shipping strong').text("$9.99"
-                );
-                if(total_price == 0.00)
-                {
+                $('#total_order_price strong').text("$" + total_price);
+                $('#total_order_shipping strong').text("$9.99");
+                if (total_price == 0.00) {
                     $('#order_shipping_info').removeClass().addClass('row d-none');
                 }
 
@@ -2769,7 +2758,7 @@ function getShoppingBasketDetails()
 
 //delete items in the basket
 
-$(document).on("click", "#delete_basket_items", function(event) {
+$(document).on("click", "#delete_basket_items", function (event) {
     var basket = $(this).attr('value');
     $.ajax({
         url: 'process.php',
@@ -2777,37 +2766,36 @@ $(document).on("click", "#delete_basket_items", function(event) {
         data: {
             request_name: 'delete basket items',
             _token: $('#_token').val(),
-            basket_name : basket
+            basket_name: basket
         },
         beforeSend: function () {
 
         },
         success: function (response) {
-            if(response !== "server error")
-            {
+            if (response !== "server error") {
                 location.reload();
             }
-        
+
         },
     });
-    
+
 });
 
 //shipping prices option change
-$(document).on("click", "#delivery_options input", function(event) {
+$(document).on("click", "#delivery_options input", function (event) {
     var option = $(this).attr('value');
-    $('#total_order_shipping strong').text("$"+option);
+    $('#total_order_shipping strong').text("$" + option);
     $('#total_order_toPay strong').text("");
     $('#confirm_order_btn').removeClass().addClass("button btn-dark margin10 d-none");
 });
 /* Calculate total amount*/
-$('#calculate_shipping_btn').on('click',function(){
-    total_price =Number($("#total_order_price strong").text().replace(/[^0-9.-]+/g,""));
-    total_tax =Number($("#total_order_tax strong").text().replace(/[^0-9.-]+/g,""));
-    total_shipping =Number($('#total_order_shipping strong').text().replace(/[^0-9.-]+/g,""));
+$('#calculate_shipping_btn').on('click', function () {
+    total_price = Number($("#total_order_price strong").text().replace(/[^0-9.-]+/g, ""));
+    total_tax = Number($("#total_order_tax strong").text().replace(/[^0-9.-]+/g, ""));
+    total_shipping = Number($('#total_order_shipping strong').text().replace(/[^0-9.-]+/g, ""));
     sum = (total_price + total_tax + total_shipping).toFixed(2);
 
-    $('#total_order_toPay strong').text("$"+sum);
+    $('#total_order_toPay strong').text("$" + sum);
     $('#confirm_order_btn').removeClass().addClass("button btn-dark margin10");
     //set total amount for payment
     $('#amount_for_payment').val(sum).text(sum);
@@ -2816,46 +2804,43 @@ $('#calculate_shipping_btn').on('click',function(){
 
 //alert user to set at least one delivery addresss to place an order
 
-if($('#delivery_addresses option').length <2)
-{
+if ($('#delivery_addresses option').length < 2) {
     $('#delivery_address_warning').removeClass()
-    .addClass('text-danger ');
+        .addClass('text-danger ');
 }
 
 //select delivery address and enable calculate shipping btn
 
-$('#delivery_addresses').on('change',function(){
+$('#delivery_addresses').on('change', function () {
     //remove confirm order btn
     $('#confirm_order_btn').removeClass().addClass("button btn-dark margin10 d-none");
     //remove calculate shippoing btn
     $('#calculate_shipping_btn').removeClass()
         .addClass('button btn-primary mt-3 d-none');
     $('#selected_delivery_address').empty()
-    .append($('#delivery_addresses option:selected').val());
-    if($('#delivery_addresses option:selected').val() !== 'Please select a delivery address')
-    {
+        .append($('#delivery_addresses option:selected').val());
+    if ($('#delivery_addresses option:selected').val() !== 'Please select a delivery address') {
         $('#calculate_shipping_btn').removeClass()
-        .addClass('button btn-primary mt-3');
+            .addClass('button btn-primary mt-3');
     }
 })
-$(document).on("click", "#confirm_order_btn", function(event) {
+$(document).on("click", "#confirm_order_btn", function (event) {
     saveOrder();
 });
 
 //save order info and delete shopping basket then ask to proceed to payment
-function saveOrder()
-{
+function saveOrder() {
     //prepare basket items 
-    var basket_items= [];
-    for(i=0; i<$('#basket_items').children().length;i++)
-    {
-        basket_items[i]= [
-        $('#basket_items tr')[i].attributes[1].value,
-        $('#basket_items tr')[i].attributes[2].value,
-        $('#basket_items tr')[i].attributes[3].value,
-        $('#basket_items tr')[i].attributes[4].value];
+    var basket_items = [];
+    for (i = 0; i < $('#basket_items').children().length; i++) {
+        basket_items[i] = [
+            $('#basket_items tr')[i].attributes[1].value,
+            $('#basket_items tr')[i].attributes[2].value,
+            $('#basket_items tr')[i].attributes[3].value,
+            $('#basket_items tr')[i].attributes[4].value
+        ];
     }
-    basket_items =JSON.stringify(basket_items);
+    basket_items = JSON.stringify(basket_items);
     $.ajax({
         url: 'process.php',
         type: 'post',
@@ -2863,34 +2848,36 @@ function saveOrder()
             request_name: 'save order',
             _token: $('#_token').val(),
             user_id: $('#recipient_user_id').val(),
-            address_id:$('#delivery_addresses option:selected').attr('id'),
-            delivery_price: $('#total_order_shipping strong').text().replace("$",""),
-            total_price:$('#total_order_toPay').text().replace("$",""),
-            order_items:basket_items
+            address_id: $('#delivery_addresses option:selected').attr('id'),
+            delivery_price: $('#total_order_shipping strong').text().replace("$", ""),
+            total_price: $('#total_order_toPay').text().replace("$", ""),
+            order_items: basket_items
 
         },
         beforeSend: function () {
-                        // Show preloader
+            // Show preloader
             $('.loader').css('display', 'block');
         },
         success: function (response) {
             $('.loader').css('display', 'none');
             result = JSON.parse(response);
-            switch(result[0])
-            {
+            switch (result[0]) {
                 case 'order save success':
                     $('#order_process_error').text("");
                     $('#order_id_for_payment').val(result[1]);
-                    $('#paymentModal').modal({backdrop: 'static', keyboard: false});
-                break;
+                    $('#paymentModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    break;
 
                 case 'order save failed':
                     $('#order_process_error').text('Order can not be processed !');
-                break;
+                    break;
 
                 case 'order save failed-inventory or cart object':
                     $('#order_process_error').text('Order can not be processed now! Please try again later');
-                break;
+                    break;
 
                 default:
                     break;
@@ -2901,13 +2888,13 @@ function saveOrder()
 
 
 //refresh the page after clicking countinue shopping
-$('#paymentModal #close').on('click',function(){
+$('#paymentModal #close').on('click', function () {
     location.reload();
 })
 
 // get all orders and payment for a user
 
-function getAllOrders(){
+function getAllOrders() {
     $.ajax({
         url: 'process.php',
         type: 'post',
@@ -2915,61 +2902,55 @@ function getAllOrders(){
             request_name: 'get all orders',
             _token: $('#_token').val()
         },
-        beforeSend: function () {
-        },
+        beforeSend: function () {},
         success: function (response) {
 
             result = JSON.parse(response);
-            
-            switch(result[0])
-            {
+
+            switch (result[0]) {
                 case true:
-                    for(i=0; i<result[1].length; i++)
-                    {
+                    for (i = 0; i < result[1].length; i++) {
                         payment_method = '';
-                        payment_reference ='';
-                        if((result[1][i].status)== '1')
-                        {
-                            for(j=0; j<result[2].length; j++)
-                            {
-                                if((result[2][j].FK_order_id_pay_order)==(result[1][i].id))
-                                {
-                                    payment_method = (result[2][j].payment_method)+'****'+(result[2][j].last_four_digit);  
+                        payment_reference = '';
+                        if ((result[1][i].status) == '1') {
+                            for (j = 0; j < result[2].length; j++) {
+                                if ((result[2][j].FK_order_id_pay_order) == (result[1][i].id)) {
+                                    payment_method = (result[2][j].payment_method) + '****' + (result[2][j].last_four_digit);
                                     payment_reference = result[2][j].payment_ref;
                                 }
                             }
                         }
-                    $('#order_history').append(
-                        "<tr id='"+result[1][i].id+"'>"+ 
-                            "<td class='p-2'>"+
-                                "<h4 class='default-color text-center'>"+result[1][i].id+"</h4>"+
-                            "</td>"+
-                            "<td class='text-center p-2'>"+
-                                "<h4 class='default-color text-center'>"+result[1][i].total_price+"</h4>"+
-                            "</td>"+
-                            "<td class='p-2'>"+
-                                "<h4 class='default-color text-center'>"+result[1][i].created_at+"</h4>"+                             
-                            "</td>"+
-                            "<td class='p-2'>"+
-                                ((result[1][i].status)=='1'?"<h4 class='default-color text-center'>"+payment_method+"</h4>":
-                                "<button id='"+result[1][i].id+"' value='"+result[1][i].total_price +"'type='button' class='button btn-primary payBtn'>Pay</button>")+
-                            "</td>"+
-                            "<td class='p-2'>"+
-                                "<h4 class='default-color text-center'>"+payment_reference+"</h4>"+
-                            "</td>"+
-                            "<td class='p-2'>"+
-                            "<h4 class='"+((result[1][i].status)=='1'?'text-center text-success':'text-center text-danger')+"'>"+((result[1][i].status)=='1'?"Complete":"Pending")+"</h4>"+                                    
-                            "</td>"+
-                            "<td class='p-2'>"+
-                                "<button id='"+result[1][i].id+"' type='button' class='button btn-primary detailsBtn'>Details</button>"+
-                            "</td>"+
-                        "</tr>"
-                    );
+                        $('#order_history').append(
+                            "<tr id='" + result[1][i].id + "'>" +
+                            "<td class='p-2'>" +
+                            "<h4 class='default-color text-center'>" + result[1][i].id + "</h4>" +
+                            "</td>" +
+                            "<td class='text-center p-2'>" +
+                            "<h4 class='default-color text-center'>" + result[1][i].total_price + "</h4>" +
+                            "</td>" +
+                            "<td class='p-2'>" +
+                            "<h4 class='default-color text-center'>" + result[1][i].created_at + "</h4>" +
+                            "</td>" +
+                            "<td class='p-2'>" +
+                            ((result[1][i].status) == '1' ? "<h4 class='default-color text-center'>" + payment_method + "</h4>" :
+                                "<button id='" + result[1][i].id + "' value='" + result[1][i].total_price + "'type='button' class='button btn-primary payBtn'>Pay</button>") +
+                            "</td>" +
+                            "<td class='p-2'>" +
+                            "<h4 class='default-color text-center'>" + payment_reference + "</h4>" +
+                            "</td>" +
+                            "<td class='p-2'>" +
+                            "<h4 class='" + ((result[1][i].status) == '1' ? 'text-center text-success' : 'text-center text-danger') + "'>" + ((result[1][i].status) == '1' ? "Complete" : "Pending") + "</h4>" +
+                            "</td>" +
+                            "<td class='p-2'>" +
+                            "<button id='" + result[1][i].id + "' type='button' class='button btn-primary detailsBtn'>Details</button>" +
+                            "</td>" +
+                            "</tr>"
+                        );
                     }
-                break;
+                    break;
 
                 case false:
-                break;
+                    break;
 
                 default:
                     break;
@@ -2981,15 +2962,18 @@ function getAllOrders(){
 
 
 //open payment modal to pay pending orders
-$(document).on("click", "#order_history button.payBtn", function(event) {
-    $('#paymentModal').modal({backdrop: 'static', keyboard: false});
+$(document).on("click", "#order_history button.payBtn", function (event) {
+    $('#paymentModal').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
     $("#amount_for_payment").val(this.value);
     $("#order_id_for_payment").val(this.id);
 })
 
 //open order details modal in order history
 
-$(document).on("click", "#order_history button.detailsBtn", function(event) {
+$(document).on("click", "#order_history button.detailsBtn", function (event) {
     $('#order_details_modal').modal();
     order_id = this.id;
     $.ajax({
@@ -3000,50 +2984,47 @@ $(document).on("click", "#order_history button.detailsBtn", function(event) {
             _token: $('#_token').val(),
             order_id: order_id
         },
-        beforeSend: function () {
-        },
+        beforeSend: function () {},
         success: function (response) {
 
             result = JSON.parse(response);
-            switch(result[0])
-            {
+            switch (result[0]) {
                 case true:
                     numOfItems = result[1].length;
                     $('#order_details_modal #order_items').empty();
                     $('#order_details_modal #order_id').text(order_id);
-                    for(i=0; i<numOfItems;i++)
-                    {
+                    for (i = 0; i < numOfItems; i++) {
                         $('#order_details_modal #order_items').append(
-                            "<div class='row border-top mt-2'>"+
-                                "<div class='col-9'>"+
-                                    "<h4 class='mt-2'>"+result[1][i].name+"</h4>"+
-                                    "<h4 class='mt-2 font-light'>Quanity : <span>"+result[1][i].quantity+"</span></h4>"+
-                                    "<h4 class='mt-2 font-light'>Color : <span>"+result[1][i].color+"</span></h4>"+
-                                    "<h4 class='mt-2 font-light'>Size : <span>"+result[1][i].size+"</span></h4>"+
-                                "</div>"+
-                                "<div class='col-3'>"+
-                                    "<img src='images/img-list/"+result[1][i].imgFolder+"/"+result[1][i].id+"-thumb.jpg'"+ "class='w-100'>"+
-                                "</div>"+
+                            "<div class='row border-top mt-2'>" +
+                            "<div class='col-9'>" +
+                            "<h4 class='mt-2'>" + result[1][i].name + "</h4>" +
+                            "<h4 class='mt-2 font-light'>Quanity : <span>" + result[1][i].quantity + "</span></h4>" +
+                            "<h4 class='mt-2 font-light'>Color : <span>" + result[1][i].color + "</span></h4>" +
+                            "<h4 class='mt-2 font-light'>Size : <span>" + result[1][i].size + "</span></h4>" +
+                            "</div>" +
+                            "<div class='col-3'>" +
+                            "<img src='images/img-list/" + result[1][i].imgFolder + "/" + result[1][i].id + "-thumb.jpg'" + "class='w-100'>" +
+                            "</div>" +
                             "</div>"
                         );
                     }
                     $('#order_details_modal #order_items').append(
-                        "<div class='row border-top mt-2'>"+
-                            "<div class='col-6'>"+
-                                "<h4 class='mt-2'>Delivery price: </h4>"+
-                                "<h4 class='mt-2'>Total price: </h4>"+
-                            "</div>"+
-                            "<div class='col-6'>"+
-                                "<h4 class='mt-2 text-right'>"+result[1][0].delivery_price+"</h4>"+
-                                "<h4 class='mt-2 text-right'>"+result[1][0].total_price+"</h4>"+
-                            "</div>"+
+                        "<div class='row border-top mt-2'>" +
+                        "<div class='col-6'>" +
+                        "<h4 class='mt-2'>Delivery price: </h4>" +
+                        "<h4 class='mt-2'>Total price: </h4>" +
+                        "</div>" +
+                        "<div class='col-6'>" +
+                        "<h4 class='mt-2 text-right'>" + result[1][0].delivery_price + "</h4>" +
+                        "<h4 class='mt-2 text-right'>" + result[1][0].total_price + "</h4>" +
+                        "</div>" +
                         "</div>"
                     );
-                break;
+                    break;
 
                 case false:
                     $('#order_details_modal #order_items').empty().append('<h4 class="text-danger"> Unable to fetch order information </h4>');
-                break;
+                    break;
 
                 default:
                     break;
@@ -3053,11 +3034,11 @@ $(document).on("click", "#order_history button.detailsBtn", function(event) {
 })
 
 //update contact preferences
-$(document).on("click", "#contact_pref_options input", function(event) {
-    $('#update_contact_pref_btn').attr('disabled',false);
+$(document).on("click", "#contact_pref_options input", function (event) {
+    $('#update_contact_pref_btn').attr('disabled', false);
 });
 
-$('#update_contact_pref_btn').on('click', function(){
+$('#update_contact_pref_btn').on('click', function () {
     $.ajax({
         url: 'process.php',
         type: 'post',
@@ -3073,18 +3054,17 @@ $('#update_contact_pref_btn').on('click', function(){
         success: function (response) {
             $('.loader').css('display', 'none');
             result = JSON.parse(response);
-            switch(result[0])
-            {
+            switch (result[0]) {
                 case true:
                     $("#save-contact-det-result").removeClass()
-                    .addClass('text-success mt-3 float-center text-center')
-                    .text('Your contact preferences updated successfully.');
+                        .addClass('text-success mt-3 float-center text-center')
+                        .text('Your contact preferences updated successfully.');
                     break;
-                
+
                 case false:
                     $("#save-contact-det-result").removeClass()
-                    .addClass('text-danger mt-3 float-center text-center')
-                    .text('Unable to update your contact preferences !');
+                        .addClass('text-danger mt-3 float-center text-center')
+                        .text('Unable to update your contact preferences !');
                     break;
 
                 default:
@@ -3098,85 +3078,79 @@ $('#update_contact_pref_btn').on('click', function(){
 });
 
 //add review
-                         
-$('#add_review_btn').on("click",function(){
-    if(
-    ($('#reviewer_email').val())&&
-    ($('#reviewer_comment_text').val())&&
-    ($('#ratingText').text()!==('Please Select')))
-        {
-            $('#review_submit_result').removeClass()
+
+$('#add_review_btn').on("click", function () {
+    if (
+        ($('#reviewer_email').val()) &&
+        ($('#reviewer_comment_text').val()) &&
+        ($('#ratingText').text() !== ('Please Select'))) {
+        $('#review_submit_result').removeClass()
             .addClass('d-none w-100 ')
             .text('');
-            $.ajax({
-                url: 'process.php',
-                type: 'post',
-                data: {
-                    request_name: 'add review',
-                    _token: $('#_token').val(),
-                    email:$('#reviewer_email').val(),
-                    text:$('#reviewer_comment_text').val(),
-                    product_id:$('#product-id').val(),
-                    rating_text:$('#ratingText').text()
-                },
-                beforeSend: function () {
-                },
-                success: function (response) {
-                    switch(response)
-                    {
-                        case 'invalid parameters':
-                            $('#review_submit_result').removeClass()
+        $.ajax({
+            url: 'process.php',
+            type: 'post',
+            data: {
+                request_name: 'add review',
+                _token: $('#_token').val(),
+                email: $('#reviewer_email').val(),
+                text: $('#reviewer_comment_text').val(),
+                product_id: $('#product-id').val(),
+                rating_text: $('#ratingText').text()
+            },
+            beforeSend: function () {},
+            success: function (response) {
+                switch (response) {
+                    case 'invalid parameters':
+                        $('#review_submit_result').removeClass()
                             .addClass('w-100 text-danger')
                             .text('Invalid parameters submitted. please check your inputs.');
                         break;
 
-                        case 'Database error':
-                            $('#review_submit_result').removeClass()
+                    case 'Database error':
+                        $('#review_submit_result').removeClass()
                             .addClass('w-100 text-danger')
                             .text('Unable to submit review at the moment. Please try again later.');
                         break;
-                        
-                        case 'item is not ordered before':
-                            $('#review_submit_result').removeClass()
+
+                    case 'item is not ordered before':
+                        $('#review_submit_result').removeClass()
                             .addClass('w-100 text-danger')
                             .text('You can only submit review for purchased items.');
                         break;
-                        
-                        case 'You already submitted review for this product':
-                            $('#review_submit_result').removeClass()
+
+                    case 'You already submitted review for this product':
+                        $('#review_submit_result').removeClass()
                             .addClass('w-100 text-danger')
                             .text('You already submitted review for this product.');
                         break;
 
-                        case 'unable to submit review':
-                            $('#review_submit_result').removeClass()
+                    case 'unable to submit review':
+                        $('#review_submit_result').removeClass()
                             .addClass('w-100 text-danger')
                             .text('Unable to submit review at the moment. Please try again later.');
                         break;
 
-                        case 'success':
-                            $('#review_submit_result').removeClass()
+                    case 'success':
+                        $('#review_submit_result').removeClass()
                             .addClass('w-100 text-success')
                             .text('Your review has been submitted successfully.');
-                            displayProductReviews();
+                        displayProductReviews();
                         break;
-                    }        
-                },
-            });
-        }
-        else
-        {
-            $('#review_submit_result').removeClass()
+                }
+            },
+        });
+    } else {
+        $('#review_submit_result').removeClass()
             .addClass('text-danger w-100 ')
             .text('Please fill out all fields !');
-        }
+    }
 
 })
 
 // display product review
 
-function displayProductReviews()
-{
+function displayProductReviews() {
     $.ajax({
         url: 'process.php',
         type: 'post',
@@ -3191,192 +3165,188 @@ function displayProductReviews()
         success: function (response) {
 
             result = JSON.parse(response);
-            switch(result[0])
-            {
+            switch (result[0]) {
                 case true:
                     reviewCount = result[1].length
                     starAverage = 0;
                     $("#tab3 #reviewItems").empty();
                     //display each review and its star value
-                    for(i=0; i<reviewCount; i++)
-                    {
+                    for (i = 0; i < reviewCount; i++) {
                         starNumText = '';
                         starItems = '';
-                        switch(result[1][i].starNum)
-                        {
+                        switch (result[1][i].starNum) {
                             case '1':
                                 starNumText = 'Poor';
-                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
-                                "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>";
-                            break;
+                                starItems = "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='far fa-star text-warning'></i>" +
+                                    "<i class='far fa-star text-warning'></i>" +
+                                    "<i class='far fa-star text-warning'></i>" +
+                                    "<i class='far fa-star text-warning'></i>";
+                                break;
                             case '2':
                                 starNumText = 'Average';
-                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
-                                "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>";
-                            break;
+                                starItems = "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='far fa-star text-warning'></i>" +
+                                    "<i class='far fa-star text-warning'></i>" +
+                                    "<i class='far fa-star text-warning'></i>";
+                                break;
                             case '3':
                                 starNumText = 'Good';
-                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
-                                "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>";
-                            break;
+                                starItems = "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='far fa-star text-warning'></i>" +
+                                    "<i class='far fa-star text-warning'></i>";
+                                break;
                             case '4':
                                 starNumText = 'Very Good';
-                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
-                                "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='far fa-star text-warning'></i>";
-                            break;
+                                starItems = "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='far fa-star text-warning'></i>";
+                                break;
                             case '5':
                                 starNumText = 'Excellent';
-                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
-                                "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='fa fa-star yellow-star'></i>" +
-                                "<i class='fa fa-star yellow-star'></i>";
-                            break;
+                                starItems = "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star yellow-star'></i>";
+                                break;
 
                             default:
                                 starNumText = 'Poor';
-                                starItems= "<i class='fa fa-star yellow-star'></i>"+ 
-                                "<i class='fa fa-star'></i>" +
-                                "<i class='fa fa-star'></i>" +
-                                "<i class='fa fa-star'></i>" +
-                                "<i class='fa fa-star'></i>";
-                            break;
+                                starItems = "<i class='fa fa-star yellow-star'></i>" +
+                                    "<i class='fa fa-star'></i>" +
+                                    "<i class='fa fa-star'></i>" +
+                                    "<i class='fa fa-star'></i>" +
+                                    "<i class='fa fa-star'></i>";
+                                break;
                         }
                         $("#tab3 #reviewItems").append(
-                            "<div class='review_bg bottom30'>"+
-                                "<div class='profile'>"+
-                                    "<div class='review_text'>"+
-                                        "<h5><strong>"+result[1][i].name+" "+result[1][i].lastName+"</strong> - <span>"+
-                                        starNumText+"</span></h5>"+
-                                        "<ul class='comment'>"+
-                                            "<li>"+starItems+"</li>"+
-                                        "</ul>"+
-                                        "<p>"+result[1][i].text+"</p>"+
-                                    "</div>"+
-                                "</div>"+
+                            "<div class='review_bg bottom30'>" +
+                            "<div class='profile'>" +
+                            "<div class='review_text'>" +
+                            "<h5><strong>" + result[1][i].name + " " + result[1][i].lastName + "</strong> - <span>" +
+                            starNumText + "</span></h5>" +
+                            "<ul class='comment'>" +
+                            "<li>" + starItems + "</li>" +
+                            "</ul>" +
+                            "<p>" + result[1][i].text + "</p>" +
+                            "</div>" +
+                            "</div>" +
                             "</div>"
                         )
-                        starAverage +=(parseInt(result[1][i].starNum));
+                        starAverage += (parseInt(result[1][i].starNum));
                     }
-                    starAverage = Number((starAverage/reviewCount).toFixed(1));
-                    
+                    starAverage = Number((starAverage / reviewCount).toFixed(1));
+
                     // calculate and display average start value for the item
-                    
-                    switch(true)
-                    {
-                        case (starAverage==1):
+
+                    switch (true) {
+                        case (starAverage == 1):
                             $('#top_page_rating').empty().append(
-                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fas fa-star yellow-star'></i>" +
                                 "<i class='far fa-star text-warning'></i>" +
                                 "<i class='far fa-star text-warning'></i>" +
                                 "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>&nbsp;"+
-                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                                "<i class='far fa-star text-warning'></i>&nbsp;" +
+                                "<span class='text-grey'><span class='font-bold'>" + starAverage + "</span>(" + reviewCount + ")</span>"
                             )
                             break;
-                        case (starAverage<2):
+                        case (starAverage < 2):
                             $('#top_page_rating').empty().append(
-                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fas fa-star yellow-star'></i>" +
                                 "<i class='fa text-warning fa-star-half-alt'></i>" +
                                 "<i class='far fa-star text-warning'></i>" +
                                 "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>&nbsp;"+
-                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                                "<i class='far fa-star text-warning'></i>&nbsp;" +
+                                "<span class='text-grey'><span class='font-bold'>" + starAverage + "</span>(" + reviewCount + ")</span>"
                             )
                             break;
-                        case (starAverage==2):
+                        case (starAverage == 2):
                             $('#top_page_rating').empty().append(
-                                "<i class='fas fa-star yellow-star'></i>"+ 
-                                "<i class='fas fa-star yellow-star'></i>"+
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
                                 "<i class='far fa-star text-warning'></i>" +
                                 "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>&nbsp;"+
-                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
-                            )
-                            break; 
-                        case (starAverage<3):
-                            $('#top_page_rating').empty().append(
-                                "<i class='fas fa-star yellow-star'></i>"+ 
-                                "<i class='fas fa-star yellow-star'></i>"+ 
-                                "<i class='fa text-warning fa-star-half-alt'></i>" +
-                                "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>&nbsp;"+
-                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
-                            )
-                            break; 
-                        case (starAverage==3):
-                            $('#top_page_rating').empty().append(
-                                "<i class='fas fa-star yellow-star'></i>"+ 
-                                "<i class='fas fa-star yellow-star'></i>"+
-                                "<i class='fas fa-star yellow-star'></i>"+
-                                "<i class='far fa-star text-warning'></i>" +
-                                "<i class='far fa-star text-warning'></i>&nbsp;"+
-                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                                "<i class='far fa-star text-warning'></i>&nbsp;" +
+                                "<span class='text-grey'><span class='font-bold'>" + starAverage + "</span>(" + reviewCount + ")</span>"
                             )
                             break;
-                        case (starAverage<4):
+                        case (starAverage < 3):
                             $('#top_page_rating').empty().append(
-                                "<i class='fas fa-star yellow-star'></i>"+ 
                                 "<i class='fas fa-star yellow-star'></i>" +
                                 "<i class='fas fa-star yellow-star'></i>" +
                                 "<i class='fa text-warning fa-star-half-alt'></i>" +
-                                "<i class='far fa-star text-warning'></i>&nbsp;"+
-                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
-                            )
-                            break; 
-                        case (starAverage==4):
-                            $('#top_page_rating').empty().append(
-                                "<i class='fas fa-star yellow-star'></i>"+ 
-                                "<i class='fas fa-star yellow-star'></i>"+
-                                "<i class='fas fa-star yellow-star'></i>"+
-                                "<i class='fas fa-star yellow-star'></i>"+
-                                "<i class='far fa-star text-warning'></i>&nbsp;"+
-                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>&nbsp;" +
+                                "<span class='text-grey'><span class='font-bold'>" + starAverage + "</span>(" + reviewCount + ")</span>"
                             )
                             break;
-                        case (starAverage<5):
+                        case (starAverage == 3):
                             $('#top_page_rating').empty().append(
-                                "<i class='fas fa-star yellow-star'></i>"+ 
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='far fa-star text-warning'></i>" +
+                                "<i class='far fa-star text-warning'></i>&nbsp;" +
+                                "<span class='text-grey'><span class='font-bold'>" + starAverage + "</span>(" + reviewCount + ")</span>"
+                            )
+                            break;
+                        case (starAverage < 4):
+                            $('#top_page_rating').empty().append(
                                 "<i class='fas fa-star yellow-star'></i>" +
                                 "<i class='fas fa-star yellow-star'></i>" +
                                 "<i class='fas fa-star yellow-star'></i>" +
                                 "<i class='fa text-warning fa-star-half-alt'></i>" +
-                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                                "<i class='far fa-star text-warning'></i>&nbsp;" +
+                                "<span class='text-grey'><span class='font-bold'>" + starAverage + "</span>(" + reviewCount + ")</span>"
                             )
                             break;
-                        case (starAverage==5):
+                        case (starAverage == 4):
                             $('#top_page_rating').empty().append(
-                                "<i class='fas fa-star yellow-star'></i>"+ 
-                                "<i class='fas fa-star yellow-star'></i>"+
-                                "<i class='fas fa-star yellow-star'></i>"+
-                                "<i class='fas fa-star yellow-star'></i>"+
-                                "<i class='fas fa-star yellow-star'></i>"+
-                                "<span class='text-grey'><span class='font-bold'>"+starAverage +"</span>("+reviewCount+")</span>"
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='far fa-star text-warning'></i>&nbsp;" +
+                                "<span class='text-grey'><span class='font-bold'>" + starAverage + "</span>(" + reviewCount + ")</span>"
                             )
-                            break; 
+                            break;
+                        case (starAverage < 5):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fa text-warning fa-star-half-alt'></i>" +
+                                "<span class='text-grey'><span class='font-bold'>" + starAverage + "</span>(" + reviewCount + ")</span>"
+                            )
+                            break;
+                        case (starAverage == 5):
+                            $('#top_page_rating').empty().append(
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<i class='fas fa-star yellow-star'></i>" +
+                                "<span class='text-grey'><span class='font-bold'>" + starAverage + "</span>(" + reviewCount + ")</span>"
+                            )
+                            break;
                     }
 
-                   break;
-                
+                    break;
+
                 case false:
                     $('#top_page_rating').empty().append(
-                        "<i class='far fa-star text-warning'></i>"+ 
                         "<i class='far fa-star text-warning'></i>" +
                         "<i class='far fa-star text-warning'></i>" +
                         "<i class='far fa-star text-warning'></i>" +
-                        "<i class='far fa-star text-warning'></i>&nbsp;"+
+                        "<i class='far fa-star text-warning'></i>" +
+                        "<i class='far fa-star text-warning'></i>&nbsp;" +
                         "<span class='text-grey'><span class='font-bold'>0.0</span>(0)</span>"
                     )
                     break;
@@ -3394,8 +3364,7 @@ $('#accept-cookie-modal').modal();
 
 //display best selling items
 
-function displayBestSelling()
-{
+function displayBestSelling() {
     $.ajax({
         url: 'process.php',
         type: 'post',
@@ -3403,12 +3372,10 @@ function displayBestSelling()
             request_name: 'get best selling items',
             _token: $('#_token').val()
         },
-        beforeSend: function () {
-        },
+        beforeSend: function () {},
         success: function (response) {
 
-            if((response !== 'exception')&&(response !== 'database error'))
-            {
+            if ((response !== 'exception') && (response !== 'database error')) {
                 // display products
                 result = JSON.parse(response);
                 for (i = 0; i < result.length; i++) {
@@ -3418,7 +3385,7 @@ function displayBestSelling()
                         '<div class="image sale" data-sale=' + result[i].discount + '>' +
                         "<img src='images/img-list/" + result[i].imgFolder + "/" + result[i].id + "-thumb.jpg' alt='shop'>" +
                         '<div class="overlay center-block">' +
-                        "<a class='w-100 h-100' href='product-details.php?k=" + result[i].id + "'" + "></a>"+
+                        "<a class='w-100 h-100' href='product-details.php?k=" + result[i].id + "'" + "></a>" +
                         '</div>' +
                         '</div>' +
                         '<div class="shop-content text-center">' +
@@ -3431,9 +3398,9 @@ function displayBestSelling()
                     );
                 }
 
-                
+
             }
-     
+
         },
     });
 }

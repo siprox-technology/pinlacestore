@@ -140,6 +140,11 @@ class Validate{
         //getting rid of any slashes in the string
             $var = strip_tags($var); // removes any tags and angle bracket
             $var = htmlentities($var); // to remove any html from string
+            $var =str_replace("'", "", $var);
+/*             $var =str_replace("-", "", $var);
+            $var =str_replace("", "", $var);
+            $var =str_replace("'", "", $var);
+            $var =str_replace("'", "", $var); */
             return $var;
     }
     // Creadit card form validation
