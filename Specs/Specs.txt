@@ -61,7 +61,7 @@ payment_ref,FK_order_id_pay_order
 
 Back end functionalities=>
 
--User registration and activation by email.
+-User registration and activation by email.-
 -Resend activation email if not received. 
 -User log in\log out and session time tracking by 5 mins.
 -User reset forgotten password through email.
