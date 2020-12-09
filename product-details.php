@@ -172,9 +172,6 @@ include_once 'inc/header.php'
                                 <li>
                                     <p class="my-1"><span class="font-light">All over the World.</span> </p>
                                 </li>
-                                <li>
-                                    <p class="mt-1 bottom10"><span class="font-light">For more information, view our full<a class="nav-link font-bold" href="return.php"> Returns and Exchanges information</a></span></p>
-                                </li>
                             </ul>
                         </div>
                         <!-- reviews -->
