@@ -61,29 +61,29 @@ payment_ref,FK_order_id_pay_order
 
 Back end functionalities=>
 
--User registration and activation by email.+
--Resend activation email if not received.+
--User log in\log out and session time tracking by 5 mins.+
--User reset forgotten password through email.+
+-User registration and activation by email.
+-Resend activation email if not received.
+-User log in\log out and session time tracking by 5 mins.
+-User reset forgotten password through email.
 -User profile 
-  -Update account details.+
-  -Change password.+
-  -Address Details. add or remove. +
-  -View shopping basket. remove items.+
-  -Order history.+
-  -Change contact Preferences.+
--Search products by brand,category,name and gender(mens, ladies, kids).+
--Display best selling items.+
--Sort products by brands,gender,category,size,color,price and discount.+
--Display product details page with available colors,sizes, reviews.+
--Display related products in product details page.+
--Display price or out of stock according to selected color and sizes by user.+
+  -Update account details.
+  -Change password.
+  -Address Details. add or remove. 
+  -View shopping basket. remove items.
+  -Order history.
+  -Change contact Preferences.
+-Search products by brand,category,name and gender(mens, ladies, kids).
+-Display best selling items.
+-Sort products by brands,gender,category,size,color,price and discount.
+-Display product details page with available colors,sizes, reviews.
+-Display related products in product details page.
+-Display price or out of stock according to selected color and sizes by user.
 -User add and remove items to and from shopping basket.
--User makes payment using Stripe payment(sandbox) api with a visa (test card=> '4242 4242 4242 4242' any 'zip' and any 'date').+
--Display Payment information if failed or success.+
--Display order history and orders with failed payment.+
--Retry payment for failed orders.+
--Add and display reviews to items that user has bought.+
+-User makes payment using Stripe payment(sandbox) api with a visa (test card=> '4242 4242 4242 4242' any 'zip' and any 'date').
+-Display Payment information if failed or success.
+-Display order history and orders with failed payment.
+-Retry payment for failed orders.
+-Add and display reviews to items that user has bought.
 *****************************************
 Front end page structure:
 1-Home page: 
