@@ -2,7 +2,7 @@ PinLace Sport Footwear website
 ------------------------------
 
 Database tables => Product, Inventory, Review, 
-User, WishList, Address, ShoppingCart, Order
+User, Address, ShoppingCart, Order
 ---------------------------------------------
 Database diagram => (DataBaseDiagram.vsdx)
 ---------------------------------------------
