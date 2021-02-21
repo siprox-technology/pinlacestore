@@ -2102,7 +2102,7 @@ $('#sendCodeBtn').on('click', function () {
                     break;
                     //failed
                 case 'unabletosendemail':
-                    $('#codeSendResult').text('Unable to send email! Please your internet connection and try again later.');
+                    $('#codeSendResult').text('Unable to send email! Please your check internet connection and try again later.');
                     $('#codeSendResult').removeClass().addClass("text-center text-danger border border-danger border-rounded");
                     break;
                 case 'emailinvalid':

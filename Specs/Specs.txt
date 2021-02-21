@@ -2,7 +2,7 @@ PinLace Sport Footwear website
 ------------------------------
 
 Database tables => Product, Inventory, Review, 
-User, Address, ShoppingCart, Order
+User, Address, Payment, Order, Order_items, 
 ---------------------------------------------
 Database diagram => (DataBaseDiagram.vsdx)
 ---------------------------------------------
@@ -79,7 +79,7 @@ Back end functionalities=>
 -Display related products in product details page.
 -Display price or out of stock according to selected color and sizes by user.
 -User add and remove items to and from shopping basket.
--User makes payment using Stripe payment(sandbox) api with a visa (test card=> '4242 4242 4242 4242' any 'zip' and any 'date').
+-User makes payment using Stripe payment(sandbox) api with a visa card (test card=> '4242 4242 4242 4242' any 'zip' and any 'date').
 -Display Payment information if failed or success.
 -Display order history and orders with failed payment.
 -Retry payment for failed orders.
