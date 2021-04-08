@@ -1,4 +1,4 @@
-    <!--Site Footer Here-->
+    <!--Site Footer -->
     <footer id="site-footer" class=" bgdark padding_top">
         <div class="container">
             <div class="row">
@@ -10,7 +10,7 @@
                         <div class="d-table w-100 address-item whitecolor bottom25">
                             <span class="d-table-cell align-middle"><i class="fas fa-mobile-alt"></i></span>
                             <p class="d-table-cell align-middle bottom0">
-                                +44-798-5505786 <a class="d-block" href="mailto:pinlacestore@gmail.com">pinlacestore@gmail.com</a>
+                                +44-798-5505786 <a class="d-block" href="mailto:pinlacestore@gmail.com">info@siprox-tech.com</a>
                             </p>
                         </div>
                         <div class="d-table w-100 address-item whitecolor bottom25">
