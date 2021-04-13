@@ -68,7 +68,7 @@ if(isset ($_GET['msg'])){
                         <span class="divider-center"></span>
                     </h2>
                     <div class="col-md-8 offset-md-2 heading_space">
-                        <p>Please login using your email address you registered with us as your username.</p>
+                        <p>Please login using your email address as username.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 pr-lg-0 col-md-12 d-none d-lg-flex">
