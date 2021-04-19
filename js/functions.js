@@ -2180,7 +2180,7 @@ function selectAllProducts() {
                         '<div class="shop-content text-center">' +
                         "<h4 class='darkcolor'><a href='product-details.php?k=" + result[i].id + "'" + ">" + result[i].brand + "</a></h4>" +
                         '<p>' + result[i].name + '</p>' +
-                        '<h4 class="price-product">' + result[i].price + '</h4>' +
+                        '<h4 class="price-product">$' + result[i].price + '</h4>' +
                         '</div>' +
                         '</div>' +
                         '</div>'
@@ -2320,7 +2320,7 @@ function filterProducts(brand, category, gender, func_Type) {
                                 '<div class="shop-content text-center">' +
                                 "<h4 class='arkcolor'><a href='product-details.php?k=" + result[i].product_id + "'" + ">" + result[i].brand + "</a></h4>" +
                                 '<p>' + result[i].name + '</p>' +
-                                '<h4 class="price-product">' + result[i].price + '</h4>' +
+                                '<h4 class="price-product">$' + result[i].price + '</h4>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>'
@@ -2375,7 +2375,7 @@ function filterProducts(brand, category, gender, func_Type) {
                                 '<div class="shop-content text-center">' +
                                 "<h4 class='arkcolor'><a href='product-details.php?k=" + result[i].product_id + "'" + ">" + result[i].brand + "</a></h4>" +
                                 '<p>' + result[i].name + '</p>' +
-                                '<h4 class="price-product">' + result[i].price + '</h4>' +
+                                '<h4 class="price-product">$' + result[i].price + '</h4>' +
                                 '</div>' +
                                 '</div>' +
                                 '</div>'
@@ -3416,7 +3416,7 @@ function displayBestSelling() {
                         '<div class="shop-content text-center">' +
                         "<h4 class='darkcolor'><a href='product-details.php?k=" + result[i].id + "'" + ">" + result[i].brand + "</a></h4>" +
                         '<p>' + result[i].name + '</p>' +
-                        '<h4 class="price-product">' + result[i].price + '</h4>' +
+                        '<h4 class="price-product">$' + result[i].price + '</h4>' +
                         '</div>' +
                         '</div>' +
                         '</div>'

@@ -86,7 +86,7 @@ session_regenerate_id();
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="gradient-bg title-wrap">
+                    <div class="gradient-bg title-wrap" style="border-radius:2.3rem">
                         <form class="py-3">
                             <div class="row justify-content-center ">
                                 <!-- brand -->
