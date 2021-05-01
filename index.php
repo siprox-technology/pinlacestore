@@ -151,7 +151,7 @@ session_regenerate_id();
                                 <a href="product-details.php?k=182779">GELERT</a>
                             </h4>
                             <p>Leather Mens Walking Boots</p>
-                            <h4 class="price-product">$$64.99</h4>
+                            <h4 class="price-product">$64.99</h4>
                         </div>
                     </div>
                 </div>
