@@ -2584,7 +2584,7 @@ function getProductDetails(colorSeleced, sizeSelected) {
                 for (i = 0; i < result[3].length; i++) {
                     if ((result[3][i].name) != (result[0][0].name)) {
                         $('#related-products-list').append(
-                            '<div class="col-lg-3 col-md-4 col-sm-6 col-6 wow fadeIn" data-wow-delay="300ms">' +
+                            '<div class="col-lg-2 col-md-3 col-sm-6 col-6 wow fadeIn" data-wow-delay="300ms">' +
                             '<div class="shopping-box bottom30">' +
                             '<div class="image sale" data-sale=' + result[3][i].discount + '>' +
                             "<img src='images/img-list/" + result[3][i].imgFolder + "/" + result[3][i].id + "-thumb.jpg' alt='shop'>" +
