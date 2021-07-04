@@ -2,8 +2,8 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 14, 2020 at 09:10 AM
+-- Host: localhost:3306
+-- Generation Time: Jul 03, 2021 at 07:13 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.10
 
@@ -12,14 +12,8 @@ SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- Database: `sportsstore`
+-- Database: `siproxte_sportsstore`
 --
 
 -- --------------------------------------------------------
@@ -419,7 +413,7 @@ INSERT INTO `inventory` (`id`, `color`, `size`, `price`, `discount`, `quantity`,
 (382, 'white-pink', '7(24)', 24.99, 20, 0, 20007, '2020-12-06 18:03:14', '2020-12-06 18:03:14'),
 (383, 'white-pink', '8(25)', 24.99, 20, 25, 20007, '2020-12-06 18:03:14', '2020-12-06 18:03:14'),
 (384, 'white-pink', '9(26)', 24.99, 20, 25, 20007, '2020-12-06 18:03:14', '2020-12-06 18:03:14'),
-(385, 'black', '4(20)', 26.99, 5, 28, 20014, '2020-12-06 18:10:06', '2020-12-06 18:10:06'),
+(385, 'black', '4(20)', 26.99, 5, 27, 20014, '2020-12-06 18:10:06', '2020-12-06 18:10:06'),
 (386, 'black', '5(21.5)', 26.99, 5, 30, 20014, '2020-12-06 18:10:06', '2020-12-06 18:10:06'),
 (387, 'black', '6(22.5)', 26.99, 5, 0, 20014, '2020-12-06 18:10:06', '2020-12-06 18:10:06'),
 (388, 'black', '7(24)', 26.99, 5, 30, 20014, '2020-12-06 18:10:06', '2020-12-06 18:10:06'),
@@ -515,7 +509,8 @@ INSERT INTO `orders` (`id`, `created_at`, `updated_at`, `status`, `delivery_pric
 (277, '2020-12-08 09:56:59', '2020-12-08 09:57:14', 1, 9.99, 44.98, 68, 104),
 (278, '2020-12-08 09:59:15', '2020-12-08 09:59:34', 1, 9.99, 44.98, 70, 100),
 (279, '2020-12-08 11:28:44', '2020-12-08 11:29:04', 1, 9.99, 123.72, 70, 100),
-(280, '2020-12-08 11:42:19', '2020-12-08 11:42:34', 1, 9.99, 134.46, 68, 104);
+(280, '2020-12-08 11:42:19', '2020-12-08 11:42:34', 1, 9.99, 134.46, 68, 104),
+(281, '2021-02-21 12:23:48', '2021-02-21 12:24:10', 1, 9.99, 35.63, 68, 104);
 
 -- --------------------------------------------------------
 
@@ -547,7 +542,8 @@ INSERT INTO `order_items` (`id`, `FK_inventory_id_items_inven`, `FK_order_id_ite
 (295, 291, 279, 1, 48.74),
 (296, 397, 280, 1, 24.74),
 (297, 400, 280, 1, 32.24),
-(298, 61, 280, 1, 67.49);
+(298, 61, 280, 1, 67.49),
+(299, 385, 281, 1, 25.64);
 
 -- --------------------------------------------------------
 
@@ -575,7 +571,8 @@ INSERT INTO `payment` (`id`, `amount`, `payment_method`, `last_four_digit`, `pay
 (110, 44.98, 'visa', 4242, 'ch_1HvzfJGzZBtnGj1lmWpQkYtq', 277),
 (111, 44.98, 'visa', 4242, 'ch_1HvzhaGzZBtnGj1lqHSp9Zz8', 278),
 (112, 123.72, 'visa', 4242, 'ch_1Hw16BGzZBtnGj1lEMLG7ZFM', 279),
-(113, 134.46, 'visa', 4242, 'ch_1Hw1JFGzZBtnGj1lZJcIBhgX', 280);
+(113, 134.46, 'visa', 4242, 'ch_1Hw1JFGzZBtnGj1lZJcIBhgX', 280),
+(114, 35.63, 'visa', 4242, 'ch_1INDheGzZBtnGj1lL3sdrCGM', 281);
 
 -- --------------------------------------------------------
 
@@ -695,7 +692,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `email`, `name`, `lastName`, `phone`, `password`, `contacPref`, `created_at`, `act_code`) VALUES
-(68, 'integralproject1988@gmail.com', 'Mehran ', 'zahedi', '+939371373929', '$2y$10$yzHnd0.UBdjCfr5YOwi4Fu.zaoo8P9TlOKRZM1uloYF5wIu24GwyW', 2, '2020-10-18 11:59:57', 0),
+(68, 'integralproject1988@gmail.com', 'Mehran ', 'zahedi', '+939371373929', '$2y$10$LWrfECaTTmlzbySdQP0CKOH6DOnpmuiVR.XTmaQdDvbwvONw7QMLS', 2, '2020-10-18 11:59:57', 0),
 (70, 'frog.orange.shk@gmail.com', 'Homa', 'Ghaffari Harivand', '+989371373929', '$2y$10$thuFNUk0HCcZxDPBTkJez.lrKXaAwzwbbUMRfiIo/j0OMNiBmciW2', 0, '2020-11-23 09:53:48', 0),
 (71, 'siproxtech@gmail.com', 'elnaz', 'mahmoudi', '09363668428', '$2y$10$zSb3D4ZV4e.BIg4z0tCUCectlt3ydpe1.WDY1VK2y3PMQbGSyU9oW', 1, '2020-11-28 10:12:20', 0),
 (72, 'per.sor.ml@gmail.com', 'Amir', 'Fakouri', '+989371373929', '$2y$10$1F5Mi8Awsj5ccm6IIxHkPOImdxLFb6GXYdIzuYbGpZtmAlp5eWlv.', 0, '2020-12-09 10:38:03', 0);
@@ -781,19 +778,19 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=281;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=282;
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=299;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=300;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `review`
@@ -850,7 +847,3 @@ ALTER TABLE `review`
   ADD CONSTRAINT `FK_product_id_review_prod` FOREIGN KEY (`FK_product_id_review_prod`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_user_id_review_user` FOREIGN KEY (`FK_user_id_review_user`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
