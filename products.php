@@ -54,11 +54,11 @@ session_regenerate_id();
                                     </button>
                                     <!-- sort by select -->
                                     <label for="" class="text-white mt-2 mr-3">Sort by :</label>
-                                    <select class="btn btn-primary text-left text-sm-center" id="sort-by-select">
-                                        <option value="priceAcs">Price-low to high</option>
-                                        <option>Price-high to low</option>
-                                        <option>Discount-highest</option>
-                                        <option>Discount-lowest</option>
+                                    <select class="btn btn-primary text-left" id="sort-by-select">
+                                        <option value="priceAcs">price-low to high</option>
+                                        <option>price-high to low</option>
+                                        <option>discount-highest</option>
+                                        <option>discount-lowest</option>
                                     </select>
                                 </div>
                             </div>
